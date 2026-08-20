@@ -1,0 +1,30 @@
+schema_version = "1.3"
+artifacts = []
+
+[task]
+name = "obi/gen-g780-realestate-fairhousing-collateral-audit"
+description = "Audit real-estate marketing collateral against the fair-housing standard"
+authors = []
+keywords = ["harbor", "shannon-200", "gen", "non-connector", "offline"]
+
+[metadata]
+source_config = "infra/task-harness/configs/shannon-200/task_gen_G780_realestate_fairhousing_collateral_audit"
+
+[verifier]
+timeout_sec = 600.0
+collect = []
+
+[verifier.env]
+
+[agent]
+timeout_sec = 1800.0
+
+[environment]
+network_mode = "public"
+build_timeout_sec = 1200.0
+os = "linux"
+mcp_servers = []
+
+[environment.env]
+
+[solution.env]

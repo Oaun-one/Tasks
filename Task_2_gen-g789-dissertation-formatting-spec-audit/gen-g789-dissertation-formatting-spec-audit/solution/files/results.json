@@ -1,0 +1,19 @@
+{
+  "section_count": 44,
+  "part_count": 8,
+  "clean_section_count": 16,
+  "flagged_section_count": 28,
+  "finding_total": 50,
+  "margin_count": 8,
+  "type_area_count": 9,
+  "leading_count": 7,
+  "font_count": 5,
+  "heading_count": 9,
+  "caption_missing_count": 7,
+  "numbering_count": 5,
+  "caption_shortfall_total": 18,
+  "pagination_invalid_parts": 3,
+  "sections_in_invalid_parts": 17,
+  "flagged_archive_sections": 14,
+  "flagged_reading_sections": 14
+}

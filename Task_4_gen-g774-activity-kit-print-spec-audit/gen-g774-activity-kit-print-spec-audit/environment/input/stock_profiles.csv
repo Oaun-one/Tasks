@@ -1,0 +1,4 @@
+stock_code,stock_name,min_dpi,min_margin_in,max_ink_pct,min_bleed_in
+CST-100,Coated silk 100gsm,300,0.125,280,0.125
+UNC-120,Uncoated offset 120gsm,240,0.1875,240,0.25
+BRD-250,Board 250gsm,260,0.25,300,0.1875

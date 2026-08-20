@@ -1,0 +1,112 @@
+{
+    "id": "5baebff4-0e62-4a88-a5a8-c4a863c836db",
+    "task_name": "obi/gen-g780-realestate-fairhousing-collateral-audit",
+    "trial_name": "gen-g780-realestate-fairhousing__iq8MEPk",
+    "trial_uri": "file:///E:/WORK/TU/jobs/oracle-v2-reworked/gen-g780-realestate-fairhousing__iq8MEPk",
+    "task_id": {
+        "path": "E:\\WORK\\TU\\Task_1_gen-g780-realestate-fairhousing-collateral-audit\\gen-g780-realestate-fairhousing-collateral-audit"
+    },
+    "source": null,
+    "task_checksum": "f41660cb21326cab71a01f908fd7422dad4ba72abc4e7468b08927e260a0e121",
+    "config": {
+        "task": {
+            "path": "E:\\WORK\\TU\\Task_1_gen-g780-realestate-fairhousing-collateral-audit\\gen-g780-realestate-fairhousing-collateral-audit",
+            "git_url": null,
+            "git_commit_id": null,
+            "name": null,
+            "ref": null,
+            "overwrite": false,
+            "download_dir": null,
+            "source": null
+        },
+        "trial_name": "gen-g780-realestate-fairhousing__iq8MEPk",
+        "trials_dir": "E:\\WORK\\TU\\jobs\\oracle-v2-reworked",
+        "install_only": false,
+        "timeout_multiplier": 1.0,
+        "agent_timeout_multiplier": null,
+        "verifier_timeout_multiplier": null,
+        "agent_setup_timeout_multiplier": null,
+        "environment_build_timeout_multiplier": null,
+        "agent": {
+            "name": "oracle",
+            "import_path": null,
+            "model_name": null,
+            "n_concurrent": null,
+            "concurrency_group": null,
+            "skills": [],
+            "override_timeout_sec": null,
+            "override_setup_timeout_sec": null,
+            "max_timeout_sec": null,
+            "resume_trajectory": false,
+            "load_trajectory": null,
+            "extra_allowed_hosts": [],
+            "kwargs": {},
+            "mcp_servers": []
+        },
+        "environment": {
+            "type": "docker",
+            "import_path": null,
+            "force_build": false,
+            "delete": true,
+            "cpu_enforcement_policy": "auto",
+            "memory_enforcement_policy": "auto",
+            "override_cpus": null,
+            "override_memory_mb": null,
+            "override_storage_mb": null,
+            "override_gpus": null,
+            "override_tpu": null,
+            "mounts": null,
+            "extra_docker_compose": [],
+            "kwargs": {},
+            "extra_allowed_hosts": []
+        },
+        "verifier": {
+            "override_timeout_sec": null,
+            "max_timeout_sec": null,
+            "disable": false
+        },
+        "artifacts": [],
+        "extra_instruction_paths": [],
+        "job_id": "b722f3a8-1d30-48be-ac5d-ac4432bf8f07",
+        "source_trial": null
+    },
+    "agent_info": {
+        "name": "oracle",
+        "version": "1.0.0",
+        "model_info": null
+    },
+    "agent_result": {
+        "n_input_tokens": null,
+        "n_cache_tokens": null,
+        "n_output_tokens": null,
+        "cost_usd": null,
+        "rollout_details": null,
+        "metadata": null
+    },
+    "verifier_result": {
+        "rewards": {
+            "reward": 1.0
+        }
+    },
+    "verifier_environment_mode": "shared",
+    "exception_info": null,
+    "started_at": "2026-08-19T09:08:09.325012Z",
+    "finished_at": "2026-08-19T09:08:19.834666Z",
+    "environment_setup": {
+        "started_at": "2026-08-19T09:08:09.523661Z",
+        "finished_at": "2026-08-19T09:08:15.746481Z"
+    },
+    "agent_setup": {
+        "started_at": "2026-08-19T09:08:15.746528Z",
+        "finished_at": "2026-08-19T09:08:15.746589Z"
+    },
+    "agent_execution": {
+        "started_at": "2026-08-19T09:08:15.746665Z",
+        "finished_at": "2026-08-19T09:08:16.454231Z"
+    },
+    "verifier": {
+        "started_at": "2026-08-19T09:08:16.455092Z",
+        "finished_at": "2026-08-19T09:08:18.218202Z"
+    },
+    "step_results": null
+}

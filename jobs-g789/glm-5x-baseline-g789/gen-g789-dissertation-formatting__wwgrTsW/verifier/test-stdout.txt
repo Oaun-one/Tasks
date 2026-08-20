@@ -1,0 +1,72 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.14, pytest-8.4.1, pluggy-1.6.0
+rootdir: /tests
+plugins: json-ctrf-0.3.5
+collected 14 items
+
+../tests/test_outputs.py ..........FF..                                  [100%]
+
+=================================== FAILURES ===================================
+____________________ test_deliverable[result_flagged_count] ____________________
+
+definition = VerifierDefinition(name='result_flagged_count', metadata=VerifierMetadata(how_justification='Reads results.json with j...pected=3, deterministic=DeterministicConfig(path='$.flagged_count', comparison='equals', tolerance=None), rubric=None))
+
+    @pytest.mark.parametrize(
+        "definition",
+        SPEC.verifiers,
+        ids=[definition.name for definition in SPEC.verifiers],
+    )
+    def test_deliverable(definition):
+        outcome = verify_definition(
+            definition,
+            REGISTRY,
+            WEIGHTS[definition.name],
+            config=SPEC.config,
+            completion_fn=None,
+        )["result"]
+        detail = outcome.get("error") or outcome.get("reason") or "assertion failed"
+>       assert outcome["success"], f"{definition.name}: {detail}"
+E       AssertionError: result_flagged_count: assertion failed
+E       assert False
+
+/tests/test_outputs.py:44: AssertionError
+____________________ test_deliverable[result_margin_count] _____________________
+
+definition = VerifierDefinition(name='result_margin_count', metadata=VerifierMetadata(how_justification='Reads results.json with js...xpected=1, deterministic=DeterministicConfig(path='$.margin_count', comparison='equals', tolerance=None), rubric=None))
+
+    @pytest.mark.parametrize(
+        "definition",
+        SPEC.verifiers,
+        ids=[definition.name for definition in SPEC.verifiers],
+    )
+    def test_deliverable(definition):
+        outcome = verify_definition(
+            definition,
+            REGISTRY,
+            WEIGHTS[definition.name],
+            config=SPEC.config,
+            completion_fn=None,
+        )["result"]
+        detail = outcome.get("error") or outcome.get("reason") or "assertion failed"
+>       assert outcome["success"], f"{definition.name}: {detail}"
+E       AssertionError: result_margin_count: assertion failed
+E       assert False
+
+/tests/test_outputs.py:44: AssertionError
+==================================== PASSES ====================================
+=========================== short test summary info ============================
+PASSED ../tests/test_outputs.py::test_deliverable[audit_exists]
+PASSED ../tests/test_outputs.py::test_deliverable[memo_exists]
+PASSED ../tests/test_outputs.py::test_deliverable[margin_flagged]
+PASSED ../tests/test_outputs.py::test_deliverable[font_flagged]
+PASSED ../tests/test_outputs.py::test_deliverable[spacing_flagged]
+PASSED ../tests/test_outputs.py::test_deliverable[annex_trap_clean]
+PASSED ../tests/test_outputs.py::test_deliverable[memo_annex]
+PASSED ../tests/test_outputs.py::test_deliverable[memo_margin]
+PASSED ../tests/test_outputs.py::test_deliverable[results_exists]
+PASSED ../tests/test_outputs.py::test_deliverable[result_section_count]
+PASSED ../tests/test_outputs.py::test_deliverable[result_font_count]
+PASSED ../tests/test_outputs.py::test_deliverable[result_spacing_count]
+FAILED ../tests/test_outputs.py::test_deliverable[result_flagged_count] - Ass...
+FAILED ../tests/test_outputs.py::test_deliverable[result_margin_count] - Asse...
+========================= 2 failed, 12 passed in 0.46s =========================

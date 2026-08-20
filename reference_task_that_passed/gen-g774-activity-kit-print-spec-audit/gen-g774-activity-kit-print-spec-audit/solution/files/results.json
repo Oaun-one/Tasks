@@ -1,0 +1,16 @@
+{
+  "page_count": 36,
+  "section_count": 9,
+  "clean_page_count": 15,
+  "flagged_page_count": 21,
+  "finding_total": 39,
+  "dpi_low_count": 8,
+  "margin_count": 5,
+  "bleed_short_count": 4,
+  "ink_over_count": 6,
+  "spot_unsupported_count": 5,
+  "font_not_embedded_count": 4,
+  "element_short_count": 7,
+  "element_shortfall_total": 12,
+  "imposition_invalid_sections": 2
+}

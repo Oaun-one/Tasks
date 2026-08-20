@@ -1,0 +1,5 @@
+installed gold deliverables into /app:
+formatting_audit.csv
+formatting_memo.md
+input
+results.json

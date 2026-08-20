@@ -1,0 +1,7 @@
+section_id,finding,auditor_note
+SEC-COVER,MARGIN_NONCOMPLIANT,"cover page margins not verified against the standard"
+SEC-CH1,FONT_NONCOMPLIANT,"font could not be confirmed"
+SEC-CH2,MARGIN_NONCOMPLIANT,"2.0 cm"
+SEC-CH3,FONT_NONCOMPLIANT,"Calibri"
+SEC-CH4,SPACING_NONCOMPLIANT,"single spacing"
+SEC-ANNEX-A,MARGIN_NONCOMPLIANT,"1.5 cm - none of the exceptions were applied"

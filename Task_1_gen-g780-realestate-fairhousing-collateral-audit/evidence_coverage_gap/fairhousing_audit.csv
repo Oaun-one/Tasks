@@ -1,0 +1,5 @@
+section_id,finding,rationale
+SEC-02,PROHIBITED_PERSONAL_NARRATIVE,"buyer story"
+SEC-03,PROTECTED_CLASS_LANGUAGE,"protected terms"
+SEC-04,PROTECTED_CLASS_LANGUAGE,"none of the other rules apply"
+SEC-05,DISCLAIMER_MISSING,"no disclaimer"

@@ -1,0 +1,355 @@
+{
+  "task_id": "gen-G774-activity-kit-print-spec-audit",
+  "verifiers": [
+    {
+      "name": "audit_exists",
+      "metadata": {
+        "how_justification": "Checks activity_kit_audit.csv is present as a file in the workspace.",
+        "why_justification": "Audit delivered."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "filesystem",
+          "command": "check_path_exists",
+          "arguments": {
+            "path": "activity_kit_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": true,
+        "deterministic": {
+          "path": "$.is_file",
+          "comparison": "equals"
+        }
+      }
+    },
+    {
+      "name": "memo_exists",
+      "metadata": {
+        "how_justification": "Checks activity_kit_memo.md is present as a file in the workspace.",
+        "why_justification": "Memo delivered."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "filesystem",
+          "command": "check_path_exists",
+          "arguments": {
+            "path": "activity_kit_memo.md"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": true,
+        "deterministic": {
+          "path": "$.is_file",
+          "comparison": "equals"
+        }
+      }
+    },
+    {
+      "name": "dpi_flagged",
+      "metadata": {
+        "how_justification": "Opens activity_kit_audit.csv with csv.extract_text and applies regex_match.",
+        "why_justification": "Low DPI flagged."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "activity_kit_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?mi)^\\x22?PG\\-02\\x22?\\s*,.*DPI_TOO_LOW",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "margin_flagged",
+      "metadata": {
+        "how_justification": "Opens activity_kit_audit.csv with csv.extract_text and applies regex_match.",
+        "why_justification": "Margin violation flagged."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "activity_kit_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?mi)^\\x22?PG\\-03\\x22?\\s*,.*MARGIN_VIOLATION",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "element_flagged",
+      "metadata": {
+        "how_justification": "Opens activity_kit_audit.csv with csv.extract_text and applies regex_match.",
+        "why_justification": "Element count shortfall flagged."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "activity_kit_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?mi)^\\x22?PG\\-04\\x22?\\s*,.*ELEMENT_COUNT_SHORT",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "bleed_trap_clean",
+      "metadata": {
+        "how_justification": "Opens activity_kit_audit.csv with csv.extract_text and applies regex_match.",
+        "why_justification": "Full-bleed cover reads none."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "activity_kit_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?mi)^\\x22?PG\\-01\\x22?\\s*,.*none",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "memo_bleed",
+      "metadata": {
+        "how_justification": "Opens activity_kit_memo.md with md.extract_text and applies regex_match.",
+        "why_justification": "Memo explains the full-bleed exemption."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "md",
+          "command": "extract_text",
+          "arguments": {
+            "path": "activity_kit_memo.md"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?is)\\bfull-bleed\\w*\\b.*\\bexempt",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "memo_finding_terms",
+      "metadata": {
+        "how_justification": "Opens activity_kit_memo.md with md.extract_text and applies regex_match.",
+        "why_justification": "Memo covers the audit rules."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "md",
+          "command": "extract_text",
+          "arguments": {
+            "path": "activity_kit_memo.md"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?i)\\bDPI_TOO_LOW|\\bMARGIN_VIOLATION|\\bELEMENT_COUNT_SHORT",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "results_exists",
+      "metadata": {
+        "how_justification": "Checks results.json is present as a file in the workspace.",
+        "why_justification": "Derived figures delivered."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "filesystem",
+          "command": "check_path_exists",
+          "arguments": {
+            "path": "results.json"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": true,
+        "deterministic": {
+          "path": "$.is_file",
+          "comparison": "equals"
+        }
+      }
+    },
+    {
+      "name": "result_page_count",
+      "metadata": {
+        "how_justification": "Reads results.json with json.read_file and compares $.page_count.",
+        "why_justification": "Derived figure `page_count`, recomputed from the delivered artifacts."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "json",
+          "command": "read_file",
+          "arguments": {
+            "path": "results.json"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": 6,
+        "deterministic": {
+          "path": "$.page_count",
+          "comparison": "equals"
+        }
+      }
+    },
+    {
+      "name": "result_flagged_count",
+      "metadata": {
+        "how_justification": "Reads results.json with json.read_file and compares $.flagged_count.",
+        "why_justification": "Derived figure `flagged_count`, recomputed from the delivered artifacts."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "json",
+          "command": "read_file",
+          "arguments": {
+            "path": "results.json"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": 4,
+        "deterministic": {
+          "path": "$.flagged_count",
+          "comparison": "equals"
+        }
+      }
+    },
+    {
+      "name": "result_dpi_low_count",
+      "metadata": {
+        "how_justification": "Reads results.json with json.read_file and compares $.dpi_low_count.",
+        "why_justification": "Derived figure `dpi_low_count`, recomputed from the delivered artifacts."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "json",
+          "command": "read_file",
+          "arguments": {
+            "path": "results.json"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": 2,
+        "deterministic": {
+          "path": "$.dpi_low_count",
+          "comparison": "equals"
+        }
+      }
+    },
+    {
+      "name": "result_margin_count",
+      "metadata": {
+        "how_justification": "Reads results.json with json.read_file and compares $.margin_count.",
+        "why_justification": "Derived figure `margin_count`, recomputed from the delivered artifacts."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "json",
+          "command": "read_file",
+          "arguments": {
+            "path": "results.json"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": 2,
+        "deterministic": {
+          "path": "$.margin_count",
+          "comparison": "equals"
+        }
+      }
+    },
+    {
+      "name": "result_element_short_count",
+      "metadata": {
+        "how_justification": "Reads results.json with json.read_file and compares $.element_short_count.",
+        "why_justification": "Derived figure `element_short_count`, recomputed from the delivered artifacts."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "json",
+          "command": "read_file",
+          "arguments": {
+            "path": "results.json"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": 2,
+        "deterministic": {
+          "path": "$.element_short_count",
+          "comparison": "equals"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,1630 @@
+{
+  "task_id": "gen-G789-dissertation-formatting-spec-audit",
+  "verifiers": [
+    {
+      "name": "audit_exists",
+      "metadata": {
+        "how_justification": "Checks formatting_audit.csv is present as a file in the workspace.",
+        "why_justification": "Audit delivered."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "filesystem",
+          "command": "check_path_exists",
+          "arguments": {
+            "path": "formatting_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": true,
+        "deterministic": {
+          "path": "$.is_file",
+          "comparison": "equals"
+        }
+      }
+    },
+    {
+      "name": "memo_exists",
+      "metadata": {
+        "how_justification": "Checks formatting_memo.md is present as a file in the workspace.",
+        "why_justification": "Memo delivered."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "filesystem",
+          "command": "check_path_exists",
+          "arguments": {
+            "path": "formatting_memo.md"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": true,
+        "deterministic": {
+          "path": "$.is_file",
+          "comparison": "equals"
+        }
+      }
+    },
+    {
+      "name": "results_exists",
+      "metadata": {
+        "how_justification": "Checks results.json is present as a file in the workspace.",
+        "why_justification": "Derived figures delivered."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "filesystem",
+          "command": "check_path_exists",
+          "arguments": {
+            "path": "results.json"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": true,
+        "deterministic": {
+          "path": "$.is_file",
+          "comparison": "equals"
+        }
+      }
+    },
+    {
+      "name": "audit_header_is_two_columns",
+      "metadata": {
+        "how_justification": "Opens formatting_audit.csv with csv.extract_text and applies regex_match.",
+        "why_justification": "The prompt pins the audit to exactly the columns section_id,finding. This rejects an echo of the input log with a finding column appended."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "formatting_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?mi)\\A\\x22?section_id\\x22?\\s*,\\s*\\x22?finding\\x22?\\s*$",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "row_sec_ch1",
+      "metadata": {
+        "how_justification": "Opens formatting_audit.csv with csv.extract_text and applies regex_match.",
+        "why_justification": "SEC-CH1 must be graded exactly none. End-anchored, so the whole finding cell is pinned."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "formatting_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?mi)^\\x22?SEC\\-CH1\\x22?\\s*,\\s*\\x22?none\\x22?\\s*$",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "row_sec_an_05",
+      "metadata": {
+        "how_justification": "Opens formatting_audit.csv with csv.extract_text and applies regex_match.",
+        "why_justification": "SEC-AN-05 must be graded exactly MARGIN_NONCOMPLIANT. End-anchored, so the whole finding cell is pinned."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "formatting_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?mi)^\\x22?SEC\\-AN\\-05\\x22?\\s*,\\s*\\x22?MARGIN_NONCOMPLIANT\\x22?\\s*$",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "row_sec_title",
+      "metadata": {
+        "how_justification": "Opens formatting_audit.csv with csv.extract_text and applies regex_match.",
+        "why_justification": "SEC-TITLE must be graded exactly none. End-anchored, so the whole finding cell is pinned."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "formatting_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?mi)^\\x22?SEC\\-TITLE\\x22?\\s*,\\s*\\x22?none\\x22?\\s*$",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "row_sec_an_01",
+      "metadata": {
+        "how_justification": "Opens formatting_audit.csv with csv.extract_text and applies regex_match.",
+        "why_justification": "SEC-AN-01 must be graded exactly none. End-anchored, so the whole finding cell is pinned."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "formatting_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?mi)^\\x22?SEC\\-AN\\-01\\x22?\\s*,\\s*\\x22?none\\x22?\\s*$",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "row_sec_ch7",
+      "metadata": {
+        "how_justification": "Opens formatting_audit.csv with csv.extract_text and applies regex_match.",
+        "why_justification": "SEC-CH7 must be graded exactly MARGIN_NONCOMPLIANT. End-anchored, so the whole finding cell is pinned."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "formatting_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?mi)^\\x22?SEC\\-CH7\\x22?\\s*,\\s*\\x22?MARGIN_NONCOMPLIANT\\x22?\\s*$",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "row_sec_abstract",
+      "metadata": {
+        "how_justification": "Opens formatting_audit.csv with csv.extract_text and applies regex_match.",
+        "why_justification": "SEC-ABSTRACT must be graded exactly MARGIN_NONCOMPLIANT. End-anchored, so the whole finding cell is pinned."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "formatting_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?mi)^\\x22?SEC\\-ABSTRACT\\x22?\\s*,\\s*\\x22?MARGIN_NONCOMPLIANT\\x22?\\s*$",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "row_sec_an_07",
+      "metadata": {
+        "how_justification": "Opens formatting_audit.csv with csv.extract_text and applies regex_match.",
+        "why_justification": "SEC-AN-07 must be graded exactly MARGIN_NONCOMPLIANT. End-anchored, so the whole finding cell is pinned."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "formatting_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?mi)^\\x22?SEC\\-AN\\-07\\x22?\\s*,\\s*\\x22?MARGIN_NONCOMPLIANT\\x22?\\s*$",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "row_sec_lot",
+      "metadata": {
+        "how_justification": "Opens formatting_audit.csv with csv.extract_text and applies regex_match.",
+        "why_justification": "SEC-LOT must be graded exactly none. End-anchored, so the whole finding cell is pinned."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "formatting_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?mi)^\\x22?SEC\\-LOT\\x22?\\s*,\\s*\\x22?none\\x22?\\s*$",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "row_sec_ch3",
+      "metadata": {
+        "how_justification": "Opens formatting_audit.csv with csv.extract_text and applies regex_match.",
+        "why_justification": "SEC-CH3 must be graded exactly FONT_NONCOMPLIANT. End-anchored, so the whole finding cell is pinned."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "formatting_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?mi)^\\x22?SEC\\-CH3\\x22?\\s*,\\s*\\x22?FONT_NONCOMPLIANT\\x22?\\s*$",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "row_sec_ref",
+      "metadata": {
+        "how_justification": "Opens formatting_audit.csv with csv.extract_text and applies regex_match.",
+        "why_justification": "SEC-REF must be graded exactly none. End-anchored, so the whole finding cell is pinned."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "formatting_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?mi)^\\x22?SEC\\-REF\\x22?\\s*,\\s*\\x22?none\\x22?\\s*$",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "row_sec_an_04",
+      "metadata": {
+        "how_justification": "Opens formatting_audit.csv with csv.extract_text and applies regex_match.",
+        "why_justification": "SEC-AN-04 must be graded exactly none. End-anchored, so the whole finding cell is pinned."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "formatting_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?mi)^\\x22?SEC\\-AN\\-04\\x22?\\s*,\\s*\\x22?none\\x22?\\s*$",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "row_sec_decl",
+      "metadata": {
+        "how_justification": "Opens formatting_audit.csv with csv.extract_text and applies regex_match.",
+        "why_justification": "SEC-DECL must be graded exactly none. End-anchored, so the whole finding cell is pinned."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "formatting_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?mi)^\\x22?SEC\\-DECL\\x22?\\s*,\\s*\\x22?none\\x22?\\s*$",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "row_sec_an_09",
+      "metadata": {
+        "how_justification": "Opens formatting_audit.csv with csv.extract_text and applies regex_match.",
+        "why_justification": "SEC-AN-09 must be graded exactly FONT_NONCOMPLIANT. End-anchored, so the whole finding cell is pinned."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "formatting_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?mi)^\\x22?SEC\\-AN\\-09\\x22?\\s*,\\s*\\x22?FONT_NONCOMPLIANT\\x22?\\s*$",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "row_sec_ch5",
+      "metadata": {
+        "how_justification": "Opens formatting_audit.csv with csv.extract_text and applies regex_match.",
+        "why_justification": "SEC-CH5 must be graded exactly SPACING_NONCOMPLIANT. End-anchored, so the whole finding cell is pinned."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "formatting_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?mi)^\\x22?SEC\\-CH5\\x22?\\s*,\\s*\\x22?SPACING_NONCOMPLIANT\\x22?\\s*$",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "row_sec_toc",
+      "metadata": {
+        "how_justification": "Opens formatting_audit.csv with csv.extract_text and applies regex_match.",
+        "why_justification": "SEC-TOC must be graded exactly none. End-anchored, so the whole finding cell is pinned."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "formatting_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?mi)^\\x22?SEC\\-TOC\\x22?\\s*,\\s*\\x22?none\\x22?\\s*$",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "row_sec_an_06",
+      "metadata": {
+        "how_justification": "Opens formatting_audit.csv with csv.extract_text and applies regex_match.",
+        "why_justification": "SEC-AN-06 must be graded exactly MARGIN_NONCOMPLIANT. End-anchored, so the whole finding cell is pinned."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "formatting_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?mi)^\\x22?SEC\\-AN\\-06\\x22?\\s*,\\s*\\x22?MARGIN_NONCOMPLIANT\\x22?\\s*$",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "row_sec_ch2",
+      "metadata": {
+        "how_justification": "Opens formatting_audit.csv with csv.extract_text and applies regex_match.",
+        "why_justification": "SEC-CH2 must be graded exactly MARGIN_NONCOMPLIANT. End-anchored, so the whole finding cell is pinned."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "formatting_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?mi)^\\x22?SEC\\-CH2\\x22?\\s*,\\s*\\x22?MARGIN_NONCOMPLIANT\\x22?\\s*$",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "row_sec_glossary",
+      "metadata": {
+        "how_justification": "Opens formatting_audit.csv with csv.extract_text and applies regex_match.",
+        "why_justification": "SEC-GLOSSARY must be graded exactly MARGIN_NONCOMPLIANT. End-anchored, so the whole finding cell is pinned."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "formatting_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?mi)^\\x22?SEC\\-GLOSSARY\\x22?\\s*,\\s*\\x22?MARGIN_NONCOMPLIANT\\x22?\\s*$",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "row_sec_an_02",
+      "metadata": {
+        "how_justification": "Opens formatting_audit.csv with csv.extract_text and applies regex_match.",
+        "why_justification": "SEC-AN-02 must be graded exactly none. End-anchored, so the whole finding cell is pinned."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "formatting_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?mi)^\\x22?SEC\\-AN\\-02\\x22?\\s*,\\s*\\x22?none\\x22?\\s*$",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "row_sec_ch9",
+      "metadata": {
+        "how_justification": "Opens formatting_audit.csv with csv.extract_text and applies regex_match.",
+        "why_justification": "SEC-CH9 must be graded exactly FONT_NONCOMPLIANT. End-anchored, so the whole finding cell is pinned."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "formatting_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?mi)^\\x22?SEC\\-CH9\\x22?\\s*,\\s*\\x22?FONT_NONCOMPLIANT\\x22?\\s*$",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "row_sec_ack",
+      "metadata": {
+        "how_justification": "Opens formatting_audit.csv with csv.extract_text and applies regex_match.",
+        "why_justification": "SEC-ACK must be graded exactly MARGIN_NONCOMPLIANT. End-anchored, so the whole finding cell is pinned."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "formatting_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?mi)^\\x22?SEC\\-ACK\\x22?\\s*,\\s*\\x22?MARGIN_NONCOMPLIANT\\x22?\\s*$",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "row_sec_ch10",
+      "metadata": {
+        "how_justification": "Opens formatting_audit.csv with csv.extract_text and applies regex_match.",
+        "why_justification": "SEC-CH10 must be graded exactly none. End-anchored, so the whole finding cell is pinned."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "formatting_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?mi)^\\x22?SEC\\-CH10\\x22?\\s*,\\s*\\x22?none\\x22?\\s*$",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "row_sec_an_08",
+      "metadata": {
+        "how_justification": "Opens formatting_audit.csv with csv.extract_text and applies regex_match.",
+        "why_justification": "SEC-AN-08 must be graded exactly SPACING_NONCOMPLIANT. End-anchored, so the whole finding cell is pinned."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "formatting_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?mi)^\\x22?SEC\\-AN\\-08\\x22?\\s*,\\s*\\x22?SPACING_NONCOMPLIANT\\x22?\\s*$",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "row_sec_ch4",
+      "metadata": {
+        "how_justification": "Opens formatting_audit.csv with csv.extract_text and applies regex_match.",
+        "why_justification": "SEC-CH4 must be graded exactly FONT_NONCOMPLIANT|SPACING_NONCOMPLIANT. End-anchored, so the whole finding cell is pinned."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "formatting_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?mi)^\\x22?SEC\\-CH4\\x22?\\s*,\\s*\\x22?FONT_NONCOMPLIANT\\s*\\|\\s*SPACING_NONCOMPLIANT\\x22?\\s*$",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "row_sec_lof",
+      "metadata": {
+        "how_justification": "Opens formatting_audit.csv with csv.extract_text and applies regex_match.",
+        "why_justification": "SEC-LOF must be graded exactly SPACING_NONCOMPLIANT. End-anchored, so the whole finding cell is pinned."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "formatting_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?mi)^\\x22?SEC\\-LOF\\x22?\\s*,\\s*\\x22?SPACING_NONCOMPLIANT\\x22?\\s*$",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "row_sec_ch6",
+      "metadata": {
+        "how_justification": "Opens formatting_audit.csv with csv.extract_text and applies regex_match.",
+        "why_justification": "SEC-CH6 must be graded exactly none. End-anchored, so the whole finding cell is pinned."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "formatting_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?mi)^\\x22?SEC\\-CH6\\x22?\\s*,\\s*\\x22?none\\x22?\\s*$",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "row_sec_bio",
+      "metadata": {
+        "how_justification": "Opens formatting_audit.csv with csv.extract_text and applies regex_match.",
+        "why_justification": "SEC-BIO must be graded exactly MARGIN_NONCOMPLIANT. End-anchored, so the whole finding cell is pinned."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "formatting_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?mi)^\\x22?SEC\\-BIO\\x22?\\s*,\\s*\\x22?MARGIN_NONCOMPLIANT\\x22?\\s*$",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "row_sec_an_03",
+      "metadata": {
+        "how_justification": "Opens formatting_audit.csv with csv.extract_text and applies regex_match.",
+        "why_justification": "SEC-AN-03 must be graded exactly FONT_NONCOMPLIANT. End-anchored, so the whole finding cell is pinned."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "formatting_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?mi)^\\x22?SEC\\-AN\\-03\\x22?\\s*,\\s*\\x22?FONT_NONCOMPLIANT\\x22?\\s*$",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "row_sec_ch8",
+      "metadata": {
+        "how_justification": "Opens formatting_audit.csv with csv.extract_text and applies regex_match.",
+        "why_justification": "SEC-CH8 must be graded exactly MARGIN_NONCOMPLIANT|FONT_NONCOMPLIANT|SPACING_NONCOMPLIANT. End-anchored, so the whole finding cell is pinned."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "formatting_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?mi)^\\x22?SEC\\-CH8\\x22?\\s*,\\s*\\x22?MARGIN_NONCOMPLIANT\\s*\\|\\s*FONT_NONCOMPLIANT\\s*\\|\\s*SPACING_NONCOMPLIANT\\x22?\\s*$",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "row_sec_an_10",
+      "metadata": {
+        "how_justification": "Opens formatting_audit.csv with csv.extract_text and applies regex_match.",
+        "why_justification": "SEC-AN-10 must be graded exactly none. End-anchored, so the whole finding cell is pinned."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "formatting_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?mi)^\\x22?SEC\\-AN\\-10\\x22?\\s*,\\s*\\x22?none\\x22?\\s*$",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "clean_sec_ch1_unflagged",
+      "metadata": {
+        "how_justification": "Opens formatting_audit.csv with csv.extract_text and applies not_regex_match.",
+        "why_justification": "SEC-CH1 is compliant; no line of the audit may carry a violation label against it."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "formatting_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?mi)^\\x22?SEC\\-CH1\\x22?\\s*,.*NONCOMPLIANT",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "not_regex_match"
+        }
+      }
+    },
+    {
+      "name": "clean_sec_title_unflagged",
+      "metadata": {
+        "how_justification": "Opens formatting_audit.csv with csv.extract_text and applies not_regex_match.",
+        "why_justification": "SEC-TITLE is compliant; no line of the audit may carry a violation label against it."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "formatting_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?mi)^\\x22?SEC\\-TITLE\\x22?\\s*,.*NONCOMPLIANT",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "not_regex_match"
+        }
+      }
+    },
+    {
+      "name": "clean_sec_an_01_unflagged",
+      "metadata": {
+        "how_justification": "Opens formatting_audit.csv with csv.extract_text and applies not_regex_match.",
+        "why_justification": "SEC-AN-01 is compliant; no line of the audit may carry a violation label against it."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "formatting_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?mi)^\\x22?SEC\\-AN\\-01\\x22?\\s*,.*NONCOMPLIANT",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "not_regex_match"
+        }
+      }
+    },
+    {
+      "name": "clean_sec_lot_unflagged",
+      "metadata": {
+        "how_justification": "Opens formatting_audit.csv with csv.extract_text and applies not_regex_match.",
+        "why_justification": "SEC-LOT is compliant; no line of the audit may carry a violation label against it."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "formatting_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?mi)^\\x22?SEC\\-LOT\\x22?\\s*,.*NONCOMPLIANT",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "not_regex_match"
+        }
+      }
+    },
+    {
+      "name": "clean_sec_ref_unflagged",
+      "metadata": {
+        "how_justification": "Opens formatting_audit.csv with csv.extract_text and applies not_regex_match.",
+        "why_justification": "SEC-REF is compliant; no line of the audit may carry a violation label against it."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "formatting_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?mi)^\\x22?SEC\\-REF\\x22?\\s*,.*NONCOMPLIANT",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "not_regex_match"
+        }
+      }
+    },
+    {
+      "name": "clean_sec_an_04_unflagged",
+      "metadata": {
+        "how_justification": "Opens formatting_audit.csv with csv.extract_text and applies not_regex_match.",
+        "why_justification": "SEC-AN-04 is compliant; no line of the audit may carry a violation label against it."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "formatting_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?mi)^\\x22?SEC\\-AN\\-04\\x22?\\s*,.*NONCOMPLIANT",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "not_regex_match"
+        }
+      }
+    },
+    {
+      "name": "clean_sec_decl_unflagged",
+      "metadata": {
+        "how_justification": "Opens formatting_audit.csv with csv.extract_text and applies not_regex_match.",
+        "why_justification": "SEC-DECL is compliant; no line of the audit may carry a violation label against it."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "formatting_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?mi)^\\x22?SEC\\-DECL\\x22?\\s*,.*NONCOMPLIANT",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "not_regex_match"
+        }
+      }
+    },
+    {
+      "name": "clean_sec_toc_unflagged",
+      "metadata": {
+        "how_justification": "Opens formatting_audit.csv with csv.extract_text and applies not_regex_match.",
+        "why_justification": "SEC-TOC is compliant; no line of the audit may carry a violation label against it."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "formatting_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?mi)^\\x22?SEC\\-TOC\\x22?\\s*,.*NONCOMPLIANT",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "not_regex_match"
+        }
+      }
+    },
+    {
+      "name": "clean_sec_an_02_unflagged",
+      "metadata": {
+        "how_justification": "Opens formatting_audit.csv with csv.extract_text and applies not_regex_match.",
+        "why_justification": "SEC-AN-02 is compliant; no line of the audit may carry a violation label against it."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "formatting_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?mi)^\\x22?SEC\\-AN\\-02\\x22?\\s*,.*NONCOMPLIANT",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "not_regex_match"
+        }
+      }
+    },
+    {
+      "name": "clean_sec_ch10_unflagged",
+      "metadata": {
+        "how_justification": "Opens formatting_audit.csv with csv.extract_text and applies not_regex_match.",
+        "why_justification": "SEC-CH10 is compliant; no line of the audit may carry a violation label against it."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "formatting_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?mi)^\\x22?SEC\\-CH10\\x22?\\s*,.*NONCOMPLIANT",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "not_regex_match"
+        }
+      }
+    },
+    {
+      "name": "clean_sec_ch6_unflagged",
+      "metadata": {
+        "how_justification": "Opens formatting_audit.csv with csv.extract_text and applies not_regex_match.",
+        "why_justification": "SEC-CH6 is compliant; no line of the audit may carry a violation label against it."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "formatting_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?mi)^\\x22?SEC\\-CH6\\x22?\\s*,.*NONCOMPLIANT",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "not_regex_match"
+        }
+      }
+    },
+    {
+      "name": "clean_sec_an_10_unflagged",
+      "metadata": {
+        "how_justification": "Opens formatting_audit.csv with csv.extract_text and applies not_regex_match.",
+        "why_justification": "SEC-AN-10 is compliant; no line of the audit may carry a violation label against it."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "formatting_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?mi)^\\x22?SEC\\-AN\\-10\\x22?\\s*,.*NONCOMPLIANT",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "not_regex_match"
+        }
+      }
+    },
+    {
+      "name": "result_section_count",
+      "metadata": {
+        "how_justification": "Reads results.json with json.read_file and compares $.section_count.",
+        "why_justification": "Derived figure `section_count`. Sections audited, after superseded revisions are set aside."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "json",
+          "command": "read_file",
+          "arguments": {
+            "path": "results.json"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": 30,
+        "deterministic": {
+          "path": "$.section_count",
+          "comparison": "equals"
+        }
+      }
+    },
+    {
+      "name": "result_flagged_count",
+      "metadata": {
+        "how_justification": "Reads results.json with json.read_file and compares $.flagged_count.",
+        "why_justification": "Derived figure `flagged_count`. Sections carrying at least one finding."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "json",
+          "command": "read_file",
+          "arguments": {
+            "path": "results.json"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": 18,
+        "deterministic": {
+          "path": "$.flagged_count",
+          "comparison": "equals"
+        }
+      }
+    },
+    {
+      "name": "result_margin_count",
+      "metadata": {
+        "how_justification": "Reads results.json with json.read_file and compares $.margin_count.",
+        "why_justification": "Derived figure `margin_count`. Sections carrying MARGIN_NONCOMPLIANT."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "json",
+          "command": "read_file",
+          "arguments": {
+            "path": "results.json"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": 10,
+        "deterministic": {
+          "path": "$.margin_count",
+          "comparison": "equals"
+        }
+      }
+    },
+    {
+      "name": "result_font_count",
+      "metadata": {
+        "how_justification": "Reads results.json with json.read_file and compares $.font_count.",
+        "why_justification": "Derived figure `font_count`. Sections carrying FONT_NONCOMPLIANT."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "json",
+          "command": "read_file",
+          "arguments": {
+            "path": "results.json"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": 6,
+        "deterministic": {
+          "path": "$.font_count",
+          "comparison": "equals"
+        }
+      }
+    },
+    {
+      "name": "result_spacing_count",
+      "metadata": {
+        "how_justification": "Reads results.json with json.read_file and compares $.spacing_count.",
+        "why_justification": "Derived figure `spacing_count`. Sections carrying SPACING_NONCOMPLIANT."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "json",
+          "command": "read_file",
+          "arguments": {
+            "path": "results.json"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": 5,
+        "deterministic": {
+          "path": "$.spacing_count",
+          "comparison": "equals"
+        }
+      }
+    },
+    {
+      "name": "memo_a1_superseded",
+      "metadata": {
+        "how_justification": "Opens formatting_memo.md with md.extract_text and applies regex_match.",
+        "why_justification": "Deliverable 2 item 1: the memo must give a disposition for each amendment. A-1 is in date but superseded in full by A-2."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "md",
+          "command": "extract_text",
+          "arguments": {
+            "path": "formatting_memo.md"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?is)\\bA\\-1\\b.{0,300}?\\b(supersed\\w+|ceas\\w+|no longer|not applied|replaced|withdrawn|inoperative)\\b",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "memo_a4_not_applied",
+      "metadata": {
+        "how_justification": "Opens formatting_memo.md with md.extract_text and applies regex_match.",
+        "why_justification": "Deliverable 2 item 1: A-4's effective date falls after the submission date, so it is not in force. Applying it inverts the spacing verdicts for body sections."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "md",
+          "command": "extract_text",
+          "arguments": {
+            "path": "formatting_memo.md"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?is)\\bA\\-4\\b.{0,300}?\\b(not|no|after|future|excluded)\\b",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "memo_printable_width",
+      "metadata": {
+        "how_justification": "Opens formatting_memo.md with md.extract_text and applies regex_match.",
+        "why_justification": "Deliverable 2 item 2: the derived printable width of a landscape page, which is the oversized-table threshold in A-3."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "md",
+          "command": "extract_text",
+          "arguments": {
+            "path": "formatting_memo.md"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?i)\\b24\\.2\\b",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "memo_binding_minimum",
+      "metadata": {
+        "how_justification": "Opens formatting_memo.md with md.extract_text and applies regex_match.",
+        "why_justification": "Deliverable 2 item 2: the binding-edge minimum set by A-2."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "md",
+          "command": "extract_text",
+          "arguments": {
+            "path": "formatting_memo.md"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?i)\\b3\\.0\\s*cm\\b",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "memo_exact_leading",
+      "metadata": {
+        "how_justification": "Opens formatting_memo.md with md.extract_text and applies regex_match.",
+        "why_justification": "Deliverable 2 item 2: the compliant exact leading fixed by A-5."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "md",
+          "command": "extract_text",
+          "arguments": {
+            "path": "formatting_memo.md"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?i)\\b18(\\.0)?\\s*pt\\b",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "memo_rows_audited",
+      "metadata": {
+        "how_justification": "Opens formatting_memo.md with md.extract_text and applies regex_match.",
+        "why_justification": "Deliverable 2 item 3: how many log rows were audited."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "md",
+          "command": "extract_text",
+          "arguments": {
+            "path": "formatting_memo.md"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?is)(\\b30\\b.{0,160}?audit|audit\\w*.{0,160}?\\b30\\b)",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "memo_rows_set_aside",
+      "metadata": {
+        "how_justification": "Opens formatting_memo.md with md.extract_text and applies regex_match.",
+        "why_justification": "Deliverable 2 item 3: how many log rows were set aside, and on what basis."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "md",
+          "command": "extract_text",
+          "arguments": {
+            "path": "formatting_memo.md"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?is)((\\b5\\b|\\bfive\\b)[^\\n]{0,140}(set aside|supersed|excluded)|(set aside|supersed\\w*|excluded)[^\\n]{0,140}(\\b5\\b|\\bfive\\b))",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "memo_ch4_leading",
+      "metadata": {
+        "how_justification": "Opens formatting_memo.md with md.extract_text and applies regex_match.",
+        "why_justification": "Deliverable 2 item 4: SEC-CH4's spacing finding, with the measured 16.5 pt leading responsible for it."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "md",
+          "command": "extract_text",
+          "arguments": {
+            "path": "formatting_memo.md"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?is)SEC\\-CH4.{0,400}?\\b16\\.5\\b",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "memo_ch7_margin",
+      "metadata": {
+        "how_justification": "Opens formatting_memo.md with md.extract_text and applies regex_match.",
+        "why_justification": "Deliverable 2 item 4: SEC-CH7's margin finding, with the measured 1.8 cm outer margin responsible for it."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "md",
+          "command": "extract_text",
+          "arguments": {
+            "path": "formatting_memo.md"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?is)SEC\\-CH7.{0,400}?\\b1\\.8\\b",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "memo_ch8_margin",
+      "metadata": {
+        "how_justification": "Opens formatting_memo.md with md.extract_text and applies regex_match.",
+        "why_justification": "Deliverable 2 item 4: SEC-CH8's margin finding, with the measured 2.2 cm top margin responsible for it."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "md",
+          "command": "extract_text",
+          "arguments": {
+            "path": "formatting_memo.md"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?is)SEC\\-CH8.{0,400}?\\b2\\.2\\b",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "memo_an03_waiver",
+      "metadata": {
+        "how_justification": "Opens formatting_memo.md with md.extract_text and applies regex_match.",
+        "why_justification": "Deliverable 2 item 4: SEC-AN-03's font finding stands because its waiver had expired at the submission date."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "md",
+          "command": "extract_text",
+          "arguments": {
+            "path": "formatting_memo.md"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?is)SEC\\-AN\\-03.{0,400}?(W\\-2|expir\\w+)",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "memo_an07_binding_edge",
+      "metadata": {
+        "how_justification": "Opens formatting_memo.md with md.extract_text and applies regex_match.",
+        "why_justification": "Deliverable 2 item 4: SEC-AN-07's margin finding, with the measured 2.6 cm inner margin responsible for it."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "md",
+          "command": "extract_text",
+          "arguments": {
+            "path": "formatting_memo.md"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?is)SEC\\-AN\\-07.{0,400}?\\b2\\.6\\b",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "memo_an05_not_oversized",
+      "metadata": {
+        "how_justification": "Opens formatting_memo.md with md.extract_text and applies regex_match.",
+        "why_justification": "Deliverable 2 item 5: why the Rule 1 exception does not reach SEC-AN-05 \u2014 its widest table is 24.0 cm and is not oversized."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "md",
+          "command": "extract_text",
+          "arguments": {
+            "path": "formatting_memo.md"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?is)SEC\\-AN\\-05.{0,400}?\\b24\\.0\\b",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "memo_an06_portrait",
+      "metadata": {
+        "how_justification": "Opens formatting_memo.md with md.extract_text and applies regex_match.",
+        "why_justification": "Deliverable 2 item 5: why the Rule 1 exception does not reach SEC-AN-06 \u2014 it is an annex, but portrait."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "md",
+          "command": "extract_text",
+          "arguments": {
+            "path": "formatting_memo.md"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?is)SEC\\-AN\\-06.{0,400}?portrait",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    }
+  ]
+}

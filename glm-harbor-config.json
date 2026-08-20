@@ -1,0 +1,24 @@
+{
+  "tasks": [
+    {
+      "path": "."
+    }
+  ],
+  "agent": {
+    "name": "opencode",
+    "model_name": "wandb-glm/glm-5.2",
+    "setup_timeout_multiplier": 3.0,
+    "env": {
+      "OPENAI_BASE_URL": "http://34.41.10.8:4000/v1",
+      "OPENAI_API_KEY": "${OPENAI_API_KEY}",
+      "GLM_API_KEY": "${GLM_API_KEY}"
+    }
+  },
+  "verifier": {
+    "env": {
+      "OPENAI_BASE_URL": "http://34.41.10.8:4000/v1",
+      "OPENAI_API_KEY": "${OPENAI_API_KEY}"
+    }
+  },
+  "job_name": "glm-battery-gen-g988"
+}

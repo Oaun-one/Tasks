@@ -1,0 +1,9 @@
+request_id,uses_licensed_character,background_source,distribution,subject_is_minor,minor_consent_on_file
+REQ-01,True,customer_original,personal_only,False,False
+REQ-02,True,customer_original,social_public,False,False
+REQ-03,False,third_party_unlicensed,personal_only,False,False
+REQ-04,True,customer_original,personal_only,True,False
+REQ-05,True,customer_original,personal_only,True,True
+REQ-06,False,customer_original,print_for_sale,False,False
+REQ-07,False,customer_original,personal_only,False,False
+REQ-08,False,licensed_stock,social_public,False,False

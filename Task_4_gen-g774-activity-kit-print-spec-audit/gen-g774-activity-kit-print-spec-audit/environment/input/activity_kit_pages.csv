@@ -1,0 +1,35 @@
+artwork_id,page_id,revision,page_name,page_type,section_id,artwork_dpi,placement_scale_pct,margin_in,full_bleed_design,bleed_in,total_ink_pct,element_count
+AW-1001,PG-01,1,Front Cover,cover,SEC-01,300,100,0.05,True,0.1875,295,1
+AW-1002,PG-02,1,Inside Cover,activity,SEC-01,260,100,0.02,True,0.125,300,4
+AW-1003,PG-03,1,Welcome Letter,parent_guide,SEC-01,300,125,0.25,False,0.0,210,2
+AW-1004,PG-04,1,Kit Map,map,SEC-01,300,100,0.3,False,0.0,250,4
+AW-1005,PG-05,1,Trail Map A,map,SEC-02,300,100,0.125,False,0.0,280,4
+AW-1006,PG-06,1,Trail Map B,map,SEC-02,450,150,0.12,False,0.0,275,4
+AW-1007,PG-07,1,Trail Map C,map,SEC-02,600,200,0.03,True,0.25,282,3
+AW-1008,PG-08,1,Trail Activity 1,activity,SEC-02,300,110,0.2,False,0.0,260,4
+AW-1009,PG-09,1,Trail Activity 2,activity,SEC-02,320,100,0.1875,False,0.0,240,5
+AW-1010,PG-10,1,Trail Activity 3,activity,SEC-02,300,100,0.0,True,0.125,279,4
+AW-1011,PG-11,1,Mission Cards A,mission_cards,SEC-03,300,100,0.3,False,0.0,250,8
+AW-1030,PG-12,3,Mission Cards B,mission_cards,SEC-03,300,100,0.3,False,0.0,250,7
+AW-1013,PG-13,1,Mission Cards C,mission_cards,SEC-03,260,100,0.26,False,0.0,298,6
+AW-1014,PG-14,1,Mission Cards D,mission_cards,SEC-03,520,200,0.05,True,0.1875,301,9
+AW-1015,PG-15,1,Mission Cards E,mission_cards,SEC-03,300,120,0.2,False,0.0,260,5
+AW-1016,PG-16,1,Station Bingo 1,bingo,SEC-04,300,100,0.125,False,0.0,270,9
+AW-1017,PG-17,1,Station Bingo 2,bingo,SEC-04,300,100,0.15,False,0.0,270,8
+AW-1031,PG-18,2,Station Bingo 3,bingo,SEC-04,300,100,0.0,True,0.1,285,11
+AW-1019,PG-19,1,Mission Cards F,mission_cards,SEC-04,300,100,0.13,False,0.0,240,6
+AW-1020,PG-20,1,Mission Cards G,mission_cards,SEC-04,240,80,0.14,False,0.0,279,5
+AW-1021,PG-21,1,Station Activity,activity,SEC-04,290,100,0.125,False,0.0,280,4
+AW-1022,PG-22,1,Parent Guide 1,parent_guide,SEC-05,240,100,0.1875,False,0.0,240,2
+AW-1023,PG-23,1,Parent Guide 2,parent_guide,SEC-05,250,110,0.18,False,0.0,245,2
+AW-1024,PG-24,1,Badge Sheet A,badge_certificate,SEC-05,300,100,0.2,False,0.0,230,6
+AW-1025,PG-25,1,Badge Sheet B,badge_certificate,SEC-05,300,100,0.01,True,0.2,235,5
+AW-1026,PG-26,1,Certificate A,badge_certificate,SEC-06,200,100,0.25,False,0.0,220,4
+AW-1032,PG-27,2,Certificate B,badge_certificate,SEC-06,480,200,0.19,False,0.0,239,5
+AW-1028,PG-28,1,Certificate C,badge_certificate,SEC-06,300,100,0.1875,False,0.0,241,3
+AW-1029,PG-29,1,Reward Activity 1,activity,SEC-06,300,130,0.04,True,0.25,200,4
+AW-1033,PG-30,1,Reward Activity 2,activity,SEC-06,260,100,0.15,False,0.3,238,4
+AW-1012,PG-12,1,Mission Cards B,mission_cards,SEC-03,300,100,0.3,False,0.0,250,9
+AW-1027,PG-27,1,Certificate B,badge_certificate,SEC-06,200,100,0.19,False,0.0,239,5
+AW-1034,PG-04,2,Kit Map,map,SEC-01,220,80,0.24,False,0.0,305,4
+AW-1018,PG-18,1,Station Bingo 3,bingo,SEC-04,300,100,0.0,True,0.25,260,11

@@ -1,0 +1,7 @@
+page_id,page_name,dpi,margin_in,full_bleed_design,element_count,min_element_required
+PG-01,Cover,300,0.05,True,1,1
+PG-02,Parent Guide,250,0.2,False,2,2
+PG-03,Explorer Map,300,0.08,False,4,4
+PG-04,Mission Cards,300,0.2,False,4,6
+PG-05,Station Bingo,300,0.2,False,9,9
+PG-06,Badges and Certificate,200,0.05,False,3,4

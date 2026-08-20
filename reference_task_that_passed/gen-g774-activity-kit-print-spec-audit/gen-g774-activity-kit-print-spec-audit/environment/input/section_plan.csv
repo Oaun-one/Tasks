@@ -1,0 +1,10 @@
+section_id,section_name,press_id,binding
+SEC-01,Covers,PRESS-OFFSET-A,flat_sheet
+SEC-02,Parent Guide,PRESS-DIGITAL-B,saddle_stitch
+SEC-03,Explorer Maps,PRESS-OFFSET-A,saddle_stitch
+SEC-04,Mission Cards,PRESS-DIGITAL-B,flat_sheet
+SEC-05,Station Bingo,PRESS-OFFSET-A,perfect_bound
+SEC-06,Badges,PRESS-DIGITAL-B,flat_sheet
+SEC-07,Certificates,PRESS-OFFSET-A,saddle_stitch
+SEC-08,Activity Sheets,PRESS-DIGITAL-B,perfect_bound
+SEC-09,Sticker Sheets,PRESS-OFFSET-A,flat_sheet

@@ -1,0 +1,46 @@
+{
+    "task": {
+        "path": "E:\\WORK\\TU\\Task_2_gen-g789-dissertation-formatting-spec-audit\\gen-g789-dissertation-formatting-spec-audit"
+    },
+    "trial_name": "gen-g789-dissertation-formatting__feYZgBE",
+    "trials_dir": "E:\\WORK\\TU\\jobs-g789\\glm-5x-v4",
+    "agent_setup_timeout_multiplier": 3.0,
+    "agent": {
+        "name": "opencode",
+        "model_name": "glmproxy/glm-5.2",
+        "kwargs": {
+            "opencode_config": {
+                "provider": {
+                    "glmproxy": {
+                        "npm": "@ai-sdk/openai-compatible",
+                        "name": "GLM via LiteLLM",
+                        "options": {
+                            "baseURL": "{env:OPENAI_BASE_URL}",
+                            "apiKey": "{env:OPENAI_API_KEY}"
+                        },
+                        "models": {
+                            "glm-5.2": {
+                                "name": "GLM 5.2",
+                                "options": {
+                                    "max_tokens": 96000
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "env": {
+            "OPENAI_API_KEY": "${OPENAI_API_KEY}",
+            "OPENAI_BASE_URL": "http://34.41.10.8:4000/v1"
+        }
+    },
+    "verifier": {
+        "env": {
+            "OPENAI_API_KEY": "${OPENAI_API_KEY}",
+            "OPENAI_BASE_URL": "http://34.41.10.8:4000/v1",
+            "JUDGE_MODEL": "openai/glm-5.2"
+        }
+    },
+    "job_id": "4ee07759-0196-4e62-ac17-d7f2a593c9cd"
+}

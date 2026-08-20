@@ -1,0 +1,1155 @@
+{
+  "task_id": "gen-G780-realestate-fairhousing-collateral-audit",
+  "verifiers": [
+    {
+      "name": "audit_exists",
+      "metadata": {
+        "how_justification": "Checks fairhousing_audit.csv exists.",
+        "why_justification": "Audit delivered."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "filesystem",
+          "command": "check_path_exists",
+          "arguments": {
+            "path": "fairhousing_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": true,
+        "deterministic": {
+          "path": "$.is_file",
+          "comparison": "equals"
+        }
+      }
+    },
+    {
+      "name": "memo_exists",
+      "metadata": {
+        "how_justification": "Checks fairhousing_memo.md exists.",
+        "why_justification": "Memo delivered."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "filesystem",
+          "command": "check_path_exists",
+          "arguments": {
+            "path": "fairhousing_memo.md"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": true,
+        "deterministic": {
+          "path": "$.is_file",
+          "comparison": "equals"
+        }
+      }
+    },
+    {
+      "name": "results_exists",
+      "metadata": {
+        "how_justification": "Checks results.json exists.",
+        "why_justification": "Derived figures delivered."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "filesystem",
+          "command": "check_path_exists",
+          "arguments": {
+            "path": "results.json"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": true,
+        "deterministic": {
+          "path": "$.is_file",
+          "comparison": "equals"
+        }
+      }
+    },
+    {
+      "name": "audit_header_exact",
+      "metadata": {
+        "how_justification": "Requires the header to be exactly section_id,finding.",
+        "why_justification": "The prompt pins the file to two columns with a header."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "fairhousing_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?m)^\\s*\"?section_id\"?\\s*,\\s*\"?finding\"?\\s*$",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "audit_no_extra_columns",
+      "metadata": {
+        "how_justification": "Fails if any CSV line carries two or more commas.",
+        "why_justification": "The prompt forbids extra columns; without this a model can append working notes and still satisfy the row checks."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "fairhousing_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?m)^[^\\r\\n]*,[^\\r\\n]*,[^\\r\\n]*$",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "not_regex_match"
+        }
+      }
+    },
+    {
+      "name": "row_sec01",
+      "metadata": {
+        "how_justification": "Requires the SEC-01 row to be exactly that section and finding, anchored to end of line.",
+        "why_justification": "Section SEC-01 must be graded none."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "fairhousing_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?m)^\"?SEC-01\"?\\s*,\\s*\"?none\"?\\s*$",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "row_sec02",
+      "metadata": {
+        "how_justification": "Requires the SEC-02 row to be exactly that section and finding, anchored to end of line.",
+        "why_justification": "Section SEC-02 must be graded PROHIBITED_PERSONAL_NARRATIVE."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "fairhousing_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?m)^\"?SEC-02\"?\\s*,\\s*\"?PROHIBITED_PERSONAL_NARRATIVE\"?\\s*$",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "row_sec03",
+      "metadata": {
+        "how_justification": "Requires the SEC-03 row to be exactly that section and finding, anchored to end of line.",
+        "why_justification": "Section SEC-03 must be graded PROTECTED_CLASS_LANGUAGE."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "fairhousing_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?m)^\"?SEC-03\"?\\s*,\\s*\"?PROTECTED_CLASS_LANGUAGE\"?\\s*$",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "row_sec04",
+      "metadata": {
+        "how_justification": "Requires the SEC-04 row to be exactly that section and finding, anchored to end of line.",
+        "why_justification": "STALE DISCLOSURE: a disclosure_block carrying the pre-amendment nine-class notice. Abridged under s5a, so s3 gives it no exemption and s2 applies. Models assume a disclosure_block is always clean."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "fairhousing_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?m)^\"?SEC-04\"?\\s*,\\s*\"?PROTECTED_CLASS_LANGUAGE\"?\\s*$",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "row_sec05",
+      "metadata": {
+        "how_justification": "Requires the SEC-05 row to be exactly that section and finding, anchored to end of line.",
+        "why_justification": "Section SEC-05 must be graded DISCLAIMER_MISSING."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "fairhousing_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?m)^\"?SEC-05\"?\\s*,\\s*\"?DISCLAIMER_MISSING\"?\\s*$",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "row_sec06",
+      "metadata": {
+        "how_justification": "Requires the SEC-06 row to be exactly that section and finding, anchored to end of line.",
+        "why_justification": "Section SEC-06 must be graded none."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "fairhousing_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?m)^\"?SEC-06\"?\\s*,\\s*\"?none\"?\\s*$",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "row_sec07",
+      "metadata": {
+        "how_justification": "Requires the SEC-07 row to be exactly that section and finding, anchored to end of line.",
+        "why_justification": "Section SEC-07 must be graded PROHIBITED_PERSONAL_NARRATIVE|PROTECTED_CLASS_LANGUAGE|DISCLAIMER_MISSING."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "fairhousing_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?m)^\"?SEC-07\"?\\s*,\\s*\"?PROHIBITED_PERSONAL_NARRATIVE\\|PROTECTED_CLASS_LANGUAGE\\|DISCLAIMER_MISSING\"?\\s*$",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "row_sec08",
+      "metadata": {
+        "how_justification": "Requires the SEC-08 row to be exactly that section and finding, anchored to end of line.",
+        "why_justification": "Compliant notice AND a narrative solicitation: s3 exempts from s2 and nothing else."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "fairhousing_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?m)^\"?SEC-08\"?\\s*,\\s*\"?PROHIBITED_PERSONAL_NARRATIVE\"?\\s*$",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "row_sec09",
+      "metadata": {
+        "how_justification": "Requires the SEC-09 row to be exactly that section and finding, anchored to end of line.",
+        "why_justification": "Section SEC-09 must be graded PROTECTED_CLASS_LANGUAGE|DISCLAIMER_MISSING."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "fairhousing_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?m)^\"?SEC-09\"?\\s*,\\s*\"?PROTECTED_CLASS_LANGUAGE\\|DISCLAIMER_MISSING\"?\\s*$",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "row_sec10",
+      "metadata": {
+        "how_justification": "Requires the SEC-10 row to be exactly that section and finding, anchored to end of line.",
+        "why_justification": "FULLY COMPLIANT closing_page: the eleven-class notice satisfies s4 and earns the s3 exemption, so a section dense with protected-class terms is correctly clean."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "fairhousing_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?m)^\"?SEC-10\"?\\s*,\\s*\"?none\"?\\s*$",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "row_sec11",
+      "metadata": {
+        "how_justification": "Requires the SEC-11 row to be exactly that section and finding, anchored to end of line.",
+        "why_justification": "Section SEC-11 must be graded PROTECTED_CLASS_LANGUAGE|DISCLAIMER_MISSING."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "fairhousing_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?m)^\"?SEC-11\"?\\s*,\\s*\"?PROTECTED_CLASS_LANGUAGE\\|DISCLAIMER_MISSING\"?\\s*$",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "row_sec12",
+      "metadata": {
+        "how_justification": "Requires the SEC-12 row to be exactly that section and finding, anchored to end of line.",
+        "why_justification": "Section SEC-12 must be graded PROTECTED_CLASS_LANGUAGE|DISCLAIMER_MISSING."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "fairhousing_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?m)^\"?SEC-12\"?\\s*,\\s*\"?PROTECTED_CLASS_LANGUAGE\\|DISCLAIMER_MISSING\"?\\s*$",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "row_sec13",
+      "metadata": {
+        "how_justification": "Requires the SEC-13 row to be exactly that section and finding, anchored to end of line.",
+        "why_justification": "FULLY COMPLIANT agent_bio: clean only if s5b was applied to bring agent_bio into s4 scope and the notice was measured against eleven classes."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "fairhousing_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?m)^\"?SEC-13\"?\\s*,\\s*\"?none\"?\\s*$",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "row_sec14",
+      "metadata": {
+        "how_justification": "Requires the SEC-14 row to be exactly that section and finding, anchored to end of line.",
+        "why_justification": "agent_bio carrying the stale nine-class notice. Requires both s5a and s5b to score correctly."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "fairhousing_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?m)^\"?SEC-14\"?\\s*,\\s*\"?PROTECTED_CLASS_LANGUAGE\\|DISCLAIMER_MISSING\"?\\s*$",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "row_sec15",
+      "metadata": {
+        "how_justification": "Requires the SEC-15 row to be exactly that section and finding, anchored to end of line.",
+        "why_justification": "Section SEC-15 must be graded PROTECTED_CLASS_LANGUAGE|DISCLAIMER_MISSING."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "fairhousing_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?m)^\"?SEC-15\"?\\s*,\\s*\"?PROTECTED_CLASS_LANGUAGE\\|DISCLAIMER_MISSING\"?\\s*$",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "row_sec16",
+      "metadata": {
+        "how_justification": "Requires the SEC-16 row to be exactly that section and finding, anchored to end of line.",
+        "why_justification": "Section SEC-16 must be graded PROTECTED_CLASS_LANGUAGE|DISCLAIMER_MISSING."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "fairhousing_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?m)^\"?SEC-16\"?\\s*,\\s*\"?PROTECTED_CLASS_LANGUAGE\\|DISCLAIMER_MISSING\"?\\s*$",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "row_sec17",
+      "metadata": {
+        "how_justification": "Requires the SEC-17 row to be exactly that section and finding, anchored to end of line.",
+        "why_justification": "Section SEC-17 must be graded PROHIBITED_PERSONAL_NARRATIVE|PROTECTED_CLASS_LANGUAGE."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "fairhousing_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?m)^\"?SEC-17\"?\\s*,\\s*\"?PROHIBITED_PERSONAL_NARRATIVE\\|PROTECTED_CLASS_LANGUAGE\"?\\s*$",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "row_sec18",
+      "metadata": {
+        "how_justification": "Requires the SEC-18 row to be exactly that section and finding, anchored to end of line.",
+        "why_justification": "Section SEC-18 must be graded none."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "fairhousing_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?m)^\"?SEC-18\"?\\s*,\\s*\"?none\"?\\s*$",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "row_sec19",
+      "metadata": {
+        "how_justification": "Requires the SEC-19 row to be exactly that section and finding, anchored to end of line.",
+        "why_justification": "Compliant notice but protected-class language in the section's own prose. s3 covers the notice text only."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "fairhousing_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?m)^\"?SEC-19\"?\\s*,\\s*\"?PROTECTED_CLASS_LANGUAGE\"?\\s*$",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "row_sec20",
+      "metadata": {
+        "how_justification": "Requires the SEC-20 row to be exactly that section and finding, anchored to end of line.",
+        "why_justification": "Section SEC-20 must be graded none."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "fairhousing_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?m)^\"?SEC-20\"?\\s*,\\s*\"?none\"?\\s*$",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "row_sec21",
+      "metadata": {
+        "how_justification": "Requires the SEC-21 row to be exactly that section and finding, anchored to end of line.",
+        "why_justification": "agent_bio with no notice at all. Reads clean unless s5b was applied - the cheapest single test of whether the s5 amendments were read."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "fairhousing_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?m)^\"?SEC-21\"?\\s*,\\s*\"?DISCLAIMER_MISSING\"?\\s*$",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "row_sec22",
+      "metadata": {
+        "how_justification": "Requires the SEC-22 row to be exactly that section and finding, anchored to end of line.",
+        "why_justification": "Section SEC-22 must be graded PROTECTED_CLASS_LANGUAGE."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "fairhousing_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?m)^\"?SEC-22\"?\\s*,\\s*\"?PROTECTED_CLASS_LANGUAGE\"?\\s*$",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "row_sec23",
+      "metadata": {
+        "how_justification": "Requires the SEC-23 row to be exactly that section and finding, anchored to end of line.",
+        "why_justification": "Section SEC-23 must be graded PROTECTED_CLASS_LANGUAGE|DISCLAIMER_MISSING."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "fairhousing_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?m)^\"?SEC-23\"?\\s*,\\s*\"?PROTECTED_CLASS_LANGUAGE\\|DISCLAIMER_MISSING\"?\\s*$",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "row_sec24",
+      "metadata": {
+        "how_justification": "Requires the SEC-24 row to be exactly that section and finding, anchored to end of line.",
+        "why_justification": "Section SEC-24 must be graded PROHIBITED_PERSONAL_NARRATIVE."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "fairhousing_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?m)^\"?SEC-24\"?\\s*,\\s*\"?PROHIBITED_PERSONAL_NARRATIVE\"?\\s*$",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "row_sec25",
+      "metadata": {
+        "how_justification": "Requires the SEC-25 row to be exactly that section and finding, anchored to end of line.",
+        "why_justification": "Section SEC-25 must be graded PROTECTED_CLASS_LANGUAGE."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "fairhousing_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?m)^\"?SEC-25\"?\\s*,\\s*\"?PROTECTED_CLASS_LANGUAGE\"?\\s*$",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "row_sec26",
+      "metadata": {
+        "how_justification": "Requires the SEC-26 row to be exactly that section and finding, anchored to end of line.",
+        "why_justification": "Section SEC-26 must be graded none."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "fairhousing_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?m)^\"?SEC-26\"?\\s*,\\s*\"?none\"?\\s*$",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "row_sec27",
+      "metadata": {
+        "how_justification": "Requires the SEC-27 row to be exactly that section and finding, anchored to end of line.",
+        "why_justification": "Section SEC-27 must be graded PROHIBITED_PERSONAL_NARRATIVE."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "fairhousing_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?m)^\"?SEC-27\"?\\s*,\\s*\"?PROHIBITED_PERSONAL_NARRATIVE\"?\\s*$",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "row_sec28",
+      "metadata": {
+        "how_justification": "Requires the SEC-28 row to be exactly that section and finding, anchored to end of line.",
+        "why_justification": "Section SEC-28 must be graded none."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "fairhousing_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?m)^\"?SEC-28\"?\\s*,\\s*\"?none\"?\\s*$",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "row_sec29",
+      "metadata": {
+        "how_justification": "Requires the SEC-29 row to be exactly that section and finding, anchored to end of line.",
+        "why_justification": "Section SEC-29 must be graded PROHIBITED_PERSONAL_NARRATIVE."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "fairhousing_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?m)^\"?SEC-29\"?\\s*,\\s*\"?PROHIBITED_PERSONAL_NARRATIVE\"?\\s*$",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "row_sec30",
+      "metadata": {
+        "how_justification": "Requires the SEC-30 row to be exactly that section and finding, anchored to end of line.",
+        "why_justification": "Section SEC-30 must be graded DISCLAIMER_MISSING."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "fairhousing_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?m)^\"?SEC-30\"?\\s*,\\s*\"?DISCLAIMER_MISSING\"?\\s*$",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "sec10_carries_no_violation_label",
+      "metadata": {
+        "how_justification": "Fails if the SEC-10 row contains any violation label.",
+        "why_justification": "Asserts the full-notice exemption was applied rather than the section being flagged on surface features."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "fairhousing_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?m)^\"?SEC-10\"?\\s*,[^\\r\\n]*(PROHIBITED_PERSONAL_NARRATIVE|PROTECTED_CLASS_LANGUAGE|DISCLAIMER_MISSING)",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "not_regex_match"
+        }
+      }
+    },
+    {
+      "name": "sec13_carries_no_violation_label",
+      "metadata": {
+        "how_justification": "Fails if the SEC-13 row contains any violation label.",
+        "why_justification": "Asserts the full-notice exemption was applied rather than the section being flagged on surface features."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "fairhousing_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?m)^\"?SEC-13\"?\\s*,[^\\r\\n]*(PROHIBITED_PERSONAL_NARRATIVE|PROTECTED_CLASS_LANGUAGE|DISCLAIMER_MISSING)",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "not_regex_match"
+        }
+      }
+    },
+    {
+      "name": "memo_explains_narrative",
+      "metadata": {
+        "how_justification": "Requires the memo to discuss the PROHIBITED_PERSONAL_NARRATIVE finding.",
+        "why_justification": "The prompt asks the memo to explain what was found; graded per finding rather than as one any-of alternation."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "md",
+          "command": "extract_text",
+          "arguments": {
+            "path": "fairhousing_memo.md"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?i)\\bPROHIBITED_PERSONAL_NARRATIVE\\b",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "memo_explains_protected",
+      "metadata": {
+        "how_justification": "Requires the memo to discuss the PROTECTED_CLASS_LANGUAGE finding.",
+        "why_justification": "The prompt asks the memo to explain what was found; graded per finding rather than as one any-of alternation."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "md",
+          "command": "extract_text",
+          "arguments": {
+            "path": "fairhousing_memo.md"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?i)\\bPROTECTED_CLASS_LANGUAGE\\b",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "memo_explains_disclaimer",
+      "metadata": {
+        "how_justification": "Requires the memo to discuss the DISCLAIMER_MISSING finding.",
+        "why_justification": "The prompt asks the memo to explain what was found; graded per finding rather than as one any-of alternation."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "md",
+          "command": "extract_text",
+          "arguments": {
+            "path": "fairhousing_memo.md"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?i)\\bDISCLAIMER_MISSING\\b",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "memo_states_amended_class_list",
+      "metadata": {
+        "how_justification": "Requires the memo to name both classes added by RE-FH-9 s5a.",
+        "why_justification": "The whole audit turns on the amended class list. A memo that never mentions marital status or source of income did not apply s5a, and legal cannot sign off from it."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "md",
+          "command": "extract_text",
+          "arguments": {
+            "path": "fairhousing_memo.md"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?is)marital status.*source of income|source of income.*marital status",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "result_section_count",
+      "metadata": {
+        "how_justification": "Reads results.json and compares $.section_count.",
+        "why_justification": "Derived figure `section_count`, defined in the prompt as a count of sections."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "json",
+          "command": "read_file",
+          "arguments": {
+            "path": "results.json"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": 30,
+        "deterministic": {
+          "path": "$.section_count",
+          "comparison": "equals"
+        }
+      }
+    },
+    {
+      "name": "result_flagged_count",
+      "metadata": {
+        "how_justification": "Reads results.json and compares $.flagged_count.",
+        "why_justification": "Derived figure `flagged_count`, defined in the prompt as a count of sections."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "json",
+          "command": "read_file",
+          "arguments": {
+            "path": "results.json"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": 22,
+        "deterministic": {
+          "path": "$.flagged_count",
+          "comparison": "equals"
+        }
+      }
+    },
+    {
+      "name": "result_personal_narrative_count",
+      "metadata": {
+        "how_justification": "Reads results.json and compares $.personal_narrative_count.",
+        "why_justification": "Derived figure `personal_narrative_count`, defined in the prompt as a count of sections."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "json",
+          "command": "read_file",
+          "arguments": {
+            "path": "results.json"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": 7,
+        "deterministic": {
+          "path": "$.personal_narrative_count",
+          "comparison": "equals"
+        }
+      }
+    },
+    {
+      "name": "result_protected_lang_count",
+      "metadata": {
+        "how_justification": "Reads results.json and compares $.protected_lang_count.",
+        "why_justification": "Derived figure `protected_lang_count`, defined in the prompt as a count of sections."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "json",
+          "command": "read_file",
+          "arguments": {
+            "path": "results.json"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": 14,
+        "deterministic": {
+          "path": "$.protected_lang_count",
+          "comparison": "equals"
+        }
+      }
+    },
+    {
+      "name": "result_disclaimer_missing_count",
+      "metadata": {
+        "how_justification": "Reads results.json and compares $.disclaimer_missing_count.",
+        "why_justification": "Derived figure `disclaimer_missing_count`, defined in the prompt as a count of sections."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "json",
+          "command": "read_file",
+          "arguments": {
+            "path": "results.json"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": 11,
+        "deterministic": {
+          "path": "$.disclaimer_missing_count",
+          "comparison": "equals"
+        }
+      }
+    }
+  ]
+}

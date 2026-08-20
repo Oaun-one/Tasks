@@ -1,0 +1,62 @@
+{
+    "schema_version": 3,
+    "created_at": "2026-08-19T19:53:26.215202Z",
+    "harbor": {
+        "version": "0.21.0",
+        "is_editable": false
+    },
+    "n_concurrent_trials": 4,
+    "retry": {
+        "max_retries": 1,
+        "exclude_exceptions": [
+            "ModelNotFoundError",
+            "VerifierTimeoutError",
+            "RewardFileEmptyError",
+            "RewardFileNotFoundError",
+            "VerifierOutputParseError",
+            "AgentTimeoutError",
+            "AgentAuthenticationError",
+            "AgentSafetyRefusalError",
+            "ApiUsageLimitError"
+        ],
+        "wait_multiplier": 1.0,
+        "min_wait_sec": 1.0,
+        "max_wait_sec": 60.0
+    },
+    "trials": [
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "gen-g789-dissertation-formatting-spec-audit",
+                "type": "local",
+                "digest": "sha256:a41771f30fe4d76c54f659899d1e6c5dab62542b119a066bc678061addb83c8a",
+                "path": "E:\\WORK\\TU\\Task_2_gen-g789-dissertation-formatting-spec-audit\\gen-g789-dissertation-formatting-spec-audit"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "oracle",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": false,
+                "environment_mode": "shared"
+            }
+        }
+    ]
+}

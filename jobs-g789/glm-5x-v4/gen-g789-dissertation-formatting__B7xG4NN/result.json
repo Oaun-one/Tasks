@@ -1,0 +1,145 @@
+{
+    "id": "6b7bf8eb-9def-4dc6-a254-744f951dba61",
+    "task_name": "obi/gen-g789-dissertation-formatting-spec-audit",
+    "trial_name": "gen-g789-dissertation-formatting__B7xG4NN",
+    "trial_uri": "file:///E:/WORK/TU/jobs-g789/glm-5x-v4/gen-g789-dissertation-formatting__B7xG4NN",
+    "task_id": {
+        "path": "E:\\WORK\\TU\\Task_2_gen-g789-dissertation-formatting-spec-audit\\gen-g789-dissertation-formatting-spec-audit"
+    },
+    "source": null,
+    "task_checksum": "a09cd0fd00038f1b9932639ca525faa1844e00cc051f8c68e243431609a74599",
+    "config": {
+        "task": {
+            "path": "E:\\WORK\\TU\\Task_2_gen-g789-dissertation-formatting-spec-audit\\gen-g789-dissertation-formatting-spec-audit",
+            "git_url": null,
+            "git_commit_id": null,
+            "name": null,
+            "ref": null,
+            "overwrite": false,
+            "download_dir": null,
+            "source": null
+        },
+        "trial_name": "gen-g789-dissertation-formatting__B7xG4NN",
+        "trials_dir": "E:\\WORK\\TU\\jobs-g789\\glm-5x-v4",
+        "install_only": false,
+        "timeout_multiplier": 1.0,
+        "agent_timeout_multiplier": null,
+        "verifier_timeout_multiplier": null,
+        "agent_setup_timeout_multiplier": 3.0,
+        "environment_build_timeout_multiplier": null,
+        "agent": {
+            "name": "opencode",
+            "import_path": null,
+            "model_name": "glmproxy/glm-5.2",
+            "n_concurrent": null,
+            "concurrency_group": null,
+            "skills": [],
+            "override_timeout_sec": null,
+            "override_setup_timeout_sec": null,
+            "max_timeout_sec": null,
+            "resume_trajectory": false,
+            "load_trajectory": null,
+            "extra_allowed_hosts": [],
+            "kwargs": {
+                "opencode_config": {
+                    "provider": {
+                        "glmproxy": {
+                            "npm": "@ai-sdk/openai-compatible",
+                            "name": "GLM via LiteLLM",
+                            "options": {
+                                "baseURL": "{env:OPENAI_BASE_URL}",
+                                "apiKey": "{env:OPENAI_API_KEY}"
+                            },
+                            "models": {
+                                "glm-5.2": {
+                                    "name": "GLM 5.2",
+                                    "options": {
+                                        "max_tokens": 96000
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "env": {
+                "OPENAI_API_KEY": "${OPENAI_API_KEY}",
+                "OPENAI_BASE_URL": "http://34.41.10.8:4000/v1"
+            },
+            "mcp_servers": []
+        },
+        "environment": {
+            "type": "docker",
+            "import_path": null,
+            "force_build": false,
+            "delete": true,
+            "cpu_enforcement_policy": "auto",
+            "memory_enforcement_policy": "auto",
+            "override_cpus": null,
+            "override_memory_mb": null,
+            "override_storage_mb": null,
+            "override_gpus": null,
+            "override_tpu": null,
+            "mounts": null,
+            "extra_docker_compose": [],
+            "kwargs": {},
+            "extra_allowed_hosts": []
+        },
+        "verifier": {
+            "override_timeout_sec": null,
+            "max_timeout_sec": null,
+            "env": {
+                "OPENAI_API_KEY": "${OPENAI_API_KEY}",
+                "OPENAI_BASE_URL": "http://34.41.10.8:4000/v1",
+                "JUDGE_MODEL": "openai/glm-5.2"
+            },
+            "disable": false
+        },
+        "artifacts": [],
+        "extra_instruction_paths": [],
+        "job_id": "4ee07759-0196-4e62-ac17-d7f2a593c9cd",
+        "source_trial": null
+    },
+    "agent_info": {
+        "name": "opencode",
+        "version": "1.18.18",
+        "model_info": {
+            "name": "glm-5.2",
+            "provider": "glmproxy"
+        }
+    },
+    "agent_result": {
+        "n_input_tokens": 624576,
+        "n_cache_tokens": 422016,
+        "n_output_tokens": 12874,
+        "cost_usd": null,
+        "rollout_details": null,
+        "metadata": null
+    },
+    "verifier_result": {
+        "rewards": {
+            "reward": 0.0
+        }
+    },
+    "verifier_environment_mode": "shared",
+    "exception_info": null,
+    "started_at": "2026-08-19T20:10:47.531045Z",
+    "finished_at": "2026-08-19T20:18:01.150367Z",
+    "environment_setup": {
+        "started_at": "2026-08-19T20:10:47.562148Z",
+        "finished_at": "2026-08-19T20:10:51.550805Z"
+    },
+    "agent_setup": {
+        "started_at": "2026-08-19T20:10:51.550836Z",
+        "finished_at": "2026-08-19T20:12:03.724027Z"
+    },
+    "agent_execution": {
+        "started_at": "2026-08-19T20:12:03.724118Z",
+        "finished_at": "2026-08-19T20:17:55.447139Z"
+    },
+    "verifier": {
+        "started_at": "2026-08-19T20:17:55.450756Z",
+        "finished_at": "2026-08-19T20:17:59.238052Z"
+    },
+    "step_results": null
+}

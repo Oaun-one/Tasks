@@ -1,0 +1,9 @@
+part_id,part_name,template_id,numbering
+PART-00,Front matter,TPL-ARCHIVE,roman
+PART-01,Introduction,TPL-ARCHIVE,arabic
+PART-02,Methods,TPL-ARCHIVE,arabic
+PART-03,Results,TPL-READING,arabic
+PART-04,Discussion,TPL-READING,arabic
+PART-05,Back matter,TPL-ARCHIVE,arabic
+PART-06,Data annexes,TPL-READING,arabic
+PART-07,Supplementary annexes,TPL-ARCHIVE,arabic

@@ -1,0 +1,9 @@
+{
+    "job_name": "oracle-NONC-B1-1001608",
+    "jobs_dir": "E:\\WORK\\TU\\jobs",
+    "tasks": [
+        {
+            "path": "E:\\WORK\\TU\\Task_1_gen-g780-realestate-fairhousing-collateral-audit\\gen-g780-realestate-fairhousing-collateral-audit"
+        }
+    ]
+}

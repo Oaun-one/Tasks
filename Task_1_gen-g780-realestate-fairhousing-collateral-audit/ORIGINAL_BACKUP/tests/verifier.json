@@ -1,0 +1,355 @@
+{
+  "task_id": "gen-G780-realestate-fairhousing-collateral-audit",
+  "verifiers": [
+    {
+      "name": "audit_exists",
+      "metadata": {
+        "how_justification": "Checks fairhousing_audit.csv is present as a file in the workspace.",
+        "why_justification": "Audit delivered."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "filesystem",
+          "command": "check_path_exists",
+          "arguments": {
+            "path": "fairhousing_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": true,
+        "deterministic": {
+          "path": "$.is_file",
+          "comparison": "equals"
+        }
+      }
+    },
+    {
+      "name": "memo_exists",
+      "metadata": {
+        "how_justification": "Checks fairhousing_memo.md is present as a file in the workspace.",
+        "why_justification": "Memo delivered."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "filesystem",
+          "command": "check_path_exists",
+          "arguments": {
+            "path": "fairhousing_memo.md"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": true,
+        "deterministic": {
+          "path": "$.is_file",
+          "comparison": "equals"
+        }
+      }
+    },
+    {
+      "name": "narrative_flagged",
+      "metadata": {
+        "how_justification": "Opens fairhousing_audit.csv with csv.extract_text and applies regex_match.",
+        "why_justification": "Personal-narrative content flagged."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "fairhousing_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?mi)^\\x22?SEC\\-02\\x22?\\s*,.*PROHIBITED_PERSONAL_NARRATIVE",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "protected_flagged",
+      "metadata": {
+        "how_justification": "Opens fairhousing_audit.csv with csv.extract_text and applies regex_match.",
+        "why_justification": "Protected-class language flagged."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "fairhousing_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?mi)^\\x22?SEC\\-03\\x22?\\s*,.*PROTECTED_CLASS_LANGUAGE",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "disclaimer_flagged",
+      "metadata": {
+        "how_justification": "Opens fairhousing_audit.csv with csv.extract_text and applies regex_match.",
+        "why_justification": "Missing disclaimer flagged."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "fairhousing_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?mi)^\\x22?SEC\\-05\\x22?\\s*,.*DISCLAIMER_MISSING",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "mandated_trap_clean",
+      "metadata": {
+        "how_justification": "Opens fairhousing_audit.csv with csv.extract_text and applies regex_match.",
+        "why_justification": "Mandated disclosure reads none."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "fairhousing_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?mi)^\\x22?SEC\\-04\\x22?\\s*,.*none",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "memo_mandated",
+      "metadata": {
+        "how_justification": "Opens fairhousing_memo.md with md.extract_text and applies regex_match.",
+        "why_justification": "Memo explains the mandated-disclosure exemption."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "md",
+          "command": "extract_text",
+          "arguments": {
+            "path": "fairhousing_memo.md"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?is)\\bmandated\\w*\\b.*\\bexempt",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "memo_finding_terms",
+      "metadata": {
+        "how_justification": "Opens fairhousing_memo.md with md.extract_text and applies regex_match.",
+        "why_justification": "Memo covers the audit rules."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "md",
+          "command": "extract_text",
+          "arguments": {
+            "path": "fairhousing_memo.md"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?i)\\bPROHIBITED_PERSONAL_NARRATIVE|\\bPROTECTED_CLASS_LANGUAGE|\\bDISCLAIMER_MISSING",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "results_exists",
+      "metadata": {
+        "how_justification": "Checks results.json is present as a file in the workspace.",
+        "why_justification": "Derived figures delivered."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "filesystem",
+          "command": "check_path_exists",
+          "arguments": {
+            "path": "results.json"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": true,
+        "deterministic": {
+          "path": "$.is_file",
+          "comparison": "equals"
+        }
+      }
+    },
+    {
+      "name": "result_section_count",
+      "metadata": {
+        "how_justification": "Reads results.json with json.read_file and compares $.section_count.",
+        "why_justification": "Derived figure `section_count`, recomputed from the delivered artifacts."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "json",
+          "command": "read_file",
+          "arguments": {
+            "path": "results.json"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": 7,
+        "deterministic": {
+          "path": "$.section_count",
+          "comparison": "equals"
+        }
+      }
+    },
+    {
+      "name": "result_flagged_count",
+      "metadata": {
+        "how_justification": "Reads results.json with json.read_file and compares $.flagged_count.",
+        "why_justification": "Derived figure `flagged_count`, recomputed from the delivered artifacts."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "json",
+          "command": "read_file",
+          "arguments": {
+            "path": "results.json"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": 4,
+        "deterministic": {
+          "path": "$.flagged_count",
+          "comparison": "equals"
+        }
+      }
+    },
+    {
+      "name": "result_personal_narrative_count",
+      "metadata": {
+        "how_justification": "Reads results.json with json.read_file and compares $.personal_narrative_count.",
+        "why_justification": "Derived figure `personal_narrative_count`, recomputed from the delivered artifacts."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "json",
+          "command": "read_file",
+          "arguments": {
+            "path": "results.json"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": 2,
+        "deterministic": {
+          "path": "$.personal_narrative_count",
+          "comparison": "equals"
+        }
+      }
+    },
+    {
+      "name": "result_protected_lang_count",
+      "metadata": {
+        "how_justification": "Reads results.json with json.read_file and compares $.protected_lang_count.",
+        "why_justification": "Derived figure `protected_lang_count`, recomputed from the delivered artifacts."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "json",
+          "command": "read_file",
+          "arguments": {
+            "path": "results.json"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": 2,
+        "deterministic": {
+          "path": "$.protected_lang_count",
+          "comparison": "equals"
+        }
+      }
+    },
+    {
+      "name": "result_disclaimer_missing_count",
+      "metadata": {
+        "how_justification": "Reads results.json with json.read_file and compares $.disclaimer_missing_count.",
+        "why_justification": "Derived figure `disclaimer_missing_count`, recomputed from the delivered artifacts."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "json",
+          "command": "read_file",
+          "arguments": {
+            "path": "results.json"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": 2,
+        "deterministic": {
+          "path": "$.disclaimer_missing_count",
+          "comparison": "equals"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,3 @@
+template_id,template_name,min_top_bottom_cm,min_outer_cm,min_heading_step_pt
+TPL-ARCHIVE,Hardbound archival copy,2.5,2.5,2.0
+TPL-READING,Softbound reading copy,2.0,2.0,1.0

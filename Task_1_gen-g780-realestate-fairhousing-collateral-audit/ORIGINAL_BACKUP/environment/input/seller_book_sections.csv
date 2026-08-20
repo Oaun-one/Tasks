@@ -1,0 +1,8 @@
+section_id,contains_personal_narrative,mentions_protected_class_terms,is_mandated_disclosure,missing_required_disclaimer
+SEC-01,False,False,False,False
+SEC-02,True,False,False,False
+SEC-03,False,True,False,False
+SEC-04,False,True,True,False
+SEC-05,False,False,False,True
+SEC-06,False,False,False,False
+SEC-07,True,True,False,True

@@ -1,0 +1,7 @@
+section_id,section_type,margin_cm,font_name,font_size,line_spacing
+SEC-COVER,cover,2.5,Times New Roman,12,1.5
+SEC-CH1,body,2.5,Times New Roman,12,1.5
+SEC-CH2,body,2.0,Times New Roman,12,1.5
+SEC-CH3,body,2.5,Calibri,12,1.5
+SEC-CH4,body,2.5,Times New Roman,12,1.0
+SEC-ANNEX-A,annex,1.5,Times New Roman,12,1.5

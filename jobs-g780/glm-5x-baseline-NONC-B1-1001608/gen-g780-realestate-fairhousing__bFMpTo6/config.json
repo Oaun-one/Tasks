@@ -1,0 +1,27 @@
+{
+    "task": {
+        "path": "E:\\WORK\\TU\\Task_1_gen-g780-realestate-fairhousing-collateral-audit\\gen-g780-realestate-fairhousing-collateral-audit"
+    },
+    "trial_name": "gen-g780-realestate-fairhousing__bFMpTo6",
+    "trials_dir": "E:\\WORK\\TU\\jobs\\glm-5x-baseline-NONC-B1-1001608",
+    "agent_setup_timeout_multiplier": 3.0,
+    "agent": {
+        "name": "opencode",
+        "model_name": "glmproxy/glm-5.2",
+        "kwargs": {
+            "opencode_config": "{provider:{glmproxy:{npm:@ai-sdk/openai-compatible,name:GLM via LiteLLM,options:{baseURL:{env:OPENAI_BASE_URL},apiKey:{env:OPENAI_API_KEY}},models:{glm-5.2:{name:GLM 5.2}}}}}"
+        },
+        "env": {
+            "OPENAI_API_KEY": "${OPENAI_API_KEY}",
+            "OPENAI_BASE_URL": "http://34.41.10.8:4000/v1"
+        }
+    },
+    "verifier": {
+        "env": {
+            "OPENAI_API_KEY": "${OPENAI_API_KEY}",
+            "OPENAI_BASE_URL": "http://34.41.10.8:4000/v1",
+            "JUDGE_MODEL": "openai/glm-5.2"
+        }
+    },
+    "job_id": "80e46ef1-7fa4-44ee-8241-2f05ec64fe76"
+}

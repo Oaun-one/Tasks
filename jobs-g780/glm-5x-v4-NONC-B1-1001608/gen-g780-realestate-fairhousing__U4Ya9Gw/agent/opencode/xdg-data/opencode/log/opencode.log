@@ -1,0 +1,106 @@
+timestamp=2026-08-19T09:44:36.101Z level=INFO run=0d9499a4 message="creating instance" directory=/app
+timestamp=2026-08-19T09:44:36.102Z level=INFO run=0d9499a4 message=fromDirectory directory=/app
+timestamp=2026-08-19T09:44:36.119Z level=INFO run=0d9499a4 message=bootstrapping directory=/app
+timestamp=2026-08-19T09:44:36.124Z level=INFO run=0d9499a4 message=loading path=/root/.config/opencode/config.json
+timestamp=2026-08-19T09:44:36.124Z level=INFO run=0d9499a4 message=loading path=/root/.config/opencode/opencode.json
+timestamp=2026-08-19T09:44:36.128Z level=INFO run=0d9499a4 message=loading path=/root/.config/opencode/opencode.jsonc
+timestamp=2026-08-19T09:44:36.205Z level=INFO run=0d9499a4 message="all LSPs are disabled"
+timestamp=2026-08-19T09:44:36.207Z level=INFO run=0d9499a4 message="all formatters are disabled"
+timestamp=2026-08-19T09:44:36.207Z level=INFO run=0d9499a4 message=init
+timestamp=2026-08-19T09:44:36.316Z level=INFO run=0d9499a4 message=created id=ses_fe6977723ffeAVsSl6wx6jPj20 slug=quiet-wizard version=1.18.18 projectID=global directory=/app path=app workspaceID=undefined parentID=undefined title="New session - 2026-08-19T09:44:36.316Z" agent=undefined model=undefined metadata=undefined permission="[{\"permission\":\"question\",\"pattern\":\"*\",\"action\":\"deny\"},{\"permission\":\"plan_enter\",\"pattern\":\"*\",\"action\":\"deny\"},{\"permission\":\"plan_exit\",\"pattern\":\"*\",\"action\":\"deny\"}]" cost=0 tokens.input=0 tokens.output=0 tokens.reasoning=0 tokens.cache.read=0 tokens.cache.write=0 time.created=1787132676316 time.updated=1787132676316
+timestamp=2026-08-19T09:44:36.340Z level=INFO run=0d9499a4 message="event connected"
+timestamp=2026-08-19T09:44:36.961Z level=INFO run=0d9499a4 message=loop session.id=ses_fe6977723ffeAVsSl6wx6jPj20 step=0
+timestamp=2026-08-19T09:44:36.988Z level=INFO run=0d9499a4 message=stream providerID=glmproxy modelID=glm-5.2 session.id=ses_fe6977723ffeAVsSl6wx6jPj20 small=true agent=title mode=primary
+timestamp=2026-08-19T09:44:36.994Z level=INFO run=0d9499a4 message="llm runtime selected" llm.runtime=ai-sdk llm.provider=glmproxy llm.model=glm-5.2
+timestamp=2026-08-19T09:44:37.563Z level=INFO run=0d9499a4 message=initialized
+timestamp=2026-08-19T09:44:37.815Z level=INFO run=0d9499a4 message=tracking hash=1e0f636339b8242ca0ad155e6f5709da145f4b4c cwd=/app git=/logs/agent/opencode/xdg-data/opencode/snapshot/global/42099b4af021e53fd8fd4e056c2568d7c2e3ffa8
+timestamp=2026-08-19T09:44:37.823Z level=INFO run=0d9499a4 message="shell tool using shell" shell=/usr/bin/bash
+timestamp=2026-08-19T09:44:37.831Z level=INFO run=0d9499a4 message=init count=1
+timestamp=2026-08-19T09:44:37.936Z level=INFO run=0d9499a4 message="watcher backend" directory=/app platform=linux backend=inotify
+timestamp=2026-08-19T09:44:37.939Z level=INFO run=0d9499a4 message="project copy refresh started" projectID=global
+timestamp=2026-08-19T09:44:37.943Z level=INFO run=0d9499a4 message="project copy refresh done" projectID=global updated=[] removed=[]
+timestamp=2026-08-19T09:44:37.985Z level=INFO run=0d9499a4 message="booting location services" directory=/app workspaceID=undefined
+timestamp=2026-08-19T09:44:38.188Z level=INFO run=0d9499a4 message=process session.id=ses_fe6977723ffeAVsSl6wx6jPj20 messageID=msg_019688b650015pCzDHo11HrGQi
+timestamp=2026-08-19T09:44:38.189Z level=INFO run=0d9499a4 message=stream providerID=glmproxy modelID=glm-5.2 session.id=ses_fe6977723ffeAVsSl6wx6jPj20 small=false agent=build mode=primary
+timestamp=2026-08-19T09:44:38.193Z level=INFO run=0d9499a4 message="llm runtime selected" llm.runtime=ai-sdk llm.provider=glmproxy llm.model=glm-5.2
+timestamp=2026-08-19T09:44:40.325Z level=INFO run=0d9499a4 message=evaluated permission=bash pattern="ls -la input/" action.permission=* action.action=allow action.pattern=*
+timestamp=2026-08-19T09:44:40.498Z level=INFO run=0d9499a4 message=tracking hash=1e0f636339b8242ca0ad155e6f5709da145f4b4c cwd=/app git=/logs/agent/opencode/xdg-data/opencode/snapshot/global/42099b4af021e53fd8fd4e056c2568d7c2e3ffa8
+timestamp=2026-08-19T09:44:40.703Z level=INFO run=0d9499a4 message=loop session.id=ses_fe6977723ffeAVsSl6wx6jPj20 step=1
+timestamp=2026-08-19T09:44:40.840Z level=INFO run=0d9499a4 message=tracking hash=1e0f636339b8242ca0ad155e6f5709da145f4b4c cwd=/app git=/logs/agent/opencode/xdg-data/opencode/snapshot/global/42099b4af021e53fd8fd4e056c2568d7c2e3ffa8
+timestamp=2026-08-19T09:44:40.846Z level=INFO run=0d9499a4 message=process session.id=ses_fe6977723ffeAVsSl6wx6jPj20 messageID=msg_019689a05001hhrEKVr2maAsmf
+timestamp=2026-08-19T09:44:40.847Z level=INFO run=0d9499a4 message=stream providerID=glmproxy modelID=glm-5.2 session.id=ses_fe6977723ffeAVsSl6wx6jPj20 small=false agent=build mode=primary
+timestamp=2026-08-19T09:44:40.848Z level=INFO run=0d9499a4 message="llm runtime selected" llm.runtime=ai-sdk llm.provider=glmproxy llm.model=glm-5.2
+timestamp=2026-08-19T09:44:41.802Z level=INFO run=0d9499a4 message=evaluated permission=read pattern=app/input/realestate_fairhousing_standard.md action.permission=read action.pattern=* action.action=allow
+timestamp=2026-08-19T09:44:41.847Z level=INFO run=0d9499a4 message=evaluated permission=read pattern=app/input/seller_book_sections.csv action.permission=read action.pattern=* action.action=allow
+timestamp=2026-08-19T09:44:41.896Z level=INFO run=0d9499a4 message="touching file" file=/app/input/realestate_fairhousing_standard.md
+timestamp=2026-08-19T09:44:41.898Z level=INFO run=0d9499a4 message="touching file" file=/app/input/seller_book_sections.csv
+timestamp=2026-08-19T09:44:42.028Z level=INFO run=0d9499a4 message=tracking hash=1e0f636339b8242ca0ad155e6f5709da145f4b4c cwd=/app git=/logs/agent/opencode/xdg-data/opencode/snapshot/global/42099b4af021e53fd8fd4e056c2568d7c2e3ffa8
+timestamp=2026-08-19T09:44:42.205Z level=INFO run=0d9499a4 message=loop session.id=ses_fe6977723ffeAVsSl6wx6jPj20 step=2
+timestamp=2026-08-19T09:44:42.369Z level=INFO run=0d9499a4 message=tracking hash=1e0f636339b8242ca0ad155e6f5709da145f4b4c cwd=/app git=/logs/agent/opencode/xdg-data/opencode/snapshot/global/42099b4af021e53fd8fd4e056c2568d7c2e3ffa8
+timestamp=2026-08-19T09:44:42.375Z level=INFO run=0d9499a4 message=process session.id=ses_fe6977723ffeAVsSl6wx6jPj20 messageID=msg_019689fe1001BXwmvb6jBrc44f
+timestamp=2026-08-19T09:44:42.376Z level=INFO run=0d9499a4 message=stream providerID=glmproxy modelID=glm-5.2 session.id=ses_fe6977723ffeAVsSl6wx6jPj20 small=false agent=build mode=primary
+timestamp=2026-08-19T09:44:42.378Z level=INFO run=0d9499a4 message="llm runtime selected" llm.runtime=ai-sdk llm.provider=glmproxy llm.model=glm-5.2
+timestamp=2026-08-19T09:45:37.961Z level=INFO run=0d9499a4 message=cleanup prune=7.days
+timestamp=2026-08-19T09:45:41.222Z level=INFO run=0d9499a4 message=evaluated permission=todowrite pattern=* action.permission=* action.action=allow action.pattern=*
+timestamp=2026-08-19T09:45:41.361Z level=INFO run=0d9499a4 message=tracking hash=1e0f636339b8242ca0ad155e6f5709da145f4b4c cwd=/app git=/logs/agent/opencode/xdg-data/opencode/snapshot/global/42099b4af021e53fd8fd4e056c2568d7c2e3ffa8
+timestamp=2026-08-19T09:45:41.526Z level=INFO run=0d9499a4 message=loop session.id=ses_fe6977723ffeAVsSl6wx6jPj20 step=3
+timestamp=2026-08-19T09:45:41.671Z level=INFO run=0d9499a4 message=tracking hash=1e0f636339b8242ca0ad155e6f5709da145f4b4c cwd=/app git=/logs/agent/opencode/xdg-data/opencode/snapshot/global/42099b4af021e53fd8fd4e056c2568d7c2e3ffa8
+timestamp=2026-08-19T09:45:41.677Z level=INFO run=0d9499a4 message=process session.id=ses_fe6977723ffeAVsSl6wx6jPj20 messageID=msg_01969879c0012YKtvs16lxDUxy
+timestamp=2026-08-19T09:45:41.678Z level=INFO run=0d9499a4 message=stream providerID=glmproxy modelID=glm-5.2 session.id=ses_fe6977723ffeAVsSl6wx6jPj20 small=false agent=build mode=primary
+timestamp=2026-08-19T09:45:41.679Z level=INFO run=0d9499a4 message="llm runtime selected" llm.runtime=ai-sdk llm.provider=glmproxy llm.model=glm-5.2
+timestamp=2026-08-19T09:45:44.180Z level=INFO run=0d9499a4 message=evaluated permission=edit pattern=app/fairhousing_audit.csv action.permission=* action.action=allow action.pattern=*
+timestamp=2026-08-19T09:45:44.181Z level=INFO run=0d9499a4 message=formatting file=/app/fairhousing_audit.csv
+timestamp=2026-08-19T09:45:44.182Z level=INFO run=0d9499a4 message="touching file" file=/app/fairhousing_audit.csv
+timestamp=2026-08-19T09:45:51.048Z level=INFO run=0d9499a4 message=evaluated permission=edit pattern=app/fairhousing_memo.md action.permission=* action.action=allow action.pattern=*
+timestamp=2026-08-19T09:45:51.049Z level=INFO run=0d9499a4 message=formatting file=/app/fairhousing_memo.md
+timestamp=2026-08-19T09:45:51.049Z level=INFO run=0d9499a4 message="touching file" file=/app/fairhousing_memo.md
+timestamp=2026-08-19T09:45:51.270Z level=INFO run=0d9499a4 message=tracking hash=704bfd943c90957712c90600458ab00724d1b1ce cwd=/app git=/logs/agent/opencode/xdg-data/opencode/snapshot/global/42099b4af021e53fd8fd4e056c2568d7c2e3ffa8
+timestamp=2026-08-19T09:45:51.461Z level=INFO run=0d9499a4 message=loop session.id=ses_fe6977723ffeAVsSl6wx6jPj20 step=4
+timestamp=2026-08-19T09:45:51.598Z level=INFO run=0d9499a4 message=tracking hash=704bfd943c90957712c90600458ab00724d1b1ce cwd=/app git=/logs/agent/opencode/xdg-data/opencode/snapshot/global/42099b4af021e53fd8fd4e056c2568d7c2e3ffa8
+timestamp=2026-08-19T09:45:51.604Z level=INFO run=0d9499a4 message=process session.id=ses_fe6977723ffeAVsSl6wx6jPj20 messageID=msg_01969ae6b001p5wxcEgX6ciSNF
+timestamp=2026-08-19T09:45:51.604Z level=INFO run=0d9499a4 message=stream providerID=glmproxy modelID=glm-5.2 session.id=ses_fe6977723ffeAVsSl6wx6jPj20 small=false agent=build mode=primary
+timestamp=2026-08-19T09:45:51.606Z level=INFO run=0d9499a4 message="llm runtime selected" llm.runtime=ai-sdk llm.provider=glmproxy llm.model=glm-5.2
+timestamp=2026-08-19T09:45:52.880Z level=INFO run=0d9499a4 message=tracking hash=704bfd943c90957712c90600458ab00724d1b1ce cwd=/app git=/logs/agent/opencode/xdg-data/opencode/snapshot/global/42099b4af021e53fd8fd4e056c2568d7c2e3ffa8
+timestamp=2026-08-19T09:45:53.068Z level=INFO run=0d9499a4 message=loop session.id=ses_fe6977723ffeAVsSl6wx6jPj20 step=5
+timestamp=2026-08-19T09:45:53.206Z level=INFO run=0d9499a4 message=tracking hash=704bfd943c90957712c90600458ab00724d1b1ce cwd=/app git=/logs/agent/opencode/xdg-data/opencode/snapshot/global/42099b4af021e53fd8fd4e056c2568d7c2e3ffa8
+timestamp=2026-08-19T09:45:53.210Z level=INFO run=0d9499a4 message=process session.id=ses_fe6977723ffeAVsSl6wx6jPj20 messageID=msg_01969b4b0001yHAiwbTnIEFj74
+timestamp=2026-08-19T09:45:53.211Z level=INFO run=0d9499a4 message=stream providerID=glmproxy modelID=glm-5.2 session.id=ses_fe6977723ffeAVsSl6wx6jPj20 small=false agent=build mode=primary
+timestamp=2026-08-19T09:45:53.212Z level=INFO run=0d9499a4 message="llm runtime selected" llm.runtime=ai-sdk llm.provider=glmproxy llm.model=glm-5.2
+timestamp=2026-08-19T09:45:55.138Z level=INFO run=0d9499a4 message=tracking hash=704bfd943c90957712c90600458ab00724d1b1ce cwd=/app git=/logs/agent/opencode/xdg-data/opencode/snapshot/global/42099b4af021e53fd8fd4e056c2568d7c2e3ffa8
+timestamp=2026-08-19T09:45:55.301Z level=INFO run=0d9499a4 message=loop session.id=ses_fe6977723ffeAVsSl6wx6jPj20 step=6
+timestamp=2026-08-19T09:45:55.439Z level=INFO run=0d9499a4 message=tracking hash=704bfd943c90957712c90600458ab00724d1b1ce cwd=/app git=/logs/agent/opencode/xdg-data/opencode/snapshot/global/42099b4af021e53fd8fd4e056c2568d7c2e3ffa8
+timestamp=2026-08-19T09:45:55.446Z level=INFO run=0d9499a4 message=process session.id=ses_fe6977723ffeAVsSl6wx6jPj20 messageID=msg_01969bd69001mtTCy5G4miUSJ5
+timestamp=2026-08-19T09:45:55.447Z level=INFO run=0d9499a4 message=stream providerID=glmproxy modelID=glm-5.2 session.id=ses_fe6977723ffeAVsSl6wx6jPj20 small=false agent=build mode=primary
+timestamp=2026-08-19T09:45:55.448Z level=INFO run=0d9499a4 message="llm runtime selected" llm.runtime=ai-sdk llm.provider=glmproxy llm.model=glm-5.2
+timestamp=2026-08-19T09:45:58.530Z level=INFO run=0d9499a4 message=evaluated permission=bash pattern="printf '%s\\n' '{\"section_count\": 11, \"flagged_count\": 7, \"personal_narrative_count\": 3, \"protected_lang_count\": 4, \"disclaimer_missing_count\": 3}' > /app/results.json" action.permission=* action.action=allow action.pattern=*
+timestamp=2026-08-19T09:45:58.785Z level=INFO run=0d9499a4 message=tracking hash=16fa8b9e66e9783c3bf39cf91dbb005364bcdd5f cwd=/app git=/logs/agent/opencode/xdg-data/opencode/snapshot/global/42099b4af021e53fd8fd4e056c2568d7c2e3ffa8
+timestamp=2026-08-19T09:45:59.034Z level=INFO run=0d9499a4 message=loop session.id=ses_fe6977723ffeAVsSl6wx6jPj20 step=7
+timestamp=2026-08-19T09:45:59.198Z level=INFO run=0d9499a4 message=tracking hash=16fa8b9e66e9783c3bf39cf91dbb005364bcdd5f cwd=/app git=/logs/agent/opencode/xdg-data/opencode/snapshot/global/42099b4af021e53fd8fd4e056c2568d7c2e3ffa8
+timestamp=2026-08-19T09:45:59.206Z level=INFO run=0d9499a4 message=process session.id=ses_fe6977723ffeAVsSl6wx6jPj20 messageID=msg_01969cc03001Fudx8hUaZ5zSYy
+timestamp=2026-08-19T09:45:59.207Z level=INFO run=0d9499a4 message=stream providerID=glmproxy modelID=glm-5.2 session.id=ses_fe6977723ffeAVsSl6wx6jPj20 small=false agent=build mode=primary
+timestamp=2026-08-19T09:45:59.209Z level=INFO run=0d9499a4 message="llm runtime selected" llm.runtime=ai-sdk llm.provider=glmproxy llm.model=glm-5.2
+timestamp=2026-08-19T09:46:00.733Z level=INFO run=0d9499a4 message=evaluated permission=bash pattern="ls -la /app/fairhousing_audit.csv /app/results.json /app/fairhousing_memo.md" action.permission=* action.action=allow action.pattern=*
+timestamp=2026-08-19T09:46:00.821Z level=INFO run=0d9499a4 message=evaluated permission=read pattern=app/results.json action.permission=read action.pattern=* action.action=allow
+timestamp=2026-08-19T09:46:00.821Z level=INFO run=0d9499a4 message=evaluated permission=read pattern=app/fairhousing_audit.csv action.permission=read action.pattern=* action.action=allow
+timestamp=2026-08-19T09:46:00.886Z level=INFO run=0d9499a4 message="touching file" file=/app/results.json
+timestamp=2026-08-19T09:46:00.887Z level=INFO run=0d9499a4 message="touching file" file=/app/fairhousing_audit.csv
+timestamp=2026-08-19T09:46:00.994Z level=INFO run=0d9499a4 message=tracking hash=16fa8b9e66e9783c3bf39cf91dbb005364bcdd5f cwd=/app git=/logs/agent/opencode/xdg-data/opencode/snapshot/global/42099b4af021e53fd8fd4e056c2568d7c2e3ffa8
+timestamp=2026-08-19T09:46:01.171Z level=INFO run=0d9499a4 message=loop session.id=ses_fe6977723ffeAVsSl6wx6jPj20 step=8
+timestamp=2026-08-19T09:46:01.315Z level=INFO run=0d9499a4 message=tracking hash=16fa8b9e66e9783c3bf39cf91dbb005364bcdd5f cwd=/app git=/logs/agent/opencode/xdg-data/opencode/snapshot/global/42099b4af021e53fd8fd4e056c2568d7c2e3ffa8
+timestamp=2026-08-19T09:46:01.321Z level=INFO run=0d9499a4 message=process session.id=ses_fe6977723ffeAVsSl6wx6jPj20 messageID=msg_01969d45a001buQCNRAI5cX3MA
+timestamp=2026-08-19T09:46:01.322Z level=INFO run=0d9499a4 message=stream providerID=glmproxy modelID=glm-5.2 session.id=ses_fe6977723ffeAVsSl6wx6jPj20 small=false agent=build mode=primary
+timestamp=2026-08-19T09:46:01.324Z level=INFO run=0d9499a4 message="llm runtime selected" llm.runtime=ai-sdk llm.provider=glmproxy llm.model=glm-5.2
+timestamp=2026-08-19T09:46:04.899Z level=INFO run=0d9499a4 message=evaluated permission=bash pattern="python3 -c \"\nimport json, csv\n# JSON valid + print\nd = json.load(open('/app/results.json'))\nprint('JSON OK:', d)\n# CSV: exactly 2 cols, header + 11 rows\nrows = list(csv.reader(open('/app/fairhousing_audit.csv')))\nprint('CSV rows (incl header):', len(rows))\nassert rows[0] == ['section_id','finding'], rows[0]\nfor r in rows:\n    assert len(r)==2, ('bad cols', r)\nids = [r[0] for r in rows[1:]]\nassert ids == [f'SEC-{i:02d}' for i in range(1,12)], ids\nprint('CSV 2-col + inventory order OK')\n# Reconcile counts from CSV\nfrom collections import Counter\nlabels = Counter(); flagged=0\nfor sid,f in rows[1:]:\n    if f!='none':\n        flagged+=1\n        for lab in f.split('|'):\n            labels[lab]+=1\nprint('flagged:', flagged, 'PN:', labels['PROHIBITED_PERSONAL_NARRATIVE'], 'PCL:', labels['PROTECTED_CLASS_LANGUAGE'], 'DM:', labels['DISCLAIMER_MISSING'])\nassert d['section_count']==11 and d['flagged_count']==flagged==7\nassert d['personal_narrative_count']==labels['PROHIBITED_PERSONAL_NARRATIVE']==3\nassert d['protected_lang_count']==labels['PROTECTED_CLASS_LANGUAGE']==4\nassert d['disclaimer_missing_count']==labels['DISCLAIMER_MISSING']==3\nprint('ALL CHECKS PASSED')\n\"" action.permission=* action.action=allow action.pattern=*
+timestamp=2026-08-19T09:46:05.093Z level=INFO run=0d9499a4 message=tracking hash=16fa8b9e66e9783c3bf39cf91dbb005364bcdd5f cwd=/app git=/logs/agent/opencode/xdg-data/opencode/snapshot/global/42099b4af021e53fd8fd4e056c2568d7c2e3ffa8
+timestamp=2026-08-19T09:46:05.292Z level=INFO run=0d9499a4 message=loop session.id=ses_fe6977723ffeAVsSl6wx6jPj20 step=9
+timestamp=2026-08-19T09:46:05.415Z level=INFO run=0d9499a4 message=tracking hash=16fa8b9e66e9783c3bf39cf91dbb005364bcdd5f cwd=/app git=/logs/agent/opencode/xdg-data/opencode/snapshot/global/42099b4af021e53fd8fd4e056c2568d7c2e3ffa8
+timestamp=2026-08-19T09:46:05.421Z level=INFO run=0d9499a4 message=process session.id=ses_fe6977723ffeAVsSl6wx6jPj20 messageID=msg_01969e474001vRFnlfn65ufZbU
+timestamp=2026-08-19T09:46:05.421Z level=INFO run=0d9499a4 message=stream providerID=glmproxy modelID=glm-5.2 session.id=ses_fe6977723ffeAVsSl6wx6jPj20 small=false agent=build mode=primary
+timestamp=2026-08-19T09:46:05.423Z level=INFO run=0d9499a4 message="llm runtime selected" llm.runtime=ai-sdk llm.provider=glmproxy llm.model=glm-5.2
+timestamp=2026-08-19T09:46:06.645Z level=INFO run=0d9499a4 message=evaluated permission=todowrite pattern=* action.permission=* action.action=allow action.pattern=*
+timestamp=2026-08-19T09:46:06.797Z level=INFO run=0d9499a4 message=tracking hash=16fa8b9e66e9783c3bf39cf91dbb005364bcdd5f cwd=/app git=/logs/agent/opencode/xdg-data/opencode/snapshot/global/42099b4af021e53fd8fd4e056c2568d7c2e3ffa8
+timestamp=2026-08-19T09:46:06.972Z level=INFO run=0d9499a4 message=loop session.id=ses_fe6977723ffeAVsSl6wx6jPj20 step=10
+timestamp=2026-08-19T09:46:07.107Z level=INFO run=0d9499a4 message=tracking hash=16fa8b9e66e9783c3bf39cf91dbb005364bcdd5f cwd=/app git=/logs/agent/opencode/xdg-data/opencode/snapshot/global/42099b4af021e53fd8fd4e056c2568d7c2e3ffa8
+timestamp=2026-08-19T09:46:07.113Z level=INFO run=0d9499a4 message=process session.id=ses_fe6977723ffeAVsSl6wx6jPj20 messageID=msg_01969eb03001rsT0ApZ58XNQNX
+timestamp=2026-08-19T09:46:07.114Z level=INFO run=0d9499a4 message=stream providerID=glmproxy modelID=glm-5.2 session.id=ses_fe6977723ffeAVsSl6wx6jPj20 small=false agent=build mode=primary
+timestamp=2026-08-19T09:46:07.115Z level=INFO run=0d9499a4 message="llm runtime selected" llm.runtime=ai-sdk llm.provider=glmproxy llm.model=glm-5.2

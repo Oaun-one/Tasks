@@ -1,0 +1,39 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.14, pytest-8.4.1, pluggy-1.6.0
+rootdir: /tests
+plugins: json-ctrf-0.3.5
+collected 28 items
+
+../tests/test_outputs.py ............................                    [100%]
+
+==================================== PASSES ====================================
+=========================== short test summary info ============================
+PASSED ../tests/test_outputs.py::test_deliverable[audit_exists]
+PASSED ../tests/test_outputs.py::test_deliverable[memo_exists]
+PASSED ../tests/test_outputs.py::test_deliverable[results_exists]
+PASSED ../tests/test_outputs.py::test_deliverable[audit_header_exact]
+PASSED ../tests/test_outputs.py::test_deliverable[audit_no_extra_columns]
+PASSED ../tests/test_outputs.py::test_deliverable[row_sec01]
+PASSED ../tests/test_outputs.py::test_deliverable[row_sec02]
+PASSED ../tests/test_outputs.py::test_deliverable[row_sec03]
+PASSED ../tests/test_outputs.py::test_deliverable[row_sec04]
+PASSED ../tests/test_outputs.py::test_deliverable[row_sec05]
+PASSED ../tests/test_outputs.py::test_deliverable[row_sec06]
+PASSED ../tests/test_outputs.py::test_deliverable[row_sec07]
+PASSED ../tests/test_outputs.py::test_deliverable[row_sec08]
+PASSED ../tests/test_outputs.py::test_deliverable[row_sec09]
+PASSED ../tests/test_outputs.py::test_deliverable[row_sec10]
+PASSED ../tests/test_outputs.py::test_deliverable[row_sec11]
+PASSED ../tests/test_outputs.py::test_deliverable[sec04_carries_no_violation_label]
+PASSED ../tests/test_outputs.py::test_deliverable[sec08_not_flagged_protected]
+PASSED ../tests/test_outputs.py::test_deliverable[sec10_carries_no_violation_label]
+PASSED ../tests/test_outputs.py::test_deliverable[memo_explains_narrative]
+PASSED ../tests/test_outputs.py::test_deliverable[memo_explains_protected]
+PASSED ../tests/test_outputs.py::test_deliverable[memo_explains_disclaimer]
+PASSED ../tests/test_outputs.py::test_deliverable[memo_names_exempt_section]
+PASSED ../tests/test_outputs.py::test_deliverable[result_section_count]
+PASSED ../tests/test_outputs.py::test_deliverable[result_flagged_count]
+PASSED ../tests/test_outputs.py::test_deliverable[result_personal_narrative_count]
+PASSED ../tests/test_outputs.py::test_deliverable[result_protected_lang_count]
+PASSED ../tests/test_outputs.py::test_deliverable[result_disclaimer_missing_count]
+============================== 28 passed in 0.70s ==============================

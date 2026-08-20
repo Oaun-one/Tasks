@@ -1,0 +1,47 @@
+{
+    "id": "ad6220fd-4ace-4beb-b909-e8bad2852956",
+    "started_at": "2026-08-19T18:08:22.527359",
+    "updated_at": "2026-08-19T18:08:48.599485",
+    "finished_at": "2026-08-19T18:08:48.599485",
+    "n_total_trials": 5,
+    "stats": {
+        "n_completed_trials": 5,
+        "n_errored_trials": 0,
+        "n_running_trials": 0,
+        "n_pending_trials": 0,
+        "n_cancelled_trials": 0,
+        "n_retries": 0,
+        "evals": {
+            "oracle__adhoc": {
+                "n_trials": 5,
+                "n_errors": 0,
+                "metrics": [
+                    {
+                        "mean": 1.0
+                    }
+                ],
+                "pass_at_k": {
+                    "2": 1.0,
+                    "4": 1.0,
+                    "5": 1.0
+                },
+                "reward_stats": {
+                    "reward": {
+                        "1.0": [
+                            "gen-g780-realestate-fairhousing__UTiojay",
+                            "gen-g780-realestate-fairhousing__6TPpoCa",
+                            "gen-g780-realestate-fairhousing__uDqJxkP",
+                            "gen-g780-realestate-fairhousing__s4JXKaN",
+                            "gen-g780-realestate-fairhousing__Qys4NLo"
+                        ]
+                    }
+                },
+                "exception_stats": {}
+            }
+        },
+        "n_input_tokens": null,
+        "n_cache_tokens": null,
+        "n_output_tokens": null,
+        "cost_usd": null
+    }
+}

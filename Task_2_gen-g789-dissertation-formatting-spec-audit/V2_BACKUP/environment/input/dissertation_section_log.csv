@@ -1,0 +1,36 @@
+section_id,revision,section_type,orientation,margin_top_cm,margin_bottom_cm,margin_inner_cm,margin_outer_cm,font_name,font_size_pt,spacing_mode,spacing_value,widest_table_cm
+SEC-CH1,2,body,portrait,2.5,2.5,3.2,2.5,Times New Roman,12.0,multiple,1.5,
+SEC-AN-05,1,annex,landscape,2.5,2.5,3.0,2.5,Times New Roman,12.0,multiple,1.5,24.0
+SEC-TITLE,1,front_matter,portrait,2.6,2.6,3.0,2.6,Times New Roman,12.0,multiple,1.5,
+SEC-AN-01,1,annex,landscape,1.6,1.6,3.0,1.4,Courier New,12.0,multiple,1.5,27.6
+SEC-CH7,1,body,landscape,2.5,2.5,3.0,1.8,Times New Roman,12.0,multiple,1.5,26.4
+SEC-ABSTRACT,1,front_matter,portrait,2.5,2.5,2.9,2.5,Times New Roman,12.0,multiple,1.5,
+SEC-AN-07,2,annex,landscape,2.0,2.0,2.6,1.5,Times New Roman,12.0,multiple,1.5,28.0
+SEC-LOT,1,front_matter,portrait,2.5,2.5,3.0,2.5,TimesNewRomanPSMT,12.0,multiple,1.5,
+SEC-CH3,1,body,portrait,2.5,2.5,3.0,2.5,Times New Roman,12.0,multiple,1.5,
+SEC-REF,1,back_matter,portrait,2.5,2.5,3.0,2.5,Times New Roman,12.0,multiple,1.5,
+SEC-AN-04,1,annex,landscape,2.5,2.5,3.0,1.7,Times New Roman,12.0,multiple,1.5,24.3
+SEC-CH1,1,body,portrait,2.5,2.5,3.2,2.5,Arial,12.0,multiple,1.5,
+SEC-DECL,1,front_matter,portrait,2.5,2.5,3.0,2.5,Times New Roman,12.0,multiple,1.5,
+SEC-AN-09,1,annex,landscape,2.0,2.0,3.0,1.5,Nimbus Roman No9 L,12.0,multiple,1.5,25.0
+SEC-CH5,1,body,portrait,2.5,2.5,3.0,2.5,Times New Roman,12.0,multiple,1.5,
+SEC-TOC,1,front_matter,portrait,2.5,2.5,3.0,2.5,Times New Roman,12.0,exact,18.0,
+SEC-AN-06,1,annex,portrait,2.5,2.5,3.0,1.8,Times New Roman,12.0,multiple,1.5,20.0
+SEC-CH2,1,body,portrait,2.49,2.5,3.0,2.5,Times New Roman,12.0,multiple,1.5,
+SEC-GLOSSARY,1,back_matter,portrait,2.5,2.5,2.8,2.5,Times New Roman,12.0,multiple,1.5,
+SEC-AN-02,1,annex,landscape,2.0,2.0,3.0,1.5,Times New Roman,12.0,multiple,1.5,24.9
+SEC-CH5,2,body,portrait,2.5,2.5,3.0,2.5,Times New Roman,12.0,multiple,2.0,
+SEC-CH9,1,body,portrait,2.5,2.5,3.0,2.5,Times New Roman,12.5,multiple,1.5,
+SEC-AN-07,1,annex,landscape,2.0,2.0,3.1,1.5,Times New Roman,12.0,multiple,1.5,28.0
+SEC-ACK,1,front_matter,portrait,2.5,2.5,2.85,2.5,Times New Roman,12.0,multiple,1.5,
+SEC-CH10,1,body,portrait,2.5,2.5,3.0,2.5,Times New Roman,12.0,exact,18.0,
+SEC-AN-08,1,annex,landscape,2.0,2.0,3.0,1.5,Times New Roman,12.0,exact,16.0,26.2
+SEC-CH4,1,body,portrait,2.5,2.5,3.0,2.5,Times New Roman,11.0,exact,16.5,
+SEC-LOF,1,front_matter,portrait,2.5,2.5,3.0,2.5,Times New Roman,12.0,exact,12.0,
+SEC-AN-05,2,annex,landscape,2.5,2.5,3.0,1.9,Times New Roman,12.0,multiple,1.5,24.0
+SEC-CH6,1,body,portrait,2.5,2.5,3.0,2.5,Times New Roman,12.0,multiple,1.5,
+SEC-BIO,1,back_matter,portrait,2.5,2.5,3.0,2.4,Times New Roman,12.0,multiple,1.5,
+SEC-AN-03,1,annex,landscape,2.5,2.5,3.0,1.6,Courier New,12.0,multiple,1.5,25.4
+SEC-CH8,1,body,portrait,2.2,2.5,3.0,2.5,Cambria,12.0,exact,21.0,
+SEC-CH3,2,body,portrait,2.5,2.5,3.0,2.5,Liberation Serif,12.0,multiple,1.5,
+SEC-AN-10,1,annex,landscape,2.2,2.2,3.0,1.6,Times New Roman,12.0,multiple,1.5,24.6
