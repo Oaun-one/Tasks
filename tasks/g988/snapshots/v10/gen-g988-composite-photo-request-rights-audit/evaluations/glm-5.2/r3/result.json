@@ -1,0 +1,154 @@
+{
+  "id": "ccb6682b-a4c7-4a2c-b73a-03e1bb4c58fc",
+  "task_name": "obi/gen-g988-composite-photo-request-rights-audit",
+  "trial_name": "gen-g988-composite-photo-request__qAWjJus",
+  "trial_uri": "file:///<task-path>s-g988/glm-5x-v7c-shipping/gen-g988-composite-photo-request__qAWjJus",
+  "task_id": {
+    "path": "<task-path>sk_3_gen-g988-composite-photo-request-rights-audit-20260819T194448Z-1-001\\gen-g988-composite-photo-request-rights-audit"
+  },
+  "source": null,
+  "task_checksum": "51dfdac685b3d759d873214fbdf2c78373bd8e56d64ac52e58e67aa821056a2d",
+  "config": {
+    "task": {
+      "path": "<task-path>sk_3_gen-g988-composite-photo-request-rights-audit-20260819T194448Z-1-001\\gen-g988-composite-photo-request-rights-audit",
+      "git_url": null,
+      "git_commit_id": null,
+      "name": null,
+      "ref": null,
+      "overwrite": false,
+      "download_dir": null,
+      "source": null
+    },
+    "trial_name": "gen-g988-composite-photo-request__qAWjJus",
+    "trials_dir": "<task-path>s-g988\\glm-5x-v7c-shipping",
+    "install_only": false,
+    "timeout_multiplier": 1.0,
+    "agent_timeout_multiplier": null,
+    "verifier_timeout_multiplier": null,
+    "agent_setup_timeout_multiplier": 3.0,
+    "environment_build_timeout_multiplier": null,
+    "agent": {
+      "name": "opencode",
+      "import_path": null,
+      "model_name": "glmproxy/glm-5.2",
+      "n_concurrent": null,
+      "concurrency_group": null,
+      "skills": [],
+      "override_timeout_sec": null,
+      "override_setup_timeout_sec": null,
+      "max_timeout_sec": null,
+      "resume_trajectory": false,
+      "load_trajectory": null,
+      "extra_allowed_hosts": [],
+      "kwargs": {
+        "opencode_config": {
+          "provider": {
+            "glmproxy": {
+              "npm": "@ai-sdk/openai-compatible",
+              "name": "GLM via LiteLLM",
+              "options": {
+                "baseURL": "{env:OPENAI_BASE_URL}",
+                "apiKey": "{env:OPENAI_API_KEY}"
+              },
+              "models": {
+                "glm-5.2": {
+                  "name": "GLM 5.2",
+                  "options": {
+                    "max_tokens": 96000
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "env": {
+        "OPENAI_API_KEY": "${OPENAI_API_KEY}",
+        "OPENAI_BASE_URL": "<openai-base-url>"
+      },
+      "mcp_servers": []
+    },
+    "environment": {
+      "type": "docker",
+      "import_path": null,
+      "force_build": false,
+      "delete": true,
+      "cpu_enforcement_policy": "auto",
+      "memory_enforcement_policy": "auto",
+      "override_cpus": null,
+      "override_memory_mb": null,
+      "override_storage_mb": null,
+      "override_gpus": null,
+      "override_tpu": null,
+      "mounts": null,
+      "extra_docker_compose": [],
+      "kwargs": {},
+      "extra_allowed_hosts": []
+    },
+    "verifier": {
+      "override_timeout_sec": null,
+      "max_timeout_sec": null,
+      "env": {
+        "OPENAI_API_KEY": "${OPENAI_API_KEY}",
+        "OPENAI_BASE_URL": "<openai-base-url>",
+        "JUDGE_MODEL": "openai/glm-5.2"
+      },
+      "disable": false
+    },
+    "artifacts": [],
+    "extra_instruction_paths": [],
+    "job_id": "83a19cfd-f559-4a48-bd42-1d162db2b721",
+    "source_trial": null
+  },
+  "agent_info": {
+    "name": "opencode",
+    "version": "1.18.18",
+    "model_info": {
+      "name": "glm-5.2",
+      "provider": "glmproxy"
+    }
+  },
+  "agent_result": {
+    "n_input_tokens": 632475,
+    "n_cache_tokens": 447744,
+    "n_output_tokens": 9776,
+    "cost_usd": null,
+    "rollout_details": null,
+    "metadata": null
+  },
+  "verifier_result": {
+    "rewards": {
+      "reward": 0.0
+    }
+  },
+  "verifier_environment_mode": "shared",
+  "exception_info": null,
+  "started_at": "2026-08-20T06:14:43.825964Z",
+  "finished_at": "2026-08-20T06:21:45.707782Z",
+  "environment_setup": {
+    "started_at": "2026-08-20T06:14:44.372251Z",
+    "finished_at": "2026-08-20T06:14:48.571817Z"
+  },
+  "agent_setup": {
+    "started_at": "2026-08-20T06:14:48.571839Z",
+    "finished_at": "2026-08-20T06:18:24.964711Z"
+  },
+  "agent_execution": {
+    "started_at": "2026-08-20T06:18:24.964865Z",
+    "finished_at": "2026-08-20T06:21:40.515202Z"
+  },
+  "verifier": {
+    "started_at": "2026-08-20T06:21:40.518870Z",
+    "finished_at": "2026-08-20T06:21:43.839122Z"
+  },
+  "step_results": null,
+  "model": "GLM-5.2",
+  "reward": 0.0,
+  "overall_pass": false,
+  "final_answer": "All four deliverables are written to `/app` and independently verified against a recomputation of the INT-09 audit.\n\n**Audit as of 2026-03-31.** 32 requests logged; 4 withdrawn (REQ-13, REQ-16, REQ-26, REQ-31) are out of scope per \u00a71. **28 audited**, 14 flagged, 14 compliant, 23 findings raised.\n\n- `composite_request_audit.csv` \u2014 one row per finding (clean requests \u2192 `none`), 37 rows, columns `request_id,finding`.\n- `account_summary.csv` \u2014 8 accounts, columns `account_id,account_type,request_count,flagged_requests,escalation`. Batch-wide flagged share = 14/28 = 50%.\n- `results.json` \u2014 the eleven \u00a79 figures as a JSON object.\n- `composite_request_memo.md` \u2014 self-standing memo covering the audit date, out-of-scope requests, every flagged request with its deciding record, requests cleared by the policy (personal-use allowance, on-the-cap, valid-on-date currency), master-agreement standings, and the \u00a78 decisions.\n\n**\u00a78 escalation (4):** ACC-02 and ACC-03 on the \"\u22653 findings on one request\" limb (REQ-05 and REQ-10 respectively); ACC-07 and ACC-08 on the \"share > batch\" limb (2/3 \u2248 66.7% > 50%). ACC-08 also meets the \u22653 limb via REQ-30. ACC-01, ACC-04, ACC-05 sit at exactly 50% and do not escalate.\n\nTwo notable traps the policy flagged and I handled: the personal-use allowance clears \u00a73 for REQ-01/22/32 despite cap exceedance; and two supersessions (LIC-109 over LIC-103, LIC-110 over LIC-105) narrowed terms \u2014 the first pushes REQ-05 over the new cap, the second drops REQ-28's background out of cover while still covering REQ-18.",
+  "judge_provenance": {
+    "judged_verifiers": 0,
+    "judge_model": null,
+    "note": "All verifiers in tests/verifier.json are deterministic; no LLM judge is invoked."
+  }
+}

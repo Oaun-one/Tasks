@@ -1,0 +1,154 @@
+{
+  "id": "8fd68cd5-6177-42ba-9daa-df5f629858c1",
+  "task_name": "obi/gen-g780-realestate-fairhousing-collateral-audit",
+  "trial_name": "gen-g780-realestate-fairhousing__jsUtRgP",
+  "trial_uri": "file:///E:/WORK/TU/jobs/glm-5x-v9-NONC-B1-1001608/gen-g780-realestate-fairhousing__jsUtRgP",
+  "task_id": {
+    "path": "E:\\WORK\\TU\\Task_1_gen-g780-realestate-fairhousing-collateral-audit\\gen-g780-realestate-fairhousing-collateral-audit"
+  },
+  "source": null,
+  "task_checksum": "d3825978e3680539fb0adf3b543a7c3980872ce45a1470fc0191698291879568",
+  "config": {
+    "task": {
+      "path": "E:\\WORK\\TU\\Task_1_gen-g780-realestate-fairhousing-collateral-audit\\gen-g780-realestate-fairhousing-collateral-audit",
+      "git_url": null,
+      "git_commit_id": null,
+      "name": null,
+      "ref": null,
+      "overwrite": false,
+      "download_dir": null,
+      "source": null
+    },
+    "trial_name": "gen-g780-realestate-fairhousing__jsUtRgP",
+    "trials_dir": "E:\\WORK\\TU\\jobs\\glm-5x-v9-NONC-B1-1001608",
+    "install_only": false,
+    "timeout_multiplier": 1.0,
+    "agent_timeout_multiplier": null,
+    "verifier_timeout_multiplier": null,
+    "agent_setup_timeout_multiplier": 3.0,
+    "environment_build_timeout_multiplier": null,
+    "agent": {
+      "name": "opencode",
+      "import_path": null,
+      "model_name": "glmproxy/glm-5.2",
+      "n_concurrent": null,
+      "concurrency_group": null,
+      "skills": [],
+      "override_timeout_sec": null,
+      "override_setup_timeout_sec": null,
+      "max_timeout_sec": null,
+      "resume_trajectory": false,
+      "load_trajectory": null,
+      "extra_allowed_hosts": [],
+      "kwargs": {
+        "opencode_config": {
+          "provider": {
+            "glmproxy": {
+              "npm": "@ai-sdk/openai-compatible",
+              "name": "GLM via LiteLLM",
+              "options": {
+                "baseURL": "{env:OPENAI_BASE_URL}",
+                "apiKey": "{env:OPENAI_API_KEY}"
+              },
+              "models": {
+                "glm-5.2": {
+                  "name": "GLM 5.2",
+                  "options": {
+                    "max_tokens": 96000
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "env": {
+        "OPENAI_API_KEY": "${OPENAI_API_KEY}",
+        "OPENAI_BASE_URL": "http://34.41.10.8:4000/v1"
+      },
+      "mcp_servers": []
+    },
+    "environment": {
+      "type": "docker",
+      "import_path": null,
+      "force_build": false,
+      "delete": true,
+      "cpu_enforcement_policy": "auto",
+      "memory_enforcement_policy": "auto",
+      "override_cpus": null,
+      "override_memory_mb": null,
+      "override_storage_mb": null,
+      "override_gpus": null,
+      "override_tpu": null,
+      "mounts": null,
+      "extra_docker_compose": [],
+      "kwargs": {},
+      "extra_allowed_hosts": []
+    },
+    "verifier": {
+      "override_timeout_sec": null,
+      "max_timeout_sec": null,
+      "env": {
+        "OPENAI_API_KEY": "${OPENAI_API_KEY}",
+        "OPENAI_BASE_URL": "http://34.41.10.8:4000/v1",
+        "JUDGE_MODEL": "openai/glm-5.2"
+      },
+      "disable": false
+    },
+    "artifacts": [],
+    "extra_instruction_paths": [],
+    "job_id": "5896f5c0-3cd6-4bcc-93c9-fad2e1a7a0ee",
+    "source_trial": null
+  },
+  "agent_info": {
+    "name": "opencode",
+    "version": "1.18.18",
+    "model_info": {
+      "name": "glm-5.2",
+      "provider": "glmproxy"
+    }
+  },
+  "agent_result": {
+    "n_input_tokens": 277661,
+    "n_cache_tokens": 154368,
+    "n_output_tokens": 5754,
+    "cost_usd": null,
+    "rollout_details": null,
+    "metadata": null
+  },
+  "verifier_result": {
+    "rewards": {
+      "reward": 1.0
+    }
+  },
+  "verifier_environment_mode": "shared",
+  "exception_info": null,
+  "started_at": "2026-08-19T13:36:47.475857Z",
+  "finished_at": "2026-08-19T13:41:38.961564Z",
+  "environment_setup": {
+    "started_at": "2026-08-19T13:36:47.770899Z",
+    "finished_at": "2026-08-19T13:36:52.335989Z"
+  },
+  "agent_setup": {
+    "started_at": "2026-08-19T13:36:52.336012Z",
+    "finished_at": "2026-08-19T13:39:00.649395Z"
+  },
+  "agent_execution": {
+    "started_at": "2026-08-19T13:39:00.649516Z",
+    "finished_at": "2026-08-19T13:41:35.125270Z"
+  },
+  "verifier": {
+    "started_at": "2026-08-19T13:41:35.128293Z",
+    "finished_at": "2026-08-19T13:41:37.166618Z"
+  },
+  "step_results": null,
+  "model": "GLM-5.2",
+  "reward": 1.0,
+  "overall_pass": true,
+  "final_answer": "All three deliverables exist in `/app` and are internally consistent.\n\n**`fairhousing_audit.csv`** \u2014 header + 30 rows, two columns (`section_id`,`finding`), inventory order, labels joined with `|` in rule order (\u00a71 \u2192 \u00a72 \u2192 \u00a74). Nothing else in the file.\n\n**`fairhousing_memo.md`** \u2014 full reasoning, audited against RE-FH-9 as amended (\u00a75a adds `marital status` + `source of income` to the 11 required classes; \u00a75b brings `agent_bio` into \u00a74 scope).\n\n**`results.json`** \u2014 `section_count: 30, flagged_count: 22, personal_narrative_count: 7, protected_lang_count: 14, disclaimer_missing_count: 11`.\n\nHeadline for legal: the book is **not** printable as-is. The dominant issue is the standing disclosure paragraph being *abridged* under the amended standard \u2014 that strips its \u00a73 exemption (so its terms trip \u00a72) **and** makes responsible sections `DISCLAIMER_MISSING`. Two judgment calls worth legal's eye are flagged in \u00a74 of the memo: (1) `disclosure_block` is not a \u00a74-responsible role per the standard's literal text, so SEC-04/SEC-22 carry no `DISCLAIMER_MISSING`; (2) abridged notices are treated as carrying protected-class language, per \u00a73. Per-section rationale and a remediation checklist are in the memo.",
+  "judge_provenance": {
+    "judged_verifiers": 0,
+    "judge_model": null,
+    "note": "All verifiers in tests/manifest.json are deterministic; no LLM judge is invoked."
+  }
+}

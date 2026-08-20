@@ -1,0 +1,2130 @@
+{
+  "task_id": "gen-G988-composite-photo-request-rights-audit",
+  "verifiers": [
+    {
+      "name": "audit_csv_exists",
+      "metadata": {
+        "how_justification": "Checks composite_request_audit.csv is present as a file in the workspace.",
+        "why_justification": "Per-request audit delivered."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "filesystem",
+          "command": "check_path_exists",
+          "arguments": {
+            "path": "composite_request_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": true,
+        "deterministic": {
+          "path": "$.is_file",
+          "comparison": "equals"
+        }
+      }
+    },
+    {
+      "name": "account_csv_exists",
+      "metadata": {
+        "how_justification": "Checks account_summary.csv is present as a file in the workspace.",
+        "why_justification": "Per-account rollup delivered."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "filesystem",
+          "command": "check_path_exists",
+          "arguments": {
+            "path": "account_summary.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": true,
+        "deterministic": {
+          "path": "$.is_file",
+          "comparison": "equals"
+        }
+      }
+    },
+    {
+      "name": "memo_exists",
+      "metadata": {
+        "how_justification": "Checks composite_request_memo.md is present as a file in the workspace.",
+        "why_justification": "Memo delivered."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "filesystem",
+          "command": "check_path_exists",
+          "arguments": {
+            "path": "composite_request_memo.md"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": true,
+        "deterministic": {
+          "path": "$.is_file",
+          "comparison": "equals"
+        }
+      }
+    },
+    {
+      "name": "results_exists",
+      "metadata": {
+        "how_justification": "Checks results.json is present as a file in the workspace.",
+        "why_justification": "Derived figures delivered."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "filesystem",
+          "command": "check_path_exists",
+          "arguments": {
+            "path": "results.json"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": true,
+        "deterministic": {
+          "path": "$.is_file",
+          "comparison": "equals"
+        }
+      }
+    },
+    {
+      "name": "audit_has_required_columns",
+      "metadata": {
+        "how_justification": "Opens composite_request_audit.csv with csv.extract_text and applies regex_match.",
+        "why_justification": "The audit carries the request_id and finding columns the prompt names."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "composite_request_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?im)^[^\\n]*\\brequest_id\\b[^\\n]*\\bfinding\\b",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "audit_req_01",
+      "metadata": {
+        "how_justification": "Opens composite_request_audit.csv with csv.extract_text and applies regex_match.",
+        "why_justification": "REQ-01 carries exactly no finding."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "composite_request_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?im)^(?=[^\\n]*\\bREQ-01\\b)(?=[^\\n]*(?:\\b(?:none|no(?:ne)?[ _-]?finding(?:s)?|ok|okay|pass(?:es|ed)?|clean|clear|fine|yes|good|true|n/?a)\\b|valid\\b|(?:^|,)\\s*[-\u2013\u2014\u2713]\\s*(?:,|$)))(?![^\\n]*UNLICENSED_CHARACTER_USE)(?![^\\n]*THIRD_PARTY_BACKGROUND_UNLICENSED)(?![^\\n]*MISSING_MINOR_CONSENT)(?![^\\n]*COMMERCIAL_DISTRIBUTION_FLAG)(?![^\\n]*ALTERATION_DISCLOSURE_MISSING)",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "audit_req_02",
+      "metadata": {
+        "how_justification": "Opens composite_request_audit.csv with csv.extract_text and applies regex_match.",
+        "why_justification": "REQ-02 carries exactly COMMERCIAL_DISTRIBUTION_FLAG."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "composite_request_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?im)^(?=[^\\n]*\\bREQ-02\\b)(?=[^\\n]*COMMERCIAL_DISTRIBUTION_FLAG)(?![^\\n]*UNLICENSED_CHARACTER_USE)(?![^\\n]*THIRD_PARTY_BACKGROUND_UNLICENSED)(?![^\\n]*MISSING_MINOR_CONSENT)(?![^\\n]*ALTERATION_DISCLOSURE_MISSING)",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "audit_req_03",
+      "metadata": {
+        "how_justification": "Opens composite_request_audit.csv with csv.extract_text and applies regex_match.",
+        "why_justification": "REQ-03 carries exactly no finding."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "composite_request_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?im)^(?=[^\\n]*\\bREQ-03\\b)(?=[^\\n]*(?:\\b(?:none|no(?:ne)?[ _-]?finding(?:s)?|ok|okay|pass(?:es|ed)?|clean|clear|fine|yes|good|true|n/?a)\\b|valid\\b|(?:^|,)\\s*[-\u2013\u2014\u2713]\\s*(?:,|$)))(?![^\\n]*UNLICENSED_CHARACTER_USE)(?![^\\n]*THIRD_PARTY_BACKGROUND_UNLICENSED)(?![^\\n]*MISSING_MINOR_CONSENT)(?![^\\n]*COMMERCIAL_DISTRIBUTION_FLAG)(?![^\\n]*ALTERATION_DISCLOSURE_MISSING)",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "audit_req_04",
+      "metadata": {
+        "how_justification": "Opens composite_request_audit.csv with csv.extract_text and applies regex_match.",
+        "why_justification": "REQ-04 carries exactly THIRD_PARTY_BACKGROUND_UNLICENSED."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "composite_request_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?im)^(?=[^\\n]*\\bREQ-04\\b)(?=[^\\n]*THIRD_PARTY_BACKGROUND_UNLICENSED)(?![^\\n]*UNLICENSED_CHARACTER_USE)(?![^\\n]*MISSING_MINOR_CONSENT)(?![^\\n]*COMMERCIAL_DISTRIBUTION_FLAG)(?![^\\n]*ALTERATION_DISCLOSURE_MISSING)",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "audit_req_05",
+      "metadata": {
+        "how_justification": "Opens composite_request_audit.csv with csv.extract_text and applies regex_match.",
+        "why_justification": "REQ-05 carries exactly THIRD_PARTY_BACKGROUND_UNLICENSED|MISSING_MINOR_CONSENT."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "composite_request_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?im)^(?=[^\\n]*\\bREQ-05\\b)(?=[^\\n]*THIRD_PARTY_BACKGROUND_UNLICENSED)(?=[^\\n]*MISSING_MINOR_CONSENT)(?![^\\n]*UNLICENSED_CHARACTER_USE)(?![^\\n]*COMMERCIAL_DISTRIBUTION_FLAG)(?![^\\n]*ALTERATION_DISCLOSURE_MISSING)",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "audit_req_06",
+      "metadata": {
+        "how_justification": "Opens composite_request_audit.csv with csv.extract_text and applies regex_match.",
+        "why_justification": "REQ-06 carries exactly ALTERATION_DISCLOSURE_MISSING."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "composite_request_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?im)^(?=[^\\n]*\\bREQ-06\\b)(?=[^\\n]*ALTERATION_DISCLOSURE_MISSING)(?![^\\n]*UNLICENSED_CHARACTER_USE)(?![^\\n]*THIRD_PARTY_BACKGROUND_UNLICENSED)(?![^\\n]*MISSING_MINOR_CONSENT)(?![^\\n]*COMMERCIAL_DISTRIBUTION_FLAG)",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "audit_req_07",
+      "metadata": {
+        "how_justification": "Opens composite_request_audit.csv with csv.extract_text and applies regex_match.",
+        "why_justification": "REQ-07 carries exactly THIRD_PARTY_BACKGROUND_UNLICENSED."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "composite_request_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?im)^(?=[^\\n]*\\bREQ-07\\b)(?=[^\\n]*THIRD_PARTY_BACKGROUND_UNLICENSED)(?![^\\n]*UNLICENSED_CHARACTER_USE)(?![^\\n]*MISSING_MINOR_CONSENT)(?![^\\n]*COMMERCIAL_DISTRIBUTION_FLAG)(?![^\\n]*ALTERATION_DISCLOSURE_MISSING)",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "audit_req_08",
+      "metadata": {
+        "how_justification": "Opens composite_request_audit.csv with csv.extract_text and applies regex_match.",
+        "why_justification": "REQ-08 carries exactly no finding."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "composite_request_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?im)^(?=[^\\n]*\\bREQ-08\\b)(?=[^\\n]*(?:\\b(?:none|no(?:ne)?[ _-]?finding(?:s)?|ok|okay|pass(?:es|ed)?|clean|clear|fine|yes|good|true|n/?a)\\b|valid\\b|(?:^|,)\\s*[-\u2013\u2014\u2713]\\s*(?:,|$)))(?![^\\n]*UNLICENSED_CHARACTER_USE)(?![^\\n]*THIRD_PARTY_BACKGROUND_UNLICENSED)(?![^\\n]*MISSING_MINOR_CONSENT)(?![^\\n]*COMMERCIAL_DISTRIBUTION_FLAG)(?![^\\n]*ALTERATION_DISCLOSURE_MISSING)",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "audit_req_09",
+      "metadata": {
+        "how_justification": "Opens composite_request_audit.csv with csv.extract_text and applies regex_match.",
+        "why_justification": "REQ-09 carries exactly no finding."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "composite_request_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?im)^(?=[^\\n]*\\bREQ-09\\b)(?=[^\\n]*(?:\\b(?:none|no(?:ne)?[ _-]?finding(?:s)?|ok|okay|pass(?:es|ed)?|clean|clear|fine|yes|good|true|n/?a)\\b|valid\\b|(?:^|,)\\s*[-\u2013\u2014\u2713]\\s*(?:,|$)))(?![^\\n]*UNLICENSED_CHARACTER_USE)(?![^\\n]*THIRD_PARTY_BACKGROUND_UNLICENSED)(?![^\\n]*MISSING_MINOR_CONSENT)(?![^\\n]*COMMERCIAL_DISTRIBUTION_FLAG)(?![^\\n]*ALTERATION_DISCLOSURE_MISSING)",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "audit_req_10",
+      "metadata": {
+        "how_justification": "Opens composite_request_audit.csv with csv.extract_text and applies regex_match.",
+        "why_justification": "REQ-10 carries exactly UNLICENSED_CHARACTER_USE|THIRD_PARTY_BACKGROUND_UNLICENSED|ALTERATION_DISCLOSURE_MISSING."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "composite_request_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?im)^(?=[^\\n]*\\bREQ-10\\b)(?=[^\\n]*UNLICENSED_CHARACTER_USE)(?=[^\\n]*THIRD_PARTY_BACKGROUND_UNLICENSED)(?=[^\\n]*ALTERATION_DISCLOSURE_MISSING)(?![^\\n]*MISSING_MINOR_CONSENT)(?![^\\n]*COMMERCIAL_DISTRIBUTION_FLAG)",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "audit_req_11",
+      "metadata": {
+        "how_justification": "Opens composite_request_audit.csv with csv.extract_text and applies regex_match.",
+        "why_justification": "REQ-11 carries exactly no finding."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "composite_request_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?im)^(?=[^\\n]*\\bREQ-11\\b)(?=[^\\n]*(?:\\b(?:none|no(?:ne)?[ _-]?finding(?:s)?|ok|okay|pass(?:es|ed)?|clean|clear|fine|yes|good|true|n/?a)\\b|valid\\b|(?:^|,)\\s*[-\u2013\u2014\u2713]\\s*(?:,|$)))(?![^\\n]*UNLICENSED_CHARACTER_USE)(?![^\\n]*THIRD_PARTY_BACKGROUND_UNLICENSED)(?![^\\n]*MISSING_MINOR_CONSENT)(?![^\\n]*COMMERCIAL_DISTRIBUTION_FLAG)(?![^\\n]*ALTERATION_DISCLOSURE_MISSING)",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "audit_req_12",
+      "metadata": {
+        "how_justification": "Opens composite_request_audit.csv with csv.extract_text and applies regex_match.",
+        "why_justification": "REQ-12 carries exactly no finding."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "composite_request_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?im)^(?=[^\\n]*\\bREQ-12\\b)(?=[^\\n]*(?:\\b(?:none|no(?:ne)?[ _-]?finding(?:s)?|ok|okay|pass(?:es|ed)?|clean|clear|fine|yes|good|true|n/?a)\\b|valid\\b|(?:^|,)\\s*[-\u2013\u2014\u2713]\\s*(?:,|$)))(?![^\\n]*UNLICENSED_CHARACTER_USE)(?![^\\n]*THIRD_PARTY_BACKGROUND_UNLICENSED)(?![^\\n]*MISSING_MINOR_CONSENT)(?![^\\n]*COMMERCIAL_DISTRIBUTION_FLAG)(?![^\\n]*ALTERATION_DISCLOSURE_MISSING)",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "audit_req_14",
+      "metadata": {
+        "how_justification": "Opens composite_request_audit.csv with csv.extract_text and applies regex_match.",
+        "why_justification": "REQ-14 carries exactly MISSING_MINOR_CONSENT|COMMERCIAL_DISTRIBUTION_FLAG."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "composite_request_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?im)^(?=[^\\n]*\\bREQ-14\\b)(?=[^\\n]*MISSING_MINOR_CONSENT)(?=[^\\n]*COMMERCIAL_DISTRIBUTION_FLAG)(?![^\\n]*UNLICENSED_CHARACTER_USE)(?![^\\n]*THIRD_PARTY_BACKGROUND_UNLICENSED)(?![^\\n]*ALTERATION_DISCLOSURE_MISSING)",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "audit_req_15",
+      "metadata": {
+        "how_justification": "Opens composite_request_audit.csv with csv.extract_text and applies regex_match.",
+        "why_justification": "REQ-15 carries exactly no finding."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "composite_request_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?im)^(?=[^\\n]*\\bREQ-15\\b)(?=[^\\n]*(?:\\b(?:none|no(?:ne)?[ _-]?finding(?:s)?|ok|okay|pass(?:es|ed)?|clean|clear|fine|yes|good|true|n/?a)\\b|valid\\b|(?:^|,)\\s*[-\u2013\u2014\u2713]\\s*(?:,|$)))(?![^\\n]*UNLICENSED_CHARACTER_USE)(?![^\\n]*THIRD_PARTY_BACKGROUND_UNLICENSED)(?![^\\n]*MISSING_MINOR_CONSENT)(?![^\\n]*COMMERCIAL_DISTRIBUTION_FLAG)(?![^\\n]*ALTERATION_DISCLOSURE_MISSING)",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "audit_req_17",
+      "metadata": {
+        "how_justification": "Opens composite_request_audit.csv with csv.extract_text and applies regex_match.",
+        "why_justification": "REQ-17 carries exactly UNLICENSED_CHARACTER_USE."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "composite_request_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?im)^(?=[^\\n]*\\bREQ-17\\b)(?=[^\\n]*UNLICENSED_CHARACTER_USE)(?![^\\n]*THIRD_PARTY_BACKGROUND_UNLICENSED)(?![^\\n]*MISSING_MINOR_CONSENT)(?![^\\n]*COMMERCIAL_DISTRIBUTION_FLAG)(?![^\\n]*ALTERATION_DISCLOSURE_MISSING)",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "audit_req_18",
+      "metadata": {
+        "how_justification": "Opens composite_request_audit.csv with csv.extract_text and applies regex_match.",
+        "why_justification": "REQ-18 carries exactly no finding."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "composite_request_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?im)^(?=[^\\n]*\\bREQ-18\\b)(?=[^\\n]*(?:\\b(?:none|no(?:ne)?[ _-]?finding(?:s)?|ok|okay|pass(?:es|ed)?|clean|clear|fine|yes|good|true|n/?a)\\b|valid\\b|(?:^|,)\\s*[-\u2013\u2014\u2713]\\s*(?:,|$)))(?![^\\n]*UNLICENSED_CHARACTER_USE)(?![^\\n]*THIRD_PARTY_BACKGROUND_UNLICENSED)(?![^\\n]*MISSING_MINOR_CONSENT)(?![^\\n]*COMMERCIAL_DISTRIBUTION_FLAG)(?![^\\n]*ALTERATION_DISCLOSURE_MISSING)",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "audit_req_19",
+      "metadata": {
+        "how_justification": "Opens composite_request_audit.csv with csv.extract_text and applies regex_match.",
+        "why_justification": "REQ-19 carries exactly no finding."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "composite_request_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?im)^(?=[^\\n]*\\bREQ-19\\b)(?=[^\\n]*(?:\\b(?:none|no(?:ne)?[ _-]?finding(?:s)?|ok|okay|pass(?:es|ed)?|clean|clear|fine|yes|good|true|n/?a)\\b|valid\\b|(?:^|,)\\s*[-\u2013\u2014\u2713]\\s*(?:,|$)))(?![^\\n]*UNLICENSED_CHARACTER_USE)(?![^\\n]*THIRD_PARTY_BACKGROUND_UNLICENSED)(?![^\\n]*MISSING_MINOR_CONSENT)(?![^\\n]*COMMERCIAL_DISTRIBUTION_FLAG)(?![^\\n]*ALTERATION_DISCLOSURE_MISSING)",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "audit_req_20",
+      "metadata": {
+        "how_justification": "Opens composite_request_audit.csv with csv.extract_text and applies regex_match.",
+        "why_justification": "REQ-20 carries exactly COMMERCIAL_DISTRIBUTION_FLAG."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "composite_request_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?im)^(?=[^\\n]*\\bREQ-20\\b)(?=[^\\n]*COMMERCIAL_DISTRIBUTION_FLAG)(?![^\\n]*UNLICENSED_CHARACTER_USE)(?![^\\n]*THIRD_PARTY_BACKGROUND_UNLICENSED)(?![^\\n]*MISSING_MINOR_CONSENT)(?![^\\n]*ALTERATION_DISCLOSURE_MISSING)",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "audit_req_21",
+      "metadata": {
+        "how_justification": "Opens composite_request_audit.csv with csv.extract_text and applies regex_match.",
+        "why_justification": "REQ-21 carries exactly no finding."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "composite_request_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?im)^(?=[^\\n]*\\bREQ-21\\b)(?=[^\\n]*(?:\\b(?:none|no(?:ne)?[ _-]?finding(?:s)?|ok|okay|pass(?:es|ed)?|clean|clear|fine|yes|good|true|n/?a)\\b|valid\\b|(?:^|,)\\s*[-\u2013\u2014\u2713]\\s*(?:,|$)))(?![^\\n]*UNLICENSED_CHARACTER_USE)(?![^\\n]*THIRD_PARTY_BACKGROUND_UNLICENSED)(?![^\\n]*MISSING_MINOR_CONSENT)(?![^\\n]*COMMERCIAL_DISTRIBUTION_FLAG)(?![^\\n]*ALTERATION_DISCLOSURE_MISSING)",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "audit_req_22",
+      "metadata": {
+        "how_justification": "Opens composite_request_audit.csv with csv.extract_text and applies regex_match.",
+        "why_justification": "REQ-22 carries exactly no finding."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "composite_request_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?im)^(?=[^\\n]*\\bREQ-22\\b)(?=[^\\n]*(?:\\b(?:none|no(?:ne)?[ _-]?finding(?:s)?|ok|okay|pass(?:es|ed)?|clean|clear|fine|yes|good|true|n/?a)\\b|valid\\b|(?:^|,)\\s*[-\u2013\u2014\u2713]\\s*(?:,|$)))(?![^\\n]*UNLICENSED_CHARACTER_USE)(?![^\\n]*THIRD_PARTY_BACKGROUND_UNLICENSED)(?![^\\n]*MISSING_MINOR_CONSENT)(?![^\\n]*COMMERCIAL_DISTRIBUTION_FLAG)(?![^\\n]*ALTERATION_DISCLOSURE_MISSING)",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "audit_req_23",
+      "metadata": {
+        "how_justification": "Opens composite_request_audit.csv with csv.extract_text and applies regex_match.",
+        "why_justification": "REQ-23 carries exactly THIRD_PARTY_BACKGROUND_UNLICENSED|COMMERCIAL_DISTRIBUTION_FLAG."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "composite_request_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?im)^(?=[^\\n]*\\bREQ-23\\b)(?=[^\\n]*THIRD_PARTY_BACKGROUND_UNLICENSED)(?=[^\\n]*COMMERCIAL_DISTRIBUTION_FLAG)(?![^\\n]*UNLICENSED_CHARACTER_USE)(?![^\\n]*MISSING_MINOR_CONSENT)(?![^\\n]*ALTERATION_DISCLOSURE_MISSING)",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "audit_req_24",
+      "metadata": {
+        "how_justification": "Opens composite_request_audit.csv with csv.extract_text and applies regex_match.",
+        "why_justification": "REQ-24 carries exactly no finding."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "composite_request_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?im)^(?=[^\\n]*\\bREQ-24\\b)(?=[^\\n]*(?:\\b(?:none|no(?:ne)?[ _-]?finding(?:s)?|ok|okay|pass(?:es|ed)?|clean|clear|fine|yes|good|true|n/?a)\\b|valid\\b|(?:^|,)\\s*[-\u2013\u2014\u2713]\\s*(?:,|$)))(?![^\\n]*UNLICENSED_CHARACTER_USE)(?![^\\n]*THIRD_PARTY_BACKGROUND_UNLICENSED)(?![^\\n]*MISSING_MINOR_CONSENT)(?![^\\n]*COMMERCIAL_DISTRIBUTION_FLAG)(?![^\\n]*ALTERATION_DISCLOSURE_MISSING)",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "audit_req_25",
+      "metadata": {
+        "how_justification": "Opens composite_request_audit.csv with csv.extract_text and applies regex_match.",
+        "why_justification": "REQ-25 carries exactly no finding."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "composite_request_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?im)^(?=[^\\n]*\\bREQ-25\\b)(?=[^\\n]*(?:\\b(?:none|no(?:ne)?[ _-]?finding(?:s)?|ok|okay|pass(?:es|ed)?|clean|clear|fine|yes|good|true|n/?a)\\b|valid\\b|(?:^|,)\\s*[-\u2013\u2014\u2713]\\s*(?:,|$)))(?![^\\n]*UNLICENSED_CHARACTER_USE)(?![^\\n]*THIRD_PARTY_BACKGROUND_UNLICENSED)(?![^\\n]*MISSING_MINOR_CONSENT)(?![^\\n]*COMMERCIAL_DISTRIBUTION_FLAG)(?![^\\n]*ALTERATION_DISCLOSURE_MISSING)",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "audit_req_27",
+      "metadata": {
+        "how_justification": "Opens composite_request_audit.csv with csv.extract_text and applies regex_match.",
+        "why_justification": "REQ-27 carries exactly COMMERCIAL_DISTRIBUTION_FLAG."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "composite_request_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?im)^(?=[^\\n]*\\bREQ-27\\b)(?=[^\\n]*COMMERCIAL_DISTRIBUTION_FLAG)(?![^\\n]*UNLICENSED_CHARACTER_USE)(?![^\\n]*THIRD_PARTY_BACKGROUND_UNLICENSED)(?![^\\n]*MISSING_MINOR_CONSENT)(?![^\\n]*ALTERATION_DISCLOSURE_MISSING)",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "audit_req_28",
+      "metadata": {
+        "how_justification": "Opens composite_request_audit.csv with csv.extract_text and applies regex_match.",
+        "why_justification": "REQ-28 carries exactly THIRD_PARTY_BACKGROUND_UNLICENSED."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "composite_request_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?im)^(?=[^\\n]*\\bREQ-28\\b)(?=[^\\n]*THIRD_PARTY_BACKGROUND_UNLICENSED)(?![^\\n]*UNLICENSED_CHARACTER_USE)(?![^\\n]*MISSING_MINOR_CONSENT)(?![^\\n]*COMMERCIAL_DISTRIBUTION_FLAG)(?![^\\n]*ALTERATION_DISCLOSURE_MISSING)",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "audit_req_29",
+      "metadata": {
+        "how_justification": "Opens composite_request_audit.csv with csv.extract_text and applies regex_match.",
+        "why_justification": "REQ-29 carries exactly no finding."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "composite_request_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?im)^(?=[^\\n]*\\bREQ-29\\b)(?=[^\\n]*(?:\\b(?:none|no(?:ne)?[ _-]?finding(?:s)?|ok|okay|pass(?:es|ed)?|clean|clear|fine|yes|good|true|n/?a)\\b|valid\\b|(?:^|,)\\s*[-\u2013\u2014\u2713]\\s*(?:,|$)))(?![^\\n]*UNLICENSED_CHARACTER_USE)(?![^\\n]*THIRD_PARTY_BACKGROUND_UNLICENSED)(?![^\\n]*MISSING_MINOR_CONSENT)(?![^\\n]*COMMERCIAL_DISTRIBUTION_FLAG)(?![^\\n]*ALTERATION_DISCLOSURE_MISSING)",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "audit_req_30",
+      "metadata": {
+        "how_justification": "Opens composite_request_audit.csv with csv.extract_text and applies regex_match.",
+        "why_justification": "REQ-30 carries exactly COMMERCIAL_DISTRIBUTION_FLAG|ALTERATION_DISCLOSURE_MISSING."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "composite_request_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?im)^(?=[^\\n]*\\bREQ-30\\b)(?=[^\\n]*COMMERCIAL_DISTRIBUTION_FLAG)(?=[^\\n]*ALTERATION_DISCLOSURE_MISSING)(?![^\\n]*UNLICENSED_CHARACTER_USE)(?![^\\n]*THIRD_PARTY_BACKGROUND_UNLICENSED)(?![^\\n]*MISSING_MINOR_CONSENT)",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "audit_req_32",
+      "metadata": {
+        "how_justification": "Opens composite_request_audit.csv with csv.extract_text and applies regex_match.",
+        "why_justification": "REQ-32 carries exactly MISSING_MINOR_CONSENT."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "composite_request_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?im)^(?=[^\\n]*\\bREQ-32\\b)(?=[^\\n]*MISSING_MINOR_CONSENT)(?![^\\n]*UNLICENSED_CHARACTER_USE)(?![^\\n]*THIRD_PARTY_BACKGROUND_UNLICENSED)(?![^\\n]*COMMERCIAL_DISTRIBUTION_FLAG)(?![^\\n]*ALTERATION_DISCLOSURE_MISSING)",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "audit_excludes_req_13",
+      "metadata": {
+        "how_justification": "Opens composite_request_audit.csv with csv.extract_text and applies regex_match.",
+        "why_justification": "REQ-13 is withdrawn and is not audited, so it must not appear in the audit."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "composite_request_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?s)^(?![\\s\\S]*\\bREQ-13\\b)",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "audit_excludes_req_16",
+      "metadata": {
+        "how_justification": "Opens composite_request_audit.csv with csv.extract_text and applies regex_match.",
+        "why_justification": "REQ-16 is withdrawn and is not audited, so it must not appear in the audit."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "composite_request_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?s)^(?![\\s\\S]*\\bREQ-16\\b)",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "audit_excludes_req_26",
+      "metadata": {
+        "how_justification": "Opens composite_request_audit.csv with csv.extract_text and applies regex_match.",
+        "why_justification": "REQ-26 is withdrawn and is not audited, so it must not appear in the audit."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "composite_request_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?s)^(?![\\s\\S]*\\bREQ-26\\b)",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "audit_excludes_req_31",
+      "metadata": {
+        "how_justification": "Opens composite_request_audit.csv with csv.extract_text and applies regex_match.",
+        "why_justification": "REQ-31 is withdrawn and is not audited, so it must not appear in the audit."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "composite_request_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?s)^(?![\\s\\S]*\\bREQ-31\\b)",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "account_has_required_columns",
+      "metadata": {
+        "how_justification": "Opens account_summary.csv with csv.extract_text and applies regex_match.",
+        "why_justification": "The rollup carries the five columns the prompt names, in order."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "account_summary.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?im)^[^\\n]*\\baccount_id\\b[^\\n]*\\baccount_type\\b[^\\n]*\\brequest_count\\b[^\\n]*\\bflagged_requests\\b[^\\n]*\\bescalation\\b",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "acc_01_type",
+      "metadata": {
+        "how_justification": "Opens account_summary.csv with csv.extract_text and applies regex_match.",
+        "why_justification": "ACC-01 is reported against its own account type."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "account_summary.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?im)^(?=[^\\n]*\\bACC-01\\b)(?=[^\\n]*\\bconsumer\\b)",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "acc_01_counts",
+      "metadata": {
+        "how_justification": "Opens account_summary.csv with csv.extract_text and applies regex_match.",
+        "why_justification": "ACC-01: 4 requests, 2 of them flagged."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "account_summary.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?im)^[^\\n]*?\\bACC-01\\b[^\\n]*?\\b4\\b[^\\n]*?\\b2\\b",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "acc_01_escalation",
+      "metadata": {
+        "how_justification": "Opens account_summary.csv with csv.extract_text and applies regex_match.",
+        "why_justification": "ACC-01 does not escalate and must not be reported as escalated."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "account_summary.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?im)^(?=[^\\n]*\\bACC-01\\b)(?![^\\n]*ESCALATION)(?=[^\\n]*(?:\\b(?:none|no(?:ne)?[ _-]?finding(?:s)?|ok|okay|pass(?:es|ed)?|clean|clear|fine|yes|good|true|n/?a)\\b|valid\\b|(?:^|,)\\s*[-\u2013\u2014\u2713]\\s*(?:,|$)))",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "acc_02_type",
+      "metadata": {
+        "how_justification": "Opens account_summary.csv with csv.extract_text and applies regex_match.",
+        "why_justification": "ACC-02 is reported against its own account type."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "account_summary.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?im)^(?=[^\\n]*\\bACC-02\\b)(?=[^\\n]*\\bstudio_partner\\b)",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "acc_02_counts",
+      "metadata": {
+        "how_justification": "Opens account_summary.csv with csv.extract_text and applies regex_match.",
+        "why_justification": "ACC-02: 4 requests, 3 of them flagged."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "account_summary.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?im)^[^\\n]*?\\bACC-02\\b[^\\n]*?\\b4\\b[^\\n]*?\\b3\\b",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "acc_02_escalation",
+      "metadata": {
+        "how_justification": "Opens account_summary.csv with csv.extract_text and applies regex_match.",
+        "why_justification": "ACC-02 escalates under INT-09 section 8."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "account_summary.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?im)^[^\\n]*\\bACC-02\\b[^\\n]*ESCALATION_REQUIRED",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "acc_03_type",
+      "metadata": {
+        "how_justification": "Opens account_summary.csv with csv.extract_text and applies regex_match.",
+        "why_justification": "ACC-03 is reported against its own account type."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "account_summary.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?im)^(?=[^\\n]*\\bACC-03\\b)(?=[^\\n]*\\bpress_agency\\b)",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "acc_03_counts",
+      "metadata": {
+        "how_justification": "Opens account_summary.csv with csv.extract_text and applies regex_match.",
+        "why_justification": "ACC-03: 4 requests, 1 of them flagged."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "account_summary.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?im)^[^\\n]*?\\bACC-03\\b[^\\n]*?\\b4\\b[^\\n]*?\\b1\\b",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "acc_03_escalation",
+      "metadata": {
+        "how_justification": "Opens account_summary.csv with csv.extract_text and applies regex_match.",
+        "why_justification": "ACC-03 escalates under INT-09 section 8."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "account_summary.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?im)^[^\\n]*\\bACC-03\\b[^\\n]*ESCALATION_REQUIRED",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "acc_04_type",
+      "metadata": {
+        "how_justification": "Opens account_summary.csv with csv.extract_text and applies regex_match.",
+        "why_justification": "ACC-04 is reported against its own account type."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "account_summary.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?im)^(?=[^\\n]*\\bACC-04\\b)(?=[^\\n]*\\bstudio_partner\\b)",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "acc_04_counts",
+      "metadata": {
+        "how_justification": "Opens account_summary.csv with csv.extract_text and applies regex_match.",
+        "why_justification": "ACC-04: 2 requests, 1 of them flagged."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "account_summary.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?im)^[^\\n]*?\\bACC-04\\b[^\\n]*?\\b2\\b[^\\n]*?\\b1\\b",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "acc_04_escalation",
+      "metadata": {
+        "how_justification": "Opens account_summary.csv with csv.extract_text and applies regex_match.",
+        "why_justification": "ACC-04 does not escalate and must not be reported as escalated."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "account_summary.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?im)^(?=[^\\n]*\\bACC-04\\b)(?![^\\n]*ESCALATION)(?=[^\\n]*(?:\\b(?:none|no(?:ne)?[ _-]?finding(?:s)?|ok|okay|pass(?:es|ed)?|clean|clear|fine|yes|good|true|n/?a)\\b|valid\\b|(?:^|,)\\s*[-\u2013\u2014\u2713]\\s*(?:,|$)))",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "acc_05_type",
+      "metadata": {
+        "how_justification": "Opens account_summary.csv with csv.extract_text and applies regex_match.",
+        "why_justification": "ACC-05 is reported against its own account type."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "account_summary.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?im)^(?=[^\\n]*\\bACC-05\\b)(?=[^\\n]*\\bpress_agency\\b)",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "acc_05_counts",
+      "metadata": {
+        "how_justification": "Opens account_summary.csv with csv.extract_text and applies regex_match.",
+        "why_justification": "ACC-05: 4 requests, 2 of them flagged."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "account_summary.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?im)^[^\\n]*?\\bACC-05\\b[^\\n]*?\\b4\\b[^\\n]*?\\b2\\b",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "acc_05_escalation",
+      "metadata": {
+        "how_justification": "Opens account_summary.csv with csv.extract_text and applies regex_match.",
+        "why_justification": "ACC-05 does not escalate and must not be reported as escalated."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "account_summary.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?im)^(?=[^\\n]*\\bACC-05\\b)(?![^\\n]*ESCALATION)(?=[^\\n]*(?:\\b(?:none|no(?:ne)?[ _-]?finding(?:s)?|ok|okay|pass(?:es|ed)?|clean|clear|fine|yes|good|true|n/?a)\\b|valid\\b|(?:^|,)\\s*[-\u2013\u2014\u2713]\\s*(?:,|$)))",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "acc_06_type",
+      "metadata": {
+        "how_justification": "Opens account_summary.csv with csv.extract_text and applies regex_match.",
+        "why_justification": "ACC-06 is reported against its own account type."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "account_summary.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?im)^(?=[^\\n]*\\bACC-06\\b)(?=[^\\n]*\\bstudio_partner\\b)",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "acc_06_counts",
+      "metadata": {
+        "how_justification": "Opens account_summary.csv with csv.extract_text and applies regex_match.",
+        "why_justification": "ACC-06: 4 requests, 1 of them flagged."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "account_summary.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?im)^[^\\n]*?\\bACC-06\\b[^\\n]*?\\b4\\b[^\\n]*?\\b1\\b",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "acc_06_escalation",
+      "metadata": {
+        "how_justification": "Opens account_summary.csv with csv.extract_text and applies regex_match.",
+        "why_justification": "ACC-06 does not escalate and must not be reported as escalated."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "account_summary.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?im)^(?=[^\\n]*\\bACC-06\\b)(?![^\\n]*ESCALATION)(?=[^\\n]*(?:\\b(?:none|no(?:ne)?[ _-]?finding(?:s)?|ok|okay|pass(?:es|ed)?|clean|clear|fine|yes|good|true|n/?a)\\b|valid\\b|(?:^|,)\\s*[-\u2013\u2014\u2713]\\s*(?:,|$)))",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "acc_07_type",
+      "metadata": {
+        "how_justification": "Opens account_summary.csv with csv.extract_text and applies regex_match.",
+        "why_justification": "ACC-07 is reported against its own account type."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "account_summary.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?im)^(?=[^\\n]*\\bACC-07\\b)(?=[^\\n]*\\bconsumer\\b)",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "acc_07_counts",
+      "metadata": {
+        "how_justification": "Opens account_summary.csv with csv.extract_text and applies regex_match.",
+        "why_justification": "ACC-07: 3 requests, 2 of them flagged."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "account_summary.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?im)^[^\\n]*?\\bACC-07\\b[^\\n]*?\\b3\\b[^\\n]*?\\b2\\b",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "acc_07_escalation",
+      "metadata": {
+        "how_justification": "Opens account_summary.csv with csv.extract_text and applies regex_match.",
+        "why_justification": "ACC-07 escalates under INT-09 section 8."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "account_summary.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?im)^[^\\n]*\\bACC-07\\b[^\\n]*ESCALATION_REQUIRED",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "acc_08_type",
+      "metadata": {
+        "how_justification": "Opens account_summary.csv with csv.extract_text and applies regex_match.",
+        "why_justification": "ACC-08 is reported against its own account type."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "account_summary.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?im)^(?=[^\\n]*\\bACC-08\\b)(?=[^\\n]*\\bpress_agency\\b)",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "acc_08_counts",
+      "metadata": {
+        "how_justification": "Opens account_summary.csv with csv.extract_text and applies regex_match.",
+        "why_justification": "ACC-08: 3 requests, 2 of them flagged."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "account_summary.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?im)^[^\\n]*?\\bACC-08\\b[^\\n]*?\\b3\\b[^\\n]*?\\b2\\b",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "acc_08_escalation",
+      "metadata": {
+        "how_justification": "Opens account_summary.csv with csv.extract_text and applies regex_match.",
+        "why_justification": "ACC-08 escalates under INT-09 section 8."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "account_summary.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?im)^[^\\n]*\\bACC-08\\b[^\\n]*ESCALATION_REQUIRED",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "result_request_count",
+      "metadata": {
+        "how_justification": "Reads results.json with json.read_file and compares $.request_count.",
+        "why_justification": "Derived figure `request_count`, recomputed from the delivered artifacts."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "json",
+          "command": "read_file",
+          "arguments": {
+            "path": "results.json"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": 28,
+        "deterministic": {
+          "path": "$.request_count",
+          "comparison": "equals"
+        }
+      }
+    },
+    {
+      "name": "result_account_count",
+      "metadata": {
+        "how_justification": "Reads results.json with json.read_file and compares $.account_count.",
+        "why_justification": "Derived figure `account_count`, recomputed from the delivered artifacts."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "json",
+          "command": "read_file",
+          "arguments": {
+            "path": "results.json"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": 8,
+        "deterministic": {
+          "path": "$.account_count",
+          "comparison": "equals"
+        }
+      }
+    },
+    {
+      "name": "result_flagged_count",
+      "metadata": {
+        "how_justification": "Reads results.json with json.read_file and compares $.flagged_count.",
+        "why_justification": "Derived figure `flagged_count`, recomputed from the delivered artifacts."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "json",
+          "command": "read_file",
+          "arguments": {
+            "path": "results.json"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": 14,
+        "deterministic": {
+          "path": "$.flagged_count",
+          "comparison": "equals"
+        }
+      }
+    },
+    {
+      "name": "result_compliant_count",
+      "metadata": {
+        "how_justification": "Reads results.json with json.read_file and compares $.compliant_count.",
+        "why_justification": "Derived figure `compliant_count`, recomputed from the delivered artifacts."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "json",
+          "command": "read_file",
+          "arguments": {
+            "path": "results.json"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": 14,
+        "deterministic": {
+          "path": "$.compliant_count",
+          "comparison": "equals"
+        }
+      }
+    },
+    {
+      "name": "result_finding_total",
+      "metadata": {
+        "how_justification": "Reads results.json with json.read_file and compares $.finding_total.",
+        "why_justification": "Derived figure `finding_total`, recomputed from the delivered artifacts."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "json",
+          "command": "read_file",
+          "arguments": {
+            "path": "results.json"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": 20,
+        "deterministic": {
+          "path": "$.finding_total",
+          "comparison": "equals"
+        }
+      }
+    },
+    {
+      "name": "result_character_count",
+      "metadata": {
+        "how_justification": "Reads results.json with json.read_file and compares $.character_count.",
+        "why_justification": "Derived figure `character_count`, recomputed from the delivered artifacts."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "json",
+          "command": "read_file",
+          "arguments": {
+            "path": "results.json"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": 2,
+        "deterministic": {
+          "path": "$.character_count",
+          "comparison": "equals"
+        }
+      }
+    },
+    {
+      "name": "result_background_count",
+      "metadata": {
+        "how_justification": "Reads results.json with json.read_file and compares $.background_count.",
+        "why_justification": "Derived figure `background_count`, recomputed from the delivered artifacts."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "json",
+          "command": "read_file",
+          "arguments": {
+            "path": "results.json"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": 6,
+        "deterministic": {
+          "path": "$.background_count",
+          "comparison": "equals"
+        }
+      }
+    },
+    {
+      "name": "result_consent_count",
+      "metadata": {
+        "how_justification": "Reads results.json with json.read_file and compares $.consent_count.",
+        "why_justification": "Derived figure `consent_count`, recomputed from the delivered artifacts."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "json",
+          "command": "read_file",
+          "arguments": {
+            "path": "results.json"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": 3,
+        "deterministic": {
+          "path": "$.consent_count",
+          "comparison": "equals"
+        }
+      }
+    },
+    {
+      "name": "result_commercial_count",
+      "metadata": {
+        "how_justification": "Reads results.json with json.read_file and compares $.commercial_count.",
+        "why_justification": "Derived figure `commercial_count`, recomputed from the delivered artifacts."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "json",
+          "command": "read_file",
+          "arguments": {
+            "path": "results.json"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": 6,
+        "deterministic": {
+          "path": "$.commercial_count",
+          "comparison": "equals"
+        }
+      }
+    },
+    {
+      "name": "result_disclosure_count",
+      "metadata": {
+        "how_justification": "Reads results.json with json.read_file and compares $.disclosure_count.",
+        "why_justification": "Derived figure `disclosure_count`, recomputed from the delivered artifacts."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "json",
+          "command": "read_file",
+          "arguments": {
+            "path": "results.json"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": 3,
+        "deterministic": {
+          "path": "$.disclosure_count",
+          "comparison": "equals"
+        }
+      }
+    },
+    {
+      "name": "result_escalated_accounts",
+      "metadata": {
+        "how_justification": "Reads results.json with json.read_file and compares $.escalated_accounts.",
+        "why_justification": "Derived figure `escalated_accounts`, recomputed from the delivered artifacts."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "json",
+          "command": "read_file",
+          "arguments": {
+            "path": "results.json"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": 4,
+        "deterministic": {
+          "path": "$.escalated_accounts",
+          "comparison": "equals"
+        }
+      }
+    },
+    {
+      "name": "memo_cites_audit_date",
+      "metadata": {
+        "how_justification": "Opens composite_request_memo.md with md.extract_text and applies regex_match.",
+        "why_justification": "The memo states the audit date every currency test is made against."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "md",
+          "command": "extract_text",
+          "arguments": {
+            "path": "composite_request_memo.md"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "2026-0?3-31",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "memo_covers_every_flagged_request",
+      "metadata": {
+        "how_justification": "Opens composite_request_memo.md with md.extract_text and applies regex_match.",
+        "why_justification": "The memo accounts for all 14 requests carrying a finding."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "md",
+          "command": "extract_text",
+          "arguments": {
+            "path": "composite_request_memo.md"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?s)^(?=[\\s\\S]*\\bREQ-02\\b)(?=[\\s\\S]*\\bREQ-04\\b)(?=[\\s\\S]*\\bREQ-05\\b)(?=[\\s\\S]*\\bREQ-06\\b)(?=[\\s\\S]*\\bREQ-07\\b)(?=[\\s\\S]*\\bREQ-10\\b)(?=[\\s\\S]*\\bREQ-14\\b)(?=[\\s\\S]*\\bREQ-17\\b)(?=[\\s\\S]*\\bREQ-20\\b)(?=[\\s\\S]*\\bREQ-23\\b)(?=[\\s\\S]*\\bREQ-27\\b)(?=[\\s\\S]*\\bREQ-28\\b)(?=[\\s\\S]*\\bREQ-30\\b)(?=[\\s\\S]*\\bREQ-32\\b)",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "memo_names_every_finding_code",
+      "metadata": {
+        "how_justification": "Opens composite_request_memo.md with md.extract_text and applies regex_match.",
+        "why_justification": "All five request-level codes raised by the batch are explained."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "md",
+          "command": "extract_text",
+          "arguments": {
+            "path": "composite_request_memo.md"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?s)^(?=[\\s\\S]*UNLICENSED_CHARACTER_USE)(?=[\\s\\S]*THIRD_PARTY_BACKGROUND_UNLICENSED)(?=[\\s\\S]*MISSING_MINOR_CONSENT)(?=[\\s\\S]*COMMERCIAL_DISTRIBUTION_FLAG)(?=[\\s\\S]*ALTERATION_DISCLOSURE_MISSING)",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "memo_names_allowance_requests",
+      "metadata": {
+        "how_justification": "Opens composite_request_memo.md with md.extract_text and applies regex_match.",
+        "why_justification": "The memo names every request whose character use the personal-use allowance clears."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "md",
+          "command": "extract_text",
+          "arguments": {
+            "path": "composite_request_memo.md"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?s)^(?=[\\s\\S]*\\bREQ-01\\b)(?=[\\s\\S]*\\bREQ-22\\b)(?=[\\s\\S]*\\bREQ-32\\b)(?=[\\s\\S]*allowance)",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "memo_names_lapsed_accounts",
+      "metadata": {
+        "how_justification": "Opens composite_request_memo.md with md.extract_text and applies regex_match.",
+        "why_justification": "The memo names the accounts whose master agreement has lapsed."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "md",
+          "command": "extract_text",
+          "arguments": {
+            "path": "composite_request_memo.md"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?s)^(?=[\\s\\S]*\\bACC-04\\b)(?=[\\s\\S]*\\bACC-08\\b)(?=[\\s\\S]*laps)",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "memo_names_escalated_accounts",
+      "metadata": {
+        "how_justification": "Opens composite_request_memo.md with md.extract_text and applies regex_match.",
+        "why_justification": "The memo names all 4 escalating accounts."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "md",
+          "command": "extract_text",
+          "arguments": {
+            "path": "composite_request_memo.md"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?s)^(?=[\\s\\S]*\\bACC-02\\b)(?=[\\s\\S]*\\bACC-03\\b)(?=[\\s\\S]*\\bACC-07\\b)(?=[\\s\\S]*\\bACC-08\\b)",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "memo_cites_expired_licences",
+      "metadata": {
+        "how_justification": "Opens composite_request_memo.md with md.extract_text and applies regex_match.",
+        "why_justification": "The memo cites the lapsed background licence and the superseding row that narrowed the other one."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "md",
+          "command": "extract_text",
+          "arguments": {
+            "path": "composite_request_memo.md"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?s)^(?=[\\s\\S]*LIC-106)(?=[\\s\\S]*LIC-110)",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "memo_names_withdrawn_requests",
+      "metadata": {
+        "how_justification": "Opens composite_request_memo.md with md.extract_text and applies regex_match.",
+        "why_justification": "The memo says which requests the policy takes out of the audit."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "md",
+          "command": "extract_text",
+          "arguments": {
+            "path": "composite_request_memo.md"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?s)^(?=[\\s\\S]*\\bREQ-13\\b)(?=[\\s\\S]*\\bREQ-16\\b)(?=[\\s\\S]*\\bREQ-26\\b)(?=[\\s\\S]*\\bREQ-31\\b)(?=[\\s\\S]*withdraw)",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "memo_states_batch_share",
+      "metadata": {
+        "how_justification": "Opens composite_request_memo.md with md.extract_text and applies regex_match.",
+        "why_justification": "The prompt asks for the batch-wide figure the accounts were measured against; \u00a78 says it is given nowhere and has to be derived from the audit."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "md",
+          "command": "extract_text",
+          "arguments": {
+            "path": "composite_request_memo.md"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?is)(?:batch|overall|across the batch|batch-wide)[\\s\\S]{0,300}?(?:0?\\.5\\b|50(?:\\.0+)?\\s*%|\\b14\\s*(?:/|of|out of)\\s*28\\b|1\\s*/\\s*2|half)|(?:0?\\.5\\b|50(?:\\.0+)?\\s*%|\\b14\\s*(?:/|of|out of)\\s*28\\b|1\\s*/\\s*2|half)[\\s\\S]{0,300}?(?:batch|overall|batch-wide)",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "memo_explains_limb1_escalation",
+      "metadata": {
+        "how_justification": "Opens composite_request_memo.md with md.extract_text and applies regex_match.",
+        "why_justification": "The prompt asks for the reason each account escalates. ACC-02, ACC-07, ACC-08 escalate on the first limb \u2014 their own flagged share is strictly above the batch figure \u2014 and the memo has to say so next to each of them."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "md",
+          "command": "extract_text",
+          "arguments": {
+            "path": "composite_request_memo.md"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?s)^(?=[\\s\\S]*(?:\\bACC-02\\b[\\s\\S]{0,600}?(?:(?:0?\\.5\\b|50(?:\\.0+)?\\s*%|\\b14\\s*(?:/|of|out of)\\s*28\\b|1\\s*/\\s*2|half)|share|proportion|rate|above|exceed|greater|higher)|(?:(?:0?\\.5\\b|50(?:\\.0+)?\\s*%|\\b14\\s*(?:/|of|out of)\\s*28\\b|1\\s*/\\s*2|half)|share|proportion|rate|above|exceed|greater|higher)[\\s\\S]{0,600}?\\bACC-02\\b))(?=[\\s\\S]*(?:\\bACC-07\\b[\\s\\S]{0,600}?(?:(?:0?\\.5\\b|50(?:\\.0+)?\\s*%|\\b14\\s*(?:/|of|out of)\\s*28\\b|1\\s*/\\s*2|half)|share|proportion|rate|above|exceed|greater|higher)|(?:(?:0?\\.5\\b|50(?:\\.0+)?\\s*%|\\b14\\s*(?:/|of|out of)\\s*28\\b|1\\s*/\\s*2|half)|share|proportion|rate|above|exceed|greater|higher)[\\s\\S]{0,600}?\\bACC-07\\b))(?=[\\s\\S]*(?:\\bACC-08\\b[\\s\\S]{0,600}?(?:(?:0?\\.5\\b|50(?:\\.0+)?\\s*%|\\b14\\s*(?:/|of|out of)\\s*28\\b|1\\s*/\\s*2|half)|share|proportion|rate|above|exceed|greater|higher)|(?:(?:0?\\.5\\b|50(?:\\.0+)?\\s*%|\\b14\\s*(?:/|of|out of)\\s*28\\b|1\\s*/\\s*2|half)|share|proportion|rate|above|exceed|greater|higher)[\\s\\S]{0,600}?\\bACC-08\\b))",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "memo_explains_limb2_escalation",
+      "metadata": {
+        "how_justification": "Opens composite_request_memo.md with md.extract_text and applies regex_match.",
+        "why_justification": "ACC-03 escalates only on the second limb \u2014 a single request carrying three or more findings \u2014 and its share is below the batch figure, so naming it without that reason is the wrong reason."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "md",
+          "command": "extract_text",
+          "arguments": {
+            "path": "composite_request_memo.md"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?s)^(?=[\\s\\S]*(?:\\bACC-03\\b[\\s\\S]{0,600}?(?:(?:three|3)\\s*(?:or more\\s*)?findings?)|(?:(?:three|3)\\s*(?:or more\\s*)?findings?)[\\s\\S]{0,600}?\\bACC-03\\b))",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "memo_explains_equal_share_accounts",
+      "metadata": {
+        "how_justification": "Opens composite_request_memo.md with md.extract_text and applies regex_match.",
+        "why_justification": "ACC-01, ACC-04, ACC-05 sit exactly on the batch figure. \u00a78 escalates only on a share strictly greater than it, so these stay with the intake desk; the prompt asks the memo to say which accounts sat on the figure and why that leaves them."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "md",
+          "command": "extract_text",
+          "arguments": {
+            "path": "composite_request_memo.md"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?s)^(?=[\\s\\S]*(?:\\bACC-01\\b[\\s\\S]{0,600}?(?:equal|exactly|same as|matches|ties?\\b|tied|level with|does not exceed|not\\s+(?:\\w+\\s+){0,2}(?:above|greater|higher|exceed\\w*)|no(?:t)? more than|on the (?:line|threshold|figure)|at (?:the )?(?:batch|threshold|figure))|(?:equal|exactly|same as|matches|ties?\\b|tied|level with|does not exceed|not\\s+(?:\\w+\\s+){0,2}(?:above|greater|higher|exceed\\w*)|no(?:t)? more than|on the (?:line|threshold|figure)|at (?:the )?(?:batch|threshold|figure))[\\s\\S]{0,600}?\\bACC-01\\b))(?=[\\s\\S]*(?:\\bACC-04\\b[\\s\\S]{0,600}?(?:equal|exactly|same as|matches|ties?\\b|tied|level with|does not exceed|not\\s+(?:\\w+\\s+){0,2}(?:above|greater|higher|exceed\\w*)|no(?:t)? more than|on the (?:line|threshold|figure)|at (?:the )?(?:batch|threshold|figure))|(?:equal|exactly|same as|matches|ties?\\b|tied|level with|does not exceed|not\\s+(?:\\w+\\s+){0,2}(?:above|greater|higher|exceed\\w*)|no(?:t)? more than|on the (?:line|threshold|figure)|at (?:the )?(?:batch|threshold|figure))[\\s\\S]{0,600}?\\bACC-04\\b))(?=[\\s\\S]*(?:\\bACC-05\\b[\\s\\S]{0,600}?(?:equal|exactly|same as|matches|ties?\\b|tied|level with|does not exceed|not\\s+(?:\\w+\\s+){0,2}(?:above|greater|higher|exceed\\w*)|no(?:t)? more than|on the (?:line|threshold|figure)|at (?:the )?(?:batch|threshold|figure))|(?:equal|exactly|same as|matches|ties?\\b|tied|level with|does not exceed|not\\s+(?:\\w+\\s+){0,2}(?:above|greater|higher|exceed\\w*)|no(?:t)? more than|on the (?:line|threshold|figure)|at (?:the )?(?:batch|threshold|figure))[\\s\\S]{0,600}?\\bACC-05\\b))",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    }
+  ]
+}

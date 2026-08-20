@@ -1,0 +1,829 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.14, pytest-8.4.1, pluggy-1.6.0
+rootdir: /tests
+plugins: json-ctrf-0.3.5
+collected 148 items
+
+../tests/test_outputs.py ......F....FF...F...F.......................... [ 31%]
+F...........FFFFF.........FFFFF.......F.F...F.FFFF.FF............F...... [ 80%]
+F.....................F.F....                                            [100%]
+
+=================================== FAILURES ===================================
+________________________ test_deliverable[audit_col_01] ________________________
+
+definition = VerifierDefinition(name='audit_col_01', metadata=VerifierMetadata(how_justification='Opens collateral_audit.csv with c...LATERAL\\b)', deterministic=DeterministicConfig(path='$.text', comparison='regex_match', tolerance=None), rubric=None))
+
+    @pytest.mark.parametrize(
+        "definition",
+        SPEC.verifiers,
+        ids=[definition.name for definition in SPEC.verifiers],
+    )
+    def test_deliverable(definition):
+        outcome = verify_definition(
+            definition,
+            REGISTRY,
+            WEIGHTS[definition.name],
+            config=SPEC.config,
+            completion_fn=None,
+        )["result"]
+        detail = outcome.get("error") or outcome.get("reason") or "assertion failed"
+>       assert outcome["success"], f"{definition.name}: {detail}"
+E       AssertionError: audit_col_01: assertion failed
+E       assert False
+
+/tests/test_outputs.py:44: AssertionError
+________________________ test_deliverable[audit_col_06] ________________________
+
+definition = VerifierDefinition(name='audit_col_06', metadata=VerifierMetadata(how_justification='Opens collateral_audit.csv with c...LATERAL\\b)', deterministic=DeterministicConfig(path='$.text', comparison='regex_match', tolerance=None), rubric=None))
+
+    @pytest.mark.parametrize(
+        "definition",
+        SPEC.verifiers,
+        ids=[definition.name for definition in SPEC.verifiers],
+    )
+    def test_deliverable(definition):
+        outcome = verify_definition(
+            definition,
+            REGISTRY,
+            WEIGHTS[definition.name],
+            config=SPEC.config,
+            completion_fn=None,
+        )["result"]
+        detail = outcome.get("error") or outcome.get("reason") or "assertion failed"
+>       assert outcome["success"], f"{definition.name}: {detail}"
+E       AssertionError: audit_col_06: assertion failed
+E       assert False
+
+/tests/test_outputs.py:44: AssertionError
+________________________ test_deliverable[audit_col_08] ________________________
+
+definition = VerifierDefinition(name='audit_col_08', metadata=VerifierMetadata(how_justification='Opens collateral_audit.csv with c...LATERAL\\b)', deterministic=DeterministicConfig(path='$.text', comparison='regex_match', tolerance=None), rubric=None))
+
+    @pytest.mark.parametrize(
+        "definition",
+        SPEC.verifiers,
+        ids=[definition.name for definition in SPEC.verifiers],
+    )
+    def test_deliverable(definition):
+        outcome = verify_definition(
+            definition,
+            REGISTRY,
+            WEIGHTS[definition.name],
+            config=SPEC.config,
+            completion_fn=None,
+        )["result"]
+        detail = outcome.get("error") or outcome.get("reason") or "assertion failed"
+>       assert outcome["success"], f"{definition.name}: {detail}"
+E       AssertionError: audit_col_08: assertion failed
+E       assert False
+
+/tests/test_outputs.py:44: AssertionError
+________________________ test_deliverable[audit_col_12] ________________________
+
+definition = VerifierDefinition(name='audit_col_12', metadata=VerifierMetadata(how_justification='Opens collateral_audit.csv with c...LATERAL\\b)', deterministic=DeterministicConfig(path='$.text', comparison='regex_match', tolerance=None), rubric=None))
+
+    @pytest.mark.parametrize(
+        "definition",
+        SPEC.verifiers,
+        ids=[definition.name for definition in SPEC.verifiers],
+    )
+    def test_deliverable(definition):
+        outcome = verify_definition(
+            definition,
+            REGISTRY,
+            WEIGHTS[definition.name],
+            config=SPEC.config,
+            completion_fn=None,
+        )["result"]
+        detail = outcome.get("error") or outcome.get("reason") or "assertion failed"
+>       assert outcome["success"], f"{definition.name}: {detail}"
+E       AssertionError: audit_col_12: assertion failed
+E       assert False
+
+/tests/test_outputs.py:44: AssertionError
+________________________ test_deliverable[audit_col_17] ________________________
+
+definition = VerifierDefinition(name='audit_col_17', metadata=VerifierMetadata(how_justification='Opens collateral_audit.csv with c...LATERAL\\b)', deterministic=DeterministicConfig(path='$.text', comparison='regex_match', tolerance=None), rubric=None))
+
+    @pytest.mark.parametrize(
+        "definition",
+        SPEC.verifiers,
+        ids=[definition.name for definition in SPEC.verifiers],
+    )
+    def test_deliverable(definition):
+        outcome = verify_definition(
+            definition,
+            REGISTRY,
+            WEIGHTS[definition.name],
+            config=SPEC.config,
+            completion_fn=None,
+        )["result"]
+        detail = outcome.get("error") or outcome.get("reason") or "assertion failed"
+>       assert outcome["success"], f"{definition.name}: {detail}"
+E       AssertionError: audit_col_17: assertion failed
+E       assert False
+
+/tests/test_outputs.py:44: AssertionError
+________________________ test_deliverable[audit_col_46] ________________________
+
+definition = VerifierDefinition(name='audit_col_46', metadata=VerifierMetadata(how_justification='Opens collateral_audit.csv with c...LATERAL\\b)', deterministic=DeterministicConfig(path='$.text', comparison='regex_match', tolerance=None), rubric=None))
+
+    @pytest.mark.parametrize(
+        "definition",
+        SPEC.verifiers,
+        ids=[definition.name for definition in SPEC.verifiers],
+    )
+    def test_deliverable(definition):
+        outcome = verify_definition(
+            definition,
+            REGISTRY,
+            WEIGHTS[definition.name],
+            config=SPEC.config,
+            completion_fn=None,
+        )["result"]
+        detail = outcome.get("error") or outcome.get("reason") or "assertion failed"
+>       assert outcome["success"], f"{definition.name}: {detail}"
+E       AssertionError: audit_col_46: assertion failed
+E       assert False
+
+/tests/test_outputs.py:44: AssertionError
+________________________ test_deliverable[audit_col_60] ________________________
+
+definition = VerifierDefinition(name='audit_col_60', metadata=VerifierMetadata(how_justification='Opens collateral_audit.csv with c...LATERAL\\b)', deterministic=DeterministicConfig(path='$.text', comparison='regex_match', tolerance=None), rubric=None))
+
+    @pytest.mark.parametrize(
+        "definition",
+        SPEC.verifiers,
+        ids=[definition.name for definition in SPEC.verifiers],
+    )
+    def test_deliverable(definition):
+        outcome = verify_definition(
+            definition,
+            REGISTRY,
+            WEIGHTS[definition.name],
+            config=SPEC.config,
+            completion_fn=None,
+        )["result"]
+        detail = outcome.get("error") or outcome.get("reason") or "assertion failed"
+>       assert outcome["success"], f"{definition.name}: {detail}"
+E       AssertionError: audit_col_60: assertion failed
+E       assert False
+
+/tests/test_outputs.py:44: AssertionError
+________________________ test_deliverable[audit_col_61] ________________________
+
+definition = VerifierDefinition(name='audit_col_61', metadata=VerifierMetadata(how_justification='Opens collateral_audit.csv with c...LATERAL\\b)', deterministic=DeterministicConfig(path='$.text', comparison='regex_match', tolerance=None), rubric=None))
+
+    @pytest.mark.parametrize(
+        "definition",
+        SPEC.verifiers,
+        ids=[definition.name for definition in SPEC.verifiers],
+    )
+    def test_deliverable(definition):
+        outcome = verify_definition(
+            definition,
+            REGISTRY,
+            WEIGHTS[definition.name],
+            config=SPEC.config,
+            completion_fn=None,
+        )["result"]
+        detail = outcome.get("error") or outcome.get("reason") or "assertion failed"
+>       assert outcome["success"], f"{definition.name}: {detail}"
+E       AssertionError: audit_col_61: assertion failed
+E       assert False
+
+/tests/test_outputs.py:44: AssertionError
+________________________ test_deliverable[audit_col_62] ________________________
+
+definition = VerifierDefinition(name='audit_col_62', metadata=VerifierMetadata(how_justification='Opens collateral_audit.csv with c...LATERAL\\b)', deterministic=DeterministicConfig(path='$.text', comparison='regex_match', tolerance=None), rubric=None))
+
+    @pytest.mark.parametrize(
+        "definition",
+        SPEC.verifiers,
+        ids=[definition.name for definition in SPEC.verifiers],
+    )
+    def test_deliverable(definition):
+        outcome = verify_definition(
+            definition,
+            REGISTRY,
+            WEIGHTS[definition.name],
+            config=SPEC.config,
+            completion_fn=None,
+        )["result"]
+        detail = outcome.get("error") or outcome.get("reason") or "assertion failed"
+>       assert outcome["success"], f"{definition.name}: {detail}"
+E       AssertionError: audit_col_62: assertion failed
+E       assert False
+
+/tests/test_outputs.py:44: AssertionError
+________________________ test_deliverable[audit_col_63] ________________________
+
+definition = VerifierDefinition(name='audit_col_63', metadata=VerifierMetadata(how_justification='Opens collateral_audit.csv with c...LATERAL\\b)', deterministic=DeterministicConfig(path='$.text', comparison='regex_match', tolerance=None), rubric=None))
+
+    @pytest.mark.parametrize(
+        "definition",
+        SPEC.verifiers,
+        ids=[definition.name for definition in SPEC.verifiers],
+    )
+    def test_deliverable(definition):
+        outcome = verify_definition(
+            definition,
+            REGISTRY,
+            WEIGHTS[definition.name],
+            config=SPEC.config,
+            completion_fn=None,
+        )["result"]
+        detail = outcome.get("error") or outcome.get("reason") or "assertion failed"
+>       assert outcome["success"], f"{definition.name}: {detail}"
+E       AssertionError: audit_col_63: assertion failed
+E       assert False
+
+/tests/test_outputs.py:44: AssertionError
+________________________ test_deliverable[audit_col_64] ________________________
+
+definition = VerifierDefinition(name='audit_col_64', metadata=VerifierMetadata(how_justification='Opens collateral_audit.csv with c...LATERAL\\b)', deterministic=DeterministicConfig(path='$.text', comparison='regex_match', tolerance=None), rubric=None))
+
+    @pytest.mark.parametrize(
+        "definition",
+        SPEC.verifiers,
+        ids=[definition.name for definition in SPEC.verifiers],
+    )
+    def test_deliverable(definition):
+        outcome = verify_definition(
+            definition,
+            REGISTRY,
+            WEIGHTS[definition.name],
+            config=SPEC.config,
+            completion_fn=None,
+        )["result"]
+        detail = outcome.get("error") or outcome.get("reason") or "assertion failed"
+>       assert outcome["success"], f"{definition.name}: {detail}"
+E       AssertionError: audit_col_64: assertion failed
+E       assert False
+
+/tests/test_outputs.py:44: AssertionError
+_____________________ test_deliverable[zone_zn_01_counts] ______________________
+
+definition = VerifierDefinition(name='zone_zn_01_counts', metadata=VerifierMetadata(how_justification='Opens zone_summary.csv with ...0|45\\.500)', deterministic=DeterministicConfig(path='$.text', comparison='regex_match', tolerance=None), rubric=None))
+
+    @pytest.mark.parametrize(
+        "definition",
+        SPEC.verifiers,
+        ids=[definition.name for definition in SPEC.verifiers],
+    )
+    def test_deliverable(definition):
+        outcome = verify_definition(
+            definition,
+            REGISTRY,
+            WEIGHTS[definition.name],
+            config=SPEC.config,
+            completion_fn=None,
+        )["result"]
+        detail = outcome.get("error") or outcome.get("reason") or "assertion failed"
+>       assert outcome["success"], f"{definition.name}: {detail}"
+E       AssertionError: zone_zn_01_counts: assertion failed
+E       assert False
+
+/tests/test_outputs.py:44: AssertionError
+____________________ test_deliverable[zone_zn_01_allowance] ____________________
+
+definition = VerifierDefinition(name='zone_zn_01_allowance', metadata=VerifierMetadata(how_justification='Opens zone_summary.csv wi...s*(?:,|$)))', deterministic=DeterministicConfig(path='$.text', comparison='regex_match', tolerance=None), rubric=None))
+
+    @pytest.mark.parametrize(
+        "definition",
+        SPEC.verifiers,
+        ids=[definition.name for definition in SPEC.verifiers],
+    )
+    def test_deliverable(definition):
+        outcome = verify_definition(
+            definition,
+            REGISTRY,
+            WEIGHTS[definition.name],
+            config=SPEC.config,
+            completion_fn=None,
+        )["result"]
+        detail = outcome.get("error") or outcome.get("reason") or "assertion failed"
+>       assert outcome["success"], f"{definition.name}: {detail}"
+E       AssertionError: zone_zn_01_allowance: assertion failed
+E       assert False
+
+/tests/test_outputs.py:44: AssertionError
+_____________________ test_deliverable[zone_zn_02_counts] ______________________
+
+definition = VerifierDefinition(name='zone_zn_02_counts', metadata=VerifierMetadata(how_justification='Opens zone_summary.csv with ...0|77\\.500)', deterministic=DeterministicConfig(path='$.text', comparison='regex_match', tolerance=None), rubric=None))
+
+    @pytest.mark.parametrize(
+        "definition",
+        SPEC.verifiers,
+        ids=[definition.name for definition in SPEC.verifiers],
+    )
+    def test_deliverable(definition):
+        outcome = verify_definition(
+            definition,
+            REGISTRY,
+            WEIGHTS[definition.name],
+            config=SPEC.config,
+            completion_fn=None,
+        )["result"]
+        detail = outcome.get("error") or outcome.get("reason") or "assertion failed"
+>       assert outcome["success"], f"{definition.name}: {detail}"
+E       AssertionError: zone_zn_02_counts: assertion failed
+E       assert False
+
+/tests/test_outputs.py:44: AssertionError
+____________________ test_deliverable[zone_zn_02_allowance] ____________________
+
+definition = VerifierDefinition(name='zone_zn_02_allowance', metadata=VerifierMetadata(how_justification='Opens zone_summary.csv wi...s*(?:,|$)))', deterministic=DeterministicConfig(path='$.text', comparison='regex_match', tolerance=None), rubric=None))
+
+    @pytest.mark.parametrize(
+        "definition",
+        SPEC.verifiers,
+        ids=[definition.name for definition in SPEC.verifiers],
+    )
+    def test_deliverable(definition):
+        outcome = verify_definition(
+            definition,
+            REGISTRY,
+            WEIGHTS[definition.name],
+            config=SPEC.config,
+            completion_fn=None,
+        )["result"]
+        detail = outcome.get("error") or outcome.get("reason") or "assertion failed"
+>       assert outcome["success"], f"{definition.name}: {detail}"
+E       AssertionError: zone_zn_02_allowance: assertion failed
+E       assert False
+
+/tests/test_outputs.py:44: AssertionError
+_____________________ test_deliverable[zone_zn_03_counts] ______________________
+
+definition = VerifierDefinition(name='zone_zn_03_counts', metadata=VerifierMetadata(how_justification='Opens zone_summary.csv with ...0|50\\.500)', deterministic=DeterministicConfig(path='$.text', comparison='regex_match', tolerance=None), rubric=None))
+
+    @pytest.mark.parametrize(
+        "definition",
+        SPEC.verifiers,
+        ids=[definition.name for definition in SPEC.verifiers],
+    )
+    def test_deliverable(definition):
+        outcome = verify_definition(
+            definition,
+            REGISTRY,
+            WEIGHTS[definition.name],
+            config=SPEC.config,
+            completion_fn=None,
+        )["result"]
+        detail = outcome.get("error") or outcome.get("reason") or "assertion failed"
+>       assert outcome["success"], f"{definition.name}: {detail}"
+E       AssertionError: zone_zn_03_counts: assertion failed
+E       assert False
+
+/tests/test_outputs.py:44: AssertionError
+_____________________ test_deliverable[zone_zn_07_counts] ______________________
+
+definition = VerifierDefinition(name='zone_zn_07_counts', metadata=VerifierMetadata(how_justification='Opens zone_summary.csv with ...0|93\\.500)', deterministic=DeterministicConfig(path='$.text', comparison='regex_match', tolerance=None), rubric=None))
+
+    @pytest.mark.parametrize(
+        "definition",
+        SPEC.verifiers,
+        ids=[definition.name for definition in SPEC.verifiers],
+    )
+    def test_deliverable(definition):
+        outcome = verify_definition(
+            definition,
+            REGISTRY,
+            WEIGHTS[definition.name],
+            config=SPEC.config,
+            completion_fn=None,
+        )["result"]
+        detail = outcome.get("error") or outcome.get("reason") or "assertion failed"
+>       assert outcome["success"], f"{definition.name}: {detail}"
+E       AssertionError: zone_zn_07_counts: assertion failed
+E       assert False
+
+/tests/test_outputs.py:44: AssertionError
+_____________________ test_deliverable[zone_zn_08_counts] ______________________
+
+definition = VerifierDefinition(name='zone_zn_08_counts', metadata=VerifierMetadata(how_justification='Opens zone_summary.csv with ....0|48\\.00)', deterministic=DeterministicConfig(path='$.text', comparison='regex_match', tolerance=None), rubric=None))
+
+    @pytest.mark.parametrize(
+        "definition",
+        SPEC.verifiers,
+        ids=[definition.name for definition in SPEC.verifiers],
+    )
+    def test_deliverable(definition):
+        outcome = verify_definition(
+            definition,
+            REGISTRY,
+            WEIGHTS[definition.name],
+            config=SPEC.config,
+            completion_fn=None,
+        )["result"]
+        detail = outcome.get("error") or outcome.get("reason") or "assertion failed"
+>       assert outcome["success"], f"{definition.name}: {detail}"
+E       AssertionError: zone_zn_08_counts: assertion failed
+E       assert False
+
+/tests/test_outputs.py:44: AssertionError
+________________ test_deliverable[result_permit_missing_count] _________________
+
+definition = VerifierDefinition(name='result_permit_missing_count', metadata=VerifierMetadata(how_justification='Reads results.json...0, deterministic=DeterministicConfig(path='$.permit_missing_count', comparison='equals', tolerance=None), rubric=None))
+
+    @pytest.mark.parametrize(
+        "definition",
+        SPEC.verifiers,
+        ids=[definition.name for definition in SPEC.verifiers],
+    )
+    def test_deliverable(definition):
+        outcome = verify_definition(
+            definition,
+            REGISTRY,
+            WEIGHTS[definition.name],
+            config=SPEC.config,
+            completion_fn=None,
+        )["result"]
+        detail = outcome.get("error") or outcome.get("reason") or "assertion failed"
+>       assert outcome["success"], f"{definition.name}: {detail}"
+E       AssertionError: result_permit_missing_count: assertion failed
+E       assert False
+
+/tests/test_outputs.py:44: AssertionError
+___________________ test_deliverable[result_oversize_count] ____________________
+
+definition = VerifierDefinition(name='result_oversize_count', metadata=VerifierMetadata(how_justification='Reads results.json and c...cted=13, deterministic=DeterministicConfig(path='$.oversize_count', comparison='equals', tolerance=None), rubric=None))
+
+    @pytest.mark.parametrize(
+        "definition",
+        SPEC.verifiers,
+        ids=[definition.name for definition in SPEC.verifiers],
+    )
+    def test_deliverable(definition):
+        outcome = verify_definition(
+            definition,
+            REGISTRY,
+            WEIGHTS[definition.name],
+            config=SPEC.config,
+            completion_fn=None,
+        )["result"]
+        detail = outcome.get("error") or outcome.get("reason") or "assertion failed"
+>       assert outcome["success"], f"{definition.name}: {detail}"
+E       AssertionError: result_oversize_count: assertion failed
+E       assert False
+
+/tests/test_outputs.py:44: AssertionError
+___________________ test_deliverable[result_compliant_count] ___________________
+
+definition = VerifierDefinition(name='result_compliant_count', metadata=VerifierMetadata(how_justification='Reads results.json and ...ted=21, deterministic=DeterministicConfig(path='$.compliant_count', comparison='equals', tolerance=None), rubric=None))
+
+    @pytest.mark.parametrize(
+        "definition",
+        SPEC.verifiers,
+        ids=[definition.name for definition in SPEC.verifiers],
+    )
+    def test_deliverable(definition):
+        outcome = verify_definition(
+            definition,
+            REGISTRY,
+            WEIGHTS[definition.name],
+            config=SPEC.config,
+            completion_fn=None,
+        )["result"]
+        detail = outcome.get("error") or outcome.get("reason") or "assertion failed"
+>       assert outcome["success"], f"{definition.name}: {detail}"
+E       AssertionError: result_compliant_count: assertion failed
+E       assert False
+
+/tests/test_outputs.py:44: AssertionError
+____________________ test_deliverable[result_flagged_count] ____________________
+
+definition = VerifierDefinition(name='result_flagged_count', metadata=VerifierMetadata(how_justification='Reads results.json and co...ected=39, deterministic=DeterministicConfig(path='$.flagged_count', comparison='equals', tolerance=None), rubric=None))
+
+    @pytest.mark.parametrize(
+        "definition",
+        SPEC.verifiers,
+        ids=[definition.name for definition in SPEC.verifiers],
+    )
+    def test_deliverable(definition):
+        outcome = verify_definition(
+            definition,
+            REGISTRY,
+            WEIGHTS[definition.name],
+            config=SPEC.config,
+            completion_fn=None,
+        )["result"]
+        detail = outcome.get("error") or outcome.get("reason") or "assertion failed"
+>       assert outcome["success"], f"{definition.name}: {detail}"
+E       AssertionError: result_flagged_count: assertion failed
+E       assert False
+
+/tests/test_outputs.py:44: AssertionError
+____________________ test_deliverable[result_finding_total] ____________________
+
+definition = VerifierDefinition(name='result_finding_total', metadata=VerifierMetadata(how_justification='Reads results.json and co...ected=41, deterministic=DeterministicConfig(path='$.finding_total', comparison='equals', tolerance=None), rubric=None))
+
+    @pytest.mark.parametrize(
+        "definition",
+        SPEC.verifiers,
+        ids=[definition.name for definition in SPEC.verifiers],
+    )
+    def test_deliverable(definition):
+        outcome = verify_definition(
+            definition,
+            REGISTRY,
+            WEIGHTS[definition.name],
+            config=SPEC.config,
+            completion_fn=None,
+        )["result"]
+        detail = outcome.get("error") or outcome.get("reason") or "assertion failed"
+>       assert outcome["success"], f"{definition.name}: {detail}"
+E       AssertionError: result_finding_total: assertion failed
+E       assert False
+
+/tests/test_outputs.py:44: AssertionError
+__________________ test_deliverable[result_pulled_item_count] __________________
+
+definition = VerifierDefinition(name='result_pulled_item_count', metadata=VerifierMetadata(how_justification='Reads results.json an...d=20, deterministic=DeterministicConfig(path='$.pulled_item_count', comparison='equals', tolerance=None), rubric=None))
+
+    @pytest.mark.parametrize(
+        "definition",
+        SPEC.verifiers,
+        ids=[definition.name for definition in SPEC.verifiers],
+    )
+    def test_deliverable(definition):
+        outcome = verify_definition(
+            definition,
+            REGISTRY,
+            WEIGHTS[definition.name],
+            config=SPEC.config,
+            completion_fn=None,
+        )["result"]
+        detail = outcome.get("error") or outcome.get("reason") or "assertion failed"
+>       assert outcome["success"], f"{definition.name}: {detail}"
+E       AssertionError: result_pulled_item_count: assertion failed
+E       assert False
+
+/tests/test_outputs.py:44: AssertionError
+________________ test_deliverable[result_zones_over_allowance] _________________
+
+definition = VerifierDefinition(name='result_zones_over_allowance', metadata=VerifierMetadata(how_justification='Reads results.json...3, deterministic=DeterministicConfig(path='$.zones_over_allowance', comparison='equals', tolerance=None), rubric=None))
+
+    @pytest.mark.parametrize(
+        "definition",
+        SPEC.verifiers,
+        ids=[definition.name for definition in SPEC.verifiers],
+    )
+    def test_deliverable(definition):
+        outcome = verify_definition(
+            definition,
+            REGISTRY,
+            WEIGHTS[definition.name],
+            config=SPEC.config,
+            completion_fn=None,
+        )["result"]
+        detail = outcome.get("error") or outcome.get("reason") or "assertion failed"
+>       assert outcome["success"], f"{definition.name}: {detail}"
+E       AssertionError: result_zones_over_allowance: assertion failed
+E       assert False
+
+/tests/test_outputs.py:44: AssertionError
+______________________ test_deliverable[memo_item_col_06] ______________________
+
+definition = VerifierDefinition(name='memo_item_col_06', metadata=VerifierMetadata(how_justification='Opens collateral_memo.md with...COL-06\\b))', deterministic=DeterministicConfig(path='$.text', comparison='regex_match', tolerance=None), rubric=None))
+
+    @pytest.mark.parametrize(
+        "definition",
+        SPEC.verifiers,
+        ids=[definition.name for definition in SPEC.verifiers],
+    )
+    def test_deliverable(definition):
+        outcome = verify_definition(
+            definition,
+            REGISTRY,
+            WEIGHTS[definition.name],
+            config=SPEC.config,
+            completion_fn=None,
+        )["result"]
+        detail = outcome.get("error") or outcome.get("reason") or "assertion failed"
+>       assert outcome["success"], f"{definition.name}: {detail}"
+E       AssertionError: memo_item_col_06: assertion failed
+E       assert False
+
+/tests/test_outputs.py:44: AssertionError
+______________________ test_deliverable[memo_item_col_17] ______________________
+
+definition = VerifierDefinition(name='memo_item_col_17', metadata=VerifierMetadata(how_justification='Opens collateral_memo.md with...COL-17\\b))', deterministic=DeterministicConfig(path='$.text', comparison='regex_match', tolerance=None), rubric=None))
+
+    @pytest.mark.parametrize(
+        "definition",
+        SPEC.verifiers,
+        ids=[definition.name for definition in SPEC.verifiers],
+    )
+    def test_deliverable(definition):
+        outcome = verify_definition(
+            definition,
+            REGISTRY,
+            WEIGHTS[definition.name],
+            config=SPEC.config,
+            completion_fn=None,
+        )["result"]
+        detail = outcome.get("error") or outcome.get("reason") or "assertion failed"
+>       assert outcome["success"], f"{definition.name}: {detail}"
+E       AssertionError: memo_item_col_17: assertion failed
+E       assert False
+
+/tests/test_outputs.py:44: AssertionError
+______________________ test_deliverable[memo_item_col_60] ______________________
+
+definition = VerifierDefinition(name='memo_item_col_60', metadata=VerifierMetadata(how_justification='Opens collateral_memo.md with...COL-60\\b))', deterministic=DeterministicConfig(path='$.text', comparison='regex_match', tolerance=None), rubric=None))
+
+    @pytest.mark.parametrize(
+        "definition",
+        SPEC.verifiers,
+        ids=[definition.name for definition in SPEC.verifiers],
+    )
+    def test_deliverable(definition):
+        outcome = verify_definition(
+            definition,
+            REGISTRY,
+            WEIGHTS[definition.name],
+            config=SPEC.config,
+            completion_fn=None,
+        )["result"]
+        detail = outcome.get("error") or outcome.get("reason") or "assertion failed"
+>       assert outcome["success"], f"{definition.name}: {detail}"
+E       AssertionError: memo_item_col_60: assertion failed
+E       assert False
+
+/tests/test_outputs.py:44: AssertionError
+______________________ test_deliverable[memo_item_col_62] ______________________
+
+definition = VerifierDefinition(name='memo_item_col_62', metadata=VerifierMetadata(how_justification='Opens collateral_memo.md with...COL-62\\b))', deterministic=DeterministicConfig(path='$.text', comparison='regex_match', tolerance=None), rubric=None))
+
+    @pytest.mark.parametrize(
+        "definition",
+        SPEC.verifiers,
+        ids=[definition.name for definition in SPEC.verifiers],
+    )
+    def test_deliverable(definition):
+        outcome = verify_definition(
+            definition,
+            REGISTRY,
+            WEIGHTS[definition.name],
+            config=SPEC.config,
+            completion_fn=None,
+        )["result"]
+        detail = outcome.get("error") or outcome.get("reason") or "assertion failed"
+>       assert outcome["success"], f"{definition.name}: {detail}"
+E       AssertionError: memo_item_col_62: assertion failed
+E       assert False
+
+/tests/test_outputs.py:44: AssertionError
+==================================== PASSES ====================================
+=========================== short test summary info ============================
+PASSED ../tests/test_outputs.py::test_deliverable[audit_csv_exists]
+PASSED ../tests/test_outputs.py::test_deliverable[zone_csv_exists]
+PASSED ../tests/test_outputs.py::test_deliverable[memo_exists]
+PASSED ../tests/test_outputs.py::test_deliverable[results_exists]
+PASSED ../tests/test_outputs.py::test_deliverable[audit_has_required_columns]
+PASSED ../tests/test_outputs.py::test_deliverable[audit_has_one_row_per_item]
+PASSED ../tests/test_outputs.py::test_deliverable[audit_col_02]
+PASSED ../tests/test_outputs.py::test_deliverable[audit_col_03]
+PASSED ../tests/test_outputs.py::test_deliverable[audit_col_04]
+PASSED ../tests/test_outputs.py::test_deliverable[audit_col_05]
+PASSED ../tests/test_outputs.py::test_deliverable[audit_col_09]
+PASSED ../tests/test_outputs.py::test_deliverable[audit_col_10]
+PASSED ../tests/test_outputs.py::test_deliverable[audit_col_11]
+PASSED ../tests/test_outputs.py::test_deliverable[audit_col_13]
+PASSED ../tests/test_outputs.py::test_deliverable[audit_col_15]
+PASSED ../tests/test_outputs.py::test_deliverable[audit_col_16]
+PASSED ../tests/test_outputs.py::test_deliverable[audit_col_18]
+PASSED ../tests/test_outputs.py::test_deliverable[audit_col_19]
+PASSED ../tests/test_outputs.py::test_deliverable[audit_col_20]
+PASSED ../tests/test_outputs.py::test_deliverable[audit_col_21]
+PASSED ../tests/test_outputs.py::test_deliverable[audit_col_23]
+PASSED ../tests/test_outputs.py::test_deliverable[audit_col_24]
+PASSED ../tests/test_outputs.py::test_deliverable[audit_col_25]
+PASSED ../tests/test_outputs.py::test_deliverable[audit_col_26]
+PASSED ../tests/test_outputs.py::test_deliverable[audit_col_27]
+PASSED ../tests/test_outputs.py::test_deliverable[audit_col_28]
+PASSED ../tests/test_outputs.py::test_deliverable[audit_col_29]
+PASSED ../tests/test_outputs.py::test_deliverable[audit_col_30]
+PASSED ../tests/test_outputs.py::test_deliverable[audit_col_31]
+PASSED ../tests/test_outputs.py::test_deliverable[audit_col_32]
+PASSED ../tests/test_outputs.py::test_deliverable[audit_col_33]
+PASSED ../tests/test_outputs.py::test_deliverable[audit_col_34]
+PASSED ../tests/test_outputs.py::test_deliverable[audit_col_35]
+PASSED ../tests/test_outputs.py::test_deliverable[audit_col_36]
+PASSED ../tests/test_outputs.py::test_deliverable[audit_col_37]
+PASSED ../tests/test_outputs.py::test_deliverable[audit_col_38]
+PASSED ../tests/test_outputs.py::test_deliverable[audit_col_39]
+PASSED ../tests/test_outputs.py::test_deliverable[audit_col_40]
+PASSED ../tests/test_outputs.py::test_deliverable[audit_col_42]
+PASSED ../tests/test_outputs.py::test_deliverable[audit_col_43]
+PASSED ../tests/test_outputs.py::test_deliverable[audit_col_44]
+PASSED ../tests/test_outputs.py::test_deliverable[audit_col_45]
+PASSED ../tests/test_outputs.py::test_deliverable[audit_col_48]
+PASSED ../tests/test_outputs.py::test_deliverable[audit_col_49]
+PASSED ../tests/test_outputs.py::test_deliverable[audit_col_50]
+PASSED ../tests/test_outputs.py::test_deliverable[audit_col_51]
+PASSED ../tests/test_outputs.py::test_deliverable[audit_col_52]
+PASSED ../tests/test_outputs.py::test_deliverable[audit_col_53]
+PASSED ../tests/test_outputs.py::test_deliverable[audit_col_54]
+PASSED ../tests/test_outputs.py::test_deliverable[audit_col_56]
+PASSED ../tests/test_outputs.py::test_deliverable[audit_col_57]
+PASSED ../tests/test_outputs.py::test_deliverable[audit_col_58]
+PASSED ../tests/test_outputs.py::test_deliverable[audit_col_59]
+PASSED ../tests/test_outputs.py::test_deliverable[audit_col_65]
+PASSED ../tests/test_outputs.py::test_deliverable[audit_col_66]
+PASSED ../tests/test_outputs.py::test_deliverable[audit_excludes_col_07]
+PASSED ../tests/test_outputs.py::test_deliverable[audit_excludes_col_14]
+PASSED ../tests/test_outputs.py::test_deliverable[audit_excludes_col_22]
+PASSED ../tests/test_outputs.py::test_deliverable[audit_excludes_col_41]
+PASSED ../tests/test_outputs.py::test_deliverable[audit_excludes_col_47]
+PASSED ../tests/test_outputs.py::test_deliverable[audit_excludes_col_55]
+PASSED ../tests/test_outputs.py::test_deliverable[zone_has_required_columns]
+PASSED ../tests/test_outputs.py::test_deliverable[zone_zn_03_allowance]
+PASSED ../tests/test_outputs.py::test_deliverable[zone_zn_04_counts]
+PASSED ../tests/test_outputs.py::test_deliverable[zone_zn_04_allowance]
+PASSED ../tests/test_outputs.py::test_deliverable[zone_zn_05_counts]
+PASSED ../tests/test_outputs.py::test_deliverable[zone_zn_05_allowance]
+PASSED ../tests/test_outputs.py::test_deliverable[zone_zn_06_counts]
+PASSED ../tests/test_outputs.py::test_deliverable[zone_zn_06_allowance]
+PASSED ../tests/test_outputs.py::test_deliverable[zone_zn_07_allowance]
+PASSED ../tests/test_outputs.py::test_deliverable[zone_zn_08_allowance]
+PASSED ../tests/test_outputs.py::test_deliverable[result_collateral_count]
+PASSED ../tests/test_outputs.py::test_deliverable[result_zone_count]
+PASSED ../tests/test_outputs.py::test_deliverable[result_egress_obstructed_count]
+PASSED ../tests/test_outputs.py::test_deliverable[result_out_of_scope_count]
+PASSED ../tests/test_outputs.py::test_deliverable[memo_cites_review_date]
+PASSED ../tests/test_outputs.py::test_deliverable[memo_covers_every_flagged_item]
+PASSED ../tests/test_outputs.py::test_deliverable[memo_covers_every_zone]
+PASSED ../tests/test_outputs.py::test_deliverable[memo_names_every_finding_code]
+PASSED ../tests/test_outputs.py::test_deliverable[memo_names_out_of_scope_items]
+PASSED ../tests/test_outputs.py::test_deliverable[memo_names_breaching_zones]
+PASSED ../tests/test_outputs.py::test_deliverable[memo_explains_heightened_inspection]
+PASSED ../tests/test_outputs.py::test_deliverable[memo_explains_supersession]
+PASSED ../tests/test_outputs.py::test_deliverable[memo_explains_pulled_items]
+PASSED ../tests/test_outputs.py::test_deliverable[memo_item_col_02]
+PASSED ../tests/test_outputs.py::test_deliverable[memo_item_col_03]
+PASSED ../tests/test_outputs.py::test_deliverable[memo_item_col_05]
+PASSED ../tests/test_outputs.py::test_deliverable[memo_item_col_09]
+PASSED ../tests/test_outputs.py::test_deliverable[memo_item_col_10]
+PASSED ../tests/test_outputs.py::test_deliverable[memo_item_col_12]
+PASSED ../tests/test_outputs.py::test_deliverable[memo_item_col_13]
+PASSED ../tests/test_outputs.py::test_deliverable[memo_item_col_15]
+PASSED ../tests/test_outputs.py::test_deliverable[memo_item_col_16]
+PASSED ../tests/test_outputs.py::test_deliverable[memo_item_col_18]
+PASSED ../tests/test_outputs.py::test_deliverable[memo_item_col_23]
+PASSED ../tests/test_outputs.py::test_deliverable[memo_item_col_25]
+PASSED ../tests/test_outputs.py::test_deliverable[memo_item_col_26]
+PASSED ../tests/test_outputs.py::test_deliverable[memo_item_col_30]
+PASSED ../tests/test_outputs.py::test_deliverable[memo_item_col_31]
+PASSED ../tests/test_outputs.py::test_deliverable[memo_item_col_32]
+PASSED ../tests/test_outputs.py::test_deliverable[memo_item_col_33]
+PASSED ../tests/test_outputs.py::test_deliverable[memo_item_col_35]
+PASSED ../tests/test_outputs.py::test_deliverable[memo_item_col_37]
+PASSED ../tests/test_outputs.py::test_deliverable[memo_item_col_38]
+PASSED ../tests/test_outputs.py::test_deliverable[memo_item_col_40]
+PASSED ../tests/test_outputs.py::test_deliverable[memo_item_col_42]
+PASSED ../tests/test_outputs.py::test_deliverable[memo_item_col_43]
+PASSED ../tests/test_outputs.py::test_deliverable[memo_item_col_44]
+PASSED ../tests/test_outputs.py::test_deliverable[memo_item_col_46]
+PASSED ../tests/test_outputs.py::test_deliverable[memo_item_col_48]
+PASSED ../tests/test_outputs.py::test_deliverable[memo_item_col_49]
+PASSED ../tests/test_outputs.py::test_deliverable[memo_item_col_50]
+PASSED ../tests/test_outputs.py::test_deliverable[memo_item_col_51]
+PASSED ../tests/test_outputs.py::test_deliverable[memo_item_col_54]
+PASSED ../tests/test_outputs.py::test_deliverable[memo_item_col_61]
+PASSED ../tests/test_outputs.py::test_deliverable[memo_item_col_63]
+PASSED ../tests/test_outputs.py::test_deliverable[memo_item_col_64]
+PASSED ../tests/test_outputs.py::test_deliverable[memo_item_col_65]
+PASSED ../tests/test_outputs.py::test_deliverable[memo_item_col_66]
+FAILED ../tests/test_outputs.py::test_deliverable[audit_col_01] - AssertionEr...
+FAILED ../tests/test_outputs.py::test_deliverable[audit_col_06] - AssertionEr...
+FAILED ../tests/test_outputs.py::test_deliverable[audit_col_08] - AssertionEr...
+FAILED ../tests/test_outputs.py::test_deliverable[audit_col_12] - AssertionEr...
+FAILED ../tests/test_outputs.py::test_deliverable[audit_col_17] - AssertionEr...
+FAILED ../tests/test_outputs.py::test_deliverable[audit_col_46] - AssertionEr...
+FAILED ../tests/test_outputs.py::test_deliverable[audit_col_60] - AssertionEr...
+FAILED ../tests/test_outputs.py::test_deliverable[audit_col_61] - AssertionEr...
+FAILED ../tests/test_outputs.py::test_deliverable[audit_col_62] - AssertionEr...
+FAILED ../tests/test_outputs.py::test_deliverable[audit_col_63] - AssertionEr...
+FAILED ../tests/test_outputs.py::test_deliverable[audit_col_64] - AssertionEr...
+FAILED ../tests/test_outputs.py::test_deliverable[zone_zn_01_counts] - Assert...
+FAILED ../tests/test_outputs.py::test_deliverable[zone_zn_01_allowance] - Ass...
+FAILED ../tests/test_outputs.py::test_deliverable[zone_zn_02_counts] - Assert...
+FAILED ../tests/test_outputs.py::test_deliverable[zone_zn_02_allowance] - Ass...
+FAILED ../tests/test_outputs.py::test_deliverable[zone_zn_03_counts] - Assert...
+FAILED ../tests/test_outputs.py::test_deliverable[zone_zn_07_counts] - Assert...
+FAILED ../tests/test_outputs.py::test_deliverable[zone_zn_08_counts] - Assert...
+FAILED ../tests/test_outputs.py::test_deliverable[result_permit_missing_count]
+FAILED ../tests/test_outputs.py::test_deliverable[result_oversize_count] - As...
+FAILED ../tests/test_outputs.py::test_deliverable[result_compliant_count] - A...
+FAILED ../tests/test_outputs.py::test_deliverable[result_flagged_count] - Ass...
+FAILED ../tests/test_outputs.py::test_deliverable[result_finding_total] - Ass...
+FAILED ../tests/test_outputs.py::test_deliverable[result_pulled_item_count]
+FAILED ../tests/test_outputs.py::test_deliverable[result_zones_over_allowance]
+FAILED ../tests/test_outputs.py::test_deliverable[memo_item_col_06] - Asserti...
+FAILED ../tests/test_outputs.py::test_deliverable[memo_item_col_17] - Asserti...
+FAILED ../tests/test_outputs.py::test_deliverable[memo_item_col_60] - Asserti...
+FAILED ../tests/test_outputs.py::test_deliverable[memo_item_col_62] - Asserti...
+======================== 29 failed, 119 passed in 3.95s ========================

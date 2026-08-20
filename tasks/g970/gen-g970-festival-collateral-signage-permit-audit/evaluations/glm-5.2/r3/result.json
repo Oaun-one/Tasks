@@ -1,0 +1,154 @@
+{
+  "id": "5397cf98-d0dc-4986-a1ef-4f6c734e8d46",
+  "task_name": "obi/gen-g970-festival-collateral-signage-permit-audit",
+  "trial_name": "gen-g970-festival-collateral-sig__VRjvrEk",
+  "trial_uri": "file:///<task-path>s-g970/glm-5x-hardened-v4b/gen-g970-festival-collateral-sig__VRjvrEk",
+  "task_id": {
+    "path": "<task-path>sk_6_gen-g970-festival-collateral-signage-permit-audit\\gen-g970-festival-collateral-signage-permit-audit"
+  },
+  "source": null,
+  "task_checksum": "2d006c35d737b5c734459ee4d72dc63e4c6358586745cd23a267a954a2f4e1bb",
+  "config": {
+    "task": {
+      "path": "<task-path>sk_6_gen-g970-festival-collateral-signage-permit-audit\\gen-g970-festival-collateral-signage-permit-audit",
+      "git_url": null,
+      "git_commit_id": null,
+      "name": null,
+      "ref": null,
+      "overwrite": false,
+      "download_dir": null,
+      "source": null
+    },
+    "trial_name": "gen-g970-festival-collateral-sig__VRjvrEk",
+    "trials_dir": "<task-path>s-g970\\glm-5x-hardened-v4b",
+    "install_only": false,
+    "timeout_multiplier": 1.0,
+    "agent_timeout_multiplier": null,
+    "verifier_timeout_multiplier": null,
+    "agent_setup_timeout_multiplier": 3.0,
+    "environment_build_timeout_multiplier": null,
+    "agent": {
+      "name": "opencode",
+      "import_path": null,
+      "model_name": "glmproxy/glm-5.2",
+      "n_concurrent": null,
+      "concurrency_group": null,
+      "skills": [],
+      "override_timeout_sec": null,
+      "override_setup_timeout_sec": null,
+      "max_timeout_sec": null,
+      "resume_trajectory": false,
+      "load_trajectory": null,
+      "extra_allowed_hosts": [],
+      "kwargs": {
+        "opencode_config": {
+          "provider": {
+            "glmproxy": {
+              "npm": "@ai-sdk/openai-compatible",
+              "name": "GLM via LiteLLM",
+              "options": {
+                "baseURL": "{env:OPENAI_BASE_URL}",
+                "apiKey": "{env:OPENAI_API_KEY}"
+              },
+              "models": {
+                "glm-5.2": {
+                  "name": "GLM 5.2",
+                  "options": {
+                    "max_tokens": 96000
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "env": {
+        "OPENAI_API_KEY": "${OPENAI_API_KEY}",
+        "OPENAI_BASE_URL": "<openai-base-url>"
+      },
+      "mcp_servers": []
+    },
+    "environment": {
+      "type": "docker",
+      "import_path": null,
+      "force_build": false,
+      "delete": true,
+      "cpu_enforcement_policy": "auto",
+      "memory_enforcement_policy": "auto",
+      "override_cpus": null,
+      "override_memory_mb": null,
+      "override_storage_mb": null,
+      "override_gpus": null,
+      "override_tpu": null,
+      "mounts": null,
+      "extra_docker_compose": [],
+      "kwargs": {},
+      "extra_allowed_hosts": []
+    },
+    "verifier": {
+      "override_timeout_sec": null,
+      "max_timeout_sec": null,
+      "env": {
+        "OPENAI_API_KEY": "${OPENAI_API_KEY}",
+        "OPENAI_BASE_URL": "<openai-base-url>",
+        "JUDGE_MODEL": "openai/glm-5.2"
+      },
+      "disable": false
+    },
+    "artifacts": [],
+    "extra_instruction_paths": [],
+    "job_id": "71819ea1-db71-4ac1-8f5a-6b07ffc56c79",
+    "source_trial": null
+  },
+  "agent_info": {
+    "name": "opencode",
+    "version": "1.18.19",
+    "model_info": {
+      "name": "glm-5.2",
+      "provider": "glmproxy"
+    }
+  },
+  "agent_result": {
+    "n_input_tokens": 605173,
+    "n_cache_tokens": 427968,
+    "n_output_tokens": 8914,
+    "cost_usd": null,
+    "rollout_details": null,
+    "metadata": null
+  },
+  "verifier_result": {
+    "rewards": {
+      "reward": 1.0
+    }
+  },
+  "verifier_environment_mode": "shared",
+  "exception_info": null,
+  "started_at": "2026-08-20T13:03:20.544615Z",
+  "finished_at": "2026-08-20T13:14:23.317293Z",
+  "environment_setup": {
+    "started_at": "2026-08-20T13:03:20.821663Z",
+    "finished_at": "2026-08-20T13:03:26.426741Z"
+  },
+  "agent_setup": {
+    "started_at": "2026-08-20T13:03:26.426794Z",
+    "finished_at": "2026-08-20T13:08:35.046488Z"
+  },
+  "agent_execution": {
+    "started_at": "2026-08-20T13:08:35.046579Z",
+    "finished_at": "2026-08-20T13:14:16.563728Z"
+  },
+  "verifier": {
+    "started_at": "2026-08-20T13:14:16.567369Z",
+    "finished_at": "2026-08-20T13:14:21.457878Z"
+  },
+  "step_results": null,
+  "model": "GLM-5.2",
+  "reward": 1.0,
+  "overall_pass": true,
+  "final_answer": "Done. All four deliverables are in `/app` and cross-verified consistent.\n\n**Key results from the HLF-7 review (as of 2026-08-20):**\n- **60** in-scope items audited (6 out of scope: `standalone_graphic`/`vehicle_wrap`); **39** flagged, **21** clean, **41** findings raised.\n- **20** `PERMIT_NUMBER_MISSING` (pulled under \u00a75) \u2014 incl. cases where a supersede-chain re-issue *narrowed* zone/type/date coverage (PMT-1004\u21921006, PMT-1007\u21921008), so the named permit no longer reaches the item.\n- **8** `EGRESS_MARKER_OBSTRUCTED`, **13** `OVERSIZE_COLLATERAL`.\n- **3 zones over allowance** (ZN-03 50.5>40, ZN-07 93.5>90, ZN-08 48>45) \u2192 **heightened inspection in force**, tightening those zones' caps by 1 sqft, which pushed 5 extra items oversize.\n- Per-item verdicts: `collateral_audit.csv` (60 rows); zone rollup: `zone_summary.csv` (8 rows); memo: `collateral_memo.md`; figures: `results.json` (11 numbers).",
+  "judge_provenance": {
+    "judged_verifiers": 0,
+    "judge_model": null,
+    "note": "All verifiers in tests/verifier.json are deterministic; no LLM judge is invoked."
+  }
+}

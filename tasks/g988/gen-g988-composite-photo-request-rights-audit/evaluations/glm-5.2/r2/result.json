@@ -1,0 +1,154 @@
+{
+  "id": "585123a0-854e-4eac-88ce-3aa50b4bb2da",
+  "task_name": "obi/gen-g988-composite-photo-request-rights-audit",
+  "trial_name": "gen-g988-composite-photo-request__oQaqhNV",
+  "trial_uri": "file:///<task-path>s-g988/glm-5x-v7c-shipping/gen-g988-composite-photo-request__oQaqhNV",
+  "task_id": {
+    "path": "<task-path>sk_3_gen-g988-composite-photo-request-rights-audit-20260819T194448Z-1-001\\gen-g988-composite-photo-request-rights-audit"
+  },
+  "source": null,
+  "task_checksum": "51dfdac685b3d759d873214fbdf2c78373bd8e56d64ac52e58e67aa821056a2d",
+  "config": {
+    "task": {
+      "path": "<task-path>sk_3_gen-g988-composite-photo-request-rights-audit-20260819T194448Z-1-001\\gen-g988-composite-photo-request-rights-audit",
+      "git_url": null,
+      "git_commit_id": null,
+      "name": null,
+      "ref": null,
+      "overwrite": false,
+      "download_dir": null,
+      "source": null
+    },
+    "trial_name": "gen-g988-composite-photo-request__oQaqhNV",
+    "trials_dir": "<task-path>s-g988\\glm-5x-v7c-shipping",
+    "install_only": false,
+    "timeout_multiplier": 1.0,
+    "agent_timeout_multiplier": null,
+    "verifier_timeout_multiplier": null,
+    "agent_setup_timeout_multiplier": 3.0,
+    "environment_build_timeout_multiplier": null,
+    "agent": {
+      "name": "opencode",
+      "import_path": null,
+      "model_name": "glmproxy/glm-5.2",
+      "n_concurrent": null,
+      "concurrency_group": null,
+      "skills": [],
+      "override_timeout_sec": null,
+      "override_setup_timeout_sec": null,
+      "max_timeout_sec": null,
+      "resume_trajectory": false,
+      "load_trajectory": null,
+      "extra_allowed_hosts": [],
+      "kwargs": {
+        "opencode_config": {
+          "provider": {
+            "glmproxy": {
+              "npm": "@ai-sdk/openai-compatible",
+              "name": "GLM via LiteLLM",
+              "options": {
+                "baseURL": "{env:OPENAI_BASE_URL}",
+                "apiKey": "{env:OPENAI_API_KEY}"
+              },
+              "models": {
+                "glm-5.2": {
+                  "name": "GLM 5.2",
+                  "options": {
+                    "max_tokens": 96000
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "env": {
+        "OPENAI_API_KEY": "${OPENAI_API_KEY}",
+        "OPENAI_BASE_URL": "<openai-base-url>"
+      },
+      "mcp_servers": []
+    },
+    "environment": {
+      "type": "docker",
+      "import_path": null,
+      "force_build": false,
+      "delete": true,
+      "cpu_enforcement_policy": "auto",
+      "memory_enforcement_policy": "auto",
+      "override_cpus": null,
+      "override_memory_mb": null,
+      "override_storage_mb": null,
+      "override_gpus": null,
+      "override_tpu": null,
+      "mounts": null,
+      "extra_docker_compose": [],
+      "kwargs": {},
+      "extra_allowed_hosts": []
+    },
+    "verifier": {
+      "override_timeout_sec": null,
+      "max_timeout_sec": null,
+      "env": {
+        "OPENAI_API_KEY": "${OPENAI_API_KEY}",
+        "OPENAI_BASE_URL": "<openai-base-url>",
+        "JUDGE_MODEL": "openai/glm-5.2"
+      },
+      "disable": false
+    },
+    "artifacts": [],
+    "extra_instruction_paths": [],
+    "job_id": "83a19cfd-f559-4a48-bd42-1d162db2b721",
+    "source_trial": null
+  },
+  "agent_info": {
+    "name": "opencode",
+    "version": "1.18.18",
+    "model_info": {
+      "name": "glm-5.2",
+      "provider": "glmproxy"
+    }
+  },
+  "agent_result": {
+    "n_input_tokens": 545756,
+    "n_cache_tokens": 474368,
+    "n_output_tokens": 10338,
+    "cost_usd": null,
+    "rollout_details": null,
+    "metadata": null
+  },
+  "verifier_result": {
+    "rewards": {
+      "reward": 0.0
+    }
+  },
+  "verifier_environment_mode": "shared",
+  "exception_info": null,
+  "started_at": "2026-08-20T06:14:43.678364Z",
+  "finished_at": "2026-08-20T06:23:03.337640Z",
+  "environment_setup": {
+    "started_at": "2026-08-20T06:14:44.162484Z",
+    "finished_at": "2026-08-20T06:14:47.896009Z"
+  },
+  "agent_setup": {
+    "started_at": "2026-08-20T06:14:47.896053Z",
+    "finished_at": "2026-08-20T06:19:19.707606Z"
+  },
+  "agent_execution": {
+    "started_at": "2026-08-20T06:19:19.707702Z",
+    "finished_at": "2026-08-20T06:22:58.202191Z"
+  },
+  "verifier": {
+    "started_at": "2026-08-20T06:22:58.205783Z",
+    "finished_at": "2026-08-20T06:23:01.483458Z"
+  },
+  "step_results": null,
+  "model": "GLM-5.2",
+  "reward": 0.0,
+  "overall_pass": false,
+  "final_answer": "All four deliverables are written to `/app` and cross-check out:\n\n- **`composite_request_audit.csv`** \u2014 37 rows, columns `request_id,finding`; one row per finding (clean requests \u2192 `none`). Withdrawn REQ-13/16/26/31 excluded.\n- **`account_summary.csv`** \u2014 8 rows, columns `account_id,account_type,request_count,flagged_requests,escalation`.\n- **`composite_request_memo.md`** \u2014 standalone memo (audit date, out-of-scope requests, every finding with its deciding record, the personal-use-allowance clears, master-agreement standing, and the \u00a78 decisions against the 50% batch share).\n- **`results.json`** \u2014 the eleven \u00a79 figures, each a single number.\n\n**Batch figures:** 28 audited / 8 accounts / 14 flagged / 14 compliant / 23 findings \u2014 character 6, background 5, consent 3, commercial 6, disclosure 3 / 4 escalated (ACC-02, ACC-03, ACC-07, ACC-08).\n\nKey judgement calls, per INT-09: supersession narrows terms (REQ-05 hits LIC-109's 20% cap, not LIC-103's 35%; REQ-28/REQ-18 use LIC-110's `print_for_sale` scope, not LIC-105's `all`); the two lapsed agreements (ACC-04, ACC-08) cover nothing; ACC-05 is active-but-narrow (clears `print_for_sale`, not `social_public`); `personal_only` clears \u00a73 entirely (REQ-01/22/32 would otherwise breach on prominence); and \u00a78 escalates ACC-02/03 on the three-findings limb and ACC-07/08 on the share limb (66.7% > 50.0%).",
+  "judge_provenance": {
+    "judged_verifiers": 0,
+    "judge_model": null,
+    "note": "All verifiers in tests/verifier.json are deterministic; no LLM judge is invoked."
+  }
+}

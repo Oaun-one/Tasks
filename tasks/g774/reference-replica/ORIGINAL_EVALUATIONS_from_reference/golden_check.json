@@ -1,0 +1,18 @@
+{
+  "task": "gen-g774-activity-kit-print-spec-audit",
+  "oracle_reward": 1.0,
+  "glm_5_2": {
+    "model": "glm-5.2",
+    "agent": "opencode",
+    "pass_rate_binary": "2/5",
+    "rewards": [0.0, 0.0, 1.0, 1.0, 0.0],
+    "job": "glm-5x-preflight-v2"
+  },
+  "stability": {
+    "repeats": 5,
+    "rewards": [1.0, 1.0, 1.0, 1.0, 1.0],
+    "job": "stability-preflight"
+  },
+  "verifier_count": 98,
+  "notes": "Computer Bench target band 1/5 or 2/5. All three failing GLM runs missed one or two checks on an otherwise correct audit (array vs int for imposition_invalid_sections, or memo margin-exemption wording)."
+}

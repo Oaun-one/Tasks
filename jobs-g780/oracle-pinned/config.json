@@ -1,9 +1,0 @@
-{
-    "job_name": "oracle-pinned",
-    "jobs_dir": "E:\\WORK\\TU\\jobs",
-    "tasks": [
-        {
-            "path": "E:\\WORK\\TU\\Task_1_gen-g780-realestate-fairhousing-collateral-audit\\gen-g780-realestate-fairhousing-collateral-audit"
-        }
-    ]
-}

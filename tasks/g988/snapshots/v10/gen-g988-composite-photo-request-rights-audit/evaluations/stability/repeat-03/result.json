@@ -1,0 +1,120 @@
+{
+  "id": "dcd5e82b-dbd5-41b8-9995-6f117262723d",
+  "task_name": "obi/gen-g988-composite-photo-request-rights-audit",
+  "trial_name": "gen-g988-composite-photo-request__N2FJkSv",
+  "trial_uri": "file:///<task-path>s-g988/stability-g988-v7c/gen-g988-composite-photo-request__N2FJkSv",
+  "task_id": {
+    "path": "<task-path>sk_3_gen-g988-composite-photo-request-rights-audit-20260819T194448Z-1-001\\gen-g988-composite-photo-request-rights-audit"
+  },
+  "source": null,
+  "task_checksum": "25b38b389b0809d179eeb9a0975b21b01dc3a9b5aaf58c53b34018cce9acdb77",
+  "config": {
+    "task": {
+      "path": "<task-path>sk_3_gen-g988-composite-photo-request-rights-audit-20260819T194448Z-1-001\\gen-g988-composite-photo-request-rights-audit",
+      "git_url": null,
+      "git_commit_id": null,
+      "name": null,
+      "ref": null,
+      "overwrite": false,
+      "download_dir": null,
+      "source": null
+    },
+    "trial_name": "gen-g988-composite-photo-request__N2FJkSv",
+    "trials_dir": "<task-path>s-g988\\stability-g988-v7c",
+    "install_only": false,
+    "timeout_multiplier": 1.0,
+    "agent_timeout_multiplier": null,
+    "verifier_timeout_multiplier": null,
+    "agent_setup_timeout_multiplier": null,
+    "environment_build_timeout_multiplier": null,
+    "agent": {
+      "name": "oracle",
+      "import_path": null,
+      "model_name": null,
+      "n_concurrent": null,
+      "concurrency_group": null,
+      "skills": [],
+      "override_timeout_sec": null,
+      "override_setup_timeout_sec": null,
+      "max_timeout_sec": null,
+      "resume_trajectory": false,
+      "load_trajectory": null,
+      "extra_allowed_hosts": [],
+      "kwargs": {},
+      "mcp_servers": []
+    },
+    "environment": {
+      "type": "docker",
+      "import_path": null,
+      "force_build": false,
+      "delete": true,
+      "cpu_enforcement_policy": "auto",
+      "memory_enforcement_policy": "auto",
+      "override_cpus": null,
+      "override_memory_mb": null,
+      "override_storage_mb": null,
+      "override_gpus": null,
+      "override_tpu": null,
+      "mounts": null,
+      "extra_docker_compose": [],
+      "kwargs": {},
+      "extra_allowed_hosts": []
+    },
+    "verifier": {
+      "override_timeout_sec": null,
+      "max_timeout_sec": null,
+      "disable": false
+    },
+    "artifacts": [],
+    "extra_instruction_paths": [],
+    "job_id": "18c7a44c-e00c-4226-b97a-debaac4e783e",
+    "source_trial": null
+  },
+  "agent_info": {
+    "name": "oracle",
+    "version": "1.0.0",
+    "model_info": null
+  },
+  "agent_result": {
+    "n_input_tokens": null,
+    "n_cache_tokens": null,
+    "n_output_tokens": null,
+    "cost_usd": null,
+    "rollout_details": null,
+    "metadata": null
+  },
+  "verifier_result": {
+    "rewards": {
+      "reward": 1.0
+    }
+  },
+  "verifier_environment_mode": "shared",
+  "exception_info": null,
+  "started_at": "2026-08-20T06:24:37.135586Z",
+  "finished_at": "2026-08-20T06:24:49.270035Z",
+  "environment_setup": {
+    "started_at": "2026-08-20T06:24:37.610439Z",
+    "finished_at": "2026-08-20T06:24:42.697658Z"
+  },
+  "agent_setup": {
+    "started_at": "2026-08-20T06:24:42.697720Z",
+    "finished_at": "2026-08-20T06:24:42.697779Z"
+  },
+  "agent_execution": {
+    "started_at": "2026-08-20T06:24:42.697848Z",
+    "finished_at": "2026-08-20T06:24:43.549416Z"
+  },
+  "verifier": {
+    "started_at": "2026-08-20T06:24:43.550272Z",
+    "finished_at": "2026-08-20T06:24:47.586461Z"
+  },
+  "step_results": null,
+  "model": "oracle",
+  "reward": 1.0,
+  "overall_pass": true,
+  "judge_provenance": {
+    "judged_verifiers": 0,
+    "judge_model": null,
+    "note": "All verifiers in tests/verifier.json are deterministic; no LLM judge is invoked."
+  }
+}

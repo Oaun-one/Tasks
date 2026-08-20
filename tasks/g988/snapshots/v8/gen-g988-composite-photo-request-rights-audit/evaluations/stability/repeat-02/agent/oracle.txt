@@ -1,0 +1,6 @@
+installed gold deliverables into /app:
+account_summary.csv
+composite_request_audit.csv
+composite_request_memo.md
+input
+results.json

@@ -1,0 +1,154 @@
+{
+  "id": "d387db51-cc9f-434b-8d2b-a188ee4eb9a6",
+  "task_name": "obi/gen-g988-composite-photo-request-rights-audit",
+  "trial_name": "gen-g988-composite-photo-request__7Ehz3Us",
+  "trial_uri": "file:///E:/WORK/TU/jobs-g988/glm-5x-v8-fair-norecipe/gen-g988-composite-photo-request__7Ehz3Us",
+  "task_id": {
+    "path": "E:\\WORK\\TU\\Task_3_gen-g988-composite-photo-request-rights-audit-20260819T194448Z-1-001\\gen-g988-composite-photo-request-rights-audit"
+  },
+  "source": null,
+  "task_checksum": "43a5d0a7b2fef5268cc68eef9723b8b909d3d0e96951abbb65808d6ca8e75358",
+  "config": {
+    "task": {
+      "path": "E:\\WORK\\TU\\Task_3_gen-g988-composite-photo-request-rights-audit-20260819T194448Z-1-001\\gen-g988-composite-photo-request-rights-audit",
+      "git_url": null,
+      "git_commit_id": null,
+      "name": null,
+      "ref": null,
+      "overwrite": false,
+      "download_dir": null,
+      "source": null
+    },
+    "trial_name": "gen-g988-composite-photo-request__7Ehz3Us",
+    "trials_dir": "E:\\WORK\\TU\\jobs-g988\\glm-5x-v8-fair-norecipe",
+    "install_only": false,
+    "timeout_multiplier": 1.0,
+    "agent_timeout_multiplier": null,
+    "verifier_timeout_multiplier": null,
+    "agent_setup_timeout_multiplier": 3.0,
+    "environment_build_timeout_multiplier": null,
+    "agent": {
+      "name": "opencode",
+      "import_path": null,
+      "model_name": "glmproxy/glm-5.2",
+      "n_concurrent": null,
+      "concurrency_group": null,
+      "skills": [],
+      "override_timeout_sec": null,
+      "override_setup_timeout_sec": null,
+      "max_timeout_sec": null,
+      "resume_trajectory": false,
+      "load_trajectory": null,
+      "extra_allowed_hosts": [],
+      "kwargs": {
+        "opencode_config": {
+          "provider": {
+            "glmproxy": {
+              "npm": "@ai-sdk/openai-compatible",
+              "name": "GLM via LiteLLM",
+              "options": {
+                "baseURL": "{env:OPENAI_BASE_URL}",
+                "apiKey": "{env:OPENAI_API_KEY}"
+              },
+              "models": {
+                "glm-5.2": {
+                  "name": "GLM 5.2",
+                  "options": {
+                    "max_tokens": 96000
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "env": {
+        "OPENAI_API_KEY": "${OPENAI_API_KEY}",
+        "OPENAI_BASE_URL": "http://34.41.10.8:4000/v1"
+      },
+      "mcp_servers": []
+    },
+    "environment": {
+      "type": "docker",
+      "import_path": null,
+      "force_build": false,
+      "delete": true,
+      "cpu_enforcement_policy": "auto",
+      "memory_enforcement_policy": "auto",
+      "override_cpus": null,
+      "override_memory_mb": null,
+      "override_storage_mb": null,
+      "override_gpus": null,
+      "override_tpu": null,
+      "mounts": null,
+      "extra_docker_compose": [],
+      "kwargs": {},
+      "extra_allowed_hosts": []
+    },
+    "verifier": {
+      "override_timeout_sec": null,
+      "max_timeout_sec": null,
+      "env": {
+        "OPENAI_API_KEY": "${OPENAI_API_KEY}",
+        "OPENAI_BASE_URL": "http://34.41.10.8:4000/v1",
+        "JUDGE_MODEL": "openai/glm-5.2"
+      },
+      "disable": false
+    },
+    "artifacts": [],
+    "extra_instruction_paths": [],
+    "job_id": "fbca4b62-74a8-4fae-b16b-48d6e43dc27f",
+    "source_trial": null
+  },
+  "agent_info": {
+    "name": "opencode",
+    "version": "1.18.18",
+    "model_info": {
+      "name": "glm-5.2",
+      "provider": "glmproxy"
+    }
+  },
+  "agent_result": {
+    "n_input_tokens": 367233,
+    "n_cache_tokens": 313600,
+    "n_output_tokens": 8354,
+    "cost_usd": null,
+    "rollout_details": null,
+    "metadata": null
+  },
+  "verifier_result": {
+    "rewards": {
+      "reward": 1.0
+    }
+  },
+  "verifier_environment_mode": "shared",
+  "exception_info": null,
+  "started_at": "2026-08-20T05:55:14.859488Z",
+  "finished_at": "2026-08-20T06:00:10.618663Z",
+  "environment_setup": {
+    "started_at": "2026-08-20T05:55:15.135910Z",
+    "finished_at": "2026-08-20T05:55:19.003343Z"
+  },
+  "agent_setup": {
+    "started_at": "2026-08-20T05:55:19.003363Z",
+    "finished_at": "2026-08-20T05:57:30.118551Z"
+  },
+  "agent_execution": {
+    "started_at": "2026-08-20T05:57:30.118688Z",
+    "finished_at": "2026-08-20T06:00:05.506467Z"
+  },
+  "verifier": {
+    "started_at": "2026-08-20T06:00:05.510778Z",
+    "finished_at": "2026-08-20T06:00:08.721014Z"
+  },
+  "step_results": null,
+  "model": "GLM-5.2",
+  "reward": 1.0,
+  "overall_pass": true,
+  "final_answer": "The composite backlog is cleared against INT-09. All four deliverables are written to `/app` and confirmed.\n\nKey results:\n- **28 audited** requests (4 withdrawn \u2014 REQ-13/16/26/31 \u2014 excluded entirely), across **8 accounts**.\n- **14 flagged / 14 compliant**, **23 findings** total (character 6, background 5, consent 3, commercial 6, disclosure 3).\n- **4 accounts escalate**: ACC-02 and ACC-03 on the three-findings limb (REQ-05, REQ-10); ACC-07 and ACC-08 on share > 50% (ACC-08 also on three findings via REQ-30). The batch-wide flagged share is exactly 50%, so the \"strictly greater\" wording keeps ACC-01/04/05 at the intake desk despite tying it.\n- The memo flags the traps worth raising at review: the two **narrowing supersessions** (LIC-103\u2192LIC-109 cap 20 fails REQ-05; LIC-105\u2192LIC-110 scope `print_for_sale` fails REQ-28 but clears REQ-18), the **lapsed ACC-08 agreement** that is decisive for REQ-30's routing, and the **personal-use allowance** clearing character use that the cap would otherwise fail (notably REQ-32 at 55%).",
+  "judge_provenance": {
+    "judged_verifiers": 0,
+    "judge_model": null,
+    "note": "All verifiers in tests/verifier.json are deterministic; no LLM judge is invoked."
+  }
+}

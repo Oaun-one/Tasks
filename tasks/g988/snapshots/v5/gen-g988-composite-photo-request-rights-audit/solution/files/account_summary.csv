@@ -1,0 +1,9 @@
+account_id,account_type,request_count,flagged_requests,escalation
+ACC-01,consumer,4,2,none
+ACC-02,studio_partner,4,3,ESCALATION_REQUIRED
+ACC-03,press_agency,4,1,ESCALATION_REQUIRED
+ACC-04,studio_partner,2,1,none
+ACC-05,press_agency,4,2,none
+ACC-06,studio_partner,4,1,none
+ACC-07,consumer,3,2,ESCALATION_REQUIRED
+ACC-08,press_agency,3,2,ESCALATION_REQUIRED

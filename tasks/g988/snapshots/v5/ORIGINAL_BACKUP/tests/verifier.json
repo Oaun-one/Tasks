@@ -1,0 +1,330 @@
+{
+  "task_id": "gen-G988-composite-photo-request-rights-audit",
+  "verifiers": [
+    {
+      "name": "audit_exists",
+      "metadata": {
+        "how_justification": "Checks composite_request_audit.csv is present as a file in the workspace.",
+        "why_justification": "Audit delivered."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "filesystem",
+          "command": "check_path_exists",
+          "arguments": {
+            "path": "composite_request_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": true,
+        "deterministic": {
+          "path": "$.is_file",
+          "comparison": "equals"
+        }
+      }
+    },
+    {
+      "name": "memo_exists",
+      "metadata": {
+        "how_justification": "Checks composite_request_memo.md is present as a file in the workspace.",
+        "why_justification": "Memo delivered."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "filesystem",
+          "command": "check_path_exists",
+          "arguments": {
+            "path": "composite_request_memo.md"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": true,
+        "deterministic": {
+          "path": "$.is_file",
+          "comparison": "equals"
+        }
+      }
+    },
+    {
+      "name": "character_flagged",
+      "metadata": {
+        "how_justification": "Opens composite_request_audit.csv with csv.extract_text and applies regex_match.",
+        "why_justification": "REQ-02 character use flagged."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "composite_request_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?mi)^\\x22?REQ\\-02\\x22?\\s*,.*UNLICENSED_CHARACTER_USE",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "background_flagged",
+      "metadata": {
+        "how_justification": "Opens composite_request_audit.csv with csv.extract_text and applies regex_match.",
+        "why_justification": "REQ-03 background flagged."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "composite_request_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?mi)^\\x22?REQ\\-03\\x22?\\s*,.*THIRD_PARTY_BACKGROUND_UNLICENSED",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "consent_flagged",
+      "metadata": {
+        "how_justification": "Opens composite_request_audit.csv with csv.extract_text and applies regex_match.",
+        "why_justification": "REQ-04 consent flagged."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "composite_request_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?mi)^\\x22?REQ\\-04\\x22?\\s*,.*MISSING_MINOR_CONSENT",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "trap_clean",
+      "metadata": {
+        "how_justification": "Opens composite_request_audit.csv with csv.extract_text and applies regex_match.",
+        "why_justification": "Personal-use trap clears."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "composite_request_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?mi)^\\x22?REQ\\-01\\x22?\\s*,.*none",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "memo_trap",
+      "metadata": {
+        "how_justification": "Opens composite_request_memo.md with md.extract_text and applies regex_match.",
+        "why_justification": "Memo explains the personal-use allowance."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "md",
+          "command": "extract_text",
+          "arguments": {
+            "path": "composite_request_memo.md"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?is)\\bREQ-01\\b.*\\ballowance",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "results_exists",
+      "metadata": {
+        "how_justification": "Checks results.json is present as a file in the workspace.",
+        "why_justification": "Derived figures delivered."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "filesystem",
+          "command": "check_path_exists",
+          "arguments": {
+            "path": "results.json"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": true,
+        "deterministic": {
+          "path": "$.is_file",
+          "comparison": "equals"
+        }
+      }
+    },
+    {
+      "name": "result_request_count",
+      "metadata": {
+        "how_justification": "Reads results.json with json.read_file and compares $.request_count.",
+        "why_justification": "Derived figure `request_count`, recomputed from the delivered artifacts."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "json",
+          "command": "read_file",
+          "arguments": {
+            "path": "results.json"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": 8,
+        "deterministic": {
+          "path": "$.request_count",
+          "comparison": "equals"
+        }
+      }
+    },
+    {
+      "name": "result_flagged_count",
+      "metadata": {
+        "how_justification": "Reads results.json with json.read_file and compares $.flagged_count.",
+        "why_justification": "Derived figure `flagged_count`, recomputed from the delivered artifacts."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "json",
+          "command": "read_file",
+          "arguments": {
+            "path": "results.json"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": 5,
+        "deterministic": {
+          "path": "$.flagged_count",
+          "comparison": "equals"
+        }
+      }
+    },
+    {
+      "name": "result_commercial_count",
+      "metadata": {
+        "how_justification": "Reads results.json with json.read_file and compares $.commercial_count.",
+        "why_justification": "Derived figure `commercial_count`, recomputed from the delivered artifacts."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "json",
+          "command": "read_file",
+          "arguments": {
+            "path": "results.json"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": 3,
+        "deterministic": {
+          "path": "$.commercial_count",
+          "comparison": "equals"
+        }
+      }
+    },
+    {
+      "name": "result_background_count",
+      "metadata": {
+        "how_justification": "Reads results.json with json.read_file and compares $.background_count.",
+        "why_justification": "Derived figure `background_count`, recomputed from the delivered artifacts."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "json",
+          "command": "read_file",
+          "arguments": {
+            "path": "results.json"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": 1,
+        "deterministic": {
+          "path": "$.background_count",
+          "comparison": "equals"
+        }
+      }
+    },
+    {
+      "name": "result_compliant_count",
+      "metadata": {
+        "how_justification": "Reads results.json with json.read_file and compares $.compliant_count.",
+        "why_justification": "Derived figure `compliant_count`, recomputed from the delivered artifacts."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "json",
+          "command": "read_file",
+          "arguments": {
+            "path": "results.json"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": 3,
+        "deterministic": {
+          "path": "$.compliant_count",
+          "comparison": "equals"
+        }
+      }
+    }
+  ]
+}

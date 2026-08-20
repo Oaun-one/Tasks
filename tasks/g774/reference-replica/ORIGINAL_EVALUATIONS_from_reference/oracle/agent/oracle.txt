@@ -1,0 +1,43 @@
+PG-01: none
+PG-02: BLEED_SHORT
+PG-03: DPI_TOO_LOW|BLEED_SHORT
+PG-04: none
+PG-05: none
+PG-06: none
+PG-07: DPI_TOO_LOW|SPOT_UNSUPPORTED
+PG-08: MARGIN_VIOLATION|INK_OVER_LIMIT|FONT_NOT_EMBEDDED|ELEMENT_COUNT_SHORT
+PG-09: none
+PG-10: DPI_TOO_LOW
+PG-11: INK_OVER_LIMIT
+PG-12: MARGIN_VIOLATION|SPOT_UNSUPPORTED
+PG-13: none
+PG-14: DPI_TOO_LOW|FONT_NOT_EMBEDDED|ELEMENT_COUNT_SHORT
+PG-15: none
+PG-16: none
+PG-17: DPI_TOO_LOW
+PG-18: INK_OVER_LIMIT
+PG-19: SPOT_UNSUPPORTED|ELEMENT_COUNT_SHORT
+PG-20: none
+PG-21: none
+PG-22: BLEED_SHORT
+PG-23: MARGIN_VIOLATION
+PG-24: none
+PG-25: DPI_TOO_LOW|MARGIN_VIOLATION|INK_OVER_LIMIT|SPOT_UNSUPPORTED|FONT_NOT_EMBEDDED|ELEMENT_COUNT_SHORT
+PG-26: none
+PG-27: none
+PG-28: DPI_TOO_LOW
+PG-29: FONT_NOT_EMBEDDED
+PG-30: ELEMENT_COUNT_SHORT
+PG-31: none
+PG-32: DPI_TOO_LOW|MARGIN_VIOLATION|INK_OVER_LIMIT
+PG-33: SPOT_UNSUPPORTED|ELEMENT_COUNT_SHORT
+PG-34: none
+PG-35: BLEED_SHORT
+PG-36: INK_OVER_LIMIT|ELEMENT_COUNT_SHORT
+{"page_count": 36, "section_count": 9, "clean_page_count": 15, "flagged_page_count": 21, "finding_total": 39, "dpi_low_count": 8, "margin_count": 5, "bleed_short_count": 4, "ink_over_count": 6, "spot_unsupported_count": 5, "font_not_embedded_count": 4, "element_short_count": 7, "element_shortfall_total": 12, "imposition_invalid_sections": 2}
+installed gold deliverables into /app:
+input
+preflight_audit.csv
+preflight_memo.md
+results.json
+section_summary.csv

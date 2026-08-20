@@ -1,0 +1,154 @@
+{
+  "id": "f0fa3b95-a174-4abb-b0e9-2466d4362716",
+  "task_name": "obi/gen-g988-composite-photo-request-rights-audit",
+  "trial_name": "gen-g988-composite-photo-request__SwVoULC",
+  "trial_uri": "file:///<task-path>s-g988/glm-5x-v7c-shipping/gen-g988-composite-photo-request__SwVoULC",
+  "task_id": {
+    "path": "<task-path>sk_3_gen-g988-composite-photo-request-rights-audit-20260819T194448Z-1-001\\gen-g988-composite-photo-request-rights-audit"
+  },
+  "source": null,
+  "task_checksum": "51dfdac685b3d759d873214fbdf2c78373bd8e56d64ac52e58e67aa821056a2d",
+  "config": {
+    "task": {
+      "path": "<task-path>sk_3_gen-g988-composite-photo-request-rights-audit-20260819T194448Z-1-001\\gen-g988-composite-photo-request-rights-audit",
+      "git_url": null,
+      "git_commit_id": null,
+      "name": null,
+      "ref": null,
+      "overwrite": false,
+      "download_dir": null,
+      "source": null
+    },
+    "trial_name": "gen-g988-composite-photo-request__SwVoULC",
+    "trials_dir": "<task-path>s-g988\\glm-5x-v7c-shipping",
+    "install_only": false,
+    "timeout_multiplier": 1.0,
+    "agent_timeout_multiplier": null,
+    "verifier_timeout_multiplier": null,
+    "agent_setup_timeout_multiplier": 3.0,
+    "environment_build_timeout_multiplier": null,
+    "agent": {
+      "name": "opencode",
+      "import_path": null,
+      "model_name": "glmproxy/glm-5.2",
+      "n_concurrent": null,
+      "concurrency_group": null,
+      "skills": [],
+      "override_timeout_sec": null,
+      "override_setup_timeout_sec": null,
+      "max_timeout_sec": null,
+      "resume_trajectory": false,
+      "load_trajectory": null,
+      "extra_allowed_hosts": [],
+      "kwargs": {
+        "opencode_config": {
+          "provider": {
+            "glmproxy": {
+              "npm": "@ai-sdk/openai-compatible",
+              "name": "GLM via LiteLLM",
+              "options": {
+                "baseURL": "{env:OPENAI_BASE_URL}",
+                "apiKey": "{env:OPENAI_API_KEY}"
+              },
+              "models": {
+                "glm-5.2": {
+                  "name": "GLM 5.2",
+                  "options": {
+                    "max_tokens": 96000
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "env": {
+        "OPENAI_API_KEY": "${OPENAI_API_KEY}",
+        "OPENAI_BASE_URL": "<openai-base-url>"
+      },
+      "mcp_servers": []
+    },
+    "environment": {
+      "type": "docker",
+      "import_path": null,
+      "force_build": false,
+      "delete": true,
+      "cpu_enforcement_policy": "auto",
+      "memory_enforcement_policy": "auto",
+      "override_cpus": null,
+      "override_memory_mb": null,
+      "override_storage_mb": null,
+      "override_gpus": null,
+      "override_tpu": null,
+      "mounts": null,
+      "extra_docker_compose": [],
+      "kwargs": {},
+      "extra_allowed_hosts": []
+    },
+    "verifier": {
+      "override_timeout_sec": null,
+      "max_timeout_sec": null,
+      "env": {
+        "OPENAI_API_KEY": "${OPENAI_API_KEY}",
+        "OPENAI_BASE_URL": "<openai-base-url>",
+        "JUDGE_MODEL": "openai/glm-5.2"
+      },
+      "disable": false
+    },
+    "artifacts": [],
+    "extra_instruction_paths": [],
+    "job_id": "83a19cfd-f559-4a48-bd42-1d162db2b721",
+    "source_trial": null
+  },
+  "agent_info": {
+    "name": "opencode",
+    "version": "1.18.18",
+    "model_info": {
+      "name": "glm-5.2",
+      "provider": "glmproxy"
+    }
+  },
+  "agent_result": {
+    "n_input_tokens": 440319,
+    "n_cache_tokens": 315136,
+    "n_output_tokens": 9764,
+    "cost_usd": null,
+    "rollout_details": null,
+    "metadata": null
+  },
+  "verifier_result": {
+    "rewards": {
+      "reward": 1.0
+    }
+  },
+  "verifier_environment_mode": "shared",
+  "exception_info": null,
+  "started_at": "2026-08-20T06:14:44.002043Z",
+  "finished_at": "2026-08-20T06:21:44.581946Z",
+  "environment_setup": {
+    "started_at": "2026-08-20T06:14:44.778446Z",
+    "finished_at": "2026-08-20T06:14:50.209256Z"
+  },
+  "agent_setup": {
+    "started_at": "2026-08-20T06:14:50.209279Z",
+    "finished_at": "2026-08-20T06:18:19.768382Z"
+  },
+  "agent_execution": {
+    "started_at": "2026-08-20T06:18:19.768533Z",
+    "finished_at": "2026-08-20T06:21:39.386733Z"
+  },
+  "verifier": {
+    "started_at": "2026-08-20T06:21:39.390886Z",
+    "finished_at": "2026-08-20T06:21:42.712353Z"
+  },
+  "step_results": null,
+  "model": "GLM-5.2",
+  "reward": 1.0,
+  "overall_pass": true,
+  "final_answer": "All four deliverables are written to `/app` and validated. Everything reconciles \u2014 the per-finding counts sum to `finding_total` (23), flagged+compliant = request_count (28), and the account rollup totals match the batch figures.\n\n**Audit summary (INT-09, as of 2026-03-31):**\n\n- `composite_request_audit.csv` \u2014 28 audited requests (4 withdrawn rows excluded); 14 clean (`none`), 14 flagged; findings `;`-joined in policy rule order.\n- `account_summary.csv` \u2014 8 accounts, one row each; total 28 requests, 14 flagged.\n- `composite_request_memo.md` \u2014 standalone memo covering the audit date, out-of-scope (withdrawn) requests, every flagged request with its deciding record, requests the numbers would flag but the policy clears, master-agreement standing, and the \u00a78 decisions.\n- `results.json` \u2014 the eleven \u00a79 figures, each a single number.\n\n**Headline figures:** request_count 28 \u00b7 account_count 8 \u00b7 flagged 14 \u00b7 compliant 14 \u00b7 finding_total 23 \u00b7 character 6 \u00b7 background 5 \u00b7 consent 3 \u00b7 commercial 6 \u00b7 disclosure 3 \u00b7 escalated_accounts 4.\n\n**Key calls for Thursday:**\n- Two renewals *narrowed* rights \u2014 LIC-109 cut the Rook and Raven cap 35%\u219220% (cost REQ-05) and LIC-110 cut Old Quarry scope `all`\u2192`print_for_sale` (cost REQ-28).\n- Lapsed agreements clear nothing \u2014 ACC-04 and ACC-08 route despite naming channels; ACC-08 names the exact channel REQ-30 uses.\n- The personal-use allowance is \u00a73-only \u2014 REQ-32's 55% character area is released, but its missing minor consent still raises a finding.\n- \u00a78 escalations: ACC-02 and ACC-03 (each holds a 3-finding request), ACC-07 and ACC-08 (flagged share 66.7% > 50% batch share); ACC-01/04/05 sit exactly on 50% and do not escalate.\n\nAll four files confirmed present in `/app`.",
+  "judge_provenance": {
+    "judged_verifiers": 0,
+    "judge_model": null,
+    "note": "All verifiers in tests/verifier.json are deterministic; no LLM judge is invoked."
+  }
+}

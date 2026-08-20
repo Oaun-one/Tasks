@@ -1,0 +1,15 @@
+{
+  "total": 1,
+  "passed": 1,
+  "failed": 0,
+  "all_passed": true,
+  "grading": "binary - tests/test.sh writes reward 1 only if every verifier passes",
+  "items": [
+    {
+      "name": "test_outputs.py::test_deliverable",
+      "passed": true,
+      "weight": 1.0,
+      "motivation": "deterministic assertion satisfied"
+    }
+  ]
+}

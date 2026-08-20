@@ -1,0 +1,334 @@
+{
+  "schema_version": "ATIF-v1.7",
+  "session_id": "golden-gen-g774-activity-kit-print-spec-audit",
+  "agent": {
+    "name": "reference",
+    "version": "2.0.0",
+    "model_name": "reference/golden"
+  },
+  "notes": "Reference tool-call path for the activity-kit print pre-flight audit, broken into the checkpoints a competent prepress operator passes through: inventory the workspace, read the standard before any data so the rule boundaries and the two-hop press join are known, read the press profiles and the section plan, read the 36-page batch, build the join and apply the seven page rules in code rather than by eye, check the section rule separately because it is a property of the section, write all four deliverables, then read each one back and reconcile the rollup against the audit before answering. Oracle does not replay this file; it runs solve.sh. This trajectory documents the path and is the artifact reviewers read to confirm the task is solvable in a realistic number of steps.",
+  "steps": [
+    {
+      "step_id": 1,
+      "source": "user",
+      "message": "The activity kit goes to press on Friday and I need a full pre-flight pass over the batch before it does. Everything is in `input/`: the page batch, the section plan naming the press each section runs on, the press profiles, and our PRINT-KIT-3 standard.\n\nApply the standard as written. Several limits are per-press, so a page is only in breach against the press that is actually going to print it, and the sections carry a rule of their own.\n\nSave `preflight_audit.csv` with one row per page, keyed by `page_id`, and a `finding` column carrying the code for every rule that page breaches — join multiple codes with `|`, and use `none` for a clean page.\n\nSave `section_summary.csv` with one row per section and the columns `section_id`, `press_id`, `page_count`, `flagged_pages`, `imposition`, in that order.\n\nThen write `preflight_memo.md` for the studio. Account for every page carrying a finding, naming the measured value and the limit it missed. Where a page's numbers look like a breach but the standard clears it, say what clears it. Call out the pages whose verdict turns on which press they are assigned to. And name the sections that cannot be imposed as planned, with the page count they need.\n\nAlso write `results.json` with the fourteen keys listed, and confirm all four files exist before answering."
+    },
+    {
+      "step_id": 2,
+      "source": "agent",
+      "message": "Four attachments are named. Inventory the workspace before reading anything, so I know what is actually there and what is writable.",
+      "tool_calls": [
+        {
+          "tool_call_id": "golden-01",
+          "function_name": "bash",
+          "arguments": {
+            "command": "ls -la /app && echo '---INPUT---' && ls -la /app/input && wc -l /app/input/*.csv"
+          }
+        }
+      ],
+      "observation": {
+        "results": [
+          {
+            "source_call_id": "golden-01",
+            "content": "/app is writable and empty apart from input/. /app/input holds kit_pages.csv (37 lines), press_profiles.csv (3 lines), section_plan.csv (10 lines) and print_production_standard.md, all read-only."
+          }
+        ]
+      }
+    },
+    {
+      "step_id": 3,
+      "source": "agent",
+      "message": "Read the standard first, before any of the data. The rule text is what fixes the comparison boundaries, the scope of each rule, and which thresholds are per-press; reading the batch first would tempt me to measure against thresholds I have assumed rather than ones I have read.",
+      "tool_calls": [
+        {
+          "tool_call_id": "golden-02",
+          "function_name": "read",
+          "arguments": {
+            "filePath": "/app/input/print_production_standard.md"
+          }
+        }
+      ],
+      "observation": {
+        "results": [
+          {
+            "source_call_id": "golden-02",
+            "content": "PRINT-KIT-3. §1 pages are checked against §2-§8 and sections against §9; a page reports one code per rule it breaches. Two rules take their threshold from the page's press, reached through its section in section_plan.csv, with limits in press_profiles.csv. §2 DPI_TOO_LOW: effective resolution is artwork dpi divided by the placed scale as a fraction of full size, rounded down; below the press's min_effective_dpi is a finding, equal to it is acceptable. §3 MARGIN_VIOLATION: at least 0.125 in safe margin; exception, a full-bleed design page is not subject to §3, and the exception releases it from §3 and nothing else. §4 BLEED_SHORT: a full-bleed design page must carry at least 0.125 in of bleed; §4 applies only to full-bleed pages. §5 INK_OVER_LIMIT: coverage exceeding the press's max_tac_pct. §6 SPOT_UNSUPPORTED: more spot colours than the press's max_spot_colors; a press with zero cannot run spot inks at all. §7 FONT_NOT_EMBEDDED: fonts must be embedded, whichever press. §8 ELEMENT_COUNT_SHORT: fewer elements than the page's own min_element_required; exactly the minimum is complete. §9 IMPOSITION_INVALID: saddle_stitch needs a page count that is a multiple of 4, perfect_bound a multiple of 2, flat_sheet is unconstrained; count the pages actually present; §9 is a property of the section and not a finding against its pages."
+          }
+        ]
+      }
+    },
+    {
+      "step_id": 4,
+      "source": "agent",
+      "message": "Four things in that text decide the answer and none of them are the naive reading. First, §2 compares the effective dpi, not the artwork dpi, so the placed scale has to be applied before anything is compared. Second, §2, §5 and §6 read their thresholds from the page's own press, which I can only reach page -> section -> press. Third, §3 and §4 are a matched pair: being a full-bleed design releases a page from the margin rule and at the same time obliges it to carry bleed. Fourth, every rule states that a value equal to the limit is acceptable, so every comparison is strict. Get the press limits next.",
+      "tool_calls": [
+        {
+          "tool_call_id": "golden-03",
+          "function_name": "read",
+          "arguments": {
+            "filePath": "/app/input/press_profiles.csv"
+          }
+        }
+      ],
+      "observation": {
+        "results": [
+          {
+            "source_call_id": "golden-03",
+            "content": "press_id,press_name,min_effective_dpi,max_tac_pct,max_spot_colors\nPRESS-OFFSET-A,Heidelberg XL 106 sheetfed offset,300,300,2\nPRESS-DIGITAL-B,Indigo 12000 digital,250,280,0"
+          }
+        ]
+      }
+    },
+    {
+      "step_id": 5,
+      "source": "agent",
+      "message": "The two presses differ on all three per-press limits: 300 against 250 dpi, 300% against 280% coverage, and 2 spot colours against none at all on the digital press. A page that is fine on one press can be a finding on the other with identical numbers. Read the section plan to get the assignment and the binding.",
+      "tool_calls": [
+        {
+          "tool_call_id": "golden-04",
+          "function_name": "read",
+          "arguments": {
+            "filePath": "/app/input/section_plan.csv"
+          }
+        }
+      ],
+      "observation": {
+        "results": [
+          {
+            "source_call_id": "golden-04",
+            "content": "section_id,section_name,press_id,binding\nSEC-01,Covers,PRESS-OFFSET-A,flat_sheet\nSEC-02,Parent Guide,PRESS-DIGITAL-B,saddle_stitch\nSEC-03,Explorer Maps,PRESS-OFFSET-A,saddle_stitch\nSEC-04,Mission Cards,PRESS-DIGITAL-B,flat_sheet\nSEC-05,Station Bingo,PRESS-OFFSET-A,perfect_bound\nSEC-06,Badges,PRESS-DIGITAL-B,flat_sheet\nSEC-07,Certificates,PRESS-OFFSET-A,saddle_stitch\nSEC-08,Activity Sheets,PRESS-DIGITAL-B,perfect_bound\nSEC-09,Sticker Sheets,PRESS-OFFSET-A,flat_sheet"
+          }
+        ]
+      }
+    },
+    {
+      "step_id": 6,
+      "source": "agent",
+      "message": "Nine sections, five on offset and four on digital, across three bindings. Now the batch itself.",
+      "tool_calls": [
+        {
+          "tool_call_id": "golden-05",
+          "function_name": "read",
+          "arguments": {
+            "filePath": "/app/input/kit_pages.csv"
+          }
+        }
+      ],
+      "observation": {
+        "results": [
+          {
+            "source_call_id": "golden-05",
+            "content": "36 rows, PG-01 to PG-36, columns page_id,section_id,page_name,artwork_dpi,placed_scale_pct,margin_in,bleed_in,full_bleed_design,ink_tac_pct,spot_colors,fonts_embedded,element_count,min_element_required. Placed scales run 80% to 200%. Seven pages are full-bleed designs. Several values sit exactly on a limit: pages at 0.125 in margin, at 300% and 280% coverage, at 2 spot colours, and many carrying exactly their element minimum."
+          }
+        ]
+      }
+    },
+    {
+      "step_id": 7,
+      "source": "agent",
+      "message": "The fixture is built around the boundaries I read in §1-§9, and 36 pages times seven rules is 252 comparisons — far too many to do by eye without a transcription error. Apply the rules in code, joining each page to its press through its section, so the boundary reading is explicit and auditable rather than remembered.",
+      "tool_calls": [
+        {
+          "tool_call_id": "golden-06",
+          "function_name": "bash",
+          "arguments": {
+            "command": "cd /app && python3 - <<'PY'\nimport csv, math\nread = lambda n: list(csv.DictReader(open('input/'+n)))\npress = {r['press_id']: r for r in read('press_profiles.csv')}\nsect  = {r['section_id']: r for r in read('section_plan.csv')}\nfor r in read('kit_pages.csv'):\n    p = press[sect[r['section_id']]['press_id']]\n    eff = math.floor(float(r['artwork_dpi'])*100.0/float(r['placed_scale_pct']))\n    fb  = r['full_bleed_design'].strip().lower() == 'true'\n    f = []\n    if eff < int(p['min_effective_dpi']): f.append('DPI_TOO_LOW')\n    if not fb and float(r['margin_in']) < 0.125: f.append('MARGIN_VIOLATION')\n    if fb and float(r['bleed_in']) < 0.125: f.append('BLEED_SHORT')\n    if float(r['ink_tac_pct']) > int(p['max_tac_pct']): f.append('INK_OVER_LIMIT')\n    if int(r['spot_colors']) > int(p['max_spot_colors']): f.append('SPOT_UNSUPPORTED')\n    if r['fonts_embedded'].strip().lower() != 'true': f.append('FONT_NOT_EMBEDDED')\n    if int(r['element_count']) < int(r['min_element_required']): f.append('ELEMENT_COUNT_SHORT')\n    print(r['page_id'], p['press_id'], 'eff='+str(eff), '|'.join(f) or 'none')\nPY"
+          }
+        }
+      ],
+      "observation": {
+        "results": [
+          {
+            "source_call_id": "golden-06",
+            "content": "21 of the 36 pages carry at least one finding and 15 are clear. PG-06 at 270 dpi effective is clear on PRESS-DIGITAL-B while PG-10 with the same 270 dpi is DPI_TOO_LOW on PRESS-OFFSET-A. PG-25 breaches six rules at once. PG-02, PG-03, PG-22 and PG-35 are full-bleed pages short of bleed. Findings by code: DPI_TOO_LOW 8, MARGIN_VIOLATION 5, BLEED_SHORT 4, INK_OVER_LIMIT 6, SPOT_UNSUPPORTED 5, FONT_NOT_EMBEDDED 4, ELEMENT_COUNT_SHORT 7, which is 39 findings in total."
+          }
+        ]
+      }
+    },
+    {
+      "step_id": 8,
+      "source": "agent",
+      "message": "Now §9, separately, because it is a property of the section and not of any page in it. Count the pages actually present in the batch for each section rather than trusting a count from elsewhere, and only constrain the two bound bindings.",
+      "tool_calls": [
+        {
+          "tool_call_id": "golden-07",
+          "function_name": "bash",
+          "arguments": {
+            "command": "cd /app && python3 - <<'PY'\nimport csv, collections\nread = lambda n: list(csv.DictReader(open('input/'+n)))\nneed = {'saddle_stitch': 4, 'perfect_bound': 2, 'flat_sheet': None}\ncount = collections.Counter(r['section_id'] for r in read('kit_pages.csv'))\nfor s in read('section_plan.csv'):\n    m = need[s['binding']]\n    n = count[s['section_id']]\n    bad = m is not None and n % m != 0\n    print(s['section_id'], s['binding'], 'pages='+str(n), 'needs multiple of '+str(m), 'IMPOSITION_INVALID' if bad else 'none')\nPY"
+          }
+        }
+      ],
+      "observation": {
+        "results": [
+          {
+            "source_call_id": "golden-07",
+            "content": "SEC-03 saddle_stitch pages=6 needs multiple of 4 IMPOSITION_INVALID\nSEC-08 perfect_bound pages=3 needs multiple of 2 IMPOSITION_INVALID\nAll other sections fit. SEC-04 (5 pages) and SEC-09 (3 pages) are odd counts but are flat_sheet, which §9 does not constrain."
+          }
+        ]
+      }
+    },
+    {
+      "step_id": 9,
+      "source": "agent",
+      "message": "Two sections cannot be imposed: SEC-03 needs to go from 6 to 8 pages and SEC-08 from 3 to 4. Write the per-page audit, carrying the section and press through so the file is readable on its own.",
+      "tool_calls": [
+        {
+          "tool_call_id": "golden-08",
+          "function_name": "bash",
+          "arguments": {
+            "command": "cd /app && python3 build_audit_local.py --write preflight_audit.csv && head -4 preflight_audit.csv && wc -l preflight_audit.csv"
+          }
+        }
+      ],
+      "observation": {
+        "results": [
+          {
+            "source_call_id": "golden-08",
+            "content": "wrote /app/preflight_audit.csv: header page_id,page_name,section_id,press_id,finding then 36 data rows, 37 lines in total."
+          }
+        ]
+      }
+    },
+    {
+      "step_id": 10,
+      "source": "agent",
+      "message": "Read the audit back and re-parse it as CSV before moving on. It is the artifact the printer works from, and a truncated or mis-quoted row would be worse than no file at all.",
+      "tool_calls": [
+        {
+          "tool_call_id": "golden-09",
+          "function_name": "bash",
+          "arguments": {
+            "command": "cd /app && python3 -c \"import csv,collections;rows=list(csv.DictReader(open('preflight_audit.csv')));print(len(rows),'rows');print(collections.Counter(r['finding']!='none' for r in rows))\""
+          }
+        }
+      ],
+      "observation": {
+        "results": [
+          {
+            "source_call_id": "golden-09",
+            "content": "36 rows; 21 carry a finding, 15 are none. Page ids are PG-01 to PG-36 with no gaps and no duplicates."
+          }
+        ]
+      }
+    },
+    {
+      "step_id": 11,
+      "source": "agent",
+      "message": "Write the section rollup with the five columns in the order asked for, taking the flagged counts from the audit I just wrote rather than recomputing them from a second copy of the rules.",
+      "tool_calls": [
+        {
+          "tool_call_id": "golden-10",
+          "function_name": "bash",
+          "arguments": {
+            "command": "cd /app && python3 build_audit_local.py --write section_summary.csv && cat section_summary.csv"
+          }
+        }
+      ],
+      "observation": {
+        "results": [
+          {
+            "source_call_id": "golden-10",
+            "content": "section_id,press_id,page_count,flagged_pages,imposition\nSEC-01,PRESS-OFFSET-A,4,2,none\nSEC-02,PRESS-DIGITAL-B,4,2,none\nSEC-03,PRESS-OFFSET-A,6,4,IMPOSITION_INVALID\nSEC-04,PRESS-DIGITAL-B,5,3,none\nSEC-05,PRESS-OFFSET-A,4,2,none\nSEC-06,PRESS-DIGITAL-B,3,1,none\nSEC-07,PRESS-OFFSET-A,4,3,none\nSEC-08,PRESS-DIGITAL-B,3,2,IMPOSITION_INVALID\nSEC-09,PRESS-OFFSET-A,3,2,none"
+          }
+        ]
+      }
+    },
+    {
+      "step_id": 12,
+      "source": "agent",
+      "message": "Write the memo. The studio needs the measured value against the limit for every finding, and for the pages I am clearing it needs the reason — PG-21 and PG-34 especially, because their margins are the thinnest in the batch and the only thing clearing them is the §3 exception, and PG-06 and PG-26, which are only clean because their section runs on the digital press. Saying that explicitly is what stops someone re-laying out a page that is correct. The two unimposable sections get the page count they need, not just the verdict.",
+      "tool_calls": [
+        {
+          "tool_call_id": "golden-11",
+          "function_name": "bash",
+          "arguments": {
+            "command": "cd /app && python3 build_audit_local.py --write preflight_memo.md && wc -l preflight_memo.md && grep -c '^###' preflight_memo.md"
+          }
+        }
+      ],
+      "observation": {
+        "results": [
+          {
+            "source_call_id": "golden-11",
+            "content": "wrote /app/preflight_memo.md: limits table for both presses, section table with the imposition verdicts, a numbered account of all 21 flagged pages with the measured value and limit for each finding, a section on the 15 pages the standard clears and why, and a closing section on the pages whose verdict turns on their press assignment."
+          }
+        ]
+      }
+    },
+    {
+      "step_id": 13,
+      "source": "agent",
+      "message": "Write the fourteen derived figures, taking them from the audit I produced rather than retyping them from the working above. Two of them are easy to get wrong by counting the wrong thing: finding_total counts findings and not the pages carrying them, and element_shortfall_total counts missing elements and not the pages that are short.",
+      "tool_calls": [
+        {
+          "tool_call_id": "golden-12",
+          "function_name": "bash",
+          "arguments": {
+            "command": "cd /app && python3 build_audit_local.py --write results.json && cat results.json"
+          }
+        }
+      ],
+      "observation": {
+        "results": [
+          {
+            "source_call_id": "golden-12",
+            "content": "{\"page_count\": 36, \"section_count\": 9, \"clean_page_count\": 15, \"flagged_page_count\": 21, \"finding_total\": 39, \"dpi_low_count\": 8, \"margin_count\": 5, \"bleed_short_count\": 4, \"ink_over_count\": 6, \"spot_unsupported_count\": 5, \"font_not_embedded_count\": 4, \"element_short_count\": 7, \"element_shortfall_total\": 12, \"imposition_invalid_sections\": 2}"
+          }
+        ]
+      }
+    },
+    {
+      "step_id": 14,
+      "source": "agent",
+      "message": "Reconcile the three machine-readable deliverables against each other instead of trusting that they were written from the same numbers: recount every figure from preflight_audit.csv and the source batch, and check the rollup's flagged counts sum to the audit's total.",
+      "tool_calls": [
+        {
+          "tool_call_id": "golden-13",
+          "function_name": "bash",
+          "arguments": {
+            "command": "cd /app && python3 - <<'PY'\nimport csv, json\nrows = list(csv.DictReader(open('preflight_audit.csv')))\nsecs = list(csv.DictReader(open('section_summary.csv')))\nsrc  = {r['page_id']: r for r in csv.DictReader(open('input/kit_pages.csv'))}\nf = {r['page_id']: ([] if r['finding'] == 'none' else r['finding'].split('|')) for r in rows}\ncode = lambda c: sum(1 for v in f.values() if c in v)\nre_ = {\n 'page_count': len(rows), 'section_count': len(secs),\n 'clean_page_count': sum(1 for v in f.values() if not v),\n 'flagged_page_count': sum(1 for v in f.values() if v),\n 'finding_total': sum(len(v) for v in f.values()),\n 'dpi_low_count': code('DPI_TOO_LOW'), 'margin_count': code('MARGIN_VIOLATION'),\n 'bleed_short_count': code('BLEED_SHORT'), 'ink_over_count': code('INK_OVER_LIMIT'),\n 'spot_unsupported_count': code('SPOT_UNSUPPORTED'),\n 'font_not_embedded_count': code('FONT_NOT_EMBEDDED'),\n 'element_short_count': code('ELEMENT_COUNT_SHORT'),\n 'element_shortfall_total': sum(max(0, int(s['min_element_required'])-int(s['element_count'])) for s in src.values()),\n 'imposition_invalid_sections': sum(1 for s in secs if s['imposition'] != 'none'),\n}\nrep = json.load(open('results.json'))\nprint('figures agree:', re_ == rep)\nprint('rollup flagged sums to audit:', sum(int(s['flagged_pages']) for s in secs) == re_['flagged_page_count'])\nprint('rollup pages sums to batch:', sum(int(s['page_count']) for s in secs) == len(rows))\nPY"
+          }
+        }
+      ],
+      "observation": {
+        "results": [
+          {
+            "source_call_id": "golden-13",
+            "content": "figures agree: True\nrollup flagged sums to audit: True\nrollup pages sums to batch: True"
+          }
+        ]
+      }
+    },
+    {
+      "step_id": 15,
+      "source": "agent",
+      "message": "Confirm all four deliverables exist at the exact filenames asked for, in /app, and that none of them is empty, before answering.",
+      "tool_calls": [
+        {
+          "tool_call_id": "golden-14",
+          "function_name": "bash",
+          "arguments": {
+            "command": "cd /app && ls -l preflight_audit.csv section_summary.csv preflight_memo.md results.json"
+          }
+        }
+      ],
+      "observation": {
+        "results": [
+          {
+            "source_call_id": "golden-14",
+            "content": "all four present as regular non-empty files in /app"
+          }
+        ]
+      }
+    },
+    {
+      "step_id": 16,
+      "source": "agent",
+      "message": "Pre-flight is done — all four deliverables are in /app.\n\n21 of the 36 pages carry at least one finding, 39 findings in all, and 15 pages are clear. The single worst page is PG-25, which breaches six rules at once. On resolution, eight pages are short, and two of those are the ones worth explaining: PG-03 carries 450 dpi artwork and PG-28 carries 300 dpi, but they are placed at 200% and 150%, so they land at 225 and 200 dpi effective. What reaches the plate is the effective figure, not the number in the artwork file.\n\nThe press assignment decides several verdicts. PG-06 and PG-10 both land at 270 dpi effective; PG-06 is clean because SEC-02 runs on the digital press with a 250 dpi floor, and PG-10 is a finding because SEC-03 runs on offset at 300 dpi. Three pages carry spot colours that the digital press cannot run at all, and PG-18 is one point over the digital ink cap at 281% against 280%.\n\nSeven pages are full-bleed designs, and they need care in both directions. Their thin or absent safe margins are not findings — §3 does not apply to them, which is why PG-21 at no margin at all and PG-34 at 0.02 in are clean and should not be re-laid out. But §4 obliges those same pages to carry at least 0.125 in of bleed, and PG-02, PG-03, PG-22 and PG-35 do not, so they are BLEED_SHORT.\n\nThe batch is 12 required elements short across the seven pages that are missing any. Two sections also cannot be imposed as planned: SEC-03 is saddle-stitched with 6 pages and needs 8, and SEC-08 is perfect-bound with 3 pages and needs 4. SEC-04 and SEC-09 have odd page counts too, but they are flat-sheet work and §9 does not constrain them."
+    }
+  ],
+  "final_metrics": {
+    "total_steps": 16,
+    "tool_calls": 14
+  }
+}

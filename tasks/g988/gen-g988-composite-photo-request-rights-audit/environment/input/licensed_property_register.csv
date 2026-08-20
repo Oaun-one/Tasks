@@ -1,0 +1,19 @@
+license_id,property_name,rights_holder,license_type,covers_distribution,valid_until,max_character_area_pct,supersedes
+LIC-101,Captain Marlow,Bluewater Comics,character,social_public;print_for_sale,2026-12-31,30,none
+LIC-102,Nimbus the Cat,Skyline Animation,character,social_public,2026-03-31,25,none
+LIC-103,Rook and Raven,Halcyon Media,character,social_public;print_for_sale,2026-03-30,35,none
+LIC-104,Ember Knight,Forgeworks Ltd,character,print_for_sale,2027-06-30,40,none
+LIC-105,Old Quarry Skyline,Vantage Photo,background,all,2026-09-30,none,none
+LIC-106,Aurora Ridge Panorama,Vantage Photo,background,all,2026-02-28,none,none
+LIC-107,Harbour Fog Plate,Northlight Images,background,all,2028-01-31,none,none
+LIC-108,Marble Hall Interior,Northlight Images,background,print_for_sale,2027-05-31,none,none
+LIC-109,Rook and Raven,Halcyon Media,character,social_public;print_for_sale,2027-03-31,20,LIC-103
+LIC-110,Old Quarry Skyline,Vantage Photo,background,print_for_sale,2027-12-31,none,LIC-105
+LIC-111,Verdant Automata,Orrery Studios,character,social_public;print_for_sale,2026-05-31,40,none
+LIC-112,Verdant Automata,Orrery Studios,character,social_public;print_for_sale,2027-01-31,30,LIC-111
+LIC-113,Verdant Automata,Orrery Studios,character,social_public,2027-09-30,22,LIC-112
+LIC-114,Tidewater Docks,Northlight Images,background,all,2026-06-30,none,none
+LIC-115,Tidewater Docks,Northlight Images,background,all,2027-02-28,none,LIC-114
+LIC-116,Tidewater Docks,Northlight Images,background,client_internal,2028-01-31,none,LIC-115
+LIC-117,Pockets the Fox,Skyline Animation,character,all,2027-12-31,35,none
+LIC-118,Gantry Yard Dusk,Vantage Photo,background,social_public;print_for_sale,2026-03-31,none,none

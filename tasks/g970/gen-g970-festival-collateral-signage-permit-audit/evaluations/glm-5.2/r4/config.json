@@ -1,0 +1,46 @@
+{
+    "task": {
+        "path": "<task-path>sk_6_gen-g970-festival-collateral-signage-permit-audit\\gen-g970-festival-collateral-signage-permit-audit"
+    },
+    "trial_name": "gen-g970-festival-collateral-sig__dR4t8Vz",
+    "trials_dir": "<task-path>s-g970\\glm-5x-hardened-v4b",
+    "agent_setup_timeout_multiplier": 3.0,
+    "agent": {
+        "name": "opencode",
+        "model_name": "glmproxy/glm-5.2",
+        "kwargs": {
+            "opencode_config": {
+                "provider": {
+                    "glmproxy": {
+                        "npm": "@ai-sdk/openai-compatible",
+                        "name": "GLM via LiteLLM",
+                        "options": {
+                            "baseURL": "{env:OPENAI_BASE_URL}",
+                            "apiKey": "{env:OPENAI_API_KEY}"
+                        },
+                        "models": {
+                            "glm-5.2": {
+                                "name": "GLM 5.2",
+                                "options": {
+                                    "max_tokens": 96000
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "env": {
+            "OPENAI_API_KEY": "${OPENAI_API_KEY}",
+            "OPENAI_BASE_URL": "<openai-base-url>"
+        }
+    },
+    "verifier": {
+        "env": {
+            "OPENAI_API_KEY": "${OPENAI_API_KEY}",
+            "OPENAI_BASE_URL": "<openai-base-url>",
+            "JUDGE_MODEL": "openai/glm-5.2"
+        }
+    },
+    "job_id": "71819ea1-db71-4ac1-8f5a-6b07ffc56c79"
+}

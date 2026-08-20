@@ -1,0 +1,898 @@
+{
+  "total": 148,
+  "passed": 119,
+  "failed": 29,
+  "all_passed": false,
+  "grading": "binary - tests/test.sh writes reward 1 only if every verifier passes",
+  "source": "test-stdout.txt (pytest per-parameter results); ctrf.json aggregates the parametrised suite into one entry",
+  "items": [
+    {
+      "name": "audit_csv_exists",
+      "passed": true,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "zone_csv_exists",
+      "passed": true,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "memo_exists",
+      "passed": true,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "results_exists",
+      "passed": true,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "audit_has_required_columns",
+      "passed": true,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "audit_has_one_row_per_item",
+      "passed": true,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "audit_col_02",
+      "passed": true,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "audit_col_03",
+      "passed": true,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "audit_col_04",
+      "passed": true,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "audit_col_05",
+      "passed": true,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "audit_col_09",
+      "passed": true,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "audit_col_10",
+      "passed": true,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "audit_col_11",
+      "passed": true,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "audit_col_13",
+      "passed": true,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "audit_col_15",
+      "passed": true,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "audit_col_16",
+      "passed": true,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "audit_col_18",
+      "passed": true,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "audit_col_19",
+      "passed": true,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "audit_col_20",
+      "passed": true,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "audit_col_21",
+      "passed": true,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "audit_col_23",
+      "passed": true,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "audit_col_24",
+      "passed": true,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "audit_col_25",
+      "passed": true,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "audit_col_26",
+      "passed": true,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "audit_col_27",
+      "passed": true,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "audit_col_28",
+      "passed": true,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "audit_col_29",
+      "passed": true,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "audit_col_30",
+      "passed": true,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "audit_col_31",
+      "passed": true,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "audit_col_32",
+      "passed": true,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "audit_col_33",
+      "passed": true,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "audit_col_34",
+      "passed": true,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "audit_col_35",
+      "passed": true,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "audit_col_36",
+      "passed": true,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "audit_col_37",
+      "passed": true,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "audit_col_38",
+      "passed": true,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "audit_col_39",
+      "passed": true,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "audit_col_40",
+      "passed": true,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "audit_col_42",
+      "passed": true,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "audit_col_43",
+      "passed": true,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "audit_col_44",
+      "passed": true,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "audit_col_45",
+      "passed": true,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "audit_col_48",
+      "passed": true,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "audit_col_49",
+      "passed": true,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "audit_col_50",
+      "passed": true,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "audit_col_51",
+      "passed": true,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "audit_col_52",
+      "passed": true,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "audit_col_53",
+      "passed": true,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "audit_col_54",
+      "passed": true,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "audit_col_56",
+      "passed": true,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "audit_col_57",
+      "passed": true,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "audit_col_58",
+      "passed": true,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "audit_col_59",
+      "passed": true,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "audit_col_65",
+      "passed": true,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "audit_col_66",
+      "passed": true,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "audit_excludes_col_07",
+      "passed": true,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "audit_excludes_col_14",
+      "passed": true,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "audit_excludes_col_22",
+      "passed": true,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "audit_excludes_col_41",
+      "passed": true,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "audit_excludes_col_47",
+      "passed": true,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "audit_excludes_col_55",
+      "passed": true,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "zone_has_required_columns",
+      "passed": true,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "zone_zn_03_allowance",
+      "passed": true,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "zone_zn_04_counts",
+      "passed": true,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "zone_zn_04_allowance",
+      "passed": true,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "zone_zn_05_counts",
+      "passed": true,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "zone_zn_05_allowance",
+      "passed": true,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "zone_zn_06_counts",
+      "passed": true,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "zone_zn_06_allowance",
+      "passed": true,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "zone_zn_07_allowance",
+      "passed": true,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "zone_zn_08_allowance",
+      "passed": true,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "result_collateral_count",
+      "passed": true,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "result_zone_count",
+      "passed": true,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "result_egress_obstructed_count",
+      "passed": true,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "result_out_of_scope_count",
+      "passed": true,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "memo_cites_review_date",
+      "passed": true,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "memo_covers_every_flagged_item",
+      "passed": true,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "memo_covers_every_zone",
+      "passed": true,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "memo_names_every_finding_code",
+      "passed": true,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "memo_names_out_of_scope_items",
+      "passed": true,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "memo_names_breaching_zones",
+      "passed": true,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "memo_explains_heightened_inspection",
+      "passed": true,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "memo_explains_supersession",
+      "passed": true,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "memo_explains_pulled_items",
+      "passed": true,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "memo_item_col_02",
+      "passed": true,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "memo_item_col_03",
+      "passed": true,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "memo_item_col_05",
+      "passed": true,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "memo_item_col_09",
+      "passed": true,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "memo_item_col_10",
+      "passed": true,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "memo_item_col_12",
+      "passed": true,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "memo_item_col_13",
+      "passed": true,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "memo_item_col_15",
+      "passed": true,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "memo_item_col_16",
+      "passed": true,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "memo_item_col_18",
+      "passed": true,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "memo_item_col_23",
+      "passed": true,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "memo_item_col_25",
+      "passed": true,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "memo_item_col_26",
+      "passed": true,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "memo_item_col_30",
+      "passed": true,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "memo_item_col_31",
+      "passed": true,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "memo_item_col_32",
+      "passed": true,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "memo_item_col_33",
+      "passed": true,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "memo_item_col_35",
+      "passed": true,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "memo_item_col_37",
+      "passed": true,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "memo_item_col_38",
+      "passed": true,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "memo_item_col_40",
+      "passed": true,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "memo_item_col_42",
+      "passed": true,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "memo_item_col_43",
+      "passed": true,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "memo_item_col_44",
+      "passed": true,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "memo_item_col_46",
+      "passed": true,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "memo_item_col_48",
+      "passed": true,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "memo_item_col_49",
+      "passed": true,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "memo_item_col_50",
+      "passed": true,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "memo_item_col_51",
+      "passed": true,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "memo_item_col_54",
+      "passed": true,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "memo_item_col_61",
+      "passed": true,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "memo_item_col_63",
+      "passed": true,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "memo_item_col_64",
+      "passed": true,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "memo_item_col_65",
+      "passed": true,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "memo_item_col_66",
+      "passed": true,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "audit_col_01",
+      "passed": false,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion failed"
+    },
+    {
+      "name": "audit_col_06",
+      "passed": false,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion failed"
+    },
+    {
+      "name": "audit_col_08",
+      "passed": false,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion failed"
+    },
+    {
+      "name": "audit_col_12",
+      "passed": false,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion failed"
+    },
+    {
+      "name": "audit_col_17",
+      "passed": false,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion failed"
+    },
+    {
+      "name": "audit_col_46",
+      "passed": false,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion failed"
+    },
+    {
+      "name": "audit_col_60",
+      "passed": false,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion failed"
+    },
+    {
+      "name": "audit_col_61",
+      "passed": false,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion failed"
+    },
+    {
+      "name": "audit_col_62",
+      "passed": false,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion failed"
+    },
+    {
+      "name": "audit_col_63",
+      "passed": false,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion failed"
+    },
+    {
+      "name": "audit_col_64",
+      "passed": false,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion failed"
+    },
+    {
+      "name": "zone_zn_01_counts",
+      "passed": false,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion failed"
+    },
+    {
+      "name": "zone_zn_01_allowance",
+      "passed": false,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion failed"
+    },
+    {
+      "name": "zone_zn_02_counts",
+      "passed": false,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion failed"
+    },
+    {
+      "name": "zone_zn_02_allowance",
+      "passed": false,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion failed"
+    },
+    {
+      "name": "zone_zn_03_counts",
+      "passed": false,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion failed"
+    },
+    {
+      "name": "zone_zn_07_counts",
+      "passed": false,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion failed"
+    },
+    {
+      "name": "zone_zn_08_counts",
+      "passed": false,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion failed"
+    },
+    {
+      "name": "result_permit_missing_count",
+      "passed": false,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion failed"
+    },
+    {
+      "name": "result_oversize_count",
+      "passed": false,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion failed"
+    },
+    {
+      "name": "result_compliant_count",
+      "passed": false,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion failed"
+    },
+    {
+      "name": "result_flagged_count",
+      "passed": false,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion failed"
+    },
+    {
+      "name": "result_finding_total",
+      "passed": false,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion failed"
+    },
+    {
+      "name": "result_pulled_item_count",
+      "passed": false,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion failed"
+    },
+    {
+      "name": "result_zones_over_allowance",
+      "passed": false,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion failed"
+    },
+    {
+      "name": "memo_item_col_06",
+      "passed": false,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion failed"
+    },
+    {
+      "name": "memo_item_col_17",
+      "passed": false,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion failed"
+    },
+    {
+      "name": "memo_item_col_60",
+      "passed": false,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion failed"
+    },
+    {
+      "name": "memo_item_col_62",
+      "passed": false,
+      "weight": 0.0067567568,
+      "motivation": "deterministic assertion failed"
+    }
+  ]
+}

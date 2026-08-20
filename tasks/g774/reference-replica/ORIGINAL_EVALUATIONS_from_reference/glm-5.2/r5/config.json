@@ -1,0 +1,47 @@
+{
+    "task": {
+        "path": "/Users/naveenkatiyar/Downloads/COMPANY_BENCH/gen-g774-activity-kit-print-spec-audit"
+    },
+    "trial_name": "gen-g774-activity-kit-print-spec__yZqDdR5",
+    "trials_dir": "/tmp/harbor-jobs/glm-5x-preflight-v2",
+    "agent_setup_timeout_multiplier": 3.0,
+    "agent": {
+        "name": "opencode",
+        "model_name": "glm/glm-5.2",
+        "kwargs": {
+            "opencode_config": {
+                "provider": {
+                    "glm": {
+                        "npm": "@ai-sdk/openai-compatible",
+                        "name": "GLM Gateway",
+                        "options": {
+                            "baseURL": "http://34.41.10.8:4000/v1",
+                            "apiKey": "{env:OPENAI_API_KEY}"
+                        },
+                        "models": {
+                            "glm-5.2": {
+                                "name": "GLM-5.2",
+                                "reasoning": true,
+                                "interleaved": {
+                                    "field": "reasoning_content"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "env": {
+            "OPENAI_API_KEY": "${OPENAI_API_KEY}",
+            "OPENAI_BASE_URL": "http://34.41.10.8:4000/v1"
+        }
+    },
+    "verifier": {
+        "env": {
+            "OPENAI_API_KEY": "${OPENAI_API_KEY}",
+            "OPENAI_BASE_URL": "http://34.41.10.8:4000/v1",
+            "JUDGE_MODEL": "openai/glm-5.2"
+        }
+    },
+    "job_id": "51f4a6a8-ddc1-4d3a-a1d4-fc8e6a0adf3a"
+}

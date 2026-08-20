@@ -1,0 +1,6 @@
+installed gold deliverables into /app:
+collateral_audit.csv
+collateral_memo.md
+input
+results.json
+zone_summary.csv

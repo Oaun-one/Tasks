@@ -1,0 +1,749 @@
+{
+  "results": {
+    "tool": {
+      "name": "pytest",
+      "version": "8.4.1",
+      "note": "parametrised results expanded from this run's test-stdout.txt; pytest-json-ctrf aggregates them into one entry. Plugin original preserved as ctrf_raw.json."
+    },
+    "summary": {
+      "tests": 91,
+      "passed": 91,
+      "failed": 0,
+      "skipped": 0,
+      "pending": 0,
+      "other": 0,
+      "start": 1787207084.623149,
+      "stop": 1787207087.4705722
+    },
+    "tests": [
+      {
+        "name": "test_outputs.py::test_deliverable[audit_csv_exists]",
+        "status": "passed",
+        "duration": 0.031290366,
+        "start": 1787207084.623149,
+        "stop": 1787207084.654439,
+        "file_path": "test_outputs.py"
+      },
+      {
+        "name": "test_outputs.py::test_deliverable[account_csv_exists]",
+        "status": "passed",
+        "duration": 0.031290366,
+        "start": 1787207084.654439,
+        "stop": 1787207084.68573,
+        "file_path": "test_outputs.py"
+      },
+      {
+        "name": "test_outputs.py::test_deliverable[memo_exists]",
+        "status": "passed",
+        "duration": 0.031290366,
+        "start": 1787207084.68573,
+        "stop": 1787207084.71702,
+        "file_path": "test_outputs.py"
+      },
+      {
+        "name": "test_outputs.py::test_deliverable[results_exists]",
+        "status": "passed",
+        "duration": 0.031290366,
+        "start": 1787207084.71702,
+        "stop": 1787207084.74831,
+        "file_path": "test_outputs.py"
+      },
+      {
+        "name": "test_outputs.py::test_deliverable[audit_has_required_columns]",
+        "status": "passed",
+        "duration": 0.031290366,
+        "start": 1787207084.74831,
+        "stop": 1787207084.779601,
+        "file_path": "test_outputs.py"
+      },
+      {
+        "name": "test_outputs.py::test_deliverable[audit_req_01]",
+        "status": "passed",
+        "duration": 0.031290366,
+        "start": 1787207084.779601,
+        "stop": 1787207084.810891,
+        "file_path": "test_outputs.py"
+      },
+      {
+        "name": "test_outputs.py::test_deliverable[audit_req_02]",
+        "status": "passed",
+        "duration": 0.031290366,
+        "start": 1787207084.810891,
+        "stop": 1787207084.842181,
+        "file_path": "test_outputs.py"
+      },
+      {
+        "name": "test_outputs.py::test_deliverable[audit_req_03]",
+        "status": "passed",
+        "duration": 0.031290366,
+        "start": 1787207084.842181,
+        "stop": 1787207084.873472,
+        "file_path": "test_outputs.py"
+      },
+      {
+        "name": "test_outputs.py::test_deliverable[audit_req_04]",
+        "status": "passed",
+        "duration": 0.031290366,
+        "start": 1787207084.873472,
+        "stop": 1787207084.904762,
+        "file_path": "test_outputs.py"
+      },
+      {
+        "name": "test_outputs.py::test_deliverable[audit_req_05]",
+        "status": "passed",
+        "duration": 0.031290366,
+        "start": 1787207084.904762,
+        "stop": 1787207084.936053,
+        "file_path": "test_outputs.py"
+      },
+      {
+        "name": "test_outputs.py::test_deliverable[audit_req_06]",
+        "status": "passed",
+        "duration": 0.031290366,
+        "start": 1787207084.936053,
+        "stop": 1787207084.967343,
+        "file_path": "test_outputs.py"
+      },
+      {
+        "name": "test_outputs.py::test_deliverable[audit_req_07]",
+        "status": "passed",
+        "duration": 0.031290366,
+        "start": 1787207084.967343,
+        "stop": 1787207084.998633,
+        "file_path": "test_outputs.py"
+      },
+      {
+        "name": "test_outputs.py::test_deliverable[audit_req_08]",
+        "status": "passed",
+        "duration": 0.031290366,
+        "start": 1787207084.998633,
+        "stop": 1787207085.029924,
+        "file_path": "test_outputs.py"
+      },
+      {
+        "name": "test_outputs.py::test_deliverable[audit_req_09]",
+        "status": "passed",
+        "duration": 0.031290366,
+        "start": 1787207085.029924,
+        "stop": 1787207085.061214,
+        "file_path": "test_outputs.py"
+      },
+      {
+        "name": "test_outputs.py::test_deliverable[audit_req_10]",
+        "status": "passed",
+        "duration": 0.031290366,
+        "start": 1787207085.061214,
+        "stop": 1787207085.092505,
+        "file_path": "test_outputs.py"
+      },
+      {
+        "name": "test_outputs.py::test_deliverable[audit_req_11]",
+        "status": "passed",
+        "duration": 0.031290366,
+        "start": 1787207085.092505,
+        "stop": 1787207085.123795,
+        "file_path": "test_outputs.py"
+      },
+      {
+        "name": "test_outputs.py::test_deliverable[audit_req_12]",
+        "status": "passed",
+        "duration": 0.031290366,
+        "start": 1787207085.123795,
+        "stop": 1787207085.155085,
+        "file_path": "test_outputs.py"
+      },
+      {
+        "name": "test_outputs.py::test_deliverable[audit_req_14]",
+        "status": "passed",
+        "duration": 0.031290366,
+        "start": 1787207085.155085,
+        "stop": 1787207085.186376,
+        "file_path": "test_outputs.py"
+      },
+      {
+        "name": "test_outputs.py::test_deliverable[audit_req_15]",
+        "status": "passed",
+        "duration": 0.031290366,
+        "start": 1787207085.186376,
+        "stop": 1787207085.217666,
+        "file_path": "test_outputs.py"
+      },
+      {
+        "name": "test_outputs.py::test_deliverable[audit_req_17]",
+        "status": "passed",
+        "duration": 0.031290366,
+        "start": 1787207085.217666,
+        "stop": 1787207085.248956,
+        "file_path": "test_outputs.py"
+      },
+      {
+        "name": "test_outputs.py::test_deliverable[audit_req_18]",
+        "status": "passed",
+        "duration": 0.031290366,
+        "start": 1787207085.248956,
+        "stop": 1787207085.280246,
+        "file_path": "test_outputs.py"
+      },
+      {
+        "name": "test_outputs.py::test_deliverable[audit_req_19]",
+        "status": "passed",
+        "duration": 0.031290366,
+        "start": 1787207085.280246,
+        "stop": 1787207085.311537,
+        "file_path": "test_outputs.py"
+      },
+      {
+        "name": "test_outputs.py::test_deliverable[audit_req_20]",
+        "status": "passed",
+        "duration": 0.031290366,
+        "start": 1787207085.311537,
+        "stop": 1787207085.342827,
+        "file_path": "test_outputs.py"
+      },
+      {
+        "name": "test_outputs.py::test_deliverable[audit_req_21]",
+        "status": "passed",
+        "duration": 0.031290366,
+        "start": 1787207085.342827,
+        "stop": 1787207085.374118,
+        "file_path": "test_outputs.py"
+      },
+      {
+        "name": "test_outputs.py::test_deliverable[audit_req_22]",
+        "status": "passed",
+        "duration": 0.031290366,
+        "start": 1787207085.374118,
+        "stop": 1787207085.405408,
+        "file_path": "test_outputs.py"
+      },
+      {
+        "name": "test_outputs.py::test_deliverable[audit_req_23]",
+        "status": "passed",
+        "duration": 0.031290366,
+        "start": 1787207085.405408,
+        "stop": 1787207085.436698,
+        "file_path": "test_outputs.py"
+      },
+      {
+        "name": "test_outputs.py::test_deliverable[audit_req_24]",
+        "status": "passed",
+        "duration": 0.031290366,
+        "start": 1787207085.436698,
+        "stop": 1787207085.467989,
+        "file_path": "test_outputs.py"
+      },
+      {
+        "name": "test_outputs.py::test_deliverable[audit_req_25]",
+        "status": "passed",
+        "duration": 0.031290366,
+        "start": 1787207085.467989,
+        "stop": 1787207085.499279,
+        "file_path": "test_outputs.py"
+      },
+      {
+        "name": "test_outputs.py::test_deliverable[audit_req_27]",
+        "status": "passed",
+        "duration": 0.031290366,
+        "start": 1787207085.499279,
+        "stop": 1787207085.53057,
+        "file_path": "test_outputs.py"
+      },
+      {
+        "name": "test_outputs.py::test_deliverable[audit_req_28]",
+        "status": "passed",
+        "duration": 0.031290366,
+        "start": 1787207085.53057,
+        "stop": 1787207085.56186,
+        "file_path": "test_outputs.py"
+      },
+      {
+        "name": "test_outputs.py::test_deliverable[audit_req_29]",
+        "status": "passed",
+        "duration": 0.031290366,
+        "start": 1787207085.56186,
+        "stop": 1787207085.59315,
+        "file_path": "test_outputs.py"
+      },
+      {
+        "name": "test_outputs.py::test_deliverable[audit_req_30]",
+        "status": "passed",
+        "duration": 0.031290366,
+        "start": 1787207085.59315,
+        "stop": 1787207085.624441,
+        "file_path": "test_outputs.py"
+      },
+      {
+        "name": "test_outputs.py::test_deliverable[audit_req_32]",
+        "status": "passed",
+        "duration": 0.031290366,
+        "start": 1787207085.624441,
+        "stop": 1787207085.655731,
+        "file_path": "test_outputs.py"
+      },
+      {
+        "name": "test_outputs.py::test_deliverable[audit_excludes_req_13]",
+        "status": "passed",
+        "duration": 0.031290366,
+        "start": 1787207085.655731,
+        "stop": 1787207085.687021,
+        "file_path": "test_outputs.py"
+      },
+      {
+        "name": "test_outputs.py::test_deliverable[audit_excludes_req_16]",
+        "status": "passed",
+        "duration": 0.031290366,
+        "start": 1787207085.687021,
+        "stop": 1787207085.718312,
+        "file_path": "test_outputs.py"
+      },
+      {
+        "name": "test_outputs.py::test_deliverable[audit_excludes_req_26]",
+        "status": "passed",
+        "duration": 0.031290366,
+        "start": 1787207085.718312,
+        "stop": 1787207085.749602,
+        "file_path": "test_outputs.py"
+      },
+      {
+        "name": "test_outputs.py::test_deliverable[audit_excludes_req_31]",
+        "status": "passed",
+        "duration": 0.031290366,
+        "start": 1787207085.749602,
+        "stop": 1787207085.780892,
+        "file_path": "test_outputs.py"
+      },
+      {
+        "name": "test_outputs.py::test_deliverable[account_has_required_columns]",
+        "status": "passed",
+        "duration": 0.031290366,
+        "start": 1787207085.780892,
+        "stop": 1787207085.812183,
+        "file_path": "test_outputs.py"
+      },
+      {
+        "name": "test_outputs.py::test_deliverable[acc_01_type]",
+        "status": "passed",
+        "duration": 0.031290366,
+        "start": 1787207085.812183,
+        "stop": 1787207085.843473,
+        "file_path": "test_outputs.py"
+      },
+      {
+        "name": "test_outputs.py::test_deliverable[acc_01_counts]",
+        "status": "passed",
+        "duration": 0.031290366,
+        "start": 1787207085.843473,
+        "stop": 1787207085.874763,
+        "file_path": "test_outputs.py"
+      },
+      {
+        "name": "test_outputs.py::test_deliverable[acc_01_escalation]",
+        "status": "passed",
+        "duration": 0.031290366,
+        "start": 1787207085.874763,
+        "stop": 1787207085.906054,
+        "file_path": "test_outputs.py"
+      },
+      {
+        "name": "test_outputs.py::test_deliverable[acc_02_type]",
+        "status": "passed",
+        "duration": 0.031290366,
+        "start": 1787207085.906054,
+        "stop": 1787207085.937344,
+        "file_path": "test_outputs.py"
+      },
+      {
+        "name": "test_outputs.py::test_deliverable[acc_02_counts]",
+        "status": "passed",
+        "duration": 0.031290366,
+        "start": 1787207085.937344,
+        "stop": 1787207085.968635,
+        "file_path": "test_outputs.py"
+      },
+      {
+        "name": "test_outputs.py::test_deliverable[acc_02_escalation]",
+        "status": "passed",
+        "duration": 0.031290366,
+        "start": 1787207085.968635,
+        "stop": 1787207085.999925,
+        "file_path": "test_outputs.py"
+      },
+      {
+        "name": "test_outputs.py::test_deliverable[acc_03_type]",
+        "status": "passed",
+        "duration": 0.031290366,
+        "start": 1787207085.999925,
+        "stop": 1787207086.031215,
+        "file_path": "test_outputs.py"
+      },
+      {
+        "name": "test_outputs.py::test_deliverable[acc_03_counts]",
+        "status": "passed",
+        "duration": 0.031290366,
+        "start": 1787207086.031215,
+        "stop": 1787207086.062506,
+        "file_path": "test_outputs.py"
+      },
+      {
+        "name": "test_outputs.py::test_deliverable[acc_03_escalation]",
+        "status": "passed",
+        "duration": 0.031290366,
+        "start": 1787207086.062506,
+        "stop": 1787207086.093796,
+        "file_path": "test_outputs.py"
+      },
+      {
+        "name": "test_outputs.py::test_deliverable[acc_04_type]",
+        "status": "passed",
+        "duration": 0.031290366,
+        "start": 1787207086.093796,
+        "stop": 1787207086.125087,
+        "file_path": "test_outputs.py"
+      },
+      {
+        "name": "test_outputs.py::test_deliverable[acc_04_counts]",
+        "status": "passed",
+        "duration": 0.031290366,
+        "start": 1787207086.125087,
+        "stop": 1787207086.156377,
+        "file_path": "test_outputs.py"
+      },
+      {
+        "name": "test_outputs.py::test_deliverable[acc_04_escalation]",
+        "status": "passed",
+        "duration": 0.031290366,
+        "start": 1787207086.156377,
+        "stop": 1787207086.187667,
+        "file_path": "test_outputs.py"
+      },
+      {
+        "name": "test_outputs.py::test_deliverable[acc_05_type]",
+        "status": "passed",
+        "duration": 0.031290366,
+        "start": 1787207086.187667,
+        "stop": 1787207086.218958,
+        "file_path": "test_outputs.py"
+      },
+      {
+        "name": "test_outputs.py::test_deliverable[acc_05_counts]",
+        "status": "passed",
+        "duration": 0.031290366,
+        "start": 1787207086.218958,
+        "stop": 1787207086.250248,
+        "file_path": "test_outputs.py"
+      },
+      {
+        "name": "test_outputs.py::test_deliverable[acc_05_escalation]",
+        "status": "passed",
+        "duration": 0.031290366,
+        "start": 1787207086.250248,
+        "stop": 1787207086.281538,
+        "file_path": "test_outputs.py"
+      },
+      {
+        "name": "test_outputs.py::test_deliverable[acc_06_type]",
+        "status": "passed",
+        "duration": 0.031290366,
+        "start": 1787207086.281538,
+        "stop": 1787207086.312829,
+        "file_path": "test_outputs.py"
+      },
+      {
+        "name": "test_outputs.py::test_deliverable[acc_06_counts]",
+        "status": "passed",
+        "duration": 0.031290366,
+        "start": 1787207086.312829,
+        "stop": 1787207086.344119,
+        "file_path": "test_outputs.py"
+      },
+      {
+        "name": "test_outputs.py::test_deliverable[acc_06_escalation]",
+        "status": "passed",
+        "duration": 0.031290366,
+        "start": 1787207086.344119,
+        "stop": 1787207086.375409,
+        "file_path": "test_outputs.py"
+      },
+      {
+        "name": "test_outputs.py::test_deliverable[acc_07_type]",
+        "status": "passed",
+        "duration": 0.031290366,
+        "start": 1787207086.375409,
+        "stop": 1787207086.4067,
+        "file_path": "test_outputs.py"
+      },
+      {
+        "name": "test_outputs.py::test_deliverable[acc_07_counts]",
+        "status": "passed",
+        "duration": 0.031290366,
+        "start": 1787207086.4067,
+        "stop": 1787207086.43799,
+        "file_path": "test_outputs.py"
+      },
+      {
+        "name": "test_outputs.py::test_deliverable[acc_07_escalation]",
+        "status": "passed",
+        "duration": 0.031290366,
+        "start": 1787207086.43799,
+        "stop": 1787207086.46928,
+        "file_path": "test_outputs.py"
+      },
+      {
+        "name": "test_outputs.py::test_deliverable[acc_08_type]",
+        "status": "passed",
+        "duration": 0.031290366,
+        "start": 1787207086.46928,
+        "stop": 1787207086.500571,
+        "file_path": "test_outputs.py"
+      },
+      {
+        "name": "test_outputs.py::test_deliverable[acc_08_counts]",
+        "status": "passed",
+        "duration": 0.031290366,
+        "start": 1787207086.500571,
+        "stop": 1787207086.531861,
+        "file_path": "test_outputs.py"
+      },
+      {
+        "name": "test_outputs.py::test_deliverable[acc_08_escalation]",
+        "status": "passed",
+        "duration": 0.031290366,
+        "start": 1787207086.531861,
+        "stop": 1787207086.563152,
+        "file_path": "test_outputs.py"
+      },
+      {
+        "name": "test_outputs.py::test_deliverable[result_request_count]",
+        "status": "passed",
+        "duration": 0.031290366,
+        "start": 1787207086.563152,
+        "stop": 1787207086.594442,
+        "file_path": "test_outputs.py"
+      },
+      {
+        "name": "test_outputs.py::test_deliverable[result_account_count]",
+        "status": "passed",
+        "duration": 0.031290366,
+        "start": 1787207086.594442,
+        "stop": 1787207086.625732,
+        "file_path": "test_outputs.py"
+      },
+      {
+        "name": "test_outputs.py::test_deliverable[result_flagged_count]",
+        "status": "passed",
+        "duration": 0.031290366,
+        "start": 1787207086.625732,
+        "stop": 1787207086.657023,
+        "file_path": "test_outputs.py"
+      },
+      {
+        "name": "test_outputs.py::test_deliverable[result_compliant_count]",
+        "status": "passed",
+        "duration": 0.031290366,
+        "start": 1787207086.657023,
+        "stop": 1787207086.688313,
+        "file_path": "test_outputs.py"
+      },
+      {
+        "name": "test_outputs.py::test_deliverable[result_finding_total]",
+        "status": "passed",
+        "duration": 0.031290366,
+        "start": 1787207086.688313,
+        "stop": 1787207086.719604,
+        "file_path": "test_outputs.py"
+      },
+      {
+        "name": "test_outputs.py::test_deliverable[result_character_count]",
+        "status": "passed",
+        "duration": 0.031290366,
+        "start": 1787207086.719604,
+        "stop": 1787207086.750894,
+        "file_path": "test_outputs.py"
+      },
+      {
+        "name": "test_outputs.py::test_deliverable[result_background_count]",
+        "status": "passed",
+        "duration": 0.031290366,
+        "start": 1787207086.750894,
+        "stop": 1787207086.782184,
+        "file_path": "test_outputs.py"
+      },
+      {
+        "name": "test_outputs.py::test_deliverable[result_consent_count]",
+        "status": "passed",
+        "duration": 0.031290366,
+        "start": 1787207086.782184,
+        "stop": 1787207086.813475,
+        "file_path": "test_outputs.py"
+      },
+      {
+        "name": "test_outputs.py::test_deliverable[result_commercial_count]",
+        "status": "passed",
+        "duration": 0.031290366,
+        "start": 1787207086.813475,
+        "stop": 1787207086.844765,
+        "file_path": "test_outputs.py"
+      },
+      {
+        "name": "test_outputs.py::test_deliverable[result_disclosure_count]",
+        "status": "passed",
+        "duration": 0.031290366,
+        "start": 1787207086.844765,
+        "stop": 1787207086.876055,
+        "file_path": "test_outputs.py"
+      },
+      {
+        "name": "test_outputs.py::test_deliverable[result_escalated_accounts]",
+        "status": "passed",
+        "duration": 0.031290366,
+        "start": 1787207086.876055,
+        "stop": 1787207086.907346,
+        "file_path": "test_outputs.py"
+      },
+      {
+        "name": "test_outputs.py::test_deliverable[memo_cites_audit_date]",
+        "status": "passed",
+        "duration": 0.031290366,
+        "start": 1787207086.907346,
+        "stop": 1787207086.938636,
+        "file_path": "test_outputs.py"
+      },
+      {
+        "name": "test_outputs.py::test_deliverable[memo_covers_every_flagged_request]",
+        "status": "passed",
+        "duration": 0.031290366,
+        "start": 1787207086.938636,
+        "stop": 1787207086.969926,
+        "file_path": "test_outputs.py"
+      },
+      {
+        "name": "test_outputs.py::test_deliverable[memo_names_every_finding_code]",
+        "status": "passed",
+        "duration": 0.031290366,
+        "start": 1787207086.969926,
+        "stop": 1787207087.001217,
+        "file_path": "test_outputs.py"
+      },
+      {
+        "name": "test_outputs.py::test_deliverable[memo_names_allowance_requests]",
+        "status": "passed",
+        "duration": 0.031290366,
+        "start": 1787207087.001217,
+        "stop": 1787207087.032507,
+        "file_path": "test_outputs.py"
+      },
+      {
+        "name": "test_outputs.py::test_deliverable[memo_names_lapsed_accounts]",
+        "status": "passed",
+        "duration": 0.031290366,
+        "start": 1787207087.032507,
+        "stop": 1787207087.063797,
+        "file_path": "test_outputs.py"
+      },
+      {
+        "name": "test_outputs.py::test_deliverable[memo_names_escalated_accounts]",
+        "status": "passed",
+        "duration": 0.031290366,
+        "start": 1787207087.063797,
+        "stop": 1787207087.095088,
+        "file_path": "test_outputs.py"
+      },
+      {
+        "name": "test_outputs.py::test_deliverable[memo_cites_expired_licences]",
+        "status": "passed",
+        "duration": 0.031290366,
+        "start": 1787207087.095088,
+        "stop": 1787207087.126378,
+        "file_path": "test_outputs.py"
+      },
+      {
+        "name": "test_outputs.py::test_deliverable[memo_names_withdrawn_requests]",
+        "status": "passed",
+        "duration": 0.031290366,
+        "start": 1787207087.126378,
+        "stop": 1787207087.157669,
+        "file_path": "test_outputs.py"
+      },
+      {
+        "name": "test_outputs.py::test_deliverable[memo_states_batch_share]",
+        "status": "passed",
+        "duration": 0.031290366,
+        "start": 1787207087.157669,
+        "stop": 1787207087.188959,
+        "file_path": "test_outputs.py"
+      },
+      {
+        "name": "test_outputs.py::test_deliverable[memo_explains_limb1_escalation]",
+        "status": "passed",
+        "duration": 0.031290366,
+        "start": 1787207087.188959,
+        "stop": 1787207087.220249,
+        "file_path": "test_outputs.py"
+      },
+      {
+        "name": "test_outputs.py::test_deliverable[memo_explains_limb2_escalation]",
+        "status": "passed",
+        "duration": 0.031290366,
+        "start": 1787207087.220249,
+        "stop": 1787207087.25154,
+        "file_path": "test_outputs.py"
+      },
+      {
+        "name": "test_outputs.py::test_deliverable[memo_explains_equal_share_accounts]",
+        "status": "passed",
+        "duration": 0.031290366,
+        "start": 1787207087.25154,
+        "stop": 1787207087.28283,
+        "file_path": "test_outputs.py"
+      },
+      {
+        "name": "test_outputs.py::test_deliverable[memo_names_deciding_licence_per_request]",
+        "status": "passed",
+        "duration": 0.031290366,
+        "start": 1787207087.28283,
+        "stop": 1787207087.31412,
+        "file_path": "test_outputs.py"
+      },
+      {
+        "name": "test_outputs.py::test_deliverable[memo_names_deciding_agreement_per_request]",
+        "status": "passed",
+        "duration": 0.031290366,
+        "start": 1787207087.31412,
+        "stop": 1787207087.345411,
+        "file_path": "test_outputs.py"
+      },
+      {
+        "name": "test_outputs.py::test_deliverable[memo_names_deciding_consent_per_request]",
+        "status": "passed",
+        "duration": 0.031290366,
+        "start": 1787207087.345411,
+        "stop": 1787207087.376701,
+        "file_path": "test_outputs.py"
+      },
+      {
+        "name": "test_outputs.py::test_deliverable[memo_explains_allowance_scope]",
+        "status": "passed",
+        "duration": 0.031290366,
+        "start": 1787207087.376701,
+        "stop": 1787207087.407991,
+        "file_path": "test_outputs.py"
+      },
+      {
+        "name": "test_outputs.py::test_deliverable[memo_explains_lapsed_consequence]",
+        "status": "passed",
+        "duration": 0.031290366,
+        "start": 1787207087.407991,
+        "stop": 1787207087.439282,
+        "file_path": "test_outputs.py"
+      },
+      {
+        "name": "test_outputs.py::test_deliverable[memo_explains_withdrawn_reason]",
+        "status": "passed",
+        "duration": 0.031290366,
+        "start": 1787207087.439282,
+        "stop": 1787207087.470572,
+        "file_path": "test_outputs.py"
+      }
+    ]
+  }
+}

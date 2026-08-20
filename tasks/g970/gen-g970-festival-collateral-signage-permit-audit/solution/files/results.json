@@ -1,0 +1,13 @@
+{
+  "collateral_count": 60,
+  "zone_count": 8,
+  "permit_missing_count": 20,
+  "egress_obstructed_count": 8,
+  "oversize_count": 13,
+  "compliant_count": 21,
+  "flagged_count": 39,
+  "finding_total": 41,
+  "out_of_scope_count": 6,
+  "pulled_item_count": 20,
+  "zones_over_allowance": 3
+}

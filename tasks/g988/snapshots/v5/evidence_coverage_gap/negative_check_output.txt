@@ -1,0 +1,10 @@
+ORIGINAL SPEC, knowingly wrong answer (7 of 8 rows over-flagged,
+4 of 8 rows never checked):
+  13 / 13 verifiers pass   failures: none
+
+HARDENED SPEC, one wrong reading of the policy at a time:
+  never opens the licence register               14/32 rows wrong -> 51/80 verifiers pass
+  personal-use allowance as a general pardon      4/32 rows wrong -> 65/80 verifiers pass
+  validity dates read as exclusive                4/32 rows wrong -> 66/80 verifiers pass
+  routing cleared by account_type                 6/32 rows wrong -> 67/80 verifiers pass
+  disclosure skipped on a pre-cleared channel     1/32 rows wrong -> 77/80 verifiers pass

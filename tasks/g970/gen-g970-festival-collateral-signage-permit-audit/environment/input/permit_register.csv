@@ -1,0 +1,15 @@
+permit_no,holder,covers_zones,covers_item_types,valid_until,supersedes
+PMT-1001,Heritage Landing Festival Ltd,all,all,2026-12-31,none
+PMT-1002,Riverside Traders Assoc,ZN-02;ZN-03,installed_signage,2026-08-20,none
+PMT-1003,Main Stage Productions,ZN-04,all,2026-08-19,none
+PMT-1004,Craft Market Collective,ZN-02;ZN-03;ZN-05,all,2026-09-30,none
+PMT-1005,Craft Market Collective,ZN-03;ZN-05,all,2027-03-31,PMT-1004
+PMT-1006,Craft Market Collective,ZN-03,installed_signage,2027-06-30,PMT-1005
+PMT-1007,Food Court Vendors,ZN-06,all,2027-01-31,none
+PMT-1008,Food Court Vendors,ZN-06,all,2026-08-19,PMT-1007
+PMT-1009,Heritage Trust Signage,ZN-05,temporary_banner,2027-05-31,none
+PMT-1010,Gate Contractors,ZN-01,installed_signage,2027-02-28,none
+PMT-1011,Parking Services,ZN-07;ZN-08,installed_signage,2026-08-20,none
+PMT-1012,Volunteer Ops,ZN-08,temporary_banner,2027-04-30,none
+PMT-1013,Promenade Arts,ZN-02,temporary_banner,2027-07-31,none
+PMT-1014,Legacy Contractor,ZN-01;ZN-04,all,2026-08-21,none

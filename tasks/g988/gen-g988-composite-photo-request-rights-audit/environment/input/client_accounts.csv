@@ -1,0 +1,13 @@
+account_id,account_name,account_type,master_agreement_covers,agreement_status
+ACC-01,Harborview Family Portraits,consumer,none,active
+ACC-02,Lumen Studio Collective,studio_partner,social_public,active
+ACC-03,Meridian Press Agency,press_agency,social_public;print_for_sale,active
+ACC-04,Birchwood School Yearbook,studio_partner,social_public,lapsed
+ACC-05,Coastal Realty Media,press_agency,print_for_sale,active
+ACC-06,Nightjar Records,studio_partner,none,active
+ACC-07,Cedar Lane Weddings,consumer,none,active
+ACC-08,Ridgeway Sports Club,press_agency,social_public;print_for_sale,lapsed
+ACC-09,Vireo Brand Studio,studio_partner,social_public;print_for_sale,active
+ACC-10,Alder Street Portraits,consumer,none,active
+ACC-11,Kestrel Sports Media,press_agency,print_for_sale,lapsed
+ACC-12,Marlow Fan Collective,studio_partner,social_public,active

@@ -1,0 +1,8 @@
+item_id,item_type,permit_number_present,egress_obstructed,size_sqft
+COL-01,installed_signage,True,False,3.0
+COL-02,installed_signage,False,False,3.0
+COL-03,installed_signage,True,True,3.0
+COL-04,installed_signage,True,False,6.0
+COL-05,standalone_graphic,False,False,2.0
+COL-06,installed_signage,True,False,3.0
+COL-07,installed_signage,False,True,3.0

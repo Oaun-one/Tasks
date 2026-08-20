@@ -1,0 +1,3 @@
+press_id,press_name,min_effective_dpi,max_tac_pct,max_spot_colors
+PRESS-OFFSET-A,Heidelberg XL 106 sheetfed offset,300,300,2
+PRESS-DIGITAL-B,Indigo 12000 digital,250,280,0

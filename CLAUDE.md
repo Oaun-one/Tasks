@@ -174,10 +174,96 @@ is P(every check right). The two gaps were:
    `memo_names_unimposable_sections`, `memo_states_element_shortfall_total`,
    `memo_reports_clean_page_total`.
 
-**Rule of thumb: budget ~100 verifiers.** 54 was 5/5; 98 was 2/5. Not denominator gaming —
-every one of the 98 is a fact the prompt actually asked for, and the prompt has to ask for
-enough to carry them. If you cannot reach ~100 honest checks, the task is asking for too
-little, and *that* is what to fix.
+**~100 verifiers is NOT the lever — tested and refuted.** The follow-up build matched the
+shipped version on every axis above (36 pages, 8 sections, 4 deliverables, **98 verifiers**,
+15 memo checks) and added two couplings the shipped version does not have — an exemption
+that stops at the binding, and a section rule that reads the page audit — with Oracle 1.0
+and eleven misreadings each losing 5–41 verifiers. It still scored **5/5, zero exceptions**.
+Two batteries, 54 verifiers and 98 verifiers, both 5/5. Verifier count buys nothing on its own.
+
+**Re-run the shipped version yourself before trusting its pass rate.** Its 2/5 was measured on
+someone else's machine — `result.json` carries `/Users/naveenkatiyar/…` and
+`model_name: "glm/glm-5.2"`, not our `glmproxy/glm-5.2`. Re-run unchanged on this setup
+(Oracle 1.0, Trials 5 / Exceptions 0) it scored **4/5**. A pass rate from another trainer's
+environment is not evidence about yours.
+
+### What actually discriminates: proximity-scoped memo checks
+
+The one failing run in that re-run scored **95 of 98**. Exactly three verifiers went:
+
+    result_imposition_invalid_sections   expected 2   — a genuine reasoning slip
+    memo_explains_margin_exemption       PG-21 within 600 chars of "full-bleed … exempt"
+    memo_explains_press_dependent_pass   PG-06 within 600 chars of "250|PRESS-DIGITAL-B|digital"
+
+Both memo failures are **proximity-scoped**: they name one specific page and require one
+specific reason *near it*:
+
+    (?is)PG-21[\s\S]{0,600}?full[\s_-]?bleed[\s\S]{0,300}?(?:exempt|waive|not subject|…)
+    (?is)PG-06[\s\S]{0,600}?(?:\b250\b|PRESS-DIGITAL-B|digital)
+
+That is the whole difference. A memo check of the form *"does token X appear anywhere in the
+file"* is near-free — GLM writes a thorough memo and hits every token. A check of the form
+*"page P's explanation must actually be next to reason R"* discriminates, because it depends
+on how the model organised the memo, and a memo grouped by finding instead of by page misses
+it. Both the unrequested-fact checks I first suspected (`memo_reports_clean_page_total`,
+`memo_states_element_shortfall_total`) **passed** in this run — they are not the mechanism.
+
+**So: write memo verifiers page-scoped and reason-scoped.** For each trap in the fixture, pick
+the page that embodies it and require its id within ~600 chars of the reason:
+
+- the full-bleed page that is clean → near `exempt`
+- the full-bleed page that is *still* flagged → near the reason the exemption did not reach it
+- the page that fails on a derived value → near the scale/derivation that produced it
+- the page whose verdict flips on the superseded revision → near `revision`/`supersed`
+- the section whose imposition flips → near the rule that flipped it
+
+Keep them fair: the prompt must ask for that explanation, and the alternation must accept any
+reasonable wording (the reference's `exempt|excepted|excluded|waive|not subject|does not
+apply|not a finding|releases|cleared|intended` is a good template). Cap the window generously
+— 600 chars, not 100.
+
+### Follow-up on g988: fair proximity checks do NOT discriminate
+
+Tested to destruction on g988. Ten proximity memo checks, every one tied to an explicit
+ask in the prompt, plus a new §3 prominence cap (`character_px_area / canvas_px_area`
+against the **governing** licence's `max_character_area_pct` — four dead fixture columns
+finally made load-bearing, with a superseding row narrowing the cap 35% → 20%), plus §8
+tuned so the batch share is exactly 14/28 and **five accounts sit on the line**. Oracle
+1.0, gold 91/91, and every misreading caught (ignoring the cap −13 verifiers, named-row
+instead of governing −5, allowance-releases-the-cap −11).
+
+Result: **5/5.** All 91 verifiers, all five runs.
+
+The sequence on g988 is the whole lesson:
+
+| build | grading | result |
+|---|---|---|
+| v4 | proximity check one-directional, `not greater` but not `not strictly greater` | 3/5 |
+| v5 | same task, regex made bidirectional + wider wording | **4/5** |
+| v6 | + §3 cap, + 6 more proximity checks, + 5 accounts on the line | **5/5** |
+
+The v4 "3/5" was bought by a broken regex: the failing run wrote *"3 accounts land exactly
+on 50% (ACC-01, ACC-04, ACC-05) — not strictly greater, so they stay with intake"* and
+scored 0 on it. Perfect reasoning, failed on word order and one adverb.
+
+**So the rule is: a memo check discriminates only in proportion to how vaguely the prompt
+asks for the thing.** Grade a fact the prompt states plainly and GLM writes it. Grade a
+fact the prompt only implies and you are back to "verifiers for things the prompt never
+asked". There is no fair setting in between, and the shipped g774's 2/5 sat on the wrong
+side of that line.
+
+**Measured so far on this task family** (all Trials 5 / Exceptions 0, Oracle 1.0):
+
+| build | pages | verifiers | coupling | pass rate |
+|---|---|---|---|---|
+| mine v1 | 30 | 54 | high | 5/5 |
+| mine v2 | 36 | 98 | higher than shipped | 5/5 |
+| shipped version, unchanged | 36 | 98 | moderate | **4/5** |
+
+Nothing structural moved it. Only the memo-proximity checks produced a failure, and even then
+only one run in five. Expect this family to sit at 4/5–5/5, and be ready for the honest
+outcome — **mark it too easy and keep the row** — rather than buying a band with verifiers the
+prompt never asked for.
 
 **Per-page verdicts must be exact-set, not presence-only.** Assert every required code present
 **and** every other code absent. The mined g774 grader asserted presence only on 4 of 6 pages and

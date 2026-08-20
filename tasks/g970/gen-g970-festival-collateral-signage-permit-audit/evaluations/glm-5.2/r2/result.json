@@ -1,0 +1,154 @@
+{
+  "id": "1bf8a6c5-5194-4f57-9d8a-5d4e91ad1ebe",
+  "task_name": "obi/gen-g970-festival-collateral-signage-permit-audit",
+  "trial_name": "gen-g970-festival-collateral-sig__BP2WnMY",
+  "trial_uri": "file:///<task-path>s-g970/glm-5x-hardened-v4b/gen-g970-festival-collateral-sig__BP2WnMY",
+  "task_id": {
+    "path": "<task-path>sk_6_gen-g970-festival-collateral-signage-permit-audit\\gen-g970-festival-collateral-signage-permit-audit"
+  },
+  "source": null,
+  "task_checksum": "2d006c35d737b5c734459ee4d72dc63e4c6358586745cd23a267a954a2f4e1bb",
+  "config": {
+    "task": {
+      "path": "<task-path>sk_6_gen-g970-festival-collateral-signage-permit-audit\\gen-g970-festival-collateral-signage-permit-audit",
+      "git_url": null,
+      "git_commit_id": null,
+      "name": null,
+      "ref": null,
+      "overwrite": false,
+      "download_dir": null,
+      "source": null
+    },
+    "trial_name": "gen-g970-festival-collateral-sig__BP2WnMY",
+    "trials_dir": "<task-path>s-g970\\glm-5x-hardened-v4b",
+    "install_only": false,
+    "timeout_multiplier": 1.0,
+    "agent_timeout_multiplier": null,
+    "verifier_timeout_multiplier": null,
+    "agent_setup_timeout_multiplier": 3.0,
+    "environment_build_timeout_multiplier": null,
+    "agent": {
+      "name": "opencode",
+      "import_path": null,
+      "model_name": "glmproxy/glm-5.2",
+      "n_concurrent": null,
+      "concurrency_group": null,
+      "skills": [],
+      "override_timeout_sec": null,
+      "override_setup_timeout_sec": null,
+      "max_timeout_sec": null,
+      "resume_trajectory": false,
+      "load_trajectory": null,
+      "extra_allowed_hosts": [],
+      "kwargs": {
+        "opencode_config": {
+          "provider": {
+            "glmproxy": {
+              "npm": "@ai-sdk/openai-compatible",
+              "name": "GLM via LiteLLM",
+              "options": {
+                "baseURL": "{env:OPENAI_BASE_URL}",
+                "apiKey": "{env:OPENAI_API_KEY}"
+              },
+              "models": {
+                "glm-5.2": {
+                  "name": "GLM 5.2",
+                  "options": {
+                    "max_tokens": 96000
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "env": {
+        "OPENAI_API_KEY": "${OPENAI_API_KEY}",
+        "OPENAI_BASE_URL": "<openai-base-url>"
+      },
+      "mcp_servers": []
+    },
+    "environment": {
+      "type": "docker",
+      "import_path": null,
+      "force_build": false,
+      "delete": true,
+      "cpu_enforcement_policy": "auto",
+      "memory_enforcement_policy": "auto",
+      "override_cpus": null,
+      "override_memory_mb": null,
+      "override_storage_mb": null,
+      "override_gpus": null,
+      "override_tpu": null,
+      "mounts": null,
+      "extra_docker_compose": [],
+      "kwargs": {},
+      "extra_allowed_hosts": []
+    },
+    "verifier": {
+      "override_timeout_sec": null,
+      "max_timeout_sec": null,
+      "env": {
+        "OPENAI_API_KEY": "${OPENAI_API_KEY}",
+        "OPENAI_BASE_URL": "<openai-base-url>",
+        "JUDGE_MODEL": "openai/glm-5.2"
+      },
+      "disable": false
+    },
+    "artifacts": [],
+    "extra_instruction_paths": [],
+    "job_id": "71819ea1-db71-4ac1-8f5a-6b07ffc56c79",
+    "source_trial": null
+  },
+  "agent_info": {
+    "name": "opencode",
+    "version": "1.18.19",
+    "model_info": {
+      "name": "glm-5.2",
+      "provider": "glmproxy"
+    }
+  },
+  "agent_result": {
+    "n_input_tokens": 269635,
+    "n_cache_tokens": 215680,
+    "n_output_tokens": 5575,
+    "cost_usd": null,
+    "rollout_details": null,
+    "metadata": null
+  },
+  "verifier_result": {
+    "rewards": {
+      "reward": 1.0
+    }
+  },
+  "verifier_environment_mode": "shared",
+  "exception_info": null,
+  "started_at": "2026-08-20T13:03:20.702940Z",
+  "finished_at": "2026-08-20T13:13:26.715747Z",
+  "environment_setup": {
+    "started_at": "2026-08-20T13:03:21.296634Z",
+    "finished_at": "2026-08-20T13:03:28.142623Z"
+  },
+  "agent_setup": {
+    "started_at": "2026-08-20T13:03:28.142645Z",
+    "finished_at": "2026-08-20T13:08:26.465896Z"
+  },
+  "agent_execution": {
+    "started_at": "2026-08-20T13:08:26.465990Z",
+    "finished_at": "2026-08-20T13:13:19.834487Z"
+  },
+  "verifier": {
+    "started_at": "2026-08-20T13:13:19.837657Z",
+    "finished_at": "2026-08-20T13:13:24.765136Z"
+  },
+  "step_results": null,
+  "model": "GLM-5.2",
+  "reward": 1.0,
+  "overall_pass": true,
+  "final_answer": "All four deliverables are written and verified in `/app`:\n\n- **`collateral_audit.csv`** \u2014 60 in-scope items, columns `item_id,finding` (findings `|`-joined; clean items `none`).\n- **`zone_summary.csv`** \u2014 8 zones with the six required columns; `ZONE_ALLOWANCE_BREACH` on ZN-03, ZN-07, ZN-08, else `none`.\n- **`collateral_memo.md`** \u2014 memo to the safety office (review as of 2026-08-20; out-of-scope items; every flagged item with its deciding record; cleared items; zones over allowance; heightened inspection).\n- **`results.json`** \u2014 the eleven \u00a77 figures, all JSON numbers.\n\nKey results:\n- 60 in-scope audited (6 out of scope: 4 `standalone_graphic`, 2 `vehicle_wrap`).\n- 20 `PERMIT_NUMBER_MISSING` (pulled), 8 `EGRESS_MARKER_OBSTRUCTED`, 13 `OVERSIZE_COLLATERAL`; 21 compliant, 39 flagged, 41 findings total.\n- Three zones breach \u00a75 (ZN-03 50.5/40.0, ZN-07 93.5/90.0, ZN-08 48.0/45.0) \u2192 **heightened inspection in force**, tightening the \u00a74 cap by 1 sq ft in those zones and adding five oversize findings (COL-15, COL-16, COL-42, COL-48, COL-50).\n\nThe main traps the standard warns about: scope is read off type, not numbers (the six out-of-scope items); the governing permit follows the supersession chain (PMT-1004\u21921005\u21921006 narrows to ZN-03; PMT-1008 expires PMT-1007); and `valid_until` 2026-08-20 is still current while 2026-08-19 is not.",
+  "judge_provenance": {
+    "judged_verifiers": 0,
+    "judge_model": null,
+    "note": "All verifiers in tests/verifier.json are deterministic; no LLM judge is invoked."
+  }
+}

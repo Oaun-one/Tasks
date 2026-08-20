@@ -1,5 +1,0 @@
-installed gold deliverables into /app:
-fairhousing_audit.csv
-fairhousing_memo.md
-input
-results.json

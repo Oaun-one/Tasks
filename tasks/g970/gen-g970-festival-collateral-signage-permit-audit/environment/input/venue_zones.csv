@@ -1,0 +1,9 @@
+zone_id,zone_name,min_egress_clearance_ft,max_item_sqft,aggregate_allowance_sqft,permit_authority
+ZN-01,Main Gate Approach,6.0,12.0,60.0,City Fire Marshal
+ZN-02,Riverside Promenade,4.0,16.0,80.0,Parks Authority
+ZN-03,Craft Market Row,4.0,8.0,40.0,Parks Authority
+ZN-04,Main Stage Apron,8.0,10.0,50.0,City Fire Marshal
+ZN-05,Heritage Courtyard,5.0,6.0,30.0,Heritage Trust
+ZN-06,Food Court,6.0,14.0,70.0,City Fire Marshal
+ZN-07,North Car Park,3.0,20.0,90.0,Parks Authority
+ZN-08,Volunteer Compound,3.0,10.0,45.0,Parks Authority

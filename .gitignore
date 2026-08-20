@@ -1,4 +1,16 @@
+# harbor output — large and regenerable
+runs/
+jobs-*/
+
+# build artefacts
+**/__pycache__/
+**/.pytest_cache/
+*.pyc
+
+# packaged bundles — rebuild with tools/common/zip_package.py
+*_FINAL.zip
+*.zip
+
+# secrets and local state
 .env
-jobs/
-evaluations/
-qc_reports/
+.env.*

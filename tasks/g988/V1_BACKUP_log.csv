@@ -1,0 +1,33 @@
+request_id,account_id,request_title,character_property,character_license_id,background_source,background_license_id,intended_distribution,subject_is_minor,minor_consent_type,minor_consent_valid_until,alteration_level,alteration_disclosure_on_file
+REQ-01,ACC-01,Birthday Composite,Captain Marlow,LIC-101,customer_original,none,personal_only,False,none,none,cosmetic,False
+REQ-02,ACC-01,Anniversary Card,Nimbus the Cat,LIC-102,customer_original,none,social_public,False,none,none,none,False
+REQ-03,ACC-01,Nursery Portrait,none,none,customer_original,none,personal_only,True,basic,2026-08-31,cosmetic,False
+REQ-04,ACC-01,Beach Day Montage,none,none,third_party_unlicensed,none,personal_only,False,none,none,none,False
+REQ-05,ACC-02,Autumn Campaign Key Art,Rook and Raven,LIC-103,third_party_licensed,LIC-106,social_public,True,basic,2027-01-31,substantive,False
+REQ-06,ACC-02,Founder Feature Banner,Captain Marlow,LIC-101,customer_original,none,social_public,False,none,none,substantive,True
+REQ-07,ACC-02,Team Offsite Recap,none,none,customer_original,none,client_internal,False,none,none,substantive,False
+REQ-08,ACC-02,Studio Reel Still,none,none,third_party_licensed,LIC-107,social_public,False,none,none,none,False
+REQ-09,ACC-03,Cover Story Composite,Ember Knight,LIC-104,customer_original,none,print_for_sale,False,none,none,none,False
+REQ-10,ACC-03,Weekend Edition Teaser,Ember Knight,LIC-104,third_party_licensed,LIC-108,social_public,False,none,none,none,False
+REQ-11,ACC-03,Youth League Feature,none,none,customer_original,none,print_for_sale,True,publicity,2026-03-31,cosmetic,False
+REQ-12,ACC-03,Newsroom Style Guide Plate,none,none,customer_original,none,client_internal,True,basic,2026-09-30,none,False
+REQ-13,ACC-04,Yearbook Promo Post,none,none,customer_original,none,social_public,True,publicity,2026-05-31,none,False
+REQ-14,ACC-04,Class Print Order,none,none,customer_original,none,print_for_sale,True,basic,2026-12-31,cosmetic,False
+REQ-15,ACC-04,Keepsake Collage,none,none,customer_original,none,personal_only,True,publicity,2026-01-31,none,False
+REQ-16,ACC-04,Staff Portrait Cleanup,none,none,customer_original,none,personal_only,False,none,none,none,False
+REQ-17,ACC-05,Listing Hero Image,Nimbus the Cat,LIC-102,customer_original,none,print_for_sale,False,none,none,none,False
+REQ-18,ACC-05,Quarry View Brochure,none,none,third_party_licensed,LIC-105,print_for_sale,False,none,none,substantive,True
+REQ-19,ACC-05,Ridge Panorama Insert,none,none,third_party_licensed,LIC-106,personal_only,False,none,none,none,False
+REQ-20,ACC-05,Agent Profile Post,none,none,customer_original,none,social_public,False,none,none,cosmetic,False
+REQ-21,ACC-06,Label Intranet Header,Captain Marlow,LIC-101,customer_original,none,client_internal,False,none,none,none,False
+REQ-22,ACC-06,Artist Fan Gift,Captain Marlow,LIC-101,customer_original,none,personal_only,False,none,none,none,False
+REQ-23,ACC-06,Tour Poster Backdrop,none,none,third_party_unlicensed,LIC-107,print_for_sale,False,none,none,substantive,False
+REQ-24,ACC-06,Family Day Keepsake,none,none,customer_original,none,personal_only,True,publicity,2028-01-01,substantive,False
+REQ-25,ACC-07,Ceremony Retouch,none,none,customer_original,none,personal_only,False,none,none,cosmetic,False
+REQ-26,ACC-07,Reception Group Fix,none,none,customer_original,none,personal_only,False,none,none,substantive,False
+REQ-27,ACC-07,Engagement Announcement,Nimbus the Cat,LIC-102,customer_original,none,social_public,False,none,none,none,False
+REQ-28,ACC-07,Venue Plate Composite,none,none,third_party_licensed,LIC-105,personal_only,True,basic,2026-03-31,none,False
+REQ-29,ACC-08,Match Day Highlight,none,none,customer_original,none,social_public,True,publicity,2027-03-31,substantive,True
+REQ-30,ACC-08,Season Poster,Ember Knight,LIC-104,third_party_licensed,LIC-107,print_for_sale,False,none,none,substantive,False
+REQ-31,ACC-08,Committee Briefing Slide,none,none,customer_original,none,client_internal,False,none,none,none,False
+REQ-32,ACC-08,Junior Squad Keepsake,Rook and Raven,LIC-103,customer_original,none,personal_only,True,none,none,cosmetic,False

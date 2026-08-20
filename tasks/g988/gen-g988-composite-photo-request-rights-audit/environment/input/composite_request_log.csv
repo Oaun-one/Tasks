@@ -1,0 +1,71 @@
+request_id,intake_status,account_id,request_title,character_property,character_license_id,character_px_area,canvas_px_area,background_source,background_license_id,intended_distribution,subject_is_minor,minor_consent_type,minor_consent_valid_until,alteration_level,alteration_disclosure_on_file
+REQ-01,active,ACC-01,Birthday Composite,Captain Marlow,LIC-101,612000,1700000,customer_original,none,personal_only,False,none,none,cosmetic,False
+REQ-02,active,ACC-01,Anniversary Card,Nimbus the Cat,LIC-102,240000,1000000,customer_original,none,social_public,False,none,none,none,False
+REQ-03,active,ACC-01,Nursery Portrait,none,none,none,none,customer_original,none,personal_only,True,basic,2026-08-31,cosmetic,False
+REQ-04,active,ACC-01,Beach Day Montage,none,none,none,none,third_party_unlicensed,none,personal_only,False,none,none,none,False
+REQ-05,active,ACC-02,Autumn Campaign Key Art,Rook and Raven,LIC-103,287000,1000000,third_party_licensed,LIC-106,social_public,True,basic,2027-01-31,substantive,True
+REQ-06,active,ACC-02,Founder Feature Banner,Captain Marlow,LIC-101,300000,1000000,customer_original,none,social_public,False,none,none,substantive,False
+REQ-07,active,ACC-02,Team Offsite Recap,none,none,none,none,customer_original,none,client_internal,False,none,none,substantive,False
+REQ-08,active,ACC-02,Studio Reel Still,none,none,none,none,third_party_licensed,LIC-107,social_public,False,none,none,none,False
+REQ-09,active,ACC-03,Cover Story Composite,Ember Knight,LIC-104,415000,1000000,customer_original,none,print_for_sale,False,none,none,none,False
+REQ-10,active,ACC-03,Weekend Edition Teaser,Ember Knight,LIC-104,486000,1200000,third_party_licensed,LIC-108,social_public,False,none,none,substantive,False
+REQ-11,active,ACC-03,Youth League Feature,none,none,none,none,customer_original,none,print_for_sale,True,publicity,2026-03-31,cosmetic,False
+REQ-12,active,ACC-03,Newsroom Style Guide Plate,none,none,none,none,customer_original,none,client_internal,True,basic,2026-09-30,none,False
+REQ-13,withdrawn,ACC-04,Yearbook Promo Post,none,none,none,none,customer_original,none,social_public,True,publicity,2026-05-31,none,False
+REQ-14,active,ACC-04,Class Print Order,none,none,none,none,customer_original,none,print_for_sale,True,basic,2026-12-31,cosmetic,False
+REQ-15,active,ACC-04,Keepsake Collage,none,none,none,none,customer_original,none,personal_only,True,publicity,2027-01-31,none,False
+REQ-16,withdrawn,ACC-04,Staff Portrait Cleanup,none,none,none,none,customer_original,none,personal_only,False,none,none,none,False
+REQ-17,active,ACC-05,Listing Hero Image,Nimbus the Cat,LIC-102,532000,1400000,customer_original,none,print_for_sale,False,none,none,none,False
+REQ-18,active,ACC-05,Quarry View Brochure,none,none,none,none,third_party_licensed,LIC-105,print_for_sale,False,none,none,substantive,True
+REQ-19,active,ACC-05,Ridge Panorama Insert,none,none,none,none,customer_original,none,personal_only,False,none,none,none,False
+REQ-20,active,ACC-05,Agent Profile Post,none,none,none,none,customer_original,none,social_public,False,none,none,cosmetic,False
+REQ-21,active,ACC-06,Label Intranet Header,Captain Marlow,LIC-101,900000,1500000,customer_original,none,client_internal,False,none,none,none,False
+REQ-22,active,ACC-06,Artist Fan Gift,Captain Marlow,LIC-101,704000,1600000,customer_original,none,personal_only,False,none,none,none,False
+REQ-23,active,ACC-06,Tour Poster Backdrop,none,none,none,none,third_party_unlicensed,LIC-107,print_for_sale,False,none,none,substantive,True
+REQ-24,active,ACC-06,Family Day Keepsake,none,none,none,none,customer_original,none,personal_only,True,publicity,2028-01-01,substantive,False
+REQ-25,active,ACC-07,Ceremony Retouch,none,none,none,none,customer_original,none,personal_only,False,none,none,cosmetic,False
+REQ-26,withdrawn,ACC-07,Reception Group Fix,none,none,none,none,customer_original,none,personal_only,False,none,none,substantive,False
+REQ-27,active,ACC-07,Engagement Announcement,Nimbus the Cat,LIC-102,251000,1000000,customer_original,none,social_public,False,none,none,none,False
+REQ-28,active,ACC-07,Venue Plate Composite,none,none,none,none,third_party_licensed,LIC-105,personal_only,True,basic,2026-03-31,none,False
+REQ-29,active,ACC-08,Match Day Highlight,none,none,none,none,customer_original,none,client_internal,True,publicity,2027-03-31,substantive,True
+REQ-30,active,ACC-08,Season Poster,Ember Knight,LIC-104,546000,1300000,third_party_licensed,LIC-107,print_for_sale,False,none,none,substantive,False
+REQ-31,withdrawn,ACC-08,Committee Briefing Slide,none,none,none,none,customer_original,none,client_internal,False,none,none,none,False
+REQ-32,active,ACC-08,Junior Squad Keepsake,Rook and Raven,LIC-103,825000,1500000,customer_original,none,personal_only,True,none,none,cosmetic,False
+REQ-33,active,ACC-09,Automata Launch Key Art,Verdant Automata,LIC-111,220000,1000000,customer_original,none,social_public,False,none,none,none,False
+REQ-34,active,ACC-09,Automata Retail Poster,Verdant Automata,LIC-111,210000,1000000,customer_original,none,print_for_sale,False,none,none,none,False
+REQ-35,active,ACC-09,Automata Teaser Tile,Verdant Automata,LIC-112,221000,1000000,customer_original,none,social_public,False,none,none,substantive,True
+REQ-36,active,ACC-09,Dockside Editorial,none,none,0,1000000,third_party_licensed,LIC-114,print_for_sale,False,none,none,none,False
+REQ-37,active,ACC-09,Dockside Internal Deck,none,none,0,1000000,third_party_licensed,LIC-114,client_internal,False,none,none,none,False
+REQ-38,withdrawn,ACC-09,Automata Sizzle Frame,Verdant Automata,LIC-113,500000,1000000,third_party_unlicensed,none,social_public,True,none,none,substantive,False
+REQ-39,active,ACC-10,Family Fox Portrait,Pockets the Fox,LIC-117,600000,1000000,customer_original,none,personal_only,False,none,none,none,False
+REQ-40,active,ACC-10,Nursery Fox Print,Pockets the Fox,LIC-117,350000,1000000,customer_original,none,social_public,False,none,none,none,False
+REQ-41,active,ACC-10,Grandparents Keepsake,Pockets the Fox,LIC-117,800000,1000000,customer_original,none,personal_only,True,basic,2027-06-30,none,False
+REQ-42,active,ACC-10,School Gate Montage,none,none,0,1000000,customer_original,none,social_public,True,basic,2027-06-30,none,False
+REQ-43,active,ACC-11,Match Report Composite,none,none,0,1000000,third_party_licensed,LIC-118,print_for_sale,False,none,none,none,False
+REQ-44,active,ACC-11,Terrace Panorama,none,none,0,1000000,third_party_licensed,LIC-118,social_public,False,none,none,substantive,True
+REQ-45,active,ACC-11,Youth Cup Feature,none,none,0,1000000,customer_original,none,print_for_sale,True,publicity,2026-03-31,none,False
+REQ-46,active,ACC-11,Squad Internal Sheet,none,none,0,1000000,customer_original,none,client_internal,False,none,none,substantive,False
+REQ-47,withdrawn,ACC-11,Sponsor Board Mock,none,none,0,1000000,third_party_unlicensed,none,print_for_sale,False,none,none,none,False
+REQ-48,active,ACC-12,Marlow Anniversary Tile,Captain Marlow,LIC-101,300000,1000000,customer_original,none,social_public,False,none,none,none,False
+REQ-49,active,ACC-12,Marlow Banner Wide,Captain Marlow,LIC-101,301000,1000000,customer_original,none,social_public,False,none,none,none,False
+REQ-50,active,ACC-12,Marlow Merch Sheet,Captain Marlow,LIC-101,250000,1000000,customer_original,none,print_for_sale,False,none,none,substantive,False
+REQ-51,active,ACC-12,Fan Meetup Backdrop,none,none,0,1000000,third_party_licensed,LIC-115,social_public,False,none,none,none,False
+REQ-52,active,ACC-01,Garden Party Collage,none,none,0,1000000,customer_original,none,personal_only,False,none,none,none,False
+REQ-53,active,ACC-01,Christening Print,none,none,0,1000000,customer_original,none,social_public,True,publicity,2026-03-30,none,False
+REQ-54,active,ACC-02,Studio Reel Cover,Verdant Automata,LIC-112,300000,1000000,customer_original,none,social_public,False,none,none,none,False
+REQ-55,active,ACC-02,Brand Deck Plate,none,none,0,1000000,third_party_licensed,LIC-116,client_internal,False,none,none,none,False
+REQ-56,active,ACC-03,Weekend Long Read,none,none,0,1000000,third_party_licensed,LIC-118,print_for_sale,False,none,none,none,False
+REQ-57,active,ACC-03,Newsroom Fox Sidebar,Pockets the Fox,LIC-117,351000,1000000,customer_original,none,social_public,False,none,none,none,False
+REQ-58,withdrawn,ACC-03,Spiked Feature Art,none,none,0,1000000,third_party_unlicensed,none,social_public,False,none,none,none,False
+REQ-59,active,ACC-04,Yearbook Spread,none,none,0,1000000,customer_original,none,client_internal,True,basic,2026-03-31,none,False
+REQ-60,active,ACC-05,Quarry Listing Wide,none,none,0,1000000,third_party_licensed,LIC-114,print_for_sale,False,none,none,none,False
+REQ-61,active,ACC-05,Agent Portrait Plate,none,none,0,1000000,customer_original,none,client_internal,False,none,none,substantive,False
+REQ-62,active,ACC-06,Label Poster Reissue,Verdant Automata,LIC-111,219000,1000000,customer_original,none,social_public,False,none,none,none,False
+REQ-63,active,ACC-06,Tour Internal Brief,none,none,0,1000000,third_party_licensed,LIC-116,client_internal,False,none,none,none,False
+REQ-64,active,ACC-07,Reception Collage,none,none,0,1000000,customer_original,none,personal_only,False,none,none,substantive,False
+REQ-65,active,ACC-07,Save The Date Card,Nimbus the Cat,LIC-102,240000,1000000,customer_original,none,social_public,False,none,none,none,False
+REQ-66,active,ACC-08,Season Ticket Art,none,none,0,1000000,third_party_licensed,LIC-118,print_for_sale,False,none,none,none,False
+REQ-67,active,ACC-08,Junior Team Sheet,none,none,0,1000000,customer_original,none,client_internal,True,basic,2027-01-31,none,False
+REQ-68,active,ACC-04,Prize Day Montage,Captain Marlow,LIC-101,299000,1000000,customer_original,none,social_public,False,none,none,none,False
+REQ-69,active,ACC-12,Marlow Print Run,Captain Marlow,LIC-101,200000,1000000,third_party_licensed,LIC-115,print_for_sale,False,none,none,none,False
+REQ-70,withdrawn,ACC-10,Cancelled Pet Portrait,Pockets the Fox,LIC-117,400000,1000000,customer_original,none,social_public,False,none,none,none,False

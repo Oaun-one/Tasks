@@ -1,0 +1,380 @@
+{
+  "task_id": "gen-G970-festival-collateral-signage-permit-audit",
+  "verifiers": [
+    {
+      "name": "audit_exists",
+      "metadata": {
+        "how_justification": "Checks collateral_audit.csv is present as a file in the workspace.",
+        "why_justification": "Collateral audit delivered."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "filesystem",
+          "command": "check_path_exists",
+          "arguments": {
+            "path": "collateral_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": true,
+        "deterministic": {
+          "path": "$.is_file",
+          "comparison": "equals"
+        }
+      }
+    },
+    {
+      "name": "memo_exists",
+      "metadata": {
+        "how_justification": "Checks collateral_memo.md is present as a file in the workspace.",
+        "why_justification": "Collateral memo delivered."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "filesystem",
+          "command": "check_path_exists",
+          "arguments": {
+            "path": "collateral_memo.md"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": true,
+        "deterministic": {
+          "path": "$.is_file",
+          "comparison": "equals"
+        }
+      }
+    },
+    {
+      "name": "permit_flagged",
+      "metadata": {
+        "how_justification": "Opens collateral_audit.csv with csv.extract_text and applies regex_match.",
+        "why_justification": "COL-02's missing permit number is flagged."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "collateral_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?mi)^\\x22?COL\\-02\\x22?\\s*,.*PERMIT_NUMBER_MISSING",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "egress_flagged",
+      "metadata": {
+        "how_justification": "Opens collateral_audit.csv with csv.extract_text and applies regex_match.",
+        "why_justification": "COL-03's egress obstruction is flagged."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "collateral_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?mi)^\\x22?COL\\-03\\x22?\\s*,.*EGRESS_MARKER_OBSTRUCTED",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "oversize_flagged",
+      "metadata": {
+        "how_justification": "Opens collateral_audit.csv with csv.extract_text and applies regex_match.",
+        "why_justification": "COL-04's oversize is flagged."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "collateral_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?mi)^\\x22?COL\\-04\\x22?\\s*,.*OVERSIZE_COLLATERAL",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "trap_clean",
+      "metadata": {
+        "how_justification": "Opens collateral_audit.csv with csv.extract_text and applies regex_match.",
+        "why_justification": "COL-05's standalone-graphic scope reads none."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "collateral_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?mi)^\\x22?COL\\-05\\x22?\\s*,.*none",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "both_flagged",
+      "metadata": {
+        "how_justification": "Opens collateral_audit.csv with csv.extract_text and applies regex_match.",
+        "why_justification": "COL-07 carries both permit and egress findings."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "collateral_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?mi)^\\x22?COL\\-07\\x22?\\s*,.*PERMIT_NUMBER_MISSING\\|EGRESS_MARKER_OBSTRUCTED",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "memo_scope",
+      "metadata": {
+        "how_justification": "Opens collateral_memo.md with md.extract_text and applies regex_match.",
+        "why_justification": "Memo ties the exemption to the standalone-graphic scope."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "md",
+          "command": "extract_text",
+          "arguments": {
+            "path": "collateral_memo.md"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?is)\\bstandalone\\w*\\b.*\\binstalled",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "memo_egress",
+      "metadata": {
+        "how_justification": "Opens collateral_memo.md with md.extract_text and applies regex_match.",
+        "why_justification": "Memo covers the egress-marker finding."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "md",
+          "command": "extract_text",
+          "arguments": {
+            "path": "collateral_memo.md"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?is)\\begress\\w*\\b.*\\bmarker",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "results_exists",
+      "metadata": {
+        "how_justification": "Checks results.json is present as a file in the workspace.",
+        "why_justification": "Derived figures delivered."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "filesystem",
+          "command": "check_path_exists",
+          "arguments": {
+            "path": "results.json"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": true,
+        "deterministic": {
+          "path": "$.is_file",
+          "comparison": "equals"
+        }
+      }
+    },
+    {
+      "name": "result_collateral_count",
+      "metadata": {
+        "how_justification": "Reads results.json with json.read_file and compares $.collateral_count.",
+        "why_justification": "Derived figure `collateral_count`, recomputed from the delivered artifacts."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "json",
+          "command": "read_file",
+          "arguments": {
+            "path": "results.json"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": 7,
+        "deterministic": {
+          "path": "$.collateral_count",
+          "comparison": "equals"
+        }
+      }
+    },
+    {
+      "name": "result_permit_missing_count",
+      "metadata": {
+        "how_justification": "Reads results.json with json.read_file and compares $.permit_missing_count.",
+        "why_justification": "Derived figure `permit_missing_count`, recomputed from the delivered artifacts."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "json",
+          "command": "read_file",
+          "arguments": {
+            "path": "results.json"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": 2,
+        "deterministic": {
+          "path": "$.permit_missing_count",
+          "comparison": "equals"
+        }
+      }
+    },
+    {
+      "name": "result_egress_obstructed_count",
+      "metadata": {
+        "how_justification": "Reads results.json with json.read_file and compares $.egress_obstructed_count.",
+        "why_justification": "Derived figure `egress_obstructed_count`, recomputed from the delivered artifacts."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "json",
+          "command": "read_file",
+          "arguments": {
+            "path": "results.json"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": 2,
+        "deterministic": {
+          "path": "$.egress_obstructed_count",
+          "comparison": "equals"
+        }
+      }
+    },
+    {
+      "name": "result_oversize_count",
+      "metadata": {
+        "how_justification": "Reads results.json with json.read_file and compares $.oversize_count.",
+        "why_justification": "Derived figure `oversize_count`, recomputed from the delivered artifacts."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "json",
+          "command": "read_file",
+          "arguments": {
+            "path": "results.json"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": 1,
+        "deterministic": {
+          "path": "$.oversize_count",
+          "comparison": "equals"
+        }
+      }
+    },
+    {
+      "name": "result_compliant_count",
+      "metadata": {
+        "how_justification": "Reads results.json with json.read_file and compares $.compliant_count.",
+        "why_justification": "Derived figure `compliant_count`, recomputed from the delivered artifacts."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "json",
+          "command": "read_file",
+          "arguments": {
+            "path": "results.json"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": 3,
+        "deterministic": {
+          "path": "$.compliant_count",
+          "comparison": "equals"
+        }
+      }
+    }
+  ]
+}

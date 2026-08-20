@@ -1,0 +1,46 @@
+{
+    "task": {
+        "path": "<task-path>sk_3_gen-g988-composite-photo-request-rights-audit-20260819T194448Z-1-001\\gen-g988-composite-photo-request-rights-audit"
+    },
+    "trial_name": "gen-g988-composite-photo-request__qAWjJus",
+    "trials_dir": "<task-path>s-g988\\glm-5x-v7c-shipping",
+    "agent_setup_timeout_multiplier": 3.0,
+    "agent": {
+        "name": "opencode",
+        "model_name": "glmproxy/glm-5.2",
+        "kwargs": {
+            "opencode_config": {
+                "provider": {
+                    "glmproxy": {
+                        "npm": "@ai-sdk/openai-compatible",
+                        "name": "GLM via LiteLLM",
+                        "options": {
+                            "baseURL": "{env:OPENAI_BASE_URL}",
+                            "apiKey": "{env:OPENAI_API_KEY}"
+                        },
+                        "models": {
+                            "glm-5.2": {
+                                "name": "GLM 5.2",
+                                "options": {
+                                    "max_tokens": 96000
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "env": {
+            "OPENAI_API_KEY": "${OPENAI_API_KEY}",
+            "OPENAI_BASE_URL": "<openai-base-url>"
+        }
+    },
+    "verifier": {
+        "env": {
+            "OPENAI_API_KEY": "${OPENAI_API_KEY}",
+            "OPENAI_BASE_URL": "<openai-base-url>",
+            "JUDGE_MODEL": "openai/glm-5.2"
+        }
+    },
+    "job_id": "83a19cfd-f559-4a48-bd42-1d162db2b721"
+}

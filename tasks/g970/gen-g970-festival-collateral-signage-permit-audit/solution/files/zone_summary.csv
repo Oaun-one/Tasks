@@ -1,0 +1,9 @@
+zone_id,item_count,pulled_count,standing_area_sqft,aggregate_allowance_sqft,allowance
+ZN-01,7,3,45.5,60.0,none
+ZN-02,9,4,77.5,80.0,none
+ZN-03,9,2,50.5,40.0,ZONE_ALLOWANCE_BREACH
+ZN-04,6,1,48.0,50.0,none
+ZN-05,7,3,23.5,30.0,none
+ZN-06,7,2,68.0,70.0,none
+ZN-07,7,2,93.5,90.0,ZONE_ALLOWANCE_BREACH
+ZN-08,8,3,48.0,45.0,ZONE_ALLOWANCE_BREACH

@@ -1,0 +1,556 @@
+{
+  "total": 91,
+  "passed": 85,
+  "failed": 6,
+  "all_passed": false,
+  "grading": "binary - tests/test.sh writes reward 1 only if every verifier passes",
+  "source": "test-stdout.txt (pytest per-parameter results); ctrf.json aggregates the parametrised suite into one entry",
+  "items": [
+    {
+      "name": "audit_csv_exists",
+      "passed": true,
+      "weight": 0.010989011,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "account_csv_exists",
+      "passed": true,
+      "weight": 0.010989011,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "memo_exists",
+      "passed": true,
+      "weight": 0.010989011,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "results_exists",
+      "passed": true,
+      "weight": 0.010989011,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "audit_has_required_columns",
+      "passed": true,
+      "weight": 0.010989011,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "audit_req_01",
+      "passed": true,
+      "weight": 0.010989011,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "audit_req_02",
+      "passed": true,
+      "weight": 0.010989011,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "audit_req_03",
+      "passed": true,
+      "weight": 0.010989011,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "audit_req_04",
+      "passed": true,
+      "weight": 0.010989011,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "audit_req_06",
+      "passed": true,
+      "weight": 0.010989011,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "audit_req_07",
+      "passed": true,
+      "weight": 0.010989011,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "audit_req_08",
+      "passed": true,
+      "weight": 0.010989011,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "audit_req_09",
+      "passed": true,
+      "weight": 0.010989011,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "audit_req_11",
+      "passed": true,
+      "weight": 0.010989011,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "audit_req_12",
+      "passed": true,
+      "weight": 0.010989011,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "audit_req_15",
+      "passed": true,
+      "weight": 0.010989011,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "audit_req_17",
+      "passed": true,
+      "weight": 0.010989011,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "audit_req_18",
+      "passed": true,
+      "weight": 0.010989011,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "audit_req_19",
+      "passed": true,
+      "weight": 0.010989011,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "audit_req_20",
+      "passed": true,
+      "weight": 0.010989011,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "audit_req_21",
+      "passed": true,
+      "weight": 0.010989011,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "audit_req_22",
+      "passed": true,
+      "weight": 0.010989011,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "audit_req_24",
+      "passed": true,
+      "weight": 0.010989011,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "audit_req_25",
+      "passed": true,
+      "weight": 0.010989011,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "audit_req_28",
+      "passed": true,
+      "weight": 0.010989011,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "audit_req_29",
+      "passed": true,
+      "weight": 0.010989011,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "audit_req_32",
+      "passed": true,
+      "weight": 0.010989011,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "audit_excludes_req_13",
+      "passed": true,
+      "weight": 0.010989011,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "audit_excludes_req_16",
+      "passed": true,
+      "weight": 0.010989011,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "audit_excludes_req_26",
+      "passed": true,
+      "weight": 0.010989011,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "audit_excludes_req_31",
+      "passed": true,
+      "weight": 0.010989011,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "account_has_required_columns",
+      "passed": true,
+      "weight": 0.010989011,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "acc_01_type",
+      "passed": true,
+      "weight": 0.010989011,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "acc_01_counts",
+      "passed": true,
+      "weight": 0.010989011,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "acc_01_escalation",
+      "passed": true,
+      "weight": 0.010989011,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "acc_02_type",
+      "passed": true,
+      "weight": 0.010989011,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "acc_02_counts",
+      "passed": true,
+      "weight": 0.010989011,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "acc_02_escalation",
+      "passed": true,
+      "weight": 0.010989011,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "acc_03_type",
+      "passed": true,
+      "weight": 0.010989011,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "acc_03_counts",
+      "passed": true,
+      "weight": 0.010989011,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "acc_03_escalation",
+      "passed": true,
+      "weight": 0.010989011,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "acc_04_type",
+      "passed": true,
+      "weight": 0.010989011,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "acc_04_counts",
+      "passed": true,
+      "weight": 0.010989011,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "acc_04_escalation",
+      "passed": true,
+      "weight": 0.010989011,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "acc_05_type",
+      "passed": true,
+      "weight": 0.010989011,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "acc_05_counts",
+      "passed": true,
+      "weight": 0.010989011,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "acc_05_escalation",
+      "passed": true,
+      "weight": 0.010989011,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "acc_06_type",
+      "passed": true,
+      "weight": 0.010989011,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "acc_06_counts",
+      "passed": true,
+      "weight": 0.010989011,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "acc_06_escalation",
+      "passed": true,
+      "weight": 0.010989011,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "acc_07_type",
+      "passed": true,
+      "weight": 0.010989011,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "acc_07_counts",
+      "passed": true,
+      "weight": 0.010989011,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "acc_07_escalation",
+      "passed": true,
+      "weight": 0.010989011,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "acc_08_type",
+      "passed": true,
+      "weight": 0.010989011,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "acc_08_counts",
+      "passed": true,
+      "weight": 0.010989011,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "acc_08_escalation",
+      "passed": true,
+      "weight": 0.010989011,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "result_request_count",
+      "passed": true,
+      "weight": 0.010989011,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "result_account_count",
+      "passed": true,
+      "weight": 0.010989011,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "result_flagged_count",
+      "passed": true,
+      "weight": 0.010989011,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "result_compliant_count",
+      "passed": true,
+      "weight": 0.010989011,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "result_finding_total",
+      "passed": true,
+      "weight": 0.010989011,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "result_character_count",
+      "passed": true,
+      "weight": 0.010989011,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "result_background_count",
+      "passed": true,
+      "weight": 0.010989011,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "result_consent_count",
+      "passed": true,
+      "weight": 0.010989011,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "result_commercial_count",
+      "passed": true,
+      "weight": 0.010989011,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "result_disclosure_count",
+      "passed": true,
+      "weight": 0.010989011,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "result_escalated_accounts",
+      "passed": true,
+      "weight": 0.010989011,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "memo_cites_audit_date",
+      "passed": true,
+      "weight": 0.010989011,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "memo_covers_every_flagged_request",
+      "passed": true,
+      "weight": 0.010989011,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "memo_names_every_finding_code",
+      "passed": true,
+      "weight": 0.010989011,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "memo_names_allowance_requests",
+      "passed": true,
+      "weight": 0.010989011,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "memo_names_lapsed_accounts",
+      "passed": true,
+      "weight": 0.010989011,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "memo_names_escalated_accounts",
+      "passed": true,
+      "weight": 0.010989011,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "memo_cites_expired_licences",
+      "passed": true,
+      "weight": 0.010989011,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "memo_names_withdrawn_requests",
+      "passed": true,
+      "weight": 0.010989011,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "memo_states_batch_share",
+      "passed": true,
+      "weight": 0.010989011,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "memo_explains_limb1_escalation",
+      "passed": true,
+      "weight": 0.010989011,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "memo_explains_limb2_escalation",
+      "passed": true,
+      "weight": 0.010989011,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "memo_explains_equal_share_accounts",
+      "passed": true,
+      "weight": 0.010989011,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "memo_names_deciding_licence_per_request",
+      "passed": true,
+      "weight": 0.010989011,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "memo_names_deciding_agreement_per_request",
+      "passed": true,
+      "weight": 0.010989011,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "memo_names_deciding_consent_per_request",
+      "passed": true,
+      "weight": 0.010989011,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "memo_explains_allowance_scope",
+      "passed": true,
+      "weight": 0.010989011,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "memo_explains_lapsed_consequence",
+      "passed": true,
+      "weight": 0.010989011,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "memo_explains_withdrawn_reason",
+      "passed": true,
+      "weight": 0.010989011,
+      "motivation": "deterministic assertion satisfied"
+    },
+    {
+      "name": "audit_req_05",
+      "passed": false,
+      "weight": 0.010989011,
+      "motivation": "deterministic assertion failed"
+    },
+    {
+      "name": "audit_req_10",
+      "passed": false,
+      "weight": 0.010989011,
+      "motivation": "deterministic assertion failed"
+    },
+    {
+      "name": "audit_req_14",
+      "passed": false,
+      "weight": 0.010989011,
+      "motivation": "deterministic assertion failed"
+    },
+    {
+      "name": "audit_req_23",
+      "passed": false,
+      "weight": 0.010989011,
+      "motivation": "deterministic assertion failed"
+    },
+    {
+      "name": "audit_req_27",
+      "passed": false,
+      "weight": 0.010989011,
+      "motivation": "deterministic assertion failed"
+    },
+    {
+      "name": "audit_req_30",
+      "passed": false,
+      "weight": 0.010989011,
+      "motivation": "deterministic assertion failed"
+    }
+  ]
+}

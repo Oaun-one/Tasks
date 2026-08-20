@@ -1,0 +1,154 @@
+{
+  "id": "397eeb3a-d10e-422a-ada5-5abd917f241b",
+  "task_name": "obi/gen-g988-composite-photo-request-rights-audit",
+  "trial_name": "gen-g988-composite-photo-request__FjDmpyv",
+  "trial_uri": "file:///E:/WORK/TU/jobs-g988/glm-5x-v8-fair-norecipe/gen-g988-composite-photo-request__FjDmpyv",
+  "task_id": {
+    "path": "E:\\WORK\\TU\\Task_3_gen-g988-composite-photo-request-rights-audit-20260819T194448Z-1-001\\gen-g988-composite-photo-request-rights-audit"
+  },
+  "source": null,
+  "task_checksum": "43a5d0a7b2fef5268cc68eef9723b8b909d3d0e96951abbb65808d6ca8e75358",
+  "config": {
+    "task": {
+      "path": "E:\\WORK\\TU\\Task_3_gen-g988-composite-photo-request-rights-audit-20260819T194448Z-1-001\\gen-g988-composite-photo-request-rights-audit",
+      "git_url": null,
+      "git_commit_id": null,
+      "name": null,
+      "ref": null,
+      "overwrite": false,
+      "download_dir": null,
+      "source": null
+    },
+    "trial_name": "gen-g988-composite-photo-request__FjDmpyv",
+    "trials_dir": "E:\\WORK\\TU\\jobs-g988\\glm-5x-v8-fair-norecipe",
+    "install_only": false,
+    "timeout_multiplier": 1.0,
+    "agent_timeout_multiplier": null,
+    "verifier_timeout_multiplier": null,
+    "agent_setup_timeout_multiplier": 3.0,
+    "environment_build_timeout_multiplier": null,
+    "agent": {
+      "name": "opencode",
+      "import_path": null,
+      "model_name": "glmproxy/glm-5.2",
+      "n_concurrent": null,
+      "concurrency_group": null,
+      "skills": [],
+      "override_timeout_sec": null,
+      "override_setup_timeout_sec": null,
+      "max_timeout_sec": null,
+      "resume_trajectory": false,
+      "load_trajectory": null,
+      "extra_allowed_hosts": [],
+      "kwargs": {
+        "opencode_config": {
+          "provider": {
+            "glmproxy": {
+              "npm": "@ai-sdk/openai-compatible",
+              "name": "GLM via LiteLLM",
+              "options": {
+                "baseURL": "{env:OPENAI_BASE_URL}",
+                "apiKey": "{env:OPENAI_API_KEY}"
+              },
+              "models": {
+                "glm-5.2": {
+                  "name": "GLM 5.2",
+                  "options": {
+                    "max_tokens": 96000
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "env": {
+        "OPENAI_API_KEY": "${OPENAI_API_KEY}",
+        "OPENAI_BASE_URL": "http://34.41.10.8:4000/v1"
+      },
+      "mcp_servers": []
+    },
+    "environment": {
+      "type": "docker",
+      "import_path": null,
+      "force_build": false,
+      "delete": true,
+      "cpu_enforcement_policy": "auto",
+      "memory_enforcement_policy": "auto",
+      "override_cpus": null,
+      "override_memory_mb": null,
+      "override_storage_mb": null,
+      "override_gpus": null,
+      "override_tpu": null,
+      "mounts": null,
+      "extra_docker_compose": [],
+      "kwargs": {},
+      "extra_allowed_hosts": []
+    },
+    "verifier": {
+      "override_timeout_sec": null,
+      "max_timeout_sec": null,
+      "env": {
+        "OPENAI_API_KEY": "${OPENAI_API_KEY}",
+        "OPENAI_BASE_URL": "http://34.41.10.8:4000/v1",
+        "JUDGE_MODEL": "openai/glm-5.2"
+      },
+      "disable": false
+    },
+    "artifacts": [],
+    "extra_instruction_paths": [],
+    "job_id": "fbca4b62-74a8-4fae-b16b-48d6e43dc27f",
+    "source_trial": null
+  },
+  "agent_info": {
+    "name": "opencode",
+    "version": "1.18.18",
+    "model_info": {
+      "name": "glm-5.2",
+      "provider": "glmproxy"
+    }
+  },
+  "agent_result": {
+    "n_input_tokens": 760323,
+    "n_cache_tokens": 527936,
+    "n_output_tokens": 12979,
+    "cost_usd": null,
+    "rollout_details": null,
+    "metadata": null
+  },
+  "verifier_result": {
+    "rewards": {
+      "reward": 1.0
+    }
+  },
+  "verifier_environment_mode": "shared",
+  "exception_info": null,
+  "started_at": "2026-08-20T06:00:44.947598Z",
+  "finished_at": "2026-08-20T06:05:51.087850Z",
+  "environment_setup": {
+    "started_at": "2026-08-20T06:00:45.029651Z",
+    "finished_at": "2026-08-20T06:00:47.741404Z"
+  },
+  "agent_setup": {
+    "started_at": "2026-08-20T06:00:47.741424Z",
+    "finished_at": "2026-08-20T06:02:27.934243Z"
+  },
+  "agent_execution": {
+    "started_at": "2026-08-20T06:02:27.934332Z",
+    "finished_at": "2026-08-20T06:05:45.724885Z"
+  },
+  "verifier": {
+    "started_at": "2026-08-20T06:05:45.728628Z",
+    "finished_at": "2026-08-20T06:05:48.974121Z"
+  },
+  "step_results": null,
+  "model": "GLM-5.2",
+  "reward": 1.0,
+  "overall_pass": true,
+  "final_answer": "All four deliverables are written to `/app` and confirmed present, each independently re-derived from the inputs and matching:\n\n- **`composite_request_audit.csv`** \u2014 28 audited rows (the 4 withdrawn excluded), columns `request_id,finding`; clean requests reported `none`, multi-breaches joined with `|`.\n- **`account_summary.csv`** \u2014 8 accounts, columns `account_id,account_type,request_count,flagged_requests,escalation`.\n- **`results.json`** \u2014 the eleven \u00a79 figures in order, each a single JSON number.\n- **`composite_request_memo.md`** \u2014 standalone memo: audit date, out-of-scope withdrawn requests, every flagged request with its code and the deciding record named, policy-cleared \"would-be\" breaches, master-agreement standing, and the \u00a78 decisions with their measure.\n\nKey results to walk into rights review with: **28 audited requests, 14 flagged, 23 findings; 4 of 8 accounts escalated** (ACC-02, ACC-03, ACC-07, ACC-08).\n\nThree things to flag at the meeting:\n1. **\u00a78 hinged on the batch share landing exactly on 0.5** (14/28) \u2014 only ACC-07 and ACC-08 escalate on share (2/3 > 0.5); ACC-02 and ACC-03 escalate solely because single requests (REQ-05, REQ-10) each carry three findings. Four accounts sit at exactly 0.5 and stay on the desk (\u00a78 needs *strictly greater*).\n2. **Two supersessions narrowed licences and changed verdicts** \u2014 LIC-109 cut Rook and Raven's cap 35\u219220 (catching REQ-05), and LIC-110 narrowed LIC-105's background scope `all`\u2192`print_for_sale` (catching REQ-28, a personal_only request the old scope covered).\n3. **Two lapsed agreements clear nothing under \u00a76** \u2014 ACC-04 and ACC-08 still have `master_agreement_covers` on file, but REQ-14 and REQ-30 route regardless.\n\nA reminder: I left a working copy of the audit script at `/tmp/opencode/audit.py` (outside `/app`); only the four requested deliverables were written into `/app`. I did not commit anything.",
+  "judge_provenance": {
+    "judged_verifiers": 0,
+    "judge_model": null,
+    "note": "All verifiers in tests/verifier.json are deterministic; no LLM judge is invoked."
+  }
+}
