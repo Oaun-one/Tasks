@@ -29,7 +29,15 @@ AW-1032,PG-27,2,Certificate B,badge_certificate,SEC-06,480,200,0.19,False,0.0,23
 AW-1028,PG-28,1,Certificate C,badge_certificate,SEC-06,300,100,0.1875,False,0.0,241,3
 AW-1029,PG-29,1,Reward Activity 1,activity,SEC-06,300,130,0.04,True,0.25,200,4
 AW-1033,PG-30,1,Reward Activity 2,activity,SEC-06,260,100,0.15,False,0.3,238,4
+AW-1035,PG-31,1,Trail Map D,map,SEC-07,300,100,0.125,False,0.0,280,4
+AW-1036,PG-32,1,Trail Sticker Sheet,activity,SEC-07,240,100,0.02,True,0.125,270,4
+AW-1040,PG-33,2,Mission Cards H,mission_cards,SEC-07,600,200,0.13,False,0.0,281,7
+AW-1038,PG-34,1,Take-home Guide,parent_guide,SEC-08,260,100,0.25,False,0.0,300,2
+AW-1039,PG-35,2,Take-home Badges,badge_certificate,SEC-08,300,100,0.06,True,0.1875,290,4
+AW-1042,PG-36,1,Take-home Activity,activity,SEC-08,300,140,0.2,False,0.0,302,3
 AW-1012,PG-12,1,Mission Cards B,mission_cards,SEC-03,300,100,0.3,False,0.0,250,9
 AW-1027,PG-27,1,Certificate B,badge_certificate,SEC-06,200,100,0.19,False,0.0,239,5
 AW-1034,PG-04,2,Kit Map,map,SEC-01,220,80,0.24,False,0.0,305,4
 AW-1018,PG-18,1,Station Bingo 3,bingo,SEC-04,300,100,0.0,True,0.25,260,11
+AW-1037,PG-33,1,Mission Cards H,mission_cards,SEC-07,600,200,0.13,False,0.0,281,9
+AW-1041,PG-35,1,Take-home Badges,badge_certificate,SEC-08,300,100,0.3,True,0.1875,290,4

@@ -30,6 +30,8 @@ SECTIONS = {
     "SEC-04": dict(name="Station games", binding="perfect_bound", stock_code="CST-100"),
     "SEC-05": dict(name="Grown-up pack", binding="saddle_stitch", stock_code="UNC-120"),
     "SEC-06": dict(name="Rewards", binding="perfect_bound", stock_code="UNC-120"),
+    "SEC-07": dict(name="Trail extras", binding="saddle_stitch", stock_code="CST-100"),
+    "SEC-08": dict(name="Take-home pack", binding="perfect_bound", stock_code="BRD-250"),
 }
 
 BASE_MIN_ELEMENTS = {
@@ -78,13 +80,21 @@ ROWS = [
     ("AW-1028", "PG-28", 1, "Certificate C", "badge_certificate", "SEC-06", 300, 100, 0.1875, False, 0.0, 241, 3),
     ("AW-1029", "PG-29", 1, "Reward Activity 1", "activity", "SEC-06", 300, 130, 0.04, True, 0.25, 200, 4),
     ("AW-1033", "PG-30", 1, "Reward Activity 2", "activity", "SEC-06", 260, 100, 0.15, False, 0.30, 238, 4),
+    ("AW-1035", "PG-31", 1, "Trail Map D", "map", "SEC-07", 300, 100, 0.125, False, 0.0, 280, 4),
+    ("AW-1036", "PG-32", 1, "Trail Sticker Sheet", "activity", "SEC-07", 240, 100, 0.02, True, 0.125, 270, 4),
+    ("AW-1040", "PG-33", 2, "Mission Cards H", "mission_cards", "SEC-07", 600, 200, 0.13, False, 0.0, 281, 7),
+    ("AW-1038", "PG-34", 1, "Take-home Guide", "parent_guide", "SEC-08", 260, 100, 0.25, False, 0.0, 300, 2),
+    ("AW-1039", "PG-35", 2, "Take-home Badges", "badge_certificate", "SEC-08", 300, 100, 0.06, True, 0.1875, 290, 4),
+    ("AW-1042", "PG-36", 1, "Take-home Activity", "activity", "SEC-08", 300, 140, 0.20, False, 0.0, 302, 3),
     # Superseded artwork. Placed so that neither "first row wins" nor "last row
-    # wins" is the right heuristic: PG-12 and PG-27 have their live revision
-    # earlier in the file, PG-04 and PG-18 later.
+    # wins" is the right heuristic: PG-12, PG-27, PG-33 and PG-35 have their live
+    # revision earlier in the file, PG-04 and PG-18 later.
     ("AW-1012", "PG-12", 1, "Mission Cards B", "mission_cards", "SEC-03", 300, 100, 0.30, False, 0.0, 250, 9),
     ("AW-1027", "PG-27", 1, "Certificate B", "badge_certificate", "SEC-06", 200, 100, 0.19, False, 0.0, 239, 5),
     ("AW-1034", "PG-04", 2, "Kit Map", "map", "SEC-01", 220, 80, 0.24, False, 0.0, 305, 4),
     ("AW-1018", "PG-18", 1, "Station Bingo 3", "bingo", "SEC-04", 300, 100, 0.00, True, 0.25, 260, 11),
+    ("AW-1037", "PG-33", 1, "Mission Cards H", "mission_cards", "SEC-07", 600, 200, 0.13, False, 0.0, 281, 9),
+    ("AW-1041", "PG-35", 1, "Take-home Badges", "badge_certificate", "SEC-08", 300, 100, 0.30, True, 0.1875, 290, 4),
 ]
 
 FIELDS = ["artwork_id", "page_id", "revision", "page_name", "page_type", "section_id",
@@ -144,6 +154,30 @@ def live_rows():
     return [best[pid] for pid in sorted(best)], len(rows) - len(best)
 
 
+def impose(live, verdicts):
+    """§8. A page held back for re-supply leaves the imposition, so the section rule
+    reads the page-level audit rather than the raw batch."""
+    rollup = {}
+    for sid, sec in SECTIONS.items():
+        pages = [r["page_id"] for r in live if r["section_id"] == sid]
+        held = [p for p in pages if "ELEMENT_COUNT_SHORT" in verdicts[p]]
+        imposed = len(pages) - len(held)
+        mult = IMPOSITION_MULTIPLE[sec["binding"]]
+        short = (-imposed) % mult
+        rollup[sid] = {
+            "section_id": sid,
+            "binding": sec["binding"],
+            "stock_code": sec["stock_code"],
+            "live_page_count": len(pages),
+            "held_back": len(held),
+            "imposed_page_count": imposed,
+            "flagged_pages": sum(1 for p in pages if verdicts[p]),
+            "pages_needed": short,
+            "imposition": "IMPOSITION_INVALID" if short else "none",
+        }
+    return rollup
+
+
 def gold():
     live, superseded = live_rows()
     verdicts, shortfalls = {}, {}
@@ -153,9 +187,12 @@ def gold():
         shortfalls[r["page_id"]] = s
     flagged = [p for p, f in verdicts.items() if f]
     counts = {c: sum(1 for f in verdicts.values() if c in f) for c in CODES}
+    rollup = impose(live, verdicts)
+    invalid = [s for s in rollup.values() if s["imposition"] != "none"]
     results = {
         "page_count": len(live),
         "superseded_count": superseded,
+        "section_count": len(SECTIONS),
         "clean_count": len(live) - len(flagged),
         "flagged_count": len(flagged),
         "finding_total": sum(len(f) for f in verdicts.values()),
@@ -165,12 +202,14 @@ def gold():
         "ink_over_count": counts["INK_OVER"],
         "element_short_count": counts["ELEMENT_COUNT_SHORT"],
         "element_shortfall_total": sum(shortfalls.values()),
+        "imposition_invalid_sections": len(invalid),
+        "imposition_shortfall_total": sum(s["pages_needed"] for s in invalid),
     }
-    return live, verdicts, shortfalls, results
+    return live, verdicts, shortfalls, rollup, results
 
 
 if __name__ == "__main__":
-    live, verdicts, shortfalls, results = gold()
+    live, verdicts, shortfalls, rollup, results = gold()
     for r in live:
         sec = SECTIONS[r["section_id"]]
         st = STOCKS[sec["stock_code"]]
@@ -181,5 +220,11 @@ if __name__ == "__main__":
             r["total_ink_pct"], st["max_ink_pct"],
             r["element_count"], min_elements(r["page_type"], r["section_id"]),
             "|".join(verdicts[r["page_id"]]) or "none"))
+    print()
+    for s in rollup.values():
+        print("%s %-14s live=%d held=%d imposed=%2d mult=%d flagged=%d -> %s (+%d)" % (
+            s["section_id"], s["binding"], s["live_page_count"], s["held_back"],
+            s["imposed_page_count"], IMPOSITION_MULTIPLE[s["binding"]],
+            s["flagged_pages"], s["imposition"], s["pages_needed"]))
     print()
     print(json.dumps(results, indent=2))

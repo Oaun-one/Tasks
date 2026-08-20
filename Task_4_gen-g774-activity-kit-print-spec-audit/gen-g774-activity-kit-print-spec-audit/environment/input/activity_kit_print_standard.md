@@ -1,6 +1,7 @@
 # Printable activity-kit production standard (PRINT-KIT-2)
 
-Binding for the artwork batch in `activity_kit_pages.csv`.
+Binding for the artwork batch in `activity_kit_pages.csv`. §2–§7 are checked against every
+live page; §8 is checked against every section.
 
 ## 0. Batch scope and revisions
 
@@ -41,10 +42,15 @@ A page tagged `full_bleed_design` is **exempt from §3**. Its art is meant to ru
 edge, so a thin margin on a full-bleed page is by design; flagging it is the commonest false
 positive in this audit.
 
-It is exempt from nothing else, and it carries an obligation no other page carries: a
-full-bleed page must be supplied with `bleed_in` of at least the stock's `min_bleed_in`, or
-the trim eats into the art. Below it is `BLEED_SHORT`. `bleed_in` on a page that is not
-full-bleed is not assessed.
+**The exemption is limited to saddle-stitched sections.** Perfect binding glues the spine
+edge, so a perfect-bound page has no bleed on that edge and its live copy still has to clear
+the trim: a full-bleed page in a `perfect_bound` section is judged under §3 exactly like any
+other page. Only a full-bleed page in a `saddle_stitch` section is released from §3.
+
+Every full-bleed page, whatever its binding, carries an obligation no other page carries: it
+must be supplied with `bleed_in` of at least the stock's `min_bleed_in`, or the trim eats
+into the art. Below it is `BLEED_SHORT`. `bleed_in` on a page that is not full-bleed is not
+assessed.
 
 ## 5. Ink coverage
 
@@ -77,3 +83,24 @@ less its `element_count`; a page at or above its minimum has a shortfall of zero
 
 `finding` is one or more of `DPI_TOO_LOW`, `MARGIN_VIOLATION`, `BLEED_SHORT`, `INK_OVER`,
 `ELEMENT_COUNT_SHORT`, joined with `|`, or `none` for a page that breaches nothing.
+
+## 8. Imposition
+
+A page carrying `ELEMENT_COUNT_SHORT` cannot go to press as it stands: it is **held back**
+for re-supply and does not sit in the imposition. What has to impose is the section's live
+page count *less* the pages held back.
+
+That imposed count has to fit the section's binding:
+
+| binding | imposed page count must be |
+| --- | --- |
+| `saddle_stitch` | a multiple of 4 |
+| `perfect_bound` | a multiple of 2 |
+
+A section whose imposed page count does not fit its binding is `IMPOSITION_INVALID` and has
+to be repaginated before the run; the pages it needs is the number that would carry it up to
+the next multiple. A section that fits is `none`.
+
+§8 is a property of the section, not of any page in it: an `IMPOSITION_INVALID` section is
+not a finding against its pages, and a section with no flagged pages at all can still fail
+to impose.

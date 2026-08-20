@@ -1,13 +1,16 @@
 {
-  "page_count": 30,
-  "superseded_count": 4,
-  "clean_count": 10,
-  "flagged_count": 20,
-  "finding_total": 29,
-  "dpi_low_count": 7,
-  "margin_count": 5,
+  "page_count": 36,
+  "superseded_count": 6,
+  "section_count": 8,
+  "clean_count": 11,
+  "flagged_count": 25,
+  "finding_total": 41,
+  "dpi_low_count": 9,
+  "margin_count": 11,
   "bleed_short_count": 3,
-  "ink_over_count": 6,
-  "element_short_count": 8,
-  "element_shortfall_total": 11
+  "ink_over_count": 8,
+  "element_short_count": 10,
+  "element_shortfall_total": 13,
+  "imposition_invalid_sections": 4,
+  "imposition_shortfall_total": 8
 }

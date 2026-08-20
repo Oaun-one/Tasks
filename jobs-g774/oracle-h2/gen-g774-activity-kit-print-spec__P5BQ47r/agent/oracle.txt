@@ -1,0 +1,6 @@
+installed gold deliverables into /app:
+activity_kit_audit.csv
+activity_kit_memo.md
+input
+results.json
+section_summary.csv

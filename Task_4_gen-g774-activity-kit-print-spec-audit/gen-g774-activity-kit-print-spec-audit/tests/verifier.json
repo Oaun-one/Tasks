@@ -27,6 +27,31 @@
       }
     },
     {
+      "name": "section_csv_exists",
+      "metadata": {
+        "how_justification": "Checks section_summary.csv is present as a file in the workspace.",
+        "why_justification": "The per-section rollup is a named deliverable."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "filesystem",
+          "command": "check_path_exists",
+          "arguments": {
+            "path": "section_summary.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": true,
+        "deterministic": {
+          "path": "$.is_file",
+          "comparison": "equals"
+        }
+      }
+    },
+    {
       "name": "memo_exists",
       "metadata": {
         "how_justification": "Checks activity_kit_memo.md is present as a file in the workspace.",
@@ -104,7 +129,7 @@
     {
       "name": "audit_has_no_pages_outside_batch",
       "metadata": {
-        "how_justification": "Requires activity_kit_audit.csv to carry no page id outside PG-01..PG-30.",
+        "how_justification": "Requires activity_kit_audit.csv to carry no page id outside PG-01..PG-36.",
         "why_justification": "An audit that invents pages is not an audit of this batch."
       },
       "source": {
@@ -119,7 +144,7 @@
       },
       "assertion": {
         "type": "deterministic",
-        "expected": "PG-(?:00|3[1-9]|[4-9]\\d)",
+        "expected": "PG-(?:00|3[7-9]|[4-9]\\d)",
         "deterministic": {
           "path": "$.text",
           "comparison": "not_regex_match"
@@ -130,7 +155,7 @@
       "name": "audit_has_one_row_per_page",
       "metadata": {
         "how_justification": "Requires no page id in activity_kit_audit.csv to appear on two different lines.",
-        "why_justification": "The batch carries superseded artwork; an audit that emits a row per artwork row rather than per live page duplicates page ids and is not the deliverable asked for."
+        "why_justification": "The batch carries superseded artwork; an audit emitted per artwork row rather than per live page duplicates page ids and is not the deliverable asked for."
       },
       "source": {
         "type": "file",
@@ -144,7 +169,7 @@
       },
       "assertion": {
         "type": "deterministic",
-        "expected": "(?ms)^[^\\n]*\\b(PG-(?:0[1-9]|[12]\\d|30))\\b.*?^[^\\n]*\\b\\1\\b",
+        "expected": "(?ms)^[^\\n]*\\b(PG-(?:0[1-9]|[12]\\d|3[0-6]))\\b.*?^[^\\n]*\\b\\1\\b",
         "deterministic": {
           "path": "$.text",
           "comparison": "not_regex_match"
@@ -154,8 +179,8 @@
     {
       "name": "audit_pg_01",
       "metadata": {
-        "how_justification": "Reads activity_kit_audit.csv as text and requires the PG-01 row to carry a clean verdict and no finding code, in any column or code order, case-insensitively.",
-        "why_justification": "PG-01 (Front Cover, SEC-01 on BRD-250) clears every rule in PRINT-KIT-2, so the only correct finding is `none`."
+        "how_justification": "Reads activity_kit_audit.csv as text and requires the PG-01 row to carry exactly MARGIN_VIOLATION, in any column or code order, case-insensitively.",
+        "why_justification": "PG-01 (Front Cover, SEC-01 on BRD-250, perfect_bound) breaches exactly MARGIN_VIOLATION under PRINT-KIT-2."
       },
       "source": {
         "type": "file",
@@ -169,7 +194,7 @@
       },
       "assertion": {
         "type": "deterministic",
-        "expected": "(?im)^(?=[^\\n]*\\bPG-01\\b)(?=[^\\n]*(?:\\b(?:none|no[ _-]?finding(?:s)?|ok|okay|pass(?:es|ed)?|clean|clear|compliant|conform(?:s|ing)?|fine|good|yes|true|n/?a)\\b|(?:^|,)\\s*[-\u2013\u2014\u2713]\\s*(?:,|$)))(?![^\\n]*\\bDPI_TOO_LOW\\b)(?![^\\n]*\\bMARGIN_VIOLATION\\b)(?![^\\n]*\\bBLEED_SHORT\\b)(?![^\\n]*\\bINK_OVER\\b)(?![^\\n]*\\bELEMENT_COUNT_SHORT\\b)",
+        "expected": "(?im)^(?=[^\\n]*\\bPG-01\\b)(?=[^\\n]*\\bMARGIN_VIOLATION\\b)(?![^\\n]*\\bDPI_TOO_LOW\\b)(?![^\\n]*\\bBLEED_SHORT\\b)(?![^\\n]*\\bINK_OVER\\b)(?![^\\n]*\\bELEMENT_COUNT_SHORT\\b)",
         "deterministic": {
           "path": "$.text",
           "comparison": "regex_match"
@@ -179,8 +204,8 @@
     {
       "name": "audit_pg_02",
       "metadata": {
-        "how_justification": "Reads activity_kit_audit.csv as text and requires the PG-02 row to carry exactly BLEED_SHORT, in any column or code order, case-insensitively.",
-        "why_justification": "PG-02 (Inside Cover, SEC-01 on BRD-250) breaches exactly BLEED_SHORT under PRINT-KIT-2."
+        "how_justification": "Reads activity_kit_audit.csv as text and requires the PG-02 row to carry exactly MARGIN_VIOLATION, BLEED_SHORT, in any column or code order, case-insensitively.",
+        "why_justification": "PG-02 (Inside Cover, SEC-01 on BRD-250, perfect_bound) breaches exactly MARGIN_VIOLATION, BLEED_SHORT under PRINT-KIT-2."
       },
       "source": {
         "type": "file",
@@ -194,7 +219,7 @@
       },
       "assertion": {
         "type": "deterministic",
-        "expected": "(?im)^(?=[^\\n]*\\bPG-02\\b)(?=[^\\n]*\\bBLEED_SHORT\\b)(?![^\\n]*\\bDPI_TOO_LOW\\b)(?![^\\n]*\\bMARGIN_VIOLATION\\b)(?![^\\n]*\\bINK_OVER\\b)(?![^\\n]*\\bELEMENT_COUNT_SHORT\\b)",
+        "expected": "(?im)^(?=[^\\n]*\\bPG-02\\b)(?=[^\\n]*\\bMARGIN_VIOLATION\\b)(?=[^\\n]*\\bBLEED_SHORT\\b)(?![^\\n]*\\bDPI_TOO_LOW\\b)(?![^\\n]*\\bINK_OVER\\b)(?![^\\n]*\\bELEMENT_COUNT_SHORT\\b)",
         "deterministic": {
           "path": "$.text",
           "comparison": "regex_match"
@@ -205,7 +230,7 @@
       "name": "audit_pg_03",
       "metadata": {
         "how_justification": "Reads activity_kit_audit.csv as text and requires the PG-03 row to carry exactly DPI_TOO_LOW, in any column or code order, case-insensitively.",
-        "why_justification": "PG-03 (Welcome Letter, SEC-01 on BRD-250) breaches exactly DPI_TOO_LOW under PRINT-KIT-2."
+        "why_justification": "PG-03 (Welcome Letter, SEC-01 on BRD-250, perfect_bound) breaches exactly DPI_TOO_LOW under PRINT-KIT-2."
       },
       "source": {
         "type": "file",
@@ -230,7 +255,7 @@
       "name": "audit_pg_04",
       "metadata": {
         "how_justification": "Reads activity_kit_audit.csv as text and requires the PG-04 row to carry exactly MARGIN_VIOLATION, INK_OVER, in any column or code order, case-insensitively.",
-        "why_justification": "PG-04 (Kit Map, SEC-01 on BRD-250) breaches exactly MARGIN_VIOLATION, INK_OVER under PRINT-KIT-2."
+        "why_justification": "PG-04 (Kit Map, SEC-01 on BRD-250, perfect_bound) breaches exactly MARGIN_VIOLATION, INK_OVER under PRINT-KIT-2."
       },
       "source": {
         "type": "file",
@@ -255,7 +280,7 @@
       "name": "audit_pg_05",
       "metadata": {
         "how_justification": "Reads activity_kit_audit.csv as text and requires the PG-05 row to carry a clean verdict and no finding code, in any column or code order, case-insensitively.",
-        "why_justification": "PG-05 (Trail Map A, SEC-02 on CST-100) clears every rule in PRINT-KIT-2, so the only correct finding is `none`."
+        "why_justification": "PG-05 (Trail Map A, SEC-02 on CST-100, saddle_stitch) clears every rule in PRINT-KIT-2, so the only correct finding is `none`."
       },
       "source": {
         "type": "file",
@@ -269,7 +294,7 @@
       },
       "assertion": {
         "type": "deterministic",
-        "expected": "(?im)^(?=[^\\n]*\\bPG-05\\b)(?=[^\\n]*(?:\\b(?:none|no[ _-]?finding(?:s)?|ok|okay|pass(?:es|ed)?|clean|clear|compliant|conform(?:s|ing)?|fine|good|yes|true|n/?a)\\b|(?:^|,)\\s*[-\u2013\u2014\u2713]\\s*(?:,|$)))(?![^\\n]*\\bDPI_TOO_LOW\\b)(?![^\\n]*\\bMARGIN_VIOLATION\\b)(?![^\\n]*\\bBLEED_SHORT\\b)(?![^\\n]*\\bINK_OVER\\b)(?![^\\n]*\\bELEMENT_COUNT_SHORT\\b)",
+        "expected": "(?im)^(?=[^\\n]*\\bPG-05\\b)(?=[^\\n]*(?:\\b(?:none|no[ _-]?finding(?:s)?|ok|okay|pass(?:es|ed)?|clean|clear|compliant|conform(?:s|ing)?|valid|fine|good|yes|true|n/?a)\\b|(?:^|,)\\s*[-\u2013\u2014\u2713]\\s*(?:,|$)))(?![^\\n]*\\bDPI_TOO_LOW\\b)(?![^\\n]*\\bMARGIN_VIOLATION\\b)(?![^\\n]*\\bBLEED_SHORT\\b)(?![^\\n]*\\bINK_OVER\\b)(?![^\\n]*\\bELEMENT_COUNT_SHORT\\b)",
         "deterministic": {
           "path": "$.text",
           "comparison": "regex_match"
@@ -280,7 +305,7 @@
       "name": "audit_pg_06",
       "metadata": {
         "how_justification": "Reads activity_kit_audit.csv as text and requires the PG-06 row to carry exactly MARGIN_VIOLATION, in any column or code order, case-insensitively.",
-        "why_justification": "PG-06 (Trail Map B, SEC-02 on CST-100) breaches exactly MARGIN_VIOLATION under PRINT-KIT-2."
+        "why_justification": "PG-06 (Trail Map B, SEC-02 on CST-100, saddle_stitch) breaches exactly MARGIN_VIOLATION under PRINT-KIT-2."
       },
       "source": {
         "type": "file",
@@ -305,7 +330,7 @@
       "name": "audit_pg_07",
       "metadata": {
         "how_justification": "Reads activity_kit_audit.csv as text and requires the PG-07 row to carry exactly INK_OVER, ELEMENT_COUNT_SHORT, in any column or code order, case-insensitively.",
-        "why_justification": "PG-07 (Trail Map C, SEC-02 on CST-100) breaches exactly INK_OVER, ELEMENT_COUNT_SHORT under PRINT-KIT-2."
+        "why_justification": "PG-07 (Trail Map C, SEC-02 on CST-100, saddle_stitch) breaches exactly INK_OVER, ELEMENT_COUNT_SHORT under PRINT-KIT-2."
       },
       "source": {
         "type": "file",
@@ -330,7 +355,7 @@
       "name": "audit_pg_08",
       "metadata": {
         "how_justification": "Reads activity_kit_audit.csv as text and requires the PG-08 row to carry exactly DPI_TOO_LOW, in any column or code order, case-insensitively.",
-        "why_justification": "PG-08 (Trail Activity 1, SEC-02 on CST-100) breaches exactly DPI_TOO_LOW under PRINT-KIT-2."
+        "why_justification": "PG-08 (Trail Activity 1, SEC-02 on CST-100, saddle_stitch) breaches exactly DPI_TOO_LOW under PRINT-KIT-2."
       },
       "source": {
         "type": "file",
@@ -355,7 +380,7 @@
       "name": "audit_pg_09",
       "metadata": {
         "how_justification": "Reads activity_kit_audit.csv as text and requires the PG-09 row to carry a clean verdict and no finding code, in any column or code order, case-insensitively.",
-        "why_justification": "PG-09 (Trail Activity 2, SEC-02 on CST-100) clears every rule in PRINT-KIT-2, so the only correct finding is `none`."
+        "why_justification": "PG-09 (Trail Activity 2, SEC-02 on CST-100, saddle_stitch) clears every rule in PRINT-KIT-2, so the only correct finding is `none`."
       },
       "source": {
         "type": "file",
@@ -369,7 +394,7 @@
       },
       "assertion": {
         "type": "deterministic",
-        "expected": "(?im)^(?=[^\\n]*\\bPG-09\\b)(?=[^\\n]*(?:\\b(?:none|no[ _-]?finding(?:s)?|ok|okay|pass(?:es|ed)?|clean|clear|compliant|conform(?:s|ing)?|fine|good|yes|true|n/?a)\\b|(?:^|,)\\s*[-\u2013\u2014\u2713]\\s*(?:,|$)))(?![^\\n]*\\bDPI_TOO_LOW\\b)(?![^\\n]*\\bMARGIN_VIOLATION\\b)(?![^\\n]*\\bBLEED_SHORT\\b)(?![^\\n]*\\bINK_OVER\\b)(?![^\\n]*\\bELEMENT_COUNT_SHORT\\b)",
+        "expected": "(?im)^(?=[^\\n]*\\bPG-09\\b)(?=[^\\n]*(?:\\b(?:none|no[ _-]?finding(?:s)?|ok|okay|pass(?:es|ed)?|clean|clear|compliant|conform(?:s|ing)?|valid|fine|good|yes|true|n/?a)\\b|(?:^|,)\\s*[-\u2013\u2014\u2713]\\s*(?:,|$)))(?![^\\n]*\\bDPI_TOO_LOW\\b)(?![^\\n]*\\bMARGIN_VIOLATION\\b)(?![^\\n]*\\bBLEED_SHORT\\b)(?![^\\n]*\\bINK_OVER\\b)(?![^\\n]*\\bELEMENT_COUNT_SHORT\\b)",
         "deterministic": {
           "path": "$.text",
           "comparison": "regex_match"
@@ -380,7 +405,7 @@
       "name": "audit_pg_10",
       "metadata": {
         "how_justification": "Reads activity_kit_audit.csv as text and requires the PG-10 row to carry a clean verdict and no finding code, in any column or code order, case-insensitively.",
-        "why_justification": "PG-10 (Trail Activity 3, SEC-02 on CST-100) clears every rule in PRINT-KIT-2, so the only correct finding is `none`."
+        "why_justification": "PG-10 (Trail Activity 3, SEC-02 on CST-100, saddle_stitch) clears every rule in PRINT-KIT-2, so the only correct finding is `none`."
       },
       "source": {
         "type": "file",
@@ -394,7 +419,7 @@
       },
       "assertion": {
         "type": "deterministic",
-        "expected": "(?im)^(?=[^\\n]*\\bPG-10\\b)(?=[^\\n]*(?:\\b(?:none|no[ _-]?finding(?:s)?|ok|okay|pass(?:es|ed)?|clean|clear|compliant|conform(?:s|ing)?|fine|good|yes|true|n/?a)\\b|(?:^|,)\\s*[-\u2013\u2014\u2713]\\s*(?:,|$)))(?![^\\n]*\\bDPI_TOO_LOW\\b)(?![^\\n]*\\bMARGIN_VIOLATION\\b)(?![^\\n]*\\bBLEED_SHORT\\b)(?![^\\n]*\\bINK_OVER\\b)(?![^\\n]*\\bELEMENT_COUNT_SHORT\\b)",
+        "expected": "(?im)^(?=[^\\n]*\\bPG-10\\b)(?=[^\\n]*(?:\\b(?:none|no[ _-]?finding(?:s)?|ok|okay|pass(?:es|ed)?|clean|clear|compliant|conform(?:s|ing)?|valid|fine|good|yes|true|n/?a)\\b|(?:^|,)\\s*[-\u2013\u2014\u2713]\\s*(?:,|$)))(?![^\\n]*\\bDPI_TOO_LOW\\b)(?![^\\n]*\\bMARGIN_VIOLATION\\b)(?![^\\n]*\\bBLEED_SHORT\\b)(?![^\\n]*\\bINK_OVER\\b)(?![^\\n]*\\bELEMENT_COUNT_SHORT\\b)",
         "deterministic": {
           "path": "$.text",
           "comparison": "regex_match"
@@ -405,7 +430,7 @@
       "name": "audit_pg_11",
       "metadata": {
         "how_justification": "Reads activity_kit_audit.csv as text and requires the PG-11 row to carry a clean verdict and no finding code, in any column or code order, case-insensitively.",
-        "why_justification": "PG-11 (Mission Cards A, SEC-03 on BRD-250) clears every rule in PRINT-KIT-2, so the only correct finding is `none`."
+        "why_justification": "PG-11 (Mission Cards A, SEC-03 on BRD-250, saddle_stitch) clears every rule in PRINT-KIT-2, so the only correct finding is `none`."
       },
       "source": {
         "type": "file",
@@ -419,7 +444,7 @@
       },
       "assertion": {
         "type": "deterministic",
-        "expected": "(?im)^(?=[^\\n]*\\bPG-11\\b)(?=[^\\n]*(?:\\b(?:none|no[ _-]?finding(?:s)?|ok|okay|pass(?:es|ed)?|clean|clear|compliant|conform(?:s|ing)?|fine|good|yes|true|n/?a)\\b|(?:^|,)\\s*[-\u2013\u2014\u2713]\\s*(?:,|$)))(?![^\\n]*\\bDPI_TOO_LOW\\b)(?![^\\n]*\\bMARGIN_VIOLATION\\b)(?![^\\n]*\\bBLEED_SHORT\\b)(?![^\\n]*\\bINK_OVER\\b)(?![^\\n]*\\bELEMENT_COUNT_SHORT\\b)",
+        "expected": "(?im)^(?=[^\\n]*\\bPG-11\\b)(?=[^\\n]*(?:\\b(?:none|no[ _-]?finding(?:s)?|ok|okay|pass(?:es|ed)?|clean|clear|compliant|conform(?:s|ing)?|valid|fine|good|yes|true|n/?a)\\b|(?:^|,)\\s*[-\u2013\u2014\u2713]\\s*(?:,|$)))(?![^\\n]*\\bDPI_TOO_LOW\\b)(?![^\\n]*\\bMARGIN_VIOLATION\\b)(?![^\\n]*\\bBLEED_SHORT\\b)(?![^\\n]*\\bINK_OVER\\b)(?![^\\n]*\\bELEMENT_COUNT_SHORT\\b)",
         "deterministic": {
           "path": "$.text",
           "comparison": "regex_match"
@@ -430,7 +455,7 @@
       "name": "audit_pg_12",
       "metadata": {
         "how_justification": "Reads activity_kit_audit.csv as text and requires the PG-12 row to carry exactly ELEMENT_COUNT_SHORT, in any column or code order, case-insensitively.",
-        "why_justification": "PG-12 (Mission Cards B, SEC-03 on BRD-250) breaches exactly ELEMENT_COUNT_SHORT under PRINT-KIT-2."
+        "why_justification": "PG-12 (Mission Cards B, SEC-03 on BRD-250, saddle_stitch) breaches exactly ELEMENT_COUNT_SHORT under PRINT-KIT-2."
       },
       "source": {
         "type": "file",
@@ -455,7 +480,7 @@
       "name": "audit_pg_13",
       "metadata": {
         "how_justification": "Reads activity_kit_audit.csv as text and requires the PG-13 row to carry exactly ELEMENT_COUNT_SHORT, in any column or code order, case-insensitively.",
-        "why_justification": "PG-13 (Mission Cards C, SEC-03 on BRD-250) breaches exactly ELEMENT_COUNT_SHORT under PRINT-KIT-2."
+        "why_justification": "PG-13 (Mission Cards C, SEC-03 on BRD-250, saddle_stitch) breaches exactly ELEMENT_COUNT_SHORT under PRINT-KIT-2."
       },
       "source": {
         "type": "file",
@@ -480,7 +505,7 @@
       "name": "audit_pg_14",
       "metadata": {
         "how_justification": "Reads activity_kit_audit.csv as text and requires the PG-14 row to carry exactly INK_OVER, in any column or code order, case-insensitively.",
-        "why_justification": "PG-14 (Mission Cards D, SEC-03 on BRD-250) breaches exactly INK_OVER under PRINT-KIT-2."
+        "why_justification": "PG-14 (Mission Cards D, SEC-03 on BRD-250, saddle_stitch) breaches exactly INK_OVER under PRINT-KIT-2."
       },
       "source": {
         "type": "file",
@@ -505,7 +530,7 @@
       "name": "audit_pg_15",
       "metadata": {
         "how_justification": "Reads activity_kit_audit.csv as text and requires the PG-15 row to carry exactly DPI_TOO_LOW, MARGIN_VIOLATION, ELEMENT_COUNT_SHORT, in any column or code order, case-insensitively.",
-        "why_justification": "PG-15 (Mission Cards E, SEC-03 on BRD-250) breaches exactly DPI_TOO_LOW, MARGIN_VIOLATION, ELEMENT_COUNT_SHORT under PRINT-KIT-2."
+        "why_justification": "PG-15 (Mission Cards E, SEC-03 on BRD-250, saddle_stitch) breaches exactly DPI_TOO_LOW, MARGIN_VIOLATION, ELEMENT_COUNT_SHORT under PRINT-KIT-2."
       },
       "source": {
         "type": "file",
@@ -530,7 +555,7 @@
       "name": "audit_pg_16",
       "metadata": {
         "how_justification": "Reads activity_kit_audit.csv as text and requires the PG-16 row to carry a clean verdict and no finding code, in any column or code order, case-insensitively.",
-        "why_justification": "PG-16 (Station Bingo 1, SEC-04 on CST-100) clears every rule in PRINT-KIT-2, so the only correct finding is `none`."
+        "why_justification": "PG-16 (Station Bingo 1, SEC-04 on CST-100, perfect_bound) clears every rule in PRINT-KIT-2, so the only correct finding is `none`."
       },
       "source": {
         "type": "file",
@@ -544,7 +569,7 @@
       },
       "assertion": {
         "type": "deterministic",
-        "expected": "(?im)^(?=[^\\n]*\\bPG-16\\b)(?=[^\\n]*(?:\\b(?:none|no[ _-]?finding(?:s)?|ok|okay|pass(?:es|ed)?|clean|clear|compliant|conform(?:s|ing)?|fine|good|yes|true|n/?a)\\b|(?:^|,)\\s*[-\u2013\u2014\u2713]\\s*(?:,|$)))(?![^\\n]*\\bDPI_TOO_LOW\\b)(?![^\\n]*\\bMARGIN_VIOLATION\\b)(?![^\\n]*\\bBLEED_SHORT\\b)(?![^\\n]*\\bINK_OVER\\b)(?![^\\n]*\\bELEMENT_COUNT_SHORT\\b)",
+        "expected": "(?im)^(?=[^\\n]*\\bPG-16\\b)(?=[^\\n]*(?:\\b(?:none|no[ _-]?finding(?:s)?|ok|okay|pass(?:es|ed)?|clean|clear|compliant|conform(?:s|ing)?|valid|fine|good|yes|true|n/?a)\\b|(?:^|,)\\s*[-\u2013\u2014\u2713]\\s*(?:,|$)))(?![^\\n]*\\bDPI_TOO_LOW\\b)(?![^\\n]*\\bMARGIN_VIOLATION\\b)(?![^\\n]*\\bBLEED_SHORT\\b)(?![^\\n]*\\bINK_OVER\\b)(?![^\\n]*\\bELEMENT_COUNT_SHORT\\b)",
         "deterministic": {
           "path": "$.text",
           "comparison": "regex_match"
@@ -555,7 +580,7 @@
       "name": "audit_pg_17",
       "metadata": {
         "how_justification": "Reads activity_kit_audit.csv as text and requires the PG-17 row to carry exactly ELEMENT_COUNT_SHORT, in any column or code order, case-insensitively.",
-        "why_justification": "PG-17 (Station Bingo 2, SEC-04 on CST-100) breaches exactly ELEMENT_COUNT_SHORT under PRINT-KIT-2."
+        "why_justification": "PG-17 (Station Bingo 2, SEC-04 on CST-100, perfect_bound) breaches exactly ELEMENT_COUNT_SHORT under PRINT-KIT-2."
       },
       "source": {
         "type": "file",
@@ -579,8 +604,8 @@
     {
       "name": "audit_pg_18",
       "metadata": {
-        "how_justification": "Reads activity_kit_audit.csv as text and requires the PG-18 row to carry exactly BLEED_SHORT, INK_OVER, in any column or code order, case-insensitively.",
-        "why_justification": "PG-18 (Station Bingo 3, SEC-04 on CST-100) breaches exactly BLEED_SHORT, INK_OVER under PRINT-KIT-2."
+        "how_justification": "Reads activity_kit_audit.csv as text and requires the PG-18 row to carry exactly MARGIN_VIOLATION, BLEED_SHORT, INK_OVER, in any column or code order, case-insensitively.",
+        "why_justification": "PG-18 (Station Bingo 3, SEC-04 on CST-100, perfect_bound) breaches exactly MARGIN_VIOLATION, BLEED_SHORT, INK_OVER under PRINT-KIT-2."
       },
       "source": {
         "type": "file",
@@ -594,7 +619,7 @@
       },
       "assertion": {
         "type": "deterministic",
-        "expected": "(?im)^(?=[^\\n]*\\bPG-18\\b)(?=[^\\n]*\\bBLEED_SHORT\\b)(?=[^\\n]*\\bINK_OVER\\b)(?![^\\n]*\\bDPI_TOO_LOW\\b)(?![^\\n]*\\bMARGIN_VIOLATION\\b)(?![^\\n]*\\bELEMENT_COUNT_SHORT\\b)",
+        "expected": "(?im)^(?=[^\\n]*\\bPG-18\\b)(?=[^\\n]*\\bMARGIN_VIOLATION\\b)(?=[^\\n]*\\bBLEED_SHORT\\b)(?=[^\\n]*\\bINK_OVER\\b)(?![^\\n]*\\bDPI_TOO_LOW\\b)(?![^\\n]*\\bELEMENT_COUNT_SHORT\\b)",
         "deterministic": {
           "path": "$.text",
           "comparison": "regex_match"
@@ -605,7 +630,7 @@
       "name": "audit_pg_19",
       "metadata": {
         "how_justification": "Reads activity_kit_audit.csv as text and requires the PG-19 row to carry a clean verdict and no finding code, in any column or code order, case-insensitively.",
-        "why_justification": "PG-19 (Mission Cards F, SEC-04 on CST-100) clears every rule in PRINT-KIT-2, so the only correct finding is `none`."
+        "why_justification": "PG-19 (Mission Cards F, SEC-04 on CST-100, perfect_bound) clears every rule in PRINT-KIT-2, so the only correct finding is `none`."
       },
       "source": {
         "type": "file",
@@ -619,7 +644,7 @@
       },
       "assertion": {
         "type": "deterministic",
-        "expected": "(?im)^(?=[^\\n]*\\bPG-19\\b)(?=[^\\n]*(?:\\b(?:none|no[ _-]?finding(?:s)?|ok|okay|pass(?:es|ed)?|clean|clear|compliant|conform(?:s|ing)?|fine|good|yes|true|n/?a)\\b|(?:^|,)\\s*[-\u2013\u2014\u2713]\\s*(?:,|$)))(?![^\\n]*\\bDPI_TOO_LOW\\b)(?![^\\n]*\\bMARGIN_VIOLATION\\b)(?![^\\n]*\\bBLEED_SHORT\\b)(?![^\\n]*\\bINK_OVER\\b)(?![^\\n]*\\bELEMENT_COUNT_SHORT\\b)",
+        "expected": "(?im)^(?=[^\\n]*\\bPG-19\\b)(?=[^\\n]*(?:\\b(?:none|no[ _-]?finding(?:s)?|ok|okay|pass(?:es|ed)?|clean|clear|compliant|conform(?:s|ing)?|valid|fine|good|yes|true|n/?a)\\b|(?:^|,)\\s*[-\u2013\u2014\u2713]\\s*(?:,|$)))(?![^\\n]*\\bDPI_TOO_LOW\\b)(?![^\\n]*\\bMARGIN_VIOLATION\\b)(?![^\\n]*\\bBLEED_SHORT\\b)(?![^\\n]*\\bINK_OVER\\b)(?![^\\n]*\\bELEMENT_COUNT_SHORT\\b)",
         "deterministic": {
           "path": "$.text",
           "comparison": "regex_match"
@@ -630,7 +655,7 @@
       "name": "audit_pg_20",
       "metadata": {
         "how_justification": "Reads activity_kit_audit.csv as text and requires the PG-20 row to carry exactly ELEMENT_COUNT_SHORT, in any column or code order, case-insensitively.",
-        "why_justification": "PG-20 (Mission Cards G, SEC-04 on CST-100) breaches exactly ELEMENT_COUNT_SHORT under PRINT-KIT-2."
+        "why_justification": "PG-20 (Mission Cards G, SEC-04 on CST-100, perfect_bound) breaches exactly ELEMENT_COUNT_SHORT under PRINT-KIT-2."
       },
       "source": {
         "type": "file",
@@ -655,7 +680,7 @@
       "name": "audit_pg_21",
       "metadata": {
         "how_justification": "Reads activity_kit_audit.csv as text and requires the PG-21 row to carry exactly DPI_TOO_LOW, in any column or code order, case-insensitively.",
-        "why_justification": "PG-21 (Station Activity, SEC-04 on CST-100) breaches exactly DPI_TOO_LOW under PRINT-KIT-2."
+        "why_justification": "PG-21 (Station Activity, SEC-04 on CST-100, perfect_bound) breaches exactly DPI_TOO_LOW under PRINT-KIT-2."
       },
       "source": {
         "type": "file",
@@ -680,7 +705,7 @@
       "name": "audit_pg_22",
       "metadata": {
         "how_justification": "Reads activity_kit_audit.csv as text and requires the PG-22 row to carry a clean verdict and no finding code, in any column or code order, case-insensitively.",
-        "why_justification": "PG-22 (Parent Guide 1, SEC-05 on UNC-120) clears every rule in PRINT-KIT-2, so the only correct finding is `none`."
+        "why_justification": "PG-22 (Parent Guide 1, SEC-05 on UNC-120, saddle_stitch) clears every rule in PRINT-KIT-2, so the only correct finding is `none`."
       },
       "source": {
         "type": "file",
@@ -694,7 +719,7 @@
       },
       "assertion": {
         "type": "deterministic",
-        "expected": "(?im)^(?=[^\\n]*\\bPG-22\\b)(?=[^\\n]*(?:\\b(?:none|no[ _-]?finding(?:s)?|ok|okay|pass(?:es|ed)?|clean|clear|compliant|conform(?:s|ing)?|fine|good|yes|true|n/?a)\\b|(?:^|,)\\s*[-\u2013\u2014\u2713]\\s*(?:,|$)))(?![^\\n]*\\bDPI_TOO_LOW\\b)(?![^\\n]*\\bMARGIN_VIOLATION\\b)(?![^\\n]*\\bBLEED_SHORT\\b)(?![^\\n]*\\bINK_OVER\\b)(?![^\\n]*\\bELEMENT_COUNT_SHORT\\b)",
+        "expected": "(?im)^(?=[^\\n]*\\bPG-22\\b)(?=[^\\n]*(?:\\b(?:none|no[ _-]?finding(?:s)?|ok|okay|pass(?:es|ed)?|clean|clear|compliant|conform(?:s|ing)?|valid|fine|good|yes|true|n/?a)\\b|(?:^|,)\\s*[-\u2013\u2014\u2713]\\s*(?:,|$)))(?![^\\n]*\\bDPI_TOO_LOW\\b)(?![^\\n]*\\bMARGIN_VIOLATION\\b)(?![^\\n]*\\bBLEED_SHORT\\b)(?![^\\n]*\\bINK_OVER\\b)(?![^\\n]*\\bELEMENT_COUNT_SHORT\\b)",
         "deterministic": {
           "path": "$.text",
           "comparison": "regex_match"
@@ -705,7 +730,7 @@
       "name": "audit_pg_23",
       "metadata": {
         "how_justification": "Reads activity_kit_audit.csv as text and requires the PG-23 row to carry exactly DPI_TOO_LOW, MARGIN_VIOLATION, INK_OVER, in any column or code order, case-insensitively.",
-        "why_justification": "PG-23 (Parent Guide 2, SEC-05 on UNC-120) breaches exactly DPI_TOO_LOW, MARGIN_VIOLATION, INK_OVER under PRINT-KIT-2."
+        "why_justification": "PG-23 (Parent Guide 2, SEC-05 on UNC-120, saddle_stitch) breaches exactly DPI_TOO_LOW, MARGIN_VIOLATION, INK_OVER under PRINT-KIT-2."
       },
       "source": {
         "type": "file",
@@ -730,7 +755,7 @@
       "name": "audit_pg_24",
       "metadata": {
         "how_justification": "Reads activity_kit_audit.csv as text and requires the PG-24 row to carry a clean verdict and no finding code, in any column or code order, case-insensitively.",
-        "why_justification": "PG-24 (Badge Sheet A, SEC-05 on UNC-120) clears every rule in PRINT-KIT-2, so the only correct finding is `none`."
+        "why_justification": "PG-24 (Badge Sheet A, SEC-05 on UNC-120, saddle_stitch) clears every rule in PRINT-KIT-2, so the only correct finding is `none`."
       },
       "source": {
         "type": "file",
@@ -744,7 +769,7 @@
       },
       "assertion": {
         "type": "deterministic",
-        "expected": "(?im)^(?=[^\\n]*\\bPG-24\\b)(?=[^\\n]*(?:\\b(?:none|no[ _-]?finding(?:s)?|ok|okay|pass(?:es|ed)?|clean|clear|compliant|conform(?:s|ing)?|fine|good|yes|true|n/?a)\\b|(?:^|,)\\s*[-\u2013\u2014\u2713]\\s*(?:,|$)))(?![^\\n]*\\bDPI_TOO_LOW\\b)(?![^\\n]*\\bMARGIN_VIOLATION\\b)(?![^\\n]*\\bBLEED_SHORT\\b)(?![^\\n]*\\bINK_OVER\\b)(?![^\\n]*\\bELEMENT_COUNT_SHORT\\b)",
+        "expected": "(?im)^(?=[^\\n]*\\bPG-24\\b)(?=[^\\n]*(?:\\b(?:none|no[ _-]?finding(?:s)?|ok|okay|pass(?:es|ed)?|clean|clear|compliant|conform(?:s|ing)?|valid|fine|good|yes|true|n/?a)\\b|(?:^|,)\\s*[-\u2013\u2014\u2713]\\s*(?:,|$)))(?![^\\n]*\\bDPI_TOO_LOW\\b)(?![^\\n]*\\bMARGIN_VIOLATION\\b)(?![^\\n]*\\bBLEED_SHORT\\b)(?![^\\n]*\\bINK_OVER\\b)(?![^\\n]*\\bELEMENT_COUNT_SHORT\\b)",
         "deterministic": {
           "path": "$.text",
           "comparison": "regex_match"
@@ -755,7 +780,7 @@
       "name": "audit_pg_25",
       "metadata": {
         "how_justification": "Reads activity_kit_audit.csv as text and requires the PG-25 row to carry exactly BLEED_SHORT, ELEMENT_COUNT_SHORT, in any column or code order, case-insensitively.",
-        "why_justification": "PG-25 (Badge Sheet B, SEC-05 on UNC-120) breaches exactly BLEED_SHORT, ELEMENT_COUNT_SHORT under PRINT-KIT-2."
+        "why_justification": "PG-25 (Badge Sheet B, SEC-05 on UNC-120, saddle_stitch) breaches exactly BLEED_SHORT, ELEMENT_COUNT_SHORT under PRINT-KIT-2."
       },
       "source": {
         "type": "file",
@@ -780,7 +805,7 @@
       "name": "audit_pg_26",
       "metadata": {
         "how_justification": "Reads activity_kit_audit.csv as text and requires the PG-26 row to carry exactly DPI_TOO_LOW, in any column or code order, case-insensitively.",
-        "why_justification": "PG-26 (Certificate A, SEC-06 on UNC-120) breaches exactly DPI_TOO_LOW under PRINT-KIT-2."
+        "why_justification": "PG-26 (Certificate A, SEC-06 on UNC-120, perfect_bound) breaches exactly DPI_TOO_LOW under PRINT-KIT-2."
       },
       "source": {
         "type": "file",
@@ -805,7 +830,7 @@
       "name": "audit_pg_27",
       "metadata": {
         "how_justification": "Reads activity_kit_audit.csv as text and requires the PG-27 row to carry a clean verdict and no finding code, in any column or code order, case-insensitively.",
-        "why_justification": "PG-27 (Certificate B, SEC-06 on UNC-120) clears every rule in PRINT-KIT-2, so the only correct finding is `none`."
+        "why_justification": "PG-27 (Certificate B, SEC-06 on UNC-120, perfect_bound) clears every rule in PRINT-KIT-2, so the only correct finding is `none`."
       },
       "source": {
         "type": "file",
@@ -819,7 +844,7 @@
       },
       "assertion": {
         "type": "deterministic",
-        "expected": "(?im)^(?=[^\\n]*\\bPG-27\\b)(?=[^\\n]*(?:\\b(?:none|no[ _-]?finding(?:s)?|ok|okay|pass(?:es|ed)?|clean|clear|compliant|conform(?:s|ing)?|fine|good|yes|true|n/?a)\\b|(?:^|,)\\s*[-\u2013\u2014\u2713]\\s*(?:,|$)))(?![^\\n]*\\bDPI_TOO_LOW\\b)(?![^\\n]*\\bMARGIN_VIOLATION\\b)(?![^\\n]*\\bBLEED_SHORT\\b)(?![^\\n]*\\bINK_OVER\\b)(?![^\\n]*\\bELEMENT_COUNT_SHORT\\b)",
+        "expected": "(?im)^(?=[^\\n]*\\bPG-27\\b)(?=[^\\n]*(?:\\b(?:none|no[ _-]?finding(?:s)?|ok|okay|pass(?:es|ed)?|clean|clear|compliant|conform(?:s|ing)?|valid|fine|good|yes|true|n/?a)\\b|(?:^|,)\\s*[-\u2013\u2014\u2713]\\s*(?:,|$)))(?![^\\n]*\\bDPI_TOO_LOW\\b)(?![^\\n]*\\bMARGIN_VIOLATION\\b)(?![^\\n]*\\bBLEED_SHORT\\b)(?![^\\n]*\\bINK_OVER\\b)(?![^\\n]*\\bELEMENT_COUNT_SHORT\\b)",
         "deterministic": {
           "path": "$.text",
           "comparison": "regex_match"
@@ -830,7 +855,7 @@
       "name": "audit_pg_28",
       "metadata": {
         "how_justification": "Reads activity_kit_audit.csv as text and requires the PG-28 row to carry exactly INK_OVER, ELEMENT_COUNT_SHORT, in any column or code order, case-insensitively.",
-        "why_justification": "PG-28 (Certificate C, SEC-06 on UNC-120) breaches exactly INK_OVER, ELEMENT_COUNT_SHORT under PRINT-KIT-2."
+        "why_justification": "PG-28 (Certificate C, SEC-06 on UNC-120, perfect_bound) breaches exactly INK_OVER, ELEMENT_COUNT_SHORT under PRINT-KIT-2."
       },
       "source": {
         "type": "file",
@@ -854,8 +879,8 @@
     {
       "name": "audit_pg_29",
       "metadata": {
-        "how_justification": "Reads activity_kit_audit.csv as text and requires the PG-29 row to carry exactly DPI_TOO_LOW, in any column or code order, case-insensitively.",
-        "why_justification": "PG-29 (Reward Activity 1, SEC-06 on UNC-120) breaches exactly DPI_TOO_LOW under PRINT-KIT-2."
+        "how_justification": "Reads activity_kit_audit.csv as text and requires the PG-29 row to carry exactly DPI_TOO_LOW, MARGIN_VIOLATION, in any column or code order, case-insensitively.",
+        "why_justification": "PG-29 (Reward Activity 1, SEC-06 on UNC-120, perfect_bound) breaches exactly DPI_TOO_LOW, MARGIN_VIOLATION under PRINT-KIT-2."
       },
       "source": {
         "type": "file",
@@ -869,7 +894,7 @@
       },
       "assertion": {
         "type": "deterministic",
-        "expected": "(?im)^(?=[^\\n]*\\bPG-29\\b)(?=[^\\n]*\\bDPI_TOO_LOW\\b)(?![^\\n]*\\bMARGIN_VIOLATION\\b)(?![^\\n]*\\bBLEED_SHORT\\b)(?![^\\n]*\\bINK_OVER\\b)(?![^\\n]*\\bELEMENT_COUNT_SHORT\\b)",
+        "expected": "(?im)^(?=[^\\n]*\\bPG-29\\b)(?=[^\\n]*\\bDPI_TOO_LOW\\b)(?=[^\\n]*\\bMARGIN_VIOLATION\\b)(?![^\\n]*\\bBLEED_SHORT\\b)(?![^\\n]*\\bINK_OVER\\b)(?![^\\n]*\\bELEMENT_COUNT_SHORT\\b)",
         "deterministic": {
           "path": "$.text",
           "comparison": "regex_match"
@@ -880,7 +905,7 @@
       "name": "audit_pg_30",
       "metadata": {
         "how_justification": "Reads activity_kit_audit.csv as text and requires the PG-30 row to carry exactly MARGIN_VIOLATION, in any column or code order, case-insensitively.",
-        "why_justification": "PG-30 (Reward Activity 2, SEC-06 on UNC-120) breaches exactly MARGIN_VIOLATION under PRINT-KIT-2."
+        "why_justification": "PG-30 (Reward Activity 2, SEC-06 on UNC-120, perfect_bound) breaches exactly MARGIN_VIOLATION under PRINT-KIT-2."
       },
       "source": {
         "type": "file",
@@ -902,10 +927,785 @@
       }
     },
     {
+      "name": "audit_pg_31",
+      "metadata": {
+        "how_justification": "Reads activity_kit_audit.csv as text and requires the PG-31 row to carry a clean verdict and no finding code, in any column or code order, case-insensitively.",
+        "why_justification": "PG-31 (Trail Map D, SEC-07 on CST-100, saddle_stitch) clears every rule in PRINT-KIT-2, so the only correct finding is `none`."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "activity_kit_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?im)^(?=[^\\n]*\\bPG-31\\b)(?=[^\\n]*(?:\\b(?:none|no[ _-]?finding(?:s)?|ok|okay|pass(?:es|ed)?|clean|clear|compliant|conform(?:s|ing)?|valid|fine|good|yes|true|n/?a)\\b|(?:^|,)\\s*[-\u2013\u2014\u2713]\\s*(?:,|$)))(?![^\\n]*\\bDPI_TOO_LOW\\b)(?![^\\n]*\\bMARGIN_VIOLATION\\b)(?![^\\n]*\\bBLEED_SHORT\\b)(?![^\\n]*\\bINK_OVER\\b)(?![^\\n]*\\bELEMENT_COUNT_SHORT\\b)",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "audit_pg_32",
+      "metadata": {
+        "how_justification": "Reads activity_kit_audit.csv as text and requires the PG-32 row to carry exactly DPI_TOO_LOW, in any column or code order, case-insensitively.",
+        "why_justification": "PG-32 (Trail Sticker Sheet, SEC-07 on CST-100, saddle_stitch) breaches exactly DPI_TOO_LOW under PRINT-KIT-2."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "activity_kit_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?im)^(?=[^\\n]*\\bPG-32\\b)(?=[^\\n]*\\bDPI_TOO_LOW\\b)(?![^\\n]*\\bMARGIN_VIOLATION\\b)(?![^\\n]*\\bBLEED_SHORT\\b)(?![^\\n]*\\bINK_OVER\\b)(?![^\\n]*\\bELEMENT_COUNT_SHORT\\b)",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "audit_pg_33",
+      "metadata": {
+        "how_justification": "Reads activity_kit_audit.csv as text and requires the PG-33 row to carry exactly INK_OVER, ELEMENT_COUNT_SHORT, in any column or code order, case-insensitively.",
+        "why_justification": "PG-33 (Mission Cards H, SEC-07 on CST-100, saddle_stitch) breaches exactly INK_OVER, ELEMENT_COUNT_SHORT under PRINT-KIT-2."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "activity_kit_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?im)^(?=[^\\n]*\\bPG-33\\b)(?=[^\\n]*\\bINK_OVER\\b)(?=[^\\n]*\\bELEMENT_COUNT_SHORT\\b)(?![^\\n]*\\bDPI_TOO_LOW\\b)(?![^\\n]*\\bMARGIN_VIOLATION\\b)(?![^\\n]*\\bBLEED_SHORT\\b)",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "audit_pg_34",
+      "metadata": {
+        "how_justification": "Reads activity_kit_audit.csv as text and requires the PG-34 row to carry a clean verdict and no finding code, in any column or code order, case-insensitively.",
+        "why_justification": "PG-34 (Take-home Guide, SEC-08 on BRD-250, perfect_bound) clears every rule in PRINT-KIT-2, so the only correct finding is `none`."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "activity_kit_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?im)^(?=[^\\n]*\\bPG-34\\b)(?=[^\\n]*(?:\\b(?:none|no[ _-]?finding(?:s)?|ok|okay|pass(?:es|ed)?|clean|clear|compliant|conform(?:s|ing)?|valid|fine|good|yes|true|n/?a)\\b|(?:^|,)\\s*[-\u2013\u2014\u2713]\\s*(?:,|$)))(?![^\\n]*\\bDPI_TOO_LOW\\b)(?![^\\n]*\\bMARGIN_VIOLATION\\b)(?![^\\n]*\\bBLEED_SHORT\\b)(?![^\\n]*\\bINK_OVER\\b)(?![^\\n]*\\bELEMENT_COUNT_SHORT\\b)",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "audit_pg_35",
+      "metadata": {
+        "how_justification": "Reads activity_kit_audit.csv as text and requires the PG-35 row to carry exactly MARGIN_VIOLATION, in any column or code order, case-insensitively.",
+        "why_justification": "PG-35 (Take-home Badges, SEC-08 on BRD-250, perfect_bound) breaches exactly MARGIN_VIOLATION under PRINT-KIT-2."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "activity_kit_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?im)^(?=[^\\n]*\\bPG-35\\b)(?=[^\\n]*\\bMARGIN_VIOLATION\\b)(?![^\\n]*\\bDPI_TOO_LOW\\b)(?![^\\n]*\\bBLEED_SHORT\\b)(?![^\\n]*\\bINK_OVER\\b)(?![^\\n]*\\bELEMENT_COUNT_SHORT\\b)",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "audit_pg_36",
+      "metadata": {
+        "how_justification": "Reads activity_kit_audit.csv as text and requires the PG-36 row to carry exactly DPI_TOO_LOW, MARGIN_VIOLATION, INK_OVER, ELEMENT_COUNT_SHORT, in any column or code order, case-insensitively.",
+        "why_justification": "PG-36 (Take-home Activity, SEC-08 on BRD-250, perfect_bound) breaches exactly DPI_TOO_LOW, MARGIN_VIOLATION, INK_OVER, ELEMENT_COUNT_SHORT under PRINT-KIT-2."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "activity_kit_audit.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?im)^(?=[^\\n]*\\bPG-36\\b)(?=[^\\n]*\\bDPI_TOO_LOW\\b)(?=[^\\n]*\\bMARGIN_VIOLATION\\b)(?=[^\\n]*\\bINK_OVER\\b)(?=[^\\n]*\\bELEMENT_COUNT_SHORT\\b)(?![^\\n]*\\bBLEED_SHORT\\b)",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "section_has_required_columns",
+      "metadata": {
+        "how_justification": "Requires one line of section_summary.csv to name the columns the prompt specifies.",
+        "why_justification": "The prompt fixes the rollup's columns and their order."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "section_summary.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?im)^(?=[^\\n]*\\bsection_id\\b)(?=[^\\n]*\\bimposed_page_count\\b)(?=[^\\n]*\\bflagged_pages\\b)(?=[^\\n]*\\bimposition\\b)",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "section_sec_01_counts",
+      "metadata": {
+        "how_justification": "Requires the SEC-01 row to carry live_page_count 4, held_back 0, imposed_page_count 4 and flagged_pages 4, in the column order the prompt specifies.",
+        "why_justification": "SEC-01 holds 4 live pages, of which 0 are held back under \u00a78 and 4 carry a finding."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "section_summary.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?im)^[^\\n]*?\\bSEC-01\\b[^\\n]*?\\b4\\b[^\\n]*?\\b0\\b[^\\n]*?\\b4\\b[^\\n]*?\\b4\\b",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "section_sec_01_binding_and_stock",
+      "metadata": {
+        "how_justification": "Requires the SEC-01 row to name its binding and its stock code.",
+        "why_justification": "SEC-01 is perfect_bound on BRD-250; both come from `kit_sections.csv` and both decide which limits its pages are judged against."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "section_summary.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?im)^(?=[^\\n]*\\bSEC-01\\b)(?=[^\\n]*\\bperfect_bound\\b)(?=[^\\n]*\\bBRD-250\\b)",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "section_sec_01_imposition",
+      "metadata": {
+        "how_justification": "Requires the SEC-01 row's imposition verdict.",
+        "why_justification": "SEC-01 imposes 4 pages after 0 held back, a multiple of 2, so it imposes cleanly."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "section_summary.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?im)^(?=[^\\n]*\\bSEC-01\\b)(?![^\\n]*IMPOSITION_INVALID)(?=[^\\n]*(?:\\b(?:none|no[ _-]?finding(?:s)?|ok|okay|pass(?:es|ed)?|clean|clear|compliant|conform(?:s|ing)?|valid|fine|good|yes|true|n/?a)\\b|(?:^|,)\\s*[-\u2013\u2014\u2713]\\s*(?:,|$)))",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "section_sec_02_counts",
+      "metadata": {
+        "how_justification": "Requires the SEC-02 row to carry live_page_count 6, held_back 1, imposed_page_count 5 and flagged_pages 3, in the column order the prompt specifies.",
+        "why_justification": "SEC-02 holds 6 live pages, of which 1 are held back under \u00a78 and 3 carry a finding."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "section_summary.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?im)^[^\\n]*?\\bSEC-02\\b[^\\n]*?\\b6\\b[^\\n]*?\\b1\\b[^\\n]*?\\b5\\b[^\\n]*?\\b3\\b",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "section_sec_02_binding_and_stock",
+      "metadata": {
+        "how_justification": "Requires the SEC-02 row to name its binding and its stock code.",
+        "why_justification": "SEC-02 is saddle_stitch on CST-100; both come from `kit_sections.csv` and both decide which limits its pages are judged against."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "section_summary.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?im)^(?=[^\\n]*\\bSEC-02\\b)(?=[^\\n]*\\bsaddle_stitch\\b)(?=[^\\n]*\\bCST-100\\b)",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "section_sec_02_imposition",
+      "metadata": {
+        "how_justification": "Requires the SEC-02 row's imposition verdict.",
+        "why_justification": "SEC-02 imposes 5 pages after 1 held back, which is not a multiple of 4; it needs 3 more."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "section_summary.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?im)^(?=[^\\n]*\\bSEC-02\\b)(?=[^\\n]*IMPOSITION_INVALID)",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "section_sec_03_counts",
+      "metadata": {
+        "how_justification": "Requires the SEC-03 row to carry live_page_count 5, held_back 3, imposed_page_count 2 and flagged_pages 4, in the column order the prompt specifies.",
+        "why_justification": "SEC-03 holds 5 live pages, of which 3 are held back under \u00a78 and 4 carry a finding."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "section_summary.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?im)^[^\\n]*?\\bSEC-03\\b[^\\n]*?\\b5\\b[^\\n]*?\\b3\\b[^\\n]*?\\b2\\b[^\\n]*?\\b4\\b",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "section_sec_03_binding_and_stock",
+      "metadata": {
+        "how_justification": "Requires the SEC-03 row to name its binding and its stock code.",
+        "why_justification": "SEC-03 is saddle_stitch on BRD-250; both come from `kit_sections.csv` and both decide which limits its pages are judged against."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "section_summary.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?im)^(?=[^\\n]*\\bSEC-03\\b)(?=[^\\n]*\\bsaddle_stitch\\b)(?=[^\\n]*\\bBRD-250\\b)",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "section_sec_03_imposition",
+      "metadata": {
+        "how_justification": "Requires the SEC-03 row's imposition verdict.",
+        "why_justification": "SEC-03 imposes 2 pages after 3 held back, which is not a multiple of 4; it needs 2 more."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "section_summary.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?im)^(?=[^\\n]*\\bSEC-03\\b)(?=[^\\n]*IMPOSITION_INVALID)",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "section_sec_04_counts",
+      "metadata": {
+        "how_justification": "Requires the SEC-04 row to carry live_page_count 6, held_back 2, imposed_page_count 4 and flagged_pages 4, in the column order the prompt specifies.",
+        "why_justification": "SEC-04 holds 6 live pages, of which 2 are held back under \u00a78 and 4 carry a finding."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "section_summary.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?im)^[^\\n]*?\\bSEC-04\\b[^\\n]*?\\b6\\b[^\\n]*?\\b2\\b[^\\n]*?\\b4\\b[^\\n]*?\\b4\\b",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "section_sec_04_binding_and_stock",
+      "metadata": {
+        "how_justification": "Requires the SEC-04 row to name its binding and its stock code.",
+        "why_justification": "SEC-04 is perfect_bound on CST-100; both come from `kit_sections.csv` and both decide which limits its pages are judged against."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "section_summary.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?im)^(?=[^\\n]*\\bSEC-04\\b)(?=[^\\n]*\\bperfect_bound\\b)(?=[^\\n]*\\bCST-100\\b)",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "section_sec_04_imposition",
+      "metadata": {
+        "how_justification": "Requires the SEC-04 row's imposition verdict.",
+        "why_justification": "SEC-04 imposes 4 pages after 2 held back, a multiple of 2, so it imposes cleanly."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "section_summary.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?im)^(?=[^\\n]*\\bSEC-04\\b)(?![^\\n]*IMPOSITION_INVALID)(?=[^\\n]*(?:\\b(?:none|no[ _-]?finding(?:s)?|ok|okay|pass(?:es|ed)?|clean|clear|compliant|conform(?:s|ing)?|valid|fine|good|yes|true|n/?a)\\b|(?:^|,)\\s*[-\u2013\u2014\u2713]\\s*(?:,|$)))",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "section_sec_05_counts",
+      "metadata": {
+        "how_justification": "Requires the SEC-05 row to carry live_page_count 4, held_back 1, imposed_page_count 3 and flagged_pages 2, in the column order the prompt specifies.",
+        "why_justification": "SEC-05 holds 4 live pages, of which 1 are held back under \u00a78 and 2 carry a finding."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "section_summary.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?im)^[^\\n]*?\\bSEC-05\\b[^\\n]*?\\b4\\b[^\\n]*?\\b1\\b[^\\n]*?\\b3\\b[^\\n]*?\\b2\\b",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "section_sec_05_binding_and_stock",
+      "metadata": {
+        "how_justification": "Requires the SEC-05 row to name its binding and its stock code.",
+        "why_justification": "SEC-05 is saddle_stitch on UNC-120; both come from `kit_sections.csv` and both decide which limits its pages are judged against."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "section_summary.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?im)^(?=[^\\n]*\\bSEC-05\\b)(?=[^\\n]*\\bsaddle_stitch\\b)(?=[^\\n]*\\bUNC-120\\b)",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "section_sec_05_imposition",
+      "metadata": {
+        "how_justification": "Requires the SEC-05 row's imposition verdict.",
+        "why_justification": "SEC-05 imposes 3 pages after 1 held back, which is not a multiple of 4; it needs 1 more."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "section_summary.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?im)^(?=[^\\n]*\\bSEC-05\\b)(?=[^\\n]*IMPOSITION_INVALID)",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "section_sec_06_counts",
+      "metadata": {
+        "how_justification": "Requires the SEC-06 row to carry live_page_count 5, held_back 1, imposed_page_count 4 and flagged_pages 4, in the column order the prompt specifies.",
+        "why_justification": "SEC-06 holds 5 live pages, of which 1 are held back under \u00a78 and 4 carry a finding."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "section_summary.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?im)^[^\\n]*?\\bSEC-06\\b[^\\n]*?\\b5\\b[^\\n]*?\\b1\\b[^\\n]*?\\b4\\b[^\\n]*?\\b4\\b",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "section_sec_06_binding_and_stock",
+      "metadata": {
+        "how_justification": "Requires the SEC-06 row to name its binding and its stock code.",
+        "why_justification": "SEC-06 is perfect_bound on UNC-120; both come from `kit_sections.csv` and both decide which limits its pages are judged against."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "section_summary.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?im)^(?=[^\\n]*\\bSEC-06\\b)(?=[^\\n]*\\bperfect_bound\\b)(?=[^\\n]*\\bUNC-120\\b)",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "section_sec_06_imposition",
+      "metadata": {
+        "how_justification": "Requires the SEC-06 row's imposition verdict.",
+        "why_justification": "SEC-06 imposes 4 pages after 1 held back, a multiple of 2, so it imposes cleanly."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "section_summary.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?im)^(?=[^\\n]*\\bSEC-06\\b)(?![^\\n]*IMPOSITION_INVALID)(?=[^\\n]*(?:\\b(?:none|no[ _-]?finding(?:s)?|ok|okay|pass(?:es|ed)?|clean|clear|compliant|conform(?:s|ing)?|valid|fine|good|yes|true|n/?a)\\b|(?:^|,)\\s*[-\u2013\u2014\u2713]\\s*(?:,|$)))",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "section_sec_07_counts",
+      "metadata": {
+        "how_justification": "Requires the SEC-07 row to carry live_page_count 3, held_back 1, imposed_page_count 2 and flagged_pages 2, in the column order the prompt specifies.",
+        "why_justification": "SEC-07 holds 3 live pages, of which 1 are held back under \u00a78 and 2 carry a finding."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "section_summary.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?im)^[^\\n]*?\\bSEC-07\\b[^\\n]*?\\b3\\b[^\\n]*?\\b1\\b[^\\n]*?\\b2\\b[^\\n]*?\\b2\\b",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "section_sec_07_binding_and_stock",
+      "metadata": {
+        "how_justification": "Requires the SEC-07 row to name its binding and its stock code.",
+        "why_justification": "SEC-07 is saddle_stitch on CST-100; both come from `kit_sections.csv` and both decide which limits its pages are judged against."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "section_summary.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?im)^(?=[^\\n]*\\bSEC-07\\b)(?=[^\\n]*\\bsaddle_stitch\\b)(?=[^\\n]*\\bCST-100\\b)",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "section_sec_07_imposition",
+      "metadata": {
+        "how_justification": "Requires the SEC-07 row's imposition verdict.",
+        "why_justification": "SEC-07 imposes 2 pages after 1 held back, which is not a multiple of 4; it needs 2 more."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "section_summary.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?im)^(?=[^\\n]*\\bSEC-07\\b)(?=[^\\n]*IMPOSITION_INVALID)",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "section_sec_08_counts",
+      "metadata": {
+        "how_justification": "Requires the SEC-08 row to carry live_page_count 3, held_back 1, imposed_page_count 2 and flagged_pages 2, in the column order the prompt specifies.",
+        "why_justification": "SEC-08 holds 3 live pages, of which 1 are held back under \u00a78 and 2 carry a finding."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "section_summary.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?im)^[^\\n]*?\\bSEC-08\\b[^\\n]*?\\b3\\b[^\\n]*?\\b1\\b[^\\n]*?\\b2\\b[^\\n]*?\\b2\\b",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "section_sec_08_binding_and_stock",
+      "metadata": {
+        "how_justification": "Requires the SEC-08 row to name its binding and its stock code.",
+        "why_justification": "SEC-08 is perfect_bound on BRD-250; both come from `kit_sections.csv` and both decide which limits its pages are judged against."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "section_summary.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?im)^(?=[^\\n]*\\bSEC-08\\b)(?=[^\\n]*\\bperfect_bound\\b)(?=[^\\n]*\\bBRD-250\\b)",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "section_sec_08_imposition",
+      "metadata": {
+        "how_justification": "Requires the SEC-08 row's imposition verdict.",
+        "why_justification": "SEC-08 imposes 2 pages after 1 held back, a multiple of 2, so it imposes cleanly."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "csv",
+          "command": "extract_text",
+          "arguments": {
+            "path": "section_summary.csv"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?im)^(?=[^\\n]*\\bSEC-08\\b)(?![^\\n]*IMPOSITION_INVALID)(?=[^\\n]*(?:\\b(?:none|no[ _-]?finding(?:s)?|ok|okay|pass(?:es|ed)?|clean|clear|compliant|conform(?:s|ing)?|valid|fine|good|yes|true|n/?a)\\b|(?:^|,)\\s*[-\u2013\u2014\u2713]\\s*(?:,|$)))",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
       "name": "result_page_count",
       "metadata": {
         "how_justification": "Reads results.json with json.read_file and compares $.page_count.",
-        "why_justification": "Derived figure `page_count`: live pages audited after superseded artwork is dropped."
+        "why_justification": "Derived figure `page_count`: Live pages audited after superseded artwork is dropped. Recomputed from the batch, not read back from the model's own summary."
       },
       "source": {
         "type": "file",
@@ -919,7 +1719,7 @@
       },
       "assertion": {
         "type": "deterministic",
-        "expected": 30,
+        "expected": 36,
         "deterministic": {
           "path": "$.page_count",
           "comparison": "equals"
@@ -930,7 +1730,7 @@
       "name": "result_superseded_count",
       "metadata": {
         "how_justification": "Reads results.json with json.read_file and compares $.superseded_count.",
-        "why_justification": "Derived figure `superseded_count`: artwork rows the batch supersedes."
+        "why_justification": "Derived figure `superseded_count`: Artwork rows the batch supersedes. Recomputed from the batch, not read back from the model's own summary."
       },
       "source": {
         "type": "file",
@@ -944,9 +1744,34 @@
       },
       "assertion": {
         "type": "deterministic",
-        "expected": 4,
+        "expected": 6,
         "deterministic": {
           "path": "$.superseded_count",
+          "comparison": "equals"
+        }
+      }
+    },
+    {
+      "name": "result_section_count",
+      "metadata": {
+        "how_justification": "Reads results.json with json.read_file and compares $.section_count.",
+        "why_justification": "Derived figure `section_count`: Sections in the kit. Recomputed from the batch, not read back from the model's own summary."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "json",
+          "command": "read_file",
+          "arguments": {
+            "path": "results.json"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": 8,
+        "deterministic": {
+          "path": "$.section_count",
           "comparison": "equals"
         }
       }
@@ -955,7 +1780,7 @@
       "name": "result_clean_count",
       "metadata": {
         "how_justification": "Reads results.json with json.read_file and compares $.clean_count.",
-        "why_justification": "Derived figure `clean_count`: live pages with no finding."
+        "why_justification": "Derived figure `clean_count`: Live pages with no finding. Recomputed from the batch, not read back from the model's own summary."
       },
       "source": {
         "type": "file",
@@ -969,7 +1794,7 @@
       },
       "assertion": {
         "type": "deterministic",
-        "expected": 10,
+        "expected": 11,
         "deterministic": {
           "path": "$.clean_count",
           "comparison": "equals"
@@ -980,7 +1805,7 @@
       "name": "result_flagged_count",
       "metadata": {
         "how_justification": "Reads results.json with json.read_file and compares $.flagged_count.",
-        "why_justification": "Derived figure `flagged_count`: live pages carrying at least one finding."
+        "why_justification": "Derived figure `flagged_count`: Live pages carrying at least one finding. Recomputed from the batch, not read back from the model's own summary."
       },
       "source": {
         "type": "file",
@@ -994,7 +1819,7 @@
       },
       "assertion": {
         "type": "deterministic",
-        "expected": 20,
+        "expected": 25,
         "deterministic": {
           "path": "$.flagged_count",
           "comparison": "equals"
@@ -1005,7 +1830,7 @@
       "name": "result_finding_total",
       "metadata": {
         "how_justification": "Reads results.json with json.read_file and compares $.finding_total.",
-        "why_justification": "Derived figure `finding_total`: every finding raised, which differs from the number of pages carrying one because several pages breach more than one rule."
+        "why_justification": "Derived figure `finding_total`: Every finding raised, which differs from the number of pages carrying one because several pages breach more than one rule. Recomputed from the batch, not read back from the model's own summary."
       },
       "source": {
         "type": "file",
@@ -1019,7 +1844,7 @@
       },
       "assertion": {
         "type": "deterministic",
-        "expected": 29,
+        "expected": 41,
         "deterministic": {
           "path": "$.finding_total",
           "comparison": "equals"
@@ -1030,7 +1855,7 @@
       "name": "result_dpi_low_count",
       "metadata": {
         "how_justification": "Reads results.json with json.read_file and compares $.dpi_low_count.",
-        "why_justification": "Derived figure `dpi_low_count`, recomputed from the delivered audit."
+        "why_justification": "Derived figure `dpi_low_count`: Pages carrying DPI_TOO_LOW. Recomputed from the batch, not read back from the model's own summary."
       },
       "source": {
         "type": "file",
@@ -1044,7 +1869,7 @@
       },
       "assertion": {
         "type": "deterministic",
-        "expected": 7,
+        "expected": 9,
         "deterministic": {
           "path": "$.dpi_low_count",
           "comparison": "equals"
@@ -1055,7 +1880,7 @@
       "name": "result_margin_count",
       "metadata": {
         "how_justification": "Reads results.json with json.read_file and compares $.margin_count.",
-        "why_justification": "Derived figure `margin_count`, recomputed from the delivered audit."
+        "why_justification": "Derived figure `margin_count`: Pages carrying MARGIN_VIOLATION. Recomputed from the batch, not read back from the model's own summary."
       },
       "source": {
         "type": "file",
@@ -1069,7 +1894,7 @@
       },
       "assertion": {
         "type": "deterministic",
-        "expected": 5,
+        "expected": 11,
         "deterministic": {
           "path": "$.margin_count",
           "comparison": "equals"
@@ -1080,7 +1905,7 @@
       "name": "result_bleed_short_count",
       "metadata": {
         "how_justification": "Reads results.json with json.read_file and compares $.bleed_short_count.",
-        "why_justification": "Derived figure `bleed_short_count`, recomputed from the delivered audit."
+        "why_justification": "Derived figure `bleed_short_count`: Pages carrying BLEED_SHORT. Recomputed from the batch, not read back from the model's own summary."
       },
       "source": {
         "type": "file",
@@ -1105,32 +1930,7 @@
       "name": "result_ink_over_count",
       "metadata": {
         "how_justification": "Reads results.json with json.read_file and compares $.ink_over_count.",
-        "why_justification": "Derived figure `ink_over_count`, recomputed from the delivered audit."
-      },
-      "source": {
-        "type": "file",
-        "file": {
-          "type": "json",
-          "command": "read_file",
-          "arguments": {
-            "path": "results.json"
-          }
-        }
-      },
-      "assertion": {
-        "type": "deterministic",
-        "expected": 6,
-        "deterministic": {
-          "path": "$.ink_over_count",
-          "comparison": "equals"
-        }
-      }
-    },
-    {
-      "name": "result_element_short_count",
-      "metadata": {
-        "how_justification": "Reads results.json with json.read_file and compares $.element_short_count.",
-        "why_justification": "Derived figure `element_short_count`, recomputed from the delivered audit."
+        "why_justification": "Derived figure `ink_over_count`: Pages carrying INK_OVER. Recomputed from the batch, not read back from the model's own summary."
       },
       "source": {
         "type": "file",
@@ -1146,16 +1946,16 @@
         "type": "deterministic",
         "expected": 8,
         "deterministic": {
-          "path": "$.element_short_count",
+          "path": "$.ink_over_count",
           "comparison": "equals"
         }
       }
     },
     {
-      "name": "result_element_shortfall_total",
+      "name": "result_element_short_count",
       "metadata": {
-        "how_justification": "Reads results.json with json.read_file and compares $.element_shortfall_total.",
-        "why_justification": "Derived figure `element_shortfall_total`: required elements missing across the batch, not the number of short pages."
+        "how_justification": "Reads results.json with json.read_file and compares $.element_short_count.",
+        "why_justification": "Derived figure `element_short_count`: Pages carrying ELEMENT_COUNT_SHORT. Recomputed from the batch, not read back from the model's own summary."
       },
       "source": {
         "type": "file",
@@ -1169,7 +1969,32 @@
       },
       "assertion": {
         "type": "deterministic",
-        "expected": 11,
+        "expected": 10,
+        "deterministic": {
+          "path": "$.element_short_count",
+          "comparison": "equals"
+        }
+      }
+    },
+    {
+      "name": "result_element_shortfall_total",
+      "metadata": {
+        "how_justification": "Reads results.json with json.read_file and compares $.element_shortfall_total.",
+        "why_justification": "Derived figure `element_shortfall_total`: Required elements missing across the batch, not the number of short pages. Recomputed from the batch, not read back from the model's own summary."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "json",
+          "command": "read_file",
+          "arguments": {
+            "path": "results.json"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": 13,
         "deterministic": {
           "path": "$.element_shortfall_total",
           "comparison": "equals"
@@ -1177,9 +2002,59 @@
       }
     },
     {
+      "name": "result_imposition_invalid_sections",
+      "metadata": {
+        "how_justification": "Reads results.json with json.read_file and compares $.imposition_invalid_sections.",
+        "why_justification": "Derived figure `imposition_invalid_sections`: Sections whose imposed page count does not fit their binding. Recomputed from the batch, not read back from the model's own summary."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "json",
+          "command": "read_file",
+          "arguments": {
+            "path": "results.json"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": 4,
+        "deterministic": {
+          "path": "$.imposition_invalid_sections",
+          "comparison": "equals"
+        }
+      }
+    },
+    {
+      "name": "result_imposition_shortfall_total",
+      "metadata": {
+        "how_justification": "Reads results.json with json.read_file and compares $.imposition_shortfall_total.",
+        "why_justification": "Derived figure `imposition_shortfall_total`: Pages the invalid sections need between them. Recomputed from the batch, not read back from the model's own summary."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "json",
+          "command": "read_file",
+          "arguments": {
+            "path": "results.json"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": 8,
+        "deterministic": {
+          "path": "$.imposition_shortfall_total",
+          "comparison": "equals"
+        }
+      }
+    },
+    {
       "name": "memo_covers_every_flagged_page",
       "metadata": {
-        "how_justification": "Requires all 20 flagged page ids to appear in activity_kit_memo.md.",
+        "how_justification": "Requires all 25 flagged page ids to appear in activity_kit_memo.md.",
         "why_justification": "The prompt asks the memo to account for every page carrying a finding."
       },
       "source": {
@@ -1194,7 +2069,32 @@
       },
       "assertion": {
         "type": "deterministic",
-        "expected": "(?s)^(?=[\\s\\S]*\\bPG-02\\b)(?=[\\s\\S]*\\bPG-03\\b)(?=[\\s\\S]*\\bPG-04\\b)(?=[\\s\\S]*\\bPG-06\\b)(?=[\\s\\S]*\\bPG-07\\b)(?=[\\s\\S]*\\bPG-08\\b)(?=[\\s\\S]*\\bPG-12\\b)(?=[\\s\\S]*\\bPG-13\\b)(?=[\\s\\S]*\\bPG-14\\b)(?=[\\s\\S]*\\bPG-15\\b)(?=[\\s\\S]*\\bPG-17\\b)(?=[\\s\\S]*\\bPG-18\\b)(?=[\\s\\S]*\\bPG-20\\b)(?=[\\s\\S]*\\bPG-21\\b)(?=[\\s\\S]*\\bPG-23\\b)(?=[\\s\\S]*\\bPG-25\\b)(?=[\\s\\S]*\\bPG-26\\b)(?=[\\s\\S]*\\bPG-28\\b)(?=[\\s\\S]*\\bPG-29\\b)(?=[\\s\\S]*\\bPG-30\\b)",
+        "expected": "(?is)^(?=[\\s\\S]*\\bPG-01\\b)(?=[\\s\\S]*\\bPG-02\\b)(?=[\\s\\S]*\\bPG-03\\b)(?=[\\s\\S]*\\bPG-04\\b)(?=[\\s\\S]*\\bPG-06\\b)(?=[\\s\\S]*\\bPG-07\\b)(?=[\\s\\S]*\\bPG-08\\b)(?=[\\s\\S]*\\bPG-12\\b)(?=[\\s\\S]*\\bPG-13\\b)(?=[\\s\\S]*\\bPG-14\\b)(?=[\\s\\S]*\\bPG-15\\b)(?=[\\s\\S]*\\bPG-17\\b)(?=[\\s\\S]*\\bPG-18\\b)(?=[\\s\\S]*\\bPG-20\\b)(?=[\\s\\S]*\\bPG-21\\b)(?=[\\s\\S]*\\bPG-23\\b)(?=[\\s\\S]*\\bPG-25\\b)(?=[\\s\\S]*\\bPG-26\\b)(?=[\\s\\S]*\\bPG-28\\b)(?=[\\s\\S]*\\bPG-29\\b)(?=[\\s\\S]*\\bPG-30\\b)(?=[\\s\\S]*\\bPG-32\\b)(?=[\\s\\S]*\\bPG-33\\b)(?=[\\s\\S]*\\bPG-35\\b)(?=[\\s\\S]*\\bPG-36\\b)",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "memo_covers_every_section",
+      "metadata": {
+        "how_justification": "Requires all 8 section ids to appear in activity_kit_memo.md.",
+        "why_justification": "The prompt asks the memo to cover every section."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "md",
+          "command": "extract_text",
+          "arguments": {
+            "path": "activity_kit_memo.md"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?is)^(?=[\\s\\S]*\\bSEC-01\\b)(?=[\\s\\S]*\\bSEC-02\\b)(?=[\\s\\S]*\\bSEC-03\\b)(?=[\\s\\S]*\\bSEC-04\\b)(?=[\\s\\S]*\\bSEC-05\\b)(?=[\\s\\S]*\\bSEC-06\\b)(?=[\\s\\S]*\\bSEC-07\\b)(?=[\\s\\S]*\\bSEC-08\\b)",
         "deterministic": {
           "path": "$.text",
           "comparison": "regex_match"
@@ -1227,10 +2127,10 @@
       }
     },
     {
-      "name": "memo_explains_full_bleed_exemption",
+      "name": "memo_names_every_stock",
       "metadata": {
-        "how_justification": "Requires activity_kit_memo.md to tie full-bleed pages to a margin exemption.",
-        "why_justification": "The prompt asks the memo to say what clears a page whose numbers look like a breach; the full-bleed margin exemption (\u00a74) is that case."
+        "how_justification": "Requires all three stock codes to appear in activity_kit_memo.md.",
+        "why_justification": "The prompt asks the memo to give the limits actually applied, and the limits belong to the stocks."
       },
       "source": {
         "type": "file",
@@ -1244,7 +2144,132 @@
       },
       "assertion": {
         "type": "deterministic",
-        "expected": "(?is)full[\\s_-]?bleed[\\s\\S]{0,800}?(?:exempt|waiv|not\\s+(?:a\\s+)?(?:subject|assessed|flagged|graded|checked|held)|does\\s+not\\s+apply|by\\s+design|deliberate)",
+        "expected": "(?is)^(?=[\\s\\S]*\\bCST-100\\b)(?=[\\s\\S]*\\bUNC-120\\b)(?=[\\s\\S]*\\bBRD-250\\b)",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "memo_cites_every_dpi_floor",
+      "metadata": {
+        "how_justification": "Requires the resolution floors [240, 260, 300] to appear in activity_kit_memo.md.",
+        "why_justification": "The prompt asks the memo to state the resolution floors it applied; the three stocks in this kit hold three different floors."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "md",
+          "command": "extract_text",
+          "arguments": {
+            "path": "activity_kit_memo.md"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?is)^(?=[\\s\\S]*\\b240\\b)(?=[\\s\\S]*\\b260\\b)(?=[\\s\\S]*\\b300\\b)",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "memo_cites_every_ink_cap",
+      "metadata": {
+        "how_justification": "Requires the ink caps [240, 280, 300] to appear in activity_kit_memo.md.",
+        "why_justification": "The prompt asks the memo to state the ink caps it applied."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "md",
+          "command": "extract_text",
+          "arguments": {
+            "path": "activity_kit_memo.md"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?is)^(?=[\\s\\S]*\\b240\\b)(?=[\\s\\S]*\\b280\\b)(?=[\\s\\S]*\\b300\\b)",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "memo_cites_margin_and_bleed_floors",
+      "metadata": {
+        "how_justification": "Requires the margin and bleed floors ['0.125', '0.1875', '0.25'] to appear in activity_kit_memo.md.",
+        "why_justification": "The prompt asks the memo to state the margin floors and bleed minimums it applied."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "md",
+          "command": "extract_text",
+          "arguments": {
+            "path": "activity_kit_memo.md"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?is)^(?=[\\s\\S]*0\\.125)(?=[\\s\\S]*0\\.1875)(?=[\\s\\S]*0\\.25)",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "memo_explains_full_bleed_exemption",
+      "metadata": {
+        "how_justification": "Requires activity_kit_memo.md to tie full-bleed pages to a margin exemption.",
+        "why_justification": "The prompt asks the memo to say what clears a page whose numbers look like a breach; the \u00a74 full-bleed margin exemption is that case."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "md",
+          "command": "extract_text",
+          "arguments": {
+            "path": "activity_kit_memo.md"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?is)full[\\s_-]?bleed[\\s\\S]{0,900}?(?:exempt|waiv|not\\s+(?:a\\s+)?(?:subject|assessed|flagged|graded|checked|held)|does\\s+not\\s+apply|by\\s+design|deliberate)",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "memo_explains_spine_margin_exception",
+      "metadata": {
+        "how_justification": "Requires activity_kit_memo.md to tie the binding to the full-bleed margin exemption, which \u00a74 limits to saddle-stitched sections.",
+        "why_justification": "Five full-bleed pages carry MARGIN_VIOLATION because their section is perfect-bound; a memo explaining them names the binding."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "md",
+          "command": "extract_text",
+          "arguments": {
+            "path": "activity_kit_memo.md"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?is)perfect[\\s_-]?bound[\\s\\S]{0,900}?(?:margin|spine|\u00a7\\s*3|section\\s*3)|(?:margin|spine)[\\s\\S]{0,900}?perfect[\\s_-]?bound",
         "deterministic": {
           "path": "$.text",
           "comparison": "regex_match"
@@ -1304,8 +2329,8 @@
     {
       "name": "memo_names_superseded_pages",
       "metadata": {
-        "how_justification": "Requires activity_kit_memo.md to name the four pages carrying superseded artwork and to use supersession language.",
-        "why_justification": "The prompt asks the memo to say which artwork the batch supersedes; PG-04, PG-12, PG-18 and PG-27 are the four pages with more than one revision."
+        "how_justification": "Requires activity_kit_memo.md to name the six pages carrying superseded artwork and to use supersession language.",
+        "why_justification": "The prompt asks the memo to say which artwork the batch supersedes; PG-04, PG-12, PG-18, PG-27, PG-33 and PG-35 are the pages with more than one revision."
       },
       "source": {
         "type": "file",
@@ -1319,7 +2344,7 @@
       },
       "assertion": {
         "type": "deterministic",
-        "expected": "(?is)^(?=[\\s\\S]*\\bPG-04\\b)(?=[\\s\\S]*\\bPG-12\\b)(?=[\\s\\S]*\\bPG-18\\b)(?=[\\s\\S]*\\bPG-27\\b)(?=[\\s\\S]*(?:supersed\\w*|supercede\\w*|replac\\w*|(?:latest|highest|newer|later)\\s+revision|rev(?:ision)?\\s*\\d))",
+        "expected": "(?is)^(?=[\\s\\S]*\\bPG-04\\b)(?=[\\s\\S]*\\bPG-12\\b)(?=[\\s\\S]*\\bPG-18\\b)(?=[\\s\\S]*\\bPG-27\\b)(?=[\\s\\S]*\\bPG-33\\b)(?=[\\s\\S]*\\bPG-35\\b)(?=[\\s\\S]*(?:supersed\\w*|supercede\\w*|replac\\w*|(?:latest|highest|newer|later)\\s+revision|rev(?:ision)?\\s*\\d))",
         "deterministic": {
           "path": "$.text",
           "comparison": "regex_match"
@@ -1330,7 +2355,7 @@
       "name": "memo_explains_rev_b_amendment",
       "metadata": {
         "how_justification": "Requires activity_kit_memo.md to name the saddle-stitch element-count amendment.",
-        "why_justification": "Four of the eight ELEMENT_COUNT_SHORT verdicts turn on Amendment Rev B; a memo explaining them names the binding it depends on."
+        "why_justification": "Half the ELEMENT_COUNT_SHORT verdicts turn on Amendment Rev B; a memo explaining them names the binding it depends on."
       },
       "source": {
         "type": "file",
@@ -1345,6 +2370,81 @@
       "assertion": {
         "type": "deterministic",
         "expected": "(?is)(?:saddle[\\s_-]?stitch\\w*|rev(?:ision)?\\s*b\\b|amendment)",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "memo_names_unimposable_sections",
+      "metadata": {
+        "how_justification": "Requires activity_kit_memo.md to name the 4 sections that cannot be imposed, alongside imposition language.",
+        "why_justification": "The prompt asks the memo to name the sections that cannot be imposed; SEC-02, SEC-03, SEC-05, SEC-07 are those sections."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "md",
+          "command": "extract_text",
+          "arguments": {
+            "path": "activity_kit_memo.md"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?is)^(?=[\\s\\S]*\\bSEC-02\\b)(?=[\\s\\S]*\\bSEC-03\\b)(?=[\\s\\S]*\\bSEC-05\\b)(?=[\\s\\S]*\\bSEC-07\\b)(?=[\\s\\S]*(?:impos\\w+|repaginat\\w+|multiple\\s+of))",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "memo_states_element_shortfall_total",
+      "metadata": {
+        "how_justification": "Requires activity_kit_memo.md to state 13 as the batch's missing-element total, in an element or shortfall context.",
+        "why_justification": "The prompt asks the memo to state how many required elements the batch is missing altogether; it is a different number from the count of short pages."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "md",
+          "command": "extract_text",
+          "arguments": {
+            "path": "activity_kit_memo.md"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?is)(?:\\b13\\b[^\\n]{0,90}(?:required\\s+element|element|shortfall|missing|short)|(?:element|shortfall|missing|short)[^\\n]{0,90}\\b13\\b)",
+        "deterministic": {
+          "path": "$.text",
+          "comparison": "regex_match"
+        }
+      }
+    },
+    {
+      "name": "memo_reports_clean_and_flagged_totals",
+      "metadata": {
+        "how_justification": "Requires activity_kit_memo.md to state 11 clear pages and 25 flagged pages.",
+        "why_justification": "The prompt asks the memo to state how many pages are clear and how many carry a finding."
+      },
+      "source": {
+        "type": "file",
+        "file": {
+          "type": "md",
+          "command": "extract_text",
+          "arguments": {
+            "path": "activity_kit_memo.md"
+          }
+        }
+      },
+      "assertion": {
+        "type": "deterministic",
+        "expected": "(?is)^(?=[\\s\\S]*\\b11\\b)(?=[\\s\\S]*\\b25\\b)",
         "deterministic": {
           "path": "$.text",
           "comparison": "regex_match"
